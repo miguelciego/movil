@@ -110,22 +110,31 @@ export class CpsProviders {
                 {
                     "Valor": 36,
                     "Descripcion": "ANEST.Y TERAPIA",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":6,
+                    "Disponible":10
+
                 },
                 {
                     "Valor": 8,
                     "Descripcion": "CIRUGIA",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
                 },
                 {
                     "Valor": 34,
                     "Descripcion": "CIRUGIA  CARA CUELLO",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":2,
+                    "Disponible":10
                 },
                 {
                     "Valor": 38,
                     "Descripcion": "ENDODONCIA",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":4,
+                    "Disponible":10
                 }
             ];
 
