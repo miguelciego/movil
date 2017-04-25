@@ -1,0 +1,97 @@
+<!--
+  Generated template for the Filiales page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Filiales</ion-title>
+    <ion-buttons left>
+      <button ion-button >
+        <img width="40" height="40" src="assets/images/cps-logo.png" />
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+ 
+   <ion-card  >
+ <!--
+    <ion-card-header>
+      {{ Ficha.PacienteNombre }} 
+    </ion-card-header>
+  
+    <ion-card-content>
+   {{ Ficha.PacienteMatricula }}
+    </ion-card-content>
+<br>
+     Centro:<br>
+     Especialidad:<br>
+     Medico:
+ --> 
+    <ion-card-content>
+    Paciente:{{ Ficha.PacienteNombre }}<br>
+     Matricula:{{ Ficha.PacienteMatricula }}
+    </ion-card-content>
+       
+  </ion-card>
+   <!-- 
+    <ion-list >
+  
+    <ion-item >
+     Paciente:{{ Ficha.PacienteNombre }}<br>
+     Matricula:{{ Ficha.PacienteMatricula }}
+    </ion-item>
+
+  </ion-list>
+ <ion-icon item-left name="hospital"></ion-icon>
+ --> 
+<ion-list >
+  <ion-item *ngFor="let Filial of FilialesEncontradas" >
+    
+
+<a  item-left 
+    [href]="sanitize('geo:?q=' + Filial.geoubicacion + ',' + Filial.geoubicacion2 + ',17z')" 
+     target="_system" >
+     <img  
+          width="80" height="80" src="assets/images/{{ Filial.Codigo }}.jpg"/>    
+     </a>
+    <div (click)="iraEspecialidades(Filial)">
+    {{ Filial.Nombre }}<br>
+    <div text-wrap class="subitem"  >
+      Dirección: {{ Filial.Direccion }}<br>
+      Telefono: {{ Filial.Telefono }}<br>
+      Horario: {{ Filial.Horario }}<br>
+ 
+    </div>
+    </div>
+
+     
+    
+    
+        
+ <!-- 
+
+<img item-left (click)="iraEspecialidades(Filial)" 
+          width="50" height="50" src="assets/images/centro.png"/>
+  
+  <a button ion-button item-left icon-right
+    [href]="sanitize('geo:?q=' + Filial.geoubicacion + ',' + Filial.geoubicacion2 + ',17z')" 
+     target="_system">
+     <ion-icon name="map"></ion-icon>
+    
+     Mapa
+     </a>        
+
+ --> 
+  
+    
+  </ion-item>
+</ion-list>
+
+</ion-content>

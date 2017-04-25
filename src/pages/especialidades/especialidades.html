@@ -1,0 +1,67 @@
+<!--
+  Generated template for the Especialidades page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Especialidades</ion-title>
+        <ion-buttons left>
+      <button ion-button >
+        <img width="40" height="40" src="assets/images/cps-logo.png" />
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+ <!--
+  <ion-card *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
+
+    <ion-card-header>
+      {{ Especialidad.Descripcion }}
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ Especialidad.Descripcion }} 
+    </ion-card-content>
+
+  </ion-card>
+ -->
+ <ion-card  >
+  <!-- 
+    <ion-card-header>
+      {{ Ficha.PacienteNombre }} 
+    </ion-card-header>
+  
+    <ion-card-content>
+   {{ Ficha.PacienteMatricula }}
+    </ion-card-content>
+  
+    <ion-card-content>
+   <strong>Lugar de Atencion:</strong> {{ Ficha.FilialDescripcion }}
+    </ion-card-content>
+   --> 
+    <ion-card-content>
+    Paciente:{{ Ficha.PacienteNombre }}<br>
+     Matricula:{{ Ficha.PacienteMatricula }}<br>
+     Centro:{{ Ficha.FilialDescripcion }}
+       
+    </ion-card-content>
+
+  </ion-card>
+
+<ion-list >
+  <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
+   
+    <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
+    {{ Especialidad.Descripcion }}
+  </ion-item>
+</ion-list>
+
+
+</ion-content>

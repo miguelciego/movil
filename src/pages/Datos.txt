@@ -1,0 +1,168 @@
+gfamiliar = [
+  {
+    "Codigo": 200132,
+    "Matricula": "19860529CPE",
+    "Nombre": "CABELLO PENA EDGAR ENRIQUE",
+    "HClinica": "SIN HISTOR",
+    "TAsegurado": "TITULAR",
+    "Atendido": "",
+    "Ficha": "Sin ficha"
+  }
+]
+
+filial = [
+  {
+    "Codigo": 2,
+    "Nombre": "POLICONSULTORIO SANTA CRUZ",
+    "Direccion": "Calle España s/n Esquina Rafael Peña, Santa Cruz de la Sierra",
+    "Fecha": "2017-02-09",
+    "GeoLocalizacion": "-17.777611,-63.185620",
+    "HorariodeAtencion":"06:00 hasta 19:00"
+  },
+  {
+    "Codigo": 3,
+    "Nombre": "GUARACACHI",
+    "Direccion": null,
+    "Fecha": "2017-02-09"
+  },
+  {
+    "Codigo": 4,
+    "Nombre": "POLICONSULTORIO NORTE",
+    "Direccion": null,
+    "Fecha": "2017-02-09"
+  },
+  {
+    "Codigo": 5,
+    "Nombre": "POLICONSULTORIO SUR",
+    "Direccion": null,
+    "Fecha": "2017-02-09"
+  }
+]
+
+Especialidades = [
+  {
+    "Valor": 36,
+    "Descripcion": "ANEST.Y TERAPIA",
+    "Filial": "2",
+    "FichasDisponiblesAppmovil": 25,
+    "FichasDisponiblesTotal": 45,
+    "LinkDescriptivo": "http://uno.cps.org.bo"
+  },
+  {
+    "Valor": 8,
+    "Descripcion": "CIRUGIA",
+    "Filial": "2"
+  },
+  {
+    "Valor": 34,
+    "Descripcion": "CIRUGIA  CARA CUELLO",
+    "Filial": "2"
+  },
+  {
+    "Valor": 38,
+    "Descripcion": "ENDODONCIA",
+    "Filial": "2"
+  }
+]
+
+medicos= [
+  {
+    "Valor": 275,
+    "Descripcion": "BALLIVIAN CAPRILES SERGIO",
+    "Filial": "2",
+    "Especialidad": "8",
+    "FichasDisponiblesAppmovil": 25,
+    "FichasDisponiblesTotal": 45,
+    "LinkDescriptivo": "http://uno.cps.org.bo/"
+  },
+  {
+    "Valor": 119,
+    "Descripcion": "ORTIZ EID JESSICA",
+    "Filial": "2",
+    "Especialidad": "8"
+  },
+  {
+    "Valor": 215,
+    "Descripcion": "ROCA CLAROS OSVALDO IVAN",
+    "Filial": "2",
+    "Especialidad": "8"
+  }
+]´
+
+Horarios = [
+  {
+    "Valor": 1001,
+    "Descripcion": "16:15",
+    "Filial": "2",
+    "Especialidad": "8",
+    "Medico": "119"
+  },
+  {
+    "Valor": 1002,
+    "Descripcion": "16:30",
+    "Filial": "2",
+    "Especialidad": "8",
+    "Medico": "119"
+  }
+]
+
+Ficha = [
+{
+"Valor": 2113, 
+"Empresa": "VIVAN CARDOSO GIOTO SILVANA",
+"Tafiliado": "19850409PEG", 
+"Matricula": "19850409PEG", 
+"Nombre": "PADILLA ESCALANTE GARY",
+"HClinica": "SIN HISTOR",
+"TAsegurado": "TITULAR",
+"Lugar": "POLICONSULTORIO NORTE",
+"Especialidad": "MEDICINA INTERNA",
+"Medico": "CLAROS SALVATIERRA ARNOL HENZO",
+"Hora": "13:15",
+"Consultorio": "No. 5",
+"Fecha": "09/01/2017",
+"TFicha": 1 
+}
+]
+
+Abrir el Mapa Externo, 
+http://www.codingandclimbing.co.uk/blog/ionic-2-open-native-maps-application-22
+----------------------------------
+<button secondary (click)="openMapsApp(item)">
+<ion-icon name="pin"></ion-icon>
+Open maps app
+</button>
+----------------------------------
+import {Page, Platform} from 'ionic-angular';
+ 
+export class MyPage {
+ 
+private _platform: Platform;
+private _isAndroid: boolean;
+private _isiOS: boolean;
+ 
+private item: any = {
+lat: 37.4220041,
+lng: -122.0862515
+};
+ 
+constructor(platform: Platform) {
+this._platform = platform;
+this._isAndroid = platform.is('android');
+this._isiOS = platform.is('ios');
+}
+openMapsApp(item) {
+var coords = item.lat + "," + item.lng;
+if(this._isiOS) {
+window.open("http://maps.apple.com/?q=" + coords, '_system');
+return;
+}
+if(this._isAndroid) {
+window.open("geo:" + coords);
+return;
+}
+window.open("http://maps.google.com/?q=" + coords, '_system');
+return;
+}
+}
+-------------------------------------------------
