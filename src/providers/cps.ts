@@ -110,22 +110,31 @@ export class CpsProviders {
                 {
                     "Valor": 36,
                     "Descripcion": "ANEST.Y TERAPIA",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":6,
+                    "Disponible":10
+
                 },
                 {
                     "Valor": 8,
                     "Descripcion": "CIRUGIA",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
                 },
                 {
                     "Valor": 34,
                     "Descripcion": "CIRUGIA  CARA CUELLO",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":2,
+                    "Disponible":10
                 },
                 {
                     "Valor": 38,
                     "Descripcion": "ENDODONCIA",
-                    "Filial": "2"
+                    "Filial": "2",
+                    "DisponibleApp":4,
+                    "Disponible":10
                 }
             ];
 
@@ -172,6 +181,78 @@ export class CpsProviders {
             }
         ];
         return Horarios;
+    } 
+        getFiliales1(){
+        var Filiales = [
+            {
+                "Codigo": 2,
+                "Nombre": "POLICONSULTORIO SANTA CRUZ",
+                "Direccion": "Calle España s/n Esquina Rafael Peña, Santa Cruz de la Sierra",
+                "Fecha": "2017-02-09",
+                "Horario":"06:00 hasta 19:00",
+                "geoubicacion":"-17.777511",
+                "geoubicacion2":"-63.185563",
+                "Telefono":"3181600"
+
+            },
+            {
+                "Codigo": 3,
+                "Nombre": "GUARACACHI",
+                "Direccion": null,
+                "Fecha": "2017-02-09",
+                "geoubicacion":"-17.785487",
+                "geoubicacion2":"-63.147617"
+            },
+            {
+                "Codigo": 4,
+                "Nombre": "POLICONSULTORIO NORTE",
+                "Direccion": null,
+                "Fecha": "2017-02-09"
+            },
+            {
+                "Codigo": 5,
+                "Nombre": "POLICONSULTORIO SUR",
+                "Direccion": null,
+                "Fecha": "2017-02-09"
+            }
+        ];
+        return Filiales;
+    } 
+
+
+
+
+        getGFamiliar1(){
+        	var GrupoFamiliar = [
+                {
+                "Codigo": 35433,
+                "Matricula": "19690123SLM",
+                "Nombre": "SANCHEZ LOPEZ MIGUEL A.",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "TITULAR",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 96126,
+                "Matricula": "19980801QCS",
+                "Nombre": "QUINONES CALLEJAS SEBASTIAN",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            }  
+          ];
+        return GrupoFamiliar;
     } 
 
 

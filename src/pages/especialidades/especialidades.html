@@ -19,7 +19,8 @@
 <ion-list >
   <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
     <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
-    {{ Especialidad.Descripcion }}
-  </ion-item>
+    {{ Especialidad.Descripcion }} 
+    <ion-badge item-right> {{ Especialidad.DisponibleApp }} / {{ Especialidad.Disponible }} </ion-badge>
+</ion-item>
 </ion-list>
 </ion-content>

@@ -42,18 +42,26 @@ export class FilialesPage {
   }
 
   getFiliales() {
+    /*
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
+<<<<<<< HEAD
         console.log(this.FilialesEncontradas);
+=======
+ //       console.log(this.FilialesEncontradas);
+>>>>>>> 5cc8119e18ab89ba4b72d6ecaab90ebafce88e6c
         },
       err => console.error(err),
       () => console.log('getFiliales completed')
     );
+    */
+  this.FilialesEncontradas =  this.cps.getFiliales1();
   }
   sanitize(url:string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
+<<<<<<< HEAD
   getFilialtest() {
    this.FilialesEncontradas = [
   {
@@ -78,6 +86,9 @@ export class FilialesPage {
 ] 
   }
 
+=======
+ 
+>>>>>>> 5cc8119e18ab89ba4b72d6ecaab90ebafce88e6c
   iraEspecialidades(Filial) {
     this.navCtrl.push(EspecialidadesPage, {  Ficha: this.Ficha, Filial: Filial });
   }
