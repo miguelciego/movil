@@ -46,11 +46,9 @@ export class FilialesPage {
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
-<<<<<<< HEAD
-        console.log(this.FilialesEncontradas);
-=======
+
  //       console.log(this.FilialesEncontradas);
->>>>>>> 5cc8119e18ab89ba4b72d6ecaab90ebafce88e6c
+
         },
       err => console.error(err),
       () => console.log('getFiliales completed')
@@ -61,34 +59,7 @@ export class FilialesPage {
   sanitize(url:string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
-<<<<<<< HEAD
-  getFilialtest() {
-   this.FilialesEncontradas = [
-  {
-    "Codigo": 2,
-    "Nombre": "POLICONSULTORIO SANTA CRUZ",
-    "Direccion": null,
-    "Fecha": "2017-03-24",
-    "geoubicacion" : "geo:?g=12.5"
-  },
-  {
-    "Codigo": 3,
-    "Nombre": "GUARACACHI",
-    "Direccion": null,
-    "Fecha": "2017-03-24"
-  },
-  {
-    "Codigo": 4,
-    "Nombre": "POLICONSULTORIO NORTE",
-    "Direccion": null,
-    "Fecha": "2017-03-24"
-  }
-] 
-  }
 
-=======
- 
->>>>>>> 5cc8119e18ab89ba4b72d6ecaab90ebafce88e6c
   iraEspecialidades(Filial) {
     this.navCtrl.push(EspecialidadesPage, {  Ficha: this.Ficha, Filial: Filial });
   }

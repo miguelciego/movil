@@ -28,11 +28,7 @@ export class GrupoFamiliarPage {
     this.cps.getGFamiliar(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.GrupoFamiliar = data.json();
-<<<<<<< HEAD
-        console.log(this.GrupoFamiliar);
-=======
  //       console.log(this.GrupoFamiliar);
->>>>>>> 5cc8119e18ab89ba4b72d6ecaab90ebafce88e6c
         },
         err => console.error(err),
         () => console.log('getGrupoFamiliar completed')
@@ -43,22 +39,6 @@ this.GrupoFamiliar = this.cps.getGFamiliar1();
   iraFiliales(Paciente) {
     this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
   }
-<<<<<<< HEAD
-  getGrupoFamiliart() {
-    this.GrupoFamiliar = [
-      {
-        "Codigo": 35433,
-        "Matricula": "19690123SLM",
-        "Nombre": "SANCHEZ LOPEZ MIGUEL A.",
-        "HClinica": "SIN HISTOR",
-        "TAsegurado": "TITULAR",
-        "Atendido": "",
-        "Ficha": "Sin ficha"
-      }
-    ] 
-  } 
-=======
 
->>>>>>> 5cc8119e18ab89ba4b72d6ecaab90ebafce88e6c
 
 }
