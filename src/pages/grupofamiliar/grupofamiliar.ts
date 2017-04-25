@@ -33,30 +33,21 @@ export class GrupoFamiliarPage {
    getGrupoFamiliar() {
      console.log(this.centros);
     this.Ficha.PacienteCodigo =  this.centros;
+ /*   
     this.cps.getGFamiliar(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.GrupoFamiliar = data.json();
-    //    console.log(this.GrupoFamiliar);
+ //       console.log(this.GrupoFamiliar);
         },
       err => console.error(err),
       () => console.log('getGrupoFamiliar completed')
     );
+*/
+this.GrupoFamiliar = this.cps.getGFamiliar1();
   }
   iraFiliales(Paciente) {
     this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
   }
-  getGrupoFamiliart() {
-    this.GrupoFamiliar = [
-      {
-        "Codigo": 35433,
-        "Matricula": "19690123SLM",
-        "Nombre": "SANCHEZ LOPEZ MIGUEL A.",
-        "HClinica": "SIN HISTOR",
-        "TAsegurado": "TITULAR",
-        "Atendido": "",
-        "Ficha": "Sin ficha"
-      }
-    ] 
-  }
+
 
 }

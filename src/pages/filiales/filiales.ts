@@ -42,42 +42,22 @@ export class FilialesPage {
   }
 
   getFiliales() {
+    /*
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
-  //      console.log(this.FilialesEncontradas);
+ //       console.log(this.FilialesEncontradas);
         },
       err => console.error(err),
       () => console.log('getFiliales completed')
     );
+    */
+  this.FilialesEncontradas =  this.cps.getFiliales1();
   }
   sanitize(url:string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
-  getFilialtest() {
-   this.FilialesEncontradas = [
-  {
-    "Codigo": 2,
-    "Nombre": "POLICONSULTORIO SANTA CRUZ",
-    "Direccion": null,
-    "Fecha": "2017-03-24",
-    "geoubicacion" : "56"
-  },
-  {
-    "Codigo": 3,
-    "Nombre": "GUARACACHI",
-    "Direccion": null,
-    "Fecha": "2017-03-24"
-  },
-  {
-    "Codigo": 4,
-    "Nombre": "POLICONSULTORIO NORTE",
-    "Direccion": null,
-    "Fecha": "2017-03-24"
-  }
-] 
-  }
-
+ 
   iraEspecialidades(Filial) {
     this.navCtrl.push(EspecialidadesPage, {  Ficha: this.Ficha, Filial: Filial });
   }
