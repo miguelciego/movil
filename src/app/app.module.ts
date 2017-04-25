@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PopoverPage } from '../pages/mitab/popover';
 import { MitabPage } from '../pages/mitab/mitab';
 import { FichasPage } from '../pages/fichas/fichas';
 import { CentrosPage } from '../pages/centros/centros';
@@ -13,6 +14,7 @@ import { HorariosPage } from '../pages/horarios/horarios';
 import { FilialesPage } from '../pages/filiales/filiales';
 import { GrupoFamiliarPage } from '../pages/grupofamiliar/grupofamiliar';
 import { VerificacionPage } from '../pages/verificacion/verificacion';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { VerificacionPage } from '../pages/verificacion/verificacion';
     HorariosPage,
     FilialesPage,
     GrupoFamiliarPage,
-    VerificacionPage
+    VerificacionPage, LoginPage, PopoverPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -47,7 +49,7 @@ import { VerificacionPage } from '../pages/verificacion/verificacion';
     HorariosPage,
     FilialesPage,
     GrupoFamiliarPage,
-    VerificacionPage
+    VerificacionPage, LoginPage, PopoverPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -4,17 +4,10 @@ import { CpsProviders } from '../../providers/cps';
 import { FilialesPage } from '../filiales/filiales';
 
 
-
-/*
-  Generated class for the Grupofamiliar page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-grupofamiliar',
   templateUrl: 'grupofamiliar.html',
-    providers: [CpsProviders]
+  providers: [CpsProviders]
 })
 export class GrupoFamiliarPage {
   public GrupoFamiliar;
@@ -22,11 +15,9 @@ export class GrupoFamiliarPage {
   public centros = 37901 ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private cps: CpsProviders ) {
-     
+              private cps: CpsProviders) {
                 this.getGrupoFamiliar();
               }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad GrupofamiliarPage');
   }
@@ -36,10 +27,10 @@ export class GrupoFamiliarPage {
     this.cps.getGFamiliar(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.GrupoFamiliar = data.json();
-    //    console.log(this.GrupoFamiliar);
+        console.log(this.GrupoFamiliar);
         },
-      err => console.error(err),
-      () => console.log('getGrupoFamiliar completed')
+        err => console.error(err),
+        () => console.log('getGrupoFamiliar completed')
     );
   }
   iraFiliales(Paciente) {
@@ -57,6 +48,6 @@ export class GrupoFamiliarPage {
         "Ficha": "Sin ficha"
       }
     ] 
-  }
+  } 
 
 }

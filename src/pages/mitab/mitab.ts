@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-//import { FichasPage } from '../fichas/fichas'
+import { PopoverPage } from './popover';
 import { CentrosPage } from '../centros/centros'
 import { MapasPage } from '../mapas/mapas'
 import { HomePage } from '../home/home';
 import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
+import { PopoverController } from 'ionic-angular';
 
 
 @Component({
@@ -13,13 +14,20 @@ import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
 })
 export class MitabPage {
 
-  tab1Root: any = GrupoFamiliarPage;
-  tab2Root: any = CentrosPage;
-  tab3Root: any = MapasPage;
-  tab4Root: any = HomePage;
+  tab1Root: any = HomePage;
+  tab2Root: any = GrupoFamiliarPage;
+  tab3Root: any = CentrosPage;
+  tab4Root: any = MapasPage;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+  public popoverCtrl: PopoverController) {
 
   }
-
+  presentPopover(myEvent) {
+    
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
 }

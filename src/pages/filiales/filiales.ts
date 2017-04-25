@@ -32,7 +32,7 @@ export class FilialesPage {
               this.Ficha.PacienteHClinica  = this.Paciente.HClinica;
               this.Ficha.PacienteAtendido  = this.Paciente.Atendido;
               this.Ficha.PacienteFicha  = this.Paciente.Ficha;
-//console.log(this.Ficha);
+              console.log(this.Ficha);
               this.getFiliales();
                
               }
@@ -45,7 +45,7 @@ export class FilialesPage {
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
-  //      console.log(this.FilialesEncontradas);
+        console.log(this.FilialesEncontradas);
         },
       err => console.error(err),
       () => console.log('getFiliales completed')
@@ -61,7 +61,7 @@ export class FilialesPage {
     "Nombre": "POLICONSULTORIO SANTA CRUZ",
     "Direccion": null,
     "Fecha": "2017-03-24",
-    "geoubicacion" : "56"
+    "geoubicacion" : "geo:?g=12.5"
   },
   {
     "Codigo": 3,

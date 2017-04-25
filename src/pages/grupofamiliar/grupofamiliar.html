@@ -1,36 +1,13 @@
-<!--
-  Generated template for the Grupofamiliar page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-
-<button img-button img-left>
-  <img width="40" height="40" src="../../assets/images/icon.png" />
-  Left Icon
-</button>
-    <button ion-button icon-only bar-button>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-   <img width="40" height="40" src="assets/images/cps-logo.png" />
-  <ion-icon name="leaf" item-left></ion-icon>
-  <ion-icon name="rose" item-right></ion-icon>
--->
-
-<ion-header>
+<ion-header >
   <ion-navbar>
-   <ion-title>
-      GrupoFamiliar
-    </ion-title>
-    <ion-buttons left>
-      <button ion-button >
-        <img width="40" height="40" src="assets/images/cps-logo.png" />
+     <img class="logo" src="assets/images/logobar.png" alt="">
+    <ion-buttons end>
+      <button ion-button color="light" icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
   <ion-list inset>
     <ion-item>
@@ -38,39 +15,16 @@
       <ion-input [(ngModel)]="centros" type="text" ></ion-input>
     </ion-item>
   </ion-list>
-
   <div padding:0px>
     <button ion-button full (click)="getGrupoFamiliar()">Buscar</button>
   </div>
-  <!--
-  <div padding:0px>
-    <ion-img width="20" height="20" src="../../assets/images/splash.png"></ion-img>
-
-  </div>
-
-     <ion-list>
-  
-    <ion-item class="item no-padding">
-     Paciente:<br>
-     Matricula:<br>
-     Centro:<br>
-     Especialidad:<br>
-     Medico:
-    </ion-item>
-
-  </ion-list>
-  -->
 <ion-list >
-  <ion-item *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
-   
-      {{ Paciente.Nombre }}<br>
-    <ion-icon name="" item-right></ion-icon>
-
-    {{ Paciente.Matricula }}<br>
-    {{ Paciente.TAsegurado }}
-     
-    
+  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
+    <ion-avatar item-left>
+      <img src="assets/images/user.png">
+    </ion-avatar>
+    <p class="ficha">{{ Paciente.Nombre }}</p>
+    <p class="text mat"> {{ Paciente.Matricula }}  {{ Paciente.TAsegurado }}</p>
   </ion-item>
-</ion-list>
-
+</ion-list> 
 </ion-content>

@@ -1,67 +1,25 @@
-<!--
-  Generated template for the Medicos page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Medicos</ion-title>
+    <ion-title>Médico</ion-title>
         <ion-buttons left>
       <button ion-button >
-        <img width="40" height="40" src="assets/images/cps-logo.png" />
+        <img width="40" height="40" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content>
-<!--
-  <ion-card *ngFor="let Medico of Medicos" (click)="iraHorarios(Medico)">
-
-    <ion-card-header>
-      {{ Medico.Descripcion }}
-    </ion-card-header>
-
-    <ion-card-content>
-      {{ Medico.Descripcion }} 
-    </ion-card-content>
-  </ion-card>
---> 
  <ion-card  >
- <!-- 
-    <ion-card-header>
-      {{ Ficha.PacienteNombre }} 
-    </ion-card-header>
-  
-    <ion-card-content>
-   {{ Ficha.PacienteMatricula }}
-    </ion-card-content>
-  
-    <ion-card-content>
-   <strong>Lugar de Atencion:</strong> {{ Ficha.FilialDescripcion }}
-    </ion-card-content>
-   
-    <ion-card-content>
-    <strong>Especialidad:</strong> {{ Ficha.EspecialidadDescripcion }} 
-    </ion-card-content>
---> 
-    <ion-card-content>
-    Paciente:{{ Ficha.PacienteNombre }}<br>
-     Matricula:{{ Ficha.PacienteMatricula }}<br>
-     Centro:{{ Ficha.FilialDescripcion }}<br>
-     Especialidad:{{ Ficha.EspecialidadDescripcion }}
-       
-    </ion-card-content>
-
+   <div class="izq">
+    <p class="ficha">Paciente : {{ Ficha.PacienteNombre}} </p>
+    <p class="ficha">Matrícula : {{ Ficha.PacienteMatricula }} </p>
+    <p class="ficha">Hospital : {{ Ficha.FilialDescripcion }} </p>
+    <p class="ficha">Especialidad : {{ Ficha.EspecialidadDescripcion }} </p>
+  </div>
   </ion-card>
 <ion-list >
   <ion-item *ngFor="let Medico of Medicos" (click)="iraHorarios(Medico)">
-   
-    <img item-left width="40" height="40" src="assets/images/medico.png"/>
+       <img item-left width="40" height="40" src="assets/images/med.png"/>
     {{ Medico.Descripcion }}
   </ion-item>
 </ion-list>
