@@ -7,9 +7,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-</ion-header>
-<ion-content >
-    <ion-card  >
+  <ion-card  >
       <div class="izq">
         <p class="ficha">Paciente : {{ Ficha.PacienteNombre}} </p>
         <p class="ficha">Matrícula : {{ Ficha.PacienteMatricula }} </p>
@@ -18,6 +16,8 @@
         <p class="ficha">Médico : {{ Ficha.MedicoNombre }} </p>
       </div>
   </ion-card>
+</ion-header>
+<ion-content >    
 <ion-list >
   <ion-item *ngFor="let Hora of Horarios" (click)="iraHorarios()">
     <img item-left width="40" height="40" src="assets/images/hor.png"/>

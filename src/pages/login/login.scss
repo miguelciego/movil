@@ -11,8 +11,8 @@ page-login {
         position: relative;
         top: 17%;
         bottom:30%;
-        margin: 0;
-        padding: 1em;
+        margin: 0px;
+        padding: 16px;
     }
     .item-md {
     padding-left: 0;
@@ -20,4 +20,7 @@ page-login {
     .text-input {
         text-align: right;
     }
+    ion-app.md{
+    padding: 16px;
+}
 }

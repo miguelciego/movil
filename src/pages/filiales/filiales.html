@@ -7,14 +7,14 @@
     </ion-buttons>
     <ion-title>Hospital</ion-title>
   </ion-navbar>
-</ion-header>
-<ion-content>  
-  <ion-card>
+    <ion-card>
   <div class="izq">
-    <p class="ficha">Paciente : {{ Ficha.PacienteNombre}} </p>
-    <p class="ficha">Matrícula : {{ Ficha.PacienteMatricula }} </p>
+    <p> Paciente : {{ Ficha.PacienteNombre}} </p>
+    <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
   </div>
 </ion-card>
+</ion-header>
+<ion-content>  
   <ion-list >
     <ion-item *ngFor="let Filial of FilialesEncontradas" >
       <ion-thumbnail item-left>

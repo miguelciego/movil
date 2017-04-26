@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { PopoverPage } from './popover';
 import { CentrosPage } from '../centros/centros'
 import { MapasPage } from '../mapas/mapas'
@@ -19,15 +18,6 @@ export class MitabPage {
   tab3Root: any = CentrosPage;
   tab4Root: any = MapasPage;
 
-  constructor(public navCtrl: NavController,
-  public popoverCtrl: PopoverController) {
-
-  }
-  presentPopover(myEvent) {
-    
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
+  constructor(
+  public popoverCtrl: PopoverController) {}
 }

@@ -7,20 +7,21 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-</ion-header>
-<ion-content >
- <ion-card  >
+  <ion-card  >
    <div class="izq">
     <p class="ficha">Paciente : {{ Ficha.PacienteNombre}} </p>
     <p class="ficha">Matrícula : {{ Ficha.PacienteMatricula }} </p>
     <p class="ficha">Hospital : {{ Ficha.FilialDescripcion }} </p>
   </div>
   </ion-card>
+</ion-header>
+<ion-content >
 <ion-list >
   <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
     <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
-    {{ Especialidad.Descripcion }} 
-    <ion-badge item-right> {{ Especialidad.DisponibleApp }} / {{ Especialidad.Disponible }} </ion-badge>
+     <h3> {{ Especialidad.Descripcion }} </h3> 
+     <p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span> : {{ Especialidad.Disponible }} </p>
+    <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge>
 </ion-item>
 </ion-list>
 </ion-content>

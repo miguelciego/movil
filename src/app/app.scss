@@ -11,11 +11,13 @@
         font-size:0.6em;
         word-wrap: break-word;
 }
-.ficha{
-        font-size:0.6em;
-}
 .card-ios p {
     color: #000;
+    font-size: 0.9em;
+}
+.card p {
+    color: #000;
+    font-size: 0.9em;
 }
 .izq{
         padding-left:16px; 
@@ -24,13 +26,13 @@
     display: none;
 }
 .card-md {
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
+ margin: 0px;
+    padding: 10px 5px 10px 5px;
     width: 100%;
     border-radius: 2px;
     font-size: 1.4rem;
     background: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .card-ios {
     margin: 0px;
@@ -76,4 +78,7 @@ ion-title {
  //   padding: 4px;
      font-size: 0.8em;
      padding: 0px
+}
+ion-app.md [padding], ion-app.md [padding] .scroll-content {
+    padding: 0px;
 }

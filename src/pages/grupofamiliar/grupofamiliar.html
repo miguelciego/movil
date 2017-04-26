@@ -7,18 +7,34 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  <div  padding>
+  <ion-segment [(ngModel)]="aseg">
+    <ion-segment-button value="asegurado">
+      Asegurado
+    </ion-segment-button>
+    <ion-segment-button value="medicamento">
+      Medicamento
+    </ion-segment-button>
+  </ion-segment>
+</div>
 </ion-header>
 <ion-content padding>
-  <ion-list inset>
-    <ion-item>
-      <ion-label>Id del Afiliado</ion-label>
-      <ion-input [(ngModel)]="centros" type="text" ></ion-input>
-    </ion-item>
-  </ion-list>
-  <div padding:0px>
-    <button ion-button full (click)="getGrupoFamiliar()">Buscar</button>
-  </div>
-<ion-list >
+<div [ngSwitch]="aseg">
+<ion-list *ngSwitchCase="'asegurado'">
+  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
+    <ion-avatar item-left>
+      <img src="assets/images/user.png">
+    </ion-avatar>
+    <button ion-button icon-only item-right color="gris" >
+      <ion-icon color="" name="list-box"></ion-icon>
+    </button>
+    <p class="ficha">{{ Paciente.Nombre }}</p>
+    <p class="text mat"> {{ Paciente.Matricula }}  {{ Paciente.TAsegurado }}</p>
+  </ion-item>
+</ion-list> 
+</div>
+<div [ngSwitch]="aseg">
+<ion-list *ngSwitchCase="'medicamento'">
   <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
     <ion-avatar item-left>
       <img src="assets/images/user.png">
@@ -27,4 +43,5 @@
     <p class="text mat"> {{ Paciente.Matricula }}  {{ Paciente.TAsegurado }}</p>
   </ion-item>
 </ion-list> 
+</div>
 </ion-content>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 import { FilialesPage } from '../filiales/filiales';
-
+import { PopoverController } from 'ionic-angular';
+import { PopoverPage } from '../mitab/popover';
 
 @Component({
   selector: 'page-grupofamiliar',
@@ -10,14 +11,24 @@ import { FilialesPage } from '../filiales/filiales';
   providers: [CpsProviders]
 })
 export class GrupoFamiliarPage {
+  aseg: string = "asegurado";
+  isAndroid: boolean = true;
   public GrupoFamiliar;
   public Ficha = { PacienteCodigo: 37901 };
   public centros = 37901 ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,platform: Platform,public popoverCtrl: PopoverController,
               private cps: CpsProviders) {
+                this.isAndroid = platform.is('android');
                 this.getGrupoFamiliar();
               }
+   presentPopover(myEvent) {
+    
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+  } 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GrupofamiliarPage');
   }

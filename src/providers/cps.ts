@@ -122,6 +122,43 @@ export class CpsProviders {
                     "DisponibleApp":8,
                     "Disponible":14
                 },
+                //test fer
+                {
+                    "Valor": 100,
+                    "Descripcion": "CARDIOLOGIA",
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
+                },
+                {
+                    "Valor": 200,
+                    "Descripcion": "MEDICINA INTERNA",
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
+                },
+                {
+                    "Valor": 300,
+                    "Descripcion": "PEDIATRIA",
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
+                },
+                {
+                    "Valor": 400,
+                    "Descripcion": "CIRUGIA",
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
+                },
+                {
+                    "Valor": 500,
+                    "Descripcion": "CIRUGIA",
+                    "Filial": "2",
+                    "DisponibleApp":8,
+                    "Disponible":14
+                },
+                //
                 {
                     "Valor": 34,
                     "Descripcion": "CIRUGIA  CARA CUELLO",
@@ -242,6 +279,62 @@ export class CpsProviders {
                 "Atendido": "",
                 "Ficha": "Sin ficha"
             },
+            //fer
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "HClinica": "SIN HISTOR",
+                "TAsegurado": "BENEFICIARIO",
+                "Atendido": "",
+                "Ficha": "Sin ficha"
+            },
+            ///
             {
                 "Codigo": 96126,
                 "Matricula": "19980801QCS",

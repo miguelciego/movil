@@ -1,16 +1,29 @@
 page-grupofamiliar {
-.item.no-padding {
-    padding: 0px !important;
-//    padding-left: 0px;
-    font-size: 0.8em;
-}
-.mat{
-    font-size: 0.7em;
-}
-.ficha{
-    position: relative;
-    color:#000;
+    .item.no-padding {
+        padding: 0px !important;
+    //    padding-left: 0px;
+        font-size: 0.8em;
+    }
+    .mat{
+        font-size: 0.7em;
+    }
+    .ficha{
+        position: relative;
+        color:#000;
 
-}
-
+    }
+    .segment-md .segment-button {
+        color: #007b6d;
+    }
+    .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated {
+        border-color: #007b6d;
+        opacity: 1;
+    }
+    .segment-ios .segment-button.segment-activated {
+        background-color: #007b6d;
+    }
+    .segment-ios .segment-button {
+        border-color: #007b6d;
+        color: #007b6d;
+    }
 }
