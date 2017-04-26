@@ -6,6 +6,7 @@ import { MapasPage } from '../mapas/mapas'
 import { HomePage } from '../home/home';
 import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
 import { PopoverController } from 'ionic-angular';
+import { LoginPage } from '../login/login'
 
 
 @Component({
@@ -17,7 +18,7 @@ export class MitabPage {
   tab1Root: any = HomePage;
   tab2Root: any = GrupoFamiliarPage;
   tab3Root: any = CentrosPage;
-  tab4Root: any = MapasPage;
+  tab4Root: any = LoginPage;
 
   constructor(public navCtrl: NavController,
   public popoverCtrl: PopoverController) {
