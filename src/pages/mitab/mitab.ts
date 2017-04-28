@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverPage } from './popover';
 import { CentrosPage } from '../centros/centros'
-import { MapasPage } from '../mapas/mapas'
+//import { MapasPage } from '../mapas/mapas'
 import { HomePage } from '../home/home';
 import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
 import { PopoverController } from 'ionic-angular';
-import { LoginPage } from '../login/login'
+import { InfoPage } from '../info/info'
 
 
 @Component({
@@ -18,7 +18,7 @@ export class MitabPage {
   tab1Root: any = HomePage;
   tab2Root: any = GrupoFamiliarPage;
   tab3Root: any = CentrosPage;
-  tab4Root: any = LoginPage;
+  tab4Root: any = InfoPage;
 
   constructor(public navCtrl: NavController,
   public popoverCtrl: PopoverController) {
