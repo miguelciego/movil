@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PopoverPage } from './popover';
 import { CentrosPage } from '../centros/centros'
 import { MapasPage } from '../mapas/mapas'
 import { HomePage } from '../home/home';

@@ -279,62 +279,6 @@ export class CpsProviders {
                 "Atendido": "",
                 "Ficha": "Sin ficha"
             },
-            //fer
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            ///
             {
                 "Codigo": 96126,
                 "Matricula": "19980801QCS",

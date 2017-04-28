@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 import { FilialesPage } from '../filiales/filiales';
+import { VademecunPage } from '../vademecun/vademecun';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 
@@ -49,6 +50,9 @@ this.GrupoFamiliar = this.cps.getGFamiliar1();
   }
   iraFiliales(Paciente) {
     this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
+  }
+  irVademecun(Paciente) {
+    this.navCtrl.push(VademecunPage, { Paciente: Paciente });
   }
 
 

@@ -35,7 +35,7 @@
 </div>
 <div [ngSwitch]="aseg">
 <ion-list *ngSwitchCase="'medicamento'">
-  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
+  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="irVademecun(Paciente)">
     <ion-avatar item-left>
       <img src="assets/images/user.png">
     </ion-avatar>
