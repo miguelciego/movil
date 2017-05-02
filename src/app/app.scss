@@ -7,49 +7,7 @@
         left: 0%;
         right: 0%;
     }
-.text{
-        font-size:0.6em;
-        word-wrap: break-word;
-}
-.card-ios p {
-    color: #000;
-    font-size: 0.9em;
-}
-.card p {
-    color: #000;
-    font-size: 0.9em;
-}
-.izq{
-        padding-left:16px; 
-}
-.bar-buttons-ios[left] {
-    display: none;
-}
-.card-md {
- margin: 0px;
-    padding: 10px 5px 10px 5px;
-    width: 100%;
-    border-radius: 2px;
-    font-size: 1.4rem;
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-.card-ios {
-    margin: 0px;
-    padding: 10px 5px 10px 5px;
-    width: 100%;
-    border-radius: 2px;
-    font-size: 1.4rem;
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-ion-title {
-  text-align: left;
-}
-.item-ios ion-avatar img {
-    width: 40px;
-    height: 40px;
-}
+
 .toolbar-background {
   background-color: rgba(0, 123, 109, 1);
 }
@@ -59,26 +17,40 @@ ion-title {
 .back-button {
   color: white;
 }
-.card.no-padding {
-    padding: 0px !important;
-//    padding-left: 0px;
-    font-size: 0.8em;
-} 
-.card-header{
- //   font-size: 20px;
-    font-family: 'Century Gothic';
- //   font-weight: bold;
-//    padding: 4px;
-//    background-color: rgba(0, 123, 109, 1)
+.bar-buttons-ios[left] {
+    display: none;
 }
-.card-content{
-     font-family: 'Arial';
- //   font-size: 12px;
-//    font-family: 'Arial';
- //   padding: 4px;
-     font-size: 0.8em;
-     padding: 0px
+.card-ios {
+    margin: 0px;
+    padding: 5px 5px 5px 16px;
+    width: 100%;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-ion-app.md [padding], ion-app.md [padding] .scroll-content {
-    padding: 0px;
+.card-ios p {
+    margin: 2px;
+    font-size: 0.9em;
+    color: #000;
+}
+.card-md {
+    margin: 0px;
+    padding: 5px 5px 5px 16px;
+    width: 100%;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.card-md p {
+    margin: 0px;
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #222;
+}
+.list-ios {
+    margin: 0 0 32px 0;
+}
+.list-md {
+    margin: 0 0 16px 0;
 }

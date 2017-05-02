@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-//import { LoginPage } from '../pages/login/login';
-import { MitabPage } from '../pages/mitab/mitab';
+import { LoginPage } from '../pages/login/login';
+//import { MitabPage } from '../pages/mitab/mitab';
 
 @Component({
   templateUrl: 'app.html'
@@ -10,7 +10,7 @@ import { MitabPage } from '../pages/mitab/mitab';
 })
 export class MyApp {
 
-    rootPage = MitabPage;
+    rootPage = LoginPage;
 
   constructor(platform: Platform) {
      platform.ready().then(() => {

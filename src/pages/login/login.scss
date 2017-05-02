@@ -3,24 +3,21 @@ page-login {
         background-color:#007b6d;
     }
     .der{
-        padding-left:10px; 
-        padding-right:10px;
-        padding-bottom: 6px;
+        padding:10px; 
     }
     .carta{
         position: relative;
         top: 17%;
         bottom:30%;
         margin: 0px;
-        padding: 16px;
+        padding: 0px;
     }
     .item-md {
-    padding-left: 0;
+        padding-left: 0;
     }
-    .text-input {
-        text-align: right;
+    .card-content-ios {
+        padding:0;
+        font-size: 1.4rem;
+        line-height: 1.4;
     }
-    ion-app.md{
-    padding: 16px;
-}
 }
