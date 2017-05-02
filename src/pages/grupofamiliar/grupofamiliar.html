@@ -7,20 +7,9 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <div class="tabs">
-  <ion-segment [(ngModel)]="aseg">
-    <ion-segment-button value="asegurado">
-      Asegurado
-    </ion-segment-button>
-    <ion-segment-button value="medicamento">
-      Medicación
-    </ion-segment-button>
-  </ion-segment>
-</div>
 </ion-header>
 <ion-content >
-<div [ngSwitch]="aseg">
-<ion-list *ngSwitchCase="'asegurado'">
+<ion-list>
   <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar">
         <ion-avatar item-left (click)="irPerfil(Paciente)" >
           <img src="assets/images/perfil.png" >
@@ -32,16 +21,4 @@
         </div>
   </ion-item>
 </ion-list> 
-</div>
-<div [ngSwitch]="aseg">
-<ion-list *ngSwitchCase="'medicamento'">
-  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="irVademecun(Paciente)">
-    <ion-avatar item-left>
-      <img src="assets/images/perfil.png">
-    </ion-avatar>
-    <h3>{{ Paciente.Nombre }}</h3>
-    <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado}}</p>
-  </ion-item>
-</ion-list> 
-</div>
 </ion-content>

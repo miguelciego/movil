@@ -17,7 +17,10 @@ page-grupofamiliar {
         color: #007b6d;
         border-color: #007b6d;
     }
-    .tabs{
-        padding: 16px 16px 0 16px;
+    .tabs.md{
+        padding: px 16px 0px 16px; 
+    }
+    .tabs.ios{
+        padding: 16px 16px 0px 16px; 
     }
 }
