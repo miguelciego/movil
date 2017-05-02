@@ -18,20 +18,18 @@
   </ion-segment>
 </div>
 </ion-header>
-<ion-content padding>
+<ion-content>
 <div [ngSwitch]="aseg">
 <ion-list *ngSwitchCase="'asegurado'">
   <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar">
-    <ion-avatar item-left (click)="irPerfil()">
-        <img src="assets/images/user.png" >
-    </ion-avatar>
-    <div (click)="iraFiliales(Paciente)">
-
-        <ion-icon *ngIf="Paciente.Ficha == 'Con ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>
-
-        <p text-capitalize class="ficha">{{ Paciente.Nombre }}</p>
-        <p text-capitalize class="text mat"> {{ Paciente.Matricula }} {{Paciente.TAsegurado}}</p>
-    </div>
+        <ion-avatar item-left (click)="irPerfil(Paciente)" >
+          <img src="assets/images/perfil.png" >
+        </ion-avatar>   
+        <div class="contenido" (click)="iraFiliales(Paciente)">
+            <ion-icon *ngIf="Paciente.Ficha == 'Con ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>
+            <p text-capitalize class="ficha">{{ Paciente.Nombre }}</p>
+            <p text-capitalize class="text mat"> {{ Paciente.Matricula }} {{Paciente.TAsegurado}}</p>
+        </div>
   </ion-item>
 </ion-list> 
 </div>

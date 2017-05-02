@@ -12,11 +12,10 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'perfil.html'
 })
 export class PerfilPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
+  public Paciente;
+  public NombrePaciente;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.Paciente = navParams.get('Paciente');
+    this.NombrePaciente = this.Paciente.Nombre;
   }
-
 }

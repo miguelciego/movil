@@ -72,7 +72,7 @@ this.GrupoFamiliar = this.cps.getGFamiliar1();
     let modal = this.modalCtrl.create(ModalPage);
     modal.present();
   }
-  irPerfil(){
-    this.navCtrl.push(PerfilPage);
+  irPerfil(Paciente){
+     this.navCtrl.push(PerfilPage, { Paciente: Paciente });
   }
 }
