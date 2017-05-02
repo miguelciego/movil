@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { ModalPage } from '../modal/modal';
 import { CpsProviders } from '../../providers/cps';
 import { FilialesPage } from '../filiales/filiales';
 import { VademecunPage } from '../vademecun/vademecun';
@@ -18,11 +20,17 @@ export class GrupoFamiliarPage {
   public Ficha = { PacienteCodigo: 37901 };
   public centros = 37901 ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,platform: Platform,public popoverCtrl: PopoverController,
-              private cps: CpsProviders) {
-                this.isAndroid = platform.is('android');
-                this.getGrupoFamiliar();
-              }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    platform: Platform,
+    public popoverCtrl: PopoverController,
+    private cps: CpsProviders,
+    public modalCtrl: ModalController) 
+    {
+      this.isAndroid = platform.is('android');
+      this.getGrupoFamiliar();
+   }
    presentPopover(myEvent) {
     
     let popover = this.popoverCtrl.create(PopoverPage);
@@ -34,7 +42,7 @@ export class GrupoFamiliarPage {
     console.log('ionViewDidLoad GrupofamiliarPage');
   }
    getGrupoFamiliar() {
-     console.log(this.centros);
+    console.log(this.centros);
     this.Ficha.PacienteCodigo =  this.centros;
  /*   
     this.cps.getGFamiliar(this.Ficha.PacienteCodigo).subscribe(
@@ -49,11 +57,18 @@ export class GrupoFamiliarPage {
 this.GrupoFamiliar = this.cps.getGFamiliar1();
   }
   iraFiliales(Paciente) {
-    this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
+    if(Paciente.Ficha == "Sin ficha"){
+      this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
+    }else{
+       console.log("con ficha");
+       this.presentModal();
+    }
   }
   irVademecun(Paciente) {
     this.navCtrl.push(VademecunPage, { Paciente: Paciente });
   }
-
-
+  public presentModal() {
+    let modal = this.modalCtrl.create(ModalPage);
+    modal.present();
+  }
 }

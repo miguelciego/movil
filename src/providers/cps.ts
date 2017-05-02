@@ -255,11 +255,7 @@ export class CpsProviders {
         ];
         return Filiales;
     } 
-
-
-
-
-        getGFamiliar1(){
+getGFamiliar1(){
         	var GrupoFamiliar = [
                 {
                 "Codigo": 35433,
@@ -277,7 +273,7 @@ export class CpsProviders {
                 "HClinica": "SIN HISTOR",
                 "TAsegurado": "BENEFICIARIO",
                 "Atendido": "",
-                "Ficha": "Sin ficha"
+                "Ficha": "Con ficha"
             },
             {
                 "Codigo": 96126,
@@ -291,6 +287,315 @@ export class CpsProviders {
           ];
         return GrupoFamiliar;
     } 
-
-
+    // test fer
+    getRecetas1(){
+        var Recetas = [
+            {
+                "Valor": 1,
+                "nombre": "Taipire",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 2,
+                "nombre": "Resfrianex",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 3,
+                "nombre": "Tapsin",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },{
+                "Valor": 4,
+                "nombre": "Taipire 1",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 5,
+                "nombre": "Resfrianex 1",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 6,
+                "nombre": "Tapsin 1",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 7,
+                "nombre": "Taipire 2",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 8,
+                "nombre": "Resfrianex 2",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 9,
+                "nombre": "Tapsin 2",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 10,
+                "nombre": "Taipire 3",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 11,
+                "nombre": "Resfrianex 3",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 12,
+                "nombre": "Tapsin 3",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 13,
+                "nombre": "Taipire 4",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 14,
+                "nombre": "Resfrianex 4",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 15,
+                "nombre": "Tapsin 4",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            },
+            {
+                "Valor": 16,
+                "nombre": "Taipire 5",
+                "Descripcion": "capsulas para el resfrio 4/8",
+            },
+            {
+                "Valor": 17,
+                "nombre": "Resfrianex 5",
+                "Descripcion": "capsulas para el resfrio 3/8",
+            },
+            {
+                "Valor": 18,
+                "nombre": "Tapsin 5",
+                "Descripcion": "capsulas para el resfrio 6/24",
+            }
+        ];
+        return Recetas;
+    } 
+    //
 }

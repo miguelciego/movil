@@ -5,10 +5,17 @@
         <img width="40" height="40" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
-    <ion-title>Medicación</ion-title>
+    <ion-title>Vademecúm</ion-title>
   </ion-navbar>
-</ion-header>
-
+</ion-header> 
 <ion-content padding>
-        vademecun
+<ion-list>
+  <ion-item *ngFor="let receta of Recetaslist">
+    <ion-avatar item-left>
+      <img src="assets/images/medicina.png">
+    </ion-avatar>
+    <h2>{{ receta.nombre}}</h2>
+    <p>{{ receta.Descripcion}}</p>
+  </ion-item>
+</ion-list>
 </ion-content>

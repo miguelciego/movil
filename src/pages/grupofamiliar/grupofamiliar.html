@@ -13,7 +13,7 @@
       Asegurado
     </ion-segment-button>
     <ion-segment-button value="medicamento">
-      Medicamento
+      Medicación
     </ion-segment-button>
   </ion-segment>
 </div>
@@ -25,11 +25,11 @@
     <ion-avatar item-left>
       <img src="assets/images/user.png">
     </ion-avatar>
-    <button ion-button icon-only item-right color="gris" >
+    <button *ngIf="Paciente.Ficha == 'Con ficha'" ion-button icon-only item-right color="gris" >
       <ion-icon color="" name="list-box"></ion-icon>
     </button>
-    <p class="ficha">{{ Paciente.Nombre }}</p>
-    <p class="text mat"> {{ Paciente.Matricula }}  {{ Paciente.TAsegurado }}</p>
+    <p text-capitalize class="ficha">{{ Paciente.Nombre }}</p>
+    <p text-capitalize class="text mat"> {{ Paciente.Matricula }} {{Paciente.TAsegurado}}</p>
   </ion-item>
 </ion-list> 
 </div>
