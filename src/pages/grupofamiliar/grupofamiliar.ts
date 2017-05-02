@@ -4,6 +4,7 @@ import { ModalController } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
 import { CpsProviders } from '../../providers/cps';
 import { FilialesPage } from '../filiales/filiales';
+import { PerfilPage } from '../perfil/perfil';
 import { VademecunPage } from '../vademecun/vademecun';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
@@ -70,5 +71,8 @@ this.GrupoFamiliar = this.cps.getGFamiliar1();
   public presentModal() {
     let modal = this.modalCtrl.create(ModalPage);
     modal.present();
+  }
+  irPerfil(){
+    this.navCtrl.push(PerfilPage);
   }
 }

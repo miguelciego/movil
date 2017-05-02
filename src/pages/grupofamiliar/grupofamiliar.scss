@@ -26,4 +26,11 @@ page-grupofamiliar {
         border-color: #007b6d;
         color: #007b6d;
     }
+    .item{
+        position: relative;
+        float: right;
+    }
+    .item-ios [item-right] {
+        margin:0;
+    }
 }

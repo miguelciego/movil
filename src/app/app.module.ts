@@ -17,6 +17,7 @@ import { VerificacionPage } from '../pages/verificacion/verificacion';
 import { LoginPage } from '../pages/login/login';
 import { VademecunPage } from '../pages/vademecun/vademecun';
 import { ModalPage } from '../pages/modal/modal';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ModalPage } from '../pages/modal/modal';
     HorariosPage,
     FilialesPage,
     GrupoFamiliarPage,ModalPage,
-    VerificacionPage, LoginPage, PopoverPage,VademecunPage
+    VerificacionPage, LoginPage, PopoverPage,VademecunPage,PerfilPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -51,7 +52,7 @@ import { ModalPage } from '../pages/modal/modal';
     HorariosPage,
     FilialesPage,
     GrupoFamiliarPage,ModalPage,
-    VerificacionPage, LoginPage, PopoverPage,VademecunPage
+    VerificacionPage, LoginPage, PopoverPage,VademecunPage,PerfilPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

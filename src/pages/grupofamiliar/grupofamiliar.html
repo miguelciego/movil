@@ -21,15 +21,17 @@
 <ion-content padding>
 <div [ngSwitch]="aseg">
 <ion-list *ngSwitchCase="'asegurado'">
-  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
-    <ion-avatar item-left>
-      <img src="assets/images/user.png">
+  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar">
+    <ion-avatar item-left (click)="irPerfil()">
+        <img src="assets/images/user.png" >
     </ion-avatar>
-    <button *ngIf="Paciente.Ficha == 'Con ficha'" ion-button icon-only item-right color="gris" >
-      <ion-icon color="" name="list-box"></ion-icon>
-    </button>
-    <p text-capitalize class="ficha">{{ Paciente.Nombre }}</p>
-    <p text-capitalize class="text mat"> {{ Paciente.Matricula }} {{Paciente.TAsegurado}}</p>
+    <div (click)="iraFiliales(Paciente)">
+
+        <ion-icon *ngIf="Paciente.Ficha == 'Con ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>
+
+        <p text-capitalize class="ficha">{{ Paciente.Nombre }}</p>
+        <p text-capitalize class="text mat"> {{ Paciente.Matricula }} {{Paciente.TAsegurado}}</p>
+    </div>
   </ion-item>
 </ion-list> 
 </div>
