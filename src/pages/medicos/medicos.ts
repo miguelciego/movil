@@ -14,9 +14,11 @@ export class MedicosPage {
   public Especialidad;
   public Ficha;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  private cps: CpsProviders) {
-
+  constructor(
+  public navCtrl: NavController, 
+  public navParams: NavParams, 
+  private cps: CpsProviders
+  ) {
     this.Especialidad = navParams.get('Especialidad');
     this.Ficha = navParams.get('Ficha');
     
@@ -40,16 +42,8 @@ export class MedicosPage {
     );
 */
     this.Medicos = this.cps.getMedicos1();
-
-
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MedicosPage');
-  }
-
   iraHorarios(Medico) {
     this.navCtrl.push(HorariosPage, { Medico: Medico, Ficha: this.Ficha });
   }
-
 }

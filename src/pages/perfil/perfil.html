@@ -15,10 +15,14 @@
     <ion-card-title>
       {{ NombrePaciente }} 
     </ion-card-title>
-    <p>
-      The most popular industrial group ever, and largely
-      responsible for bringing the music to a mass audience.
-    </p>
+    <button ion-item>
+      <ion-icon name="document" item-left></ion-icon>
+      Historial
+    </button>
+    <button ion-item (click)="irVademecun()">
+      <ion-icon name="paper" item-left></ion-icon>
+      Medicamento
+    </button>
   </ion-card-content>
 </ion-card>
  

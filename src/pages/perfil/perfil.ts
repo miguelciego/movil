@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { VademecunPage } from '../vademecun/vademecun';
 
 /*
   Generated class for the Perfil page.
@@ -17,5 +18,8 @@ export class PerfilPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.Paciente = navParams.get('Paciente');
     this.NombrePaciente = this.Paciente.Nombre;
+  }
+  irVademecun() {
+    this.navCtrl.push(VademecunPage);
   }
 }

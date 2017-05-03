@@ -5,7 +5,6 @@ import { ModalPage } from '../modal/modal';
 import { CpsProviders } from '../../providers/cps';
 import { FilialesPage } from '../filiales/filiales';
 import { PerfilPage } from '../perfil/perfil';
-import { VademecunPage } from '../vademecun/vademecun';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 
@@ -15,6 +14,7 @@ import { PopoverPage } from '../mitab/popover';
   providers: [CpsProviders]
 })
 export class GrupoFamiliarPage {
+
   aseg: string = "asegurado";
   isAndroid: boolean = true;
   public GrupoFamiliar;
@@ -22,13 +22,14 @@ export class GrupoFamiliarPage {
   public centros = 37901 ;
 
   constructor(
+    platform: Platform,
     public navCtrl: NavController, 
     public navParams: NavParams,
-    platform: Platform,
     public popoverCtrl: PopoverController,
     private cps: CpsProviders,
-    public modalCtrl: ModalController) 
-    {
+    public modalCtrl: ModalController
+    ){
+      console.log(this.Ficha);
       this.isAndroid = platform.is('android');
       this.getGrupoFamiliar();
    }
@@ -39,9 +40,6 @@ export class GrupoFamiliarPage {
       ev: myEvent
     });
   } 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GrupofamiliarPage');
-  }
    getGrupoFamiliar() {
     console.log(this.centros);
     this.Ficha.PacienteCodigo =  this.centros;
@@ -64,9 +62,6 @@ this.GrupoFamiliar = this.cps.getGFamiliar1();
        console.log("con ficha");
        this.presentModal();
     }
-  }
-  irVademecun(Paciente) {
-    this.navCtrl.push(VademecunPage, { Paciente: Paciente });
   }
   public presentModal() {
     let modal = this.modalCtrl.create(ModalPage);

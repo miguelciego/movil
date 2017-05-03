@@ -14,9 +14,11 @@ export class EspecialidadesPage {
   public Especialidades;
   public Ficha;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  private cps: CpsProviders) {
-
+  constructor(
+  public navCtrl: NavController,
+  public navParams: NavParams, 
+  private cps: CpsProviders
+  ) {
     this.Ficha = navParams.get('Ficha');
     this.Filial = navParams.get('Filial');
     
@@ -41,15 +43,7 @@ export class EspecialidadesPage {
  */   
     this.Especialidades = this.cps.getEspecialidades1();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EspecialidadesPage');
-  }
-
   iraMedicos(Especialidad) {
     this.navCtrl.push(MedicosPage, { Especialidad: Especialidad, Ficha: this.Ficha });
-  }
-
-  
-
+  } 
 }

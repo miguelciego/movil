@@ -10,12 +10,15 @@ import { CpsProviders } from '../../providers/cps';
 
 })
 export class HorariosPage {
+
   public Medico;
   public Horarios;
   public Ficha;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  private cps: CpsProviders) {
+  constructor(public navCtrl: NavController,
+  public navParams: NavParams, 
+  private cps: CpsProviders
+  ) {
         
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
@@ -40,15 +43,11 @@ export class HorariosPage {
     );
   */  
   
-  this.Horarios = this.cps.getHorarios1();
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HorariosPage');
+    this.Horarios = this.cps.getHorarios1();
+    console.log("ficha");
+    console.log(this.Ficha);
   }
     iraHorarios() {
     this.navCtrl.popToRoot();
   }
-
 }
