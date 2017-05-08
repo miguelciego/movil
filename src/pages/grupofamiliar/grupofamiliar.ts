@@ -17,7 +17,10 @@ export class GrupoFamiliarPage {
 
   aseg: string = "asegurado";
   isAndroid: boolean = true;
+  
   public GrupoFamiliar;
+  public idpac;
+  public dpts;
   public Ficha = { PacienteCodigo: 37901 };
   public centros = 37901 ;
 
@@ -29,7 +32,12 @@ export class GrupoFamiliarPage {
     private cps: CpsProviders,
     public modalCtrl: ModalController
     ){
-      console.log(this.Ficha);
+      this.idpac = navParams.get('matricula');
+      this.dpts = navParams.get('departamento');
+
+      console.log(this.idpac);
+      console.log(this.dpts);
+
       this.isAndroid = platform.is('android');
       this.getGrupoFamiliar();
    }
@@ -41,7 +49,7 @@ export class GrupoFamiliarPage {
     });
   } 
    getGrupoFamiliar() {
-    console.log(this.centros);
+    //console.log(this.centros);
     this.Ficha.PacienteCodigo =  this.centros;
  /*   
     this.cps.getGFamiliar(this.Ficha.PacienteCodigo).subscribe(
@@ -53,13 +61,12 @@ export class GrupoFamiliarPage {
         () => console.log('getGrupoFamiliar completed')
     );
 */
-this.GrupoFamiliar = this.cps.getGFamiliar1();
+    this.GrupoFamiliar = this.cps.getGFamiliar1();
   }
   iraFiliales(Paciente) {
     if(Paciente.Ficha == "Sin ficha"){
       this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
     }else{
-       console.log("con ficha");
        this.presentModal();
     }
   }

@@ -15,8 +15,7 @@ export class CpsProviders {
       console.log('Hello Cps Provider');
     }
 
-    putVerification(valorm, platform, manufacturer,
-                    versionname, versioncode, model, uuid){
+    putVerification(valorm, platform, manufacturer,versionname, versioncode, model, uuid){
         var creds = "valorm=" + valorm + "&platform=" + platform + 
             "&manufacturer=" + manufacturer + "&versionname=" + versionname + 
             "&versioncode=" + versioncode +  "&model=" + model +   "&uuid=" + uuid;
@@ -219,7 +218,7 @@ export class CpsProviders {
         ];
         return Horarios;
     } 
-        getFiliales1(){
+    getFiliales1(){
         var Filiales = [
             {
                 "Codigo": 2,
@@ -255,8 +254,8 @@ export class CpsProviders {
         ];
         return Filiales;
     } 
-getGFamiliar1(){
-        	var GrupoFamiliar = [
+    getGFamiliar1(){
+            var GrupoFamiliar = [
                 {
                 "Codigo": 35433,
                 "Matricula": "19690123SLM",
@@ -284,10 +283,10 @@ getGFamiliar1(){
                 "Atendido": "",
                 "Ficha": "Sin ficha"
             }  
-          ];
+        ];
         return GrupoFamiliar;
     } 
-    // test fer
+        // test fer
     getRecetas1(){
         var Recetas = [
             {
@@ -597,5 +596,24 @@ getGFamiliar1(){
         ];
         return Recetas;
     } 
-    //
+    //test fer
+    getMFicha1(){
+         var Ficha = [
+             {
+                "Codigo": 37901,
+                "MatriculaT": "19705203CSR",
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "Empresa": "Caja petrolera de salud",
+                "HClinica": "policonsultorio santa cruz",
+                "Especialidad": "CARDIOLOGIA",
+                "Medico": "Acosta castillo susan B",
+                "Consultorio": "15",
+                "hora": "11:30",
+                "Fecha": "25/04/2017",
+                "Ficha": 999
+             }
+         ];
+         return Ficha;
+    }
 }

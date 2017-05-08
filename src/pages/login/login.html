@@ -3,23 +3,23 @@
     <img src="assets/images/logoLetra.png" />
     <ion-card center class="carta">
         <ion-card-content>            
-            <ion-list inset>
-            <ion-item>
-                <ion-label fixed>Matrícula</ion-label>
-                <ion-input type="text" value=""></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label class="dpts">Departamento</ion-label>
-                <ion-select [(ngModel)]="gaming">
-                <ion-option value="nes">Santa Cruz</ion-option>
-                <ion-option value="n64">Cochabamba</ion-option>
-                <ion-option value="ps">La paz</ion-option>
-                </ion-select>
-            </ion-item>
-            </ion-list>
-            <div class="der">
-                <button ion-button block color="verde" (click)="Verificar()">Ingresar</button>
-            </div>
+            <form (ngSubmit)="logForm()" novalidate>
+                <ion-item>
+                    <ion-label fixed>Matrícula</ion-label>
+                    <ion-input [(ngModel)]="login.matricula" name="matricula" type="text" ></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label class="dpts">Departamento</ion-label>
+                    <ion-select [(ngModel)]="login.departamento"  name="departamento">
+                        <ion-option value="1">Santa Cruz</ion-option>
+                        <ion-option value="2">Cochabamba</ion-option>
+                        <ion-option value="3">La paz</ion-option>
+                    </ion-select>
+                </ion-item>
+                <div class="der">
+                     <button color = "verde" ion-button type="submit" block>Ingresar</button>
+                </div>
+            </form>
         </ion-card-content>
     </ion-card>
 </ion-content>
