@@ -21,7 +21,7 @@ export class GrupoFamiliarPage {
   public GrupoFamiliar;
   public id;
   public dpts;
-  public Ficha = { PacienteCodigo: 3901 };
+  public Ficha = { PacienteCodigo :0};
   public centros = 37901 ;
 
   constructor(
@@ -47,7 +47,7 @@ export class GrupoFamiliarPage {
   } 
    getGrupoFamiliar() {
     //console.log(this.centros);
-    this.Ficha.PacienteCodigo =  this.centros;
+    //this.Ficha.PacienteCodigo =  this.centros;
  /*   
     this.cps.getGFamiliar(this.Ficha.PacienteCodigo).subscribe(
       data => {
@@ -61,7 +61,10 @@ export class GrupoFamiliarPage {
     this.GrupoFamiliar = this.cps.getGFamiliar1();
   }
   iraFiliales(Paciente) {
+
+    this.Ficha.PacienteCodigo = Paciente.Codigo;
     if(Paciente.Ficha == "Sin ficha"){
+
       this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
     }else{
        this.presentModal(Paciente);

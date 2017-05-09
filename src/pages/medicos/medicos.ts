@@ -19,10 +19,10 @@ export class MedicosPage {
   public navParams: NavParams, 
   private cps: CpsProviders,
   public LoadCtrl: LoadingController
-  ) {
+  ){
     this.Especialidad = navParams.get('Especialidad');
     this.Ficha = navParams.get('Ficha');
-    
+      
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
     this.listMedicos();

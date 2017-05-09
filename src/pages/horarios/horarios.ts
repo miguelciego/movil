@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
-//import { HorariosPage } from '../horarios/horarios';
+import { ResumenPage } from '../resumen/resumen';
 
 @Component({
   selector: 'page-horarios',
@@ -20,21 +20,22 @@ export class HorariosPage {
   private cps: CpsProviders,
   public LoadCtrl: LoadingController
   ) {
-        
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
 
     this.Ficha.MedicoCodigo = this.Medico.Valor;
     this.Ficha.MedicoNombre = this.Medico.Descripcion;
-    console.log("ficha");
-    console.log(this.Ficha);
     this.listHorarios();
+  }
+  irResumen(Hora) {
+    //
+    this.navCtrl.push( ResumenPage, { Hora : Hora, Ficha: this.Ficha });
   }
   listHorarios(){
       let load = this.LoadCtrl.create();
-        load.present();
+      load.present();
       this.Horarios = this.cps.getHorarios1();
-        load.dismiss();
+      load.dismiss();
       /*  
     this.cps.getHorarios(this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,
               this.Ficha.MedicoCodigo,this.Ficha.Fecha).subscribe(
@@ -53,7 +54,5 @@ export class HorariosPage {
     );
   */  
   }
-    iraHorarios() {
-    this.navCtrl.popToRoot();
-  }
+  
 }

@@ -19,7 +19,7 @@
 </ion-header>
 <ion-content >    
 <ion-list >
-  <ion-item *ngFor="let Hora of Horarios" (click)="iraHorarios()">
+  <ion-item *ngFor="let Hora of Horarios" (click)="irResumen(Hora)">
     <img item-left width="40" height="40" src="assets/images/hor.png"/>
     <h3>{{ Hora.Descripcion }}</h3>
   </ion-item>
