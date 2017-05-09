@@ -8,6 +8,20 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  Mapas
+<ion-content>  
+  <ion-list >
+    <ion-item *ngFor="let Filial of Maps" >
+      <ion-thumbnail item-left>
+      <a item-left>
+        <img src="assets/images/{{ Filial.Codigo }}.jpg"/>    
+      </a>
+      </ion-thumbnail>
+      <div>
+           <h3> {{ Filial.Nombre }} </h3>
+           <p class="text"> Dirección: {{ Filial.Direccion }} </p>
+           <p class="text"> Telefono: {{ Filial.Telefono }}  </p>
+           <p class="text"> Horario: {{ Filial.Horario }} </p>
+      </div>     
+    </ion-item>
+  </ion-list>
 </ion-content>

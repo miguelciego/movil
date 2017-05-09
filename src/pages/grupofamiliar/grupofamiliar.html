@@ -10,7 +10,8 @@
 </ion-header>
 <ion-content >
 <ion-list>
-  <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar">
+  <ion-item-sliding *ngFor="let Paciente of GrupoFamiliar">
+    <ion-item class="parent" >
         <ion-avatar item-left (click)="irPerfil(Paciente)" >
           <img src="assets/images/perfil.png" >
         </ion-avatar>   
@@ -19,6 +20,13 @@
             <h3>{{ Paciente.Nombre }}</h3>
             <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado}}</p>
         </div>
-  </ion-item>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="list"></ion-icon>
+        Historial
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-list> 
 </ion-content>

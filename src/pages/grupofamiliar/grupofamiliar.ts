@@ -19,9 +19,9 @@ export class GrupoFamiliarPage {
   isAndroid: boolean = true;
   
   public GrupoFamiliar;
-  public idpac;
+  public id;
   public dpts;
-  public Ficha = { PacienteCodigo: 37901 };
+  public Ficha = { PacienteCodigo: 3901 };
   public centros = 37901 ;
 
   constructor(
@@ -32,15 +32,12 @@ export class GrupoFamiliarPage {
     private cps: CpsProviders,
     public modalCtrl: ModalController
     ){
-      this.idpac = navParams.get('matricula');
-      this.dpts = navParams.get('departamento');
-
-      console.log(this.idpac);
-      console.log(this.dpts);
-
-      this.isAndroid = platform.is('android');
-      this.getGrupoFamiliar();
+      this.isAndroid = platform.is('android'); 
    }
+  ionViewDidLoad() {
+    console.log("pagina de grupo de familia");
+     this.getGrupoFamiliar();
+  }
    presentPopover(myEvent) {
     
     let popover = this.popoverCtrl.create(PopoverPage);
@@ -67,11 +64,11 @@ export class GrupoFamiliarPage {
     if(Paciente.Ficha == "Sin ficha"){
       this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
     }else{
-       this.presentModal();
+       this.presentModal(Paciente);
     }
   }
-  public presentModal() {
-    let modal = this.modalCtrl.create(ModalPage);
+  presentModal(Paciente) {
+    let modal = this.modalCtrl.create(ModalPage,{ Paciente: Paciente});
     modal.present();
   }
   irPerfil(Paciente){

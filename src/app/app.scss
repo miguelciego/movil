@@ -7,7 +7,12 @@
         left: 0%;
         right: 0%;
     }
-
+.item-ios,.item-md p{
+     width: 100%;
+}
+ion-label{
+    white-space: normal ;
+}
 .toolbar-background {
   background-color: rgba(0, 123, 109, 1);
 }

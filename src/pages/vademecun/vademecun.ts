@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,Nav, NavParams } from 'ionic-angular';
+import { NavController,Nav, NavParams,LoadingController } from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
 
@@ -15,14 +15,18 @@ export class VademecunPage {
     public nav: Nav,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private cps: CpsProviders) 
-    {
-      this.getRecetas();
+    private cps: CpsProviders,
+    public LoadCtrl: LoadingController
+  ){}
+  ionViewDidLoad() {
+    let load = this.LoadCtrl.create();
+    load.present();
+    this.getRecetas()
+    load.dismiss();
   }
- 
- getRecetas(){
-   this.Recetaslist = this.cps.getRecetas1();
-   console.log(this.Recetaslist);
- }
+  getRecetas(){
+    this.Recetaslist = this.cps.getRecetas1();
+    console.log(this.Recetaslist);
+  }
 }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer} from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 import { EspecialidadesPage } from '../especialidades/especialidades';
@@ -7,7 +7,7 @@ import { EspecialidadesPage } from '../especialidades/especialidades';
 @Component({
   selector: 'page-filiales',
   templateUrl: 'filiales.html',
-    providers: [CpsProviders]
+  providers: [CpsProviders]
 })
 export class FilialesPage {
   public FilialesEncontradas;
@@ -30,12 +30,12 @@ export class FilialesPage {
     this.Ficha.PacienteAtendido  = this.Paciente.Atendido;
     this.Ficha.PacienteFicha  = this.Paciente.Ficha;
     console.log(this.Ficha);
-    this.getFiliales();
-      
+ 
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FilialesPage');
+    this.getFiliales();
   }
 
   getFiliales() {
@@ -43,9 +43,7 @@ export class FilialesPage {
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
-
  //       console.log(this.FilialesEncontradas);
-
         },
       err => console.error(err),
       () => console.log('getFiliales completed')

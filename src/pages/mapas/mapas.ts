@@ -1,30 +1,24 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { PopoverController } from 'ionic-angular';
-import { PopoverPage } from '../mitab/popover';
 
-/*
-  Generated class for the Mapas page.
+import { CpsProviders } from '../../providers/cps';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-mapas',
-  templateUrl: 'mapas.html'
+  templateUrl: 'mapas.html',
+  providers: [CpsProviders]
 })
 export class MapasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {}
-
+  public Maps;
+  constructor(
+  public cps: CpsProviders
+  ){
+    this.AllMaps();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapasPage');
   }
-  presentPopover(myEvent) {
-    
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  } 
+  AllMaps(){
+    this.Maps =  this.cps.getFiliales1();
+  }
 }

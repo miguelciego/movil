@@ -13,11 +13,12 @@ import { VademecunPage } from '../vademecun/vademecun';
   templateUrl: 'perfil.html'
 })
 export class PerfilPage {
-  public Paciente;
+  public myPaciente;
   public NombrePaciente;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.Paciente = navParams.get('Paciente');
-    this.NombrePaciente = this.Paciente.Nombre;
+    this.myPaciente = navParams.get('Paciente');
+    this.NombrePaciente = this.myPaciente.Nombre;
+    console.log(' Vademecun-Codigo de myPaciente:'+" "+this.myPaciente.Codigo);
   }
   irVademecun() {
     this.navCtrl.push(VademecunPage);
