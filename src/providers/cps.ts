@@ -616,4 +616,59 @@ export class CpsProviders {
          ];
          return Ficha;
     }
+    getMFicha2(){
+         var Ficha = [
+             {
+                "Codigo": 37901,
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "Centro": "policonsultorio santa cruz",
+                "Especialidad": "CARDIOLOGIA",
+                "Medico": "Acosta castillo susan B",
+                "hora": "11:30",
+                "Fecha": "25/04/2017",
+                "Atendido": 0
+             }
+         ];
+         return Ficha;
+    }
+    getReceta2(){
+         var Receta = [
+             {
+                "Codigo": 379,
+                "Medico": "Acosta castillo susan B",
+                "Centro": "Policonsultorio santa cruz",
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "Especialidad": "CARDIOLOGIA",
+                "Fecha": "25/04/2017",
+                "Valido": "26/04/2017",
+                "Medicamento": "Paracetamol",
+                "Unidad": "Tabletas",
+                "Concentracion": "50g",
+                "Catidad": 10,
+                "Dias_Tratamiento": 4,
+                "Indicaciones": "medio comp. cada mañana  5dias",
+
+             },
+             {
+                "Codigo": 359,
+                "Medico": "Acosta castillo susan B",
+                "Centro": "Policonsultorio santa cruz",
+                "Matricula": "19705203CSR",
+                "Nombre": "CALLEJAS SALGUERO ROSMERY",
+                "Especialidad": "CARDIOLOGIA",
+                "Fecha": "25/04/2017",
+                "Valido": "27/04/2017",
+                "Medicamento": "Paracetamol",
+                "Unidad": "Tabletas",
+                "Concentracion": "50g",
+                "Catidad": 10,
+                "Dias_Tratamiento": 4,
+                "Indicaciones": "medio comp. cada mañana  5dias",
+
+             }
+         ];
+         return Receta;
+    }
 }
