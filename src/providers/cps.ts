@@ -277,7 +277,7 @@ export class CpsProviders {
             {
                 "Codigo": 96126,
                 "Matricula": "19980801QCS",
-                "Nombre": "QUINONES CALLEJAS SEBASTIAN",
+                "Nombre": "QUINONES CALLEJAS SEBASTIAN SEBASTIAN",
                 "HClinica": "SIN HISTOR",
                 "TAsegurado": "BENEFICIARIO",
                 "Atendido": "",

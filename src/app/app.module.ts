@@ -18,7 +18,11 @@ import { LoginPage } from '../pages/login/login';
 import { VademecunPage } from '../pages/vademecun/vademecun';
 import { ModalPage } from '../pages/modal/modal';
 import { PerfilPage } from '../pages/perfil/perfil';
-import { ResumenPage } from '../pages/resumen/resumen' 
+import { ResumenPage } from '../pages/resumen/resumen';
+import { HistorialPage } from '../pages/historial/historial';
+import { DetalleEspPage } from '../pages/detalle-esp/detalle-esp'; 
+import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
+import { ConfigPage } from '../pages/config/config';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { ResumenPage } from '../pages/resumen/resumen'
     PopoverPage,
     VademecunPage,
     PerfilPage,
-    ResumenPage
+    ResumenPage,
+    HistorialPage,
+    DetalleEspPage,
+    DetalleMedPage,
+    ConfigPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -65,7 +73,11 @@ import { ResumenPage } from '../pages/resumen/resumen'
     PopoverPage,
     VademecunPage,
     PerfilPage,
-    ResumenPage
+    ResumenPage,
+    HistorialPage,
+    DetalleEspPage,
+    DetalleMedPage,
+    ConfigPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

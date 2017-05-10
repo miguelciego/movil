@@ -1,0 +1,19 @@
+<ion-header >
+  <ion-navbar>
+     <img class="logo" src="assets/images/logobar.png" ssalt="">
+    <ion-buttons end>
+      <button ion-button color="light" icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <button ion-item (click)="showPrompt()">
+          Desvincular 
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -7,6 +7,7 @@ import { FilialesPage } from '../filiales/filiales';
 import { PerfilPage } from '../perfil/perfil';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
+import { VademecunPage } from '../vademecun/vademecun';
 
 @Component({
   selector: 'page-grupofamiliar',
@@ -38,14 +39,13 @@ export class GrupoFamiliarPage {
     console.log("pagina de grupo de familia");
      this.getGrupoFamiliar();
   }
-   presentPopover(myEvent) {
-    
+  presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
     });
   } 
-   getGrupoFamiliar() {
+  getGrupoFamiliar() {
     //console.log(this.centros);
     //this.Ficha.PacienteCodigo =  this.centros;
  /*   
@@ -70,11 +70,17 @@ export class GrupoFamiliarPage {
        this.presentModal(Paciente);
     }
   }
+
   presentModal(Paciente) {
     let modal = this.modalCtrl.create(ModalPage,{ Paciente: Paciente});
     modal.present();
   }
+
   irPerfil(Paciente){
      this.navCtrl.push(PerfilPage, { Paciente: Paciente });
+  }
+
+  IrVademecun(){
+    this.navCtrl.push(VademecunPage);
   }
 }

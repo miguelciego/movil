@@ -27,7 +27,7 @@ ion-label{
 }
 .card-ios {
     margin: 0px;
-    padding: 5px 5px 5px 16px;
+    padding: 5px 5px 5px 5px;
     width: 100%;
     border-radius: 2px;
     background: #fff;
@@ -40,7 +40,7 @@ ion-label{
 }
 .card-md {
     margin: 0px;
-    padding: 5px 5px 5px 16px;
+    padding: 5px 5px 5px 5px;
     width: 100%;
     border-radius: 2px;
     background: #fff;
@@ -58,4 +58,17 @@ ion-label{
 }
 .list-md {
     margin: 0 0 16px 0;
+}
+.card-content-ios {
+    padding: 5px 5px 5px 5px;
+}
+.card-content-md {
+    padding: 5px 5px 5px 5px;
+}
+.card-title-md {
+    padding: 0px 0 8px 0;
+    font-size: 1.8rem;
+}
+.card-title-ios {
+    padding: 0px 0 8px 0;
 }

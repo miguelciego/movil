@@ -1,12 +1,18 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Ficha</ion-title>
+    <ion-title>Resumen</ion-title>
   </ion-navbar>
 </ion-header>
-
+<ion-list >
+  <ion-item>
+    {{ Paciente }}
+  </ion-item>
+</ion-list>
 <ion-content padding>
-  <ion-list>
-    <button ion-button color="primary" (click)="principal()">Listo</button>
-  </ion-list>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6><button block ion-button color="primary" (click)="cancelar()" outline round>Cancelar</button></ion-col>
+      <ion-col col-6><button block ion-button color="primary" (click)="Guardar()" round >Guardar</button></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -7,9 +7,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ResumenPage {
 
-  public Ficha;
+  public Ficha;  
+  public Paciente;
+  public Matricula;
+  public Filial;
+  public Especialidad;
+  public Medico;
+  public resumen={};
   public Hora;
-  public resumen;
   constructor(
   public navCtrl: NavController,
   public navParams: NavParams
@@ -19,11 +24,16 @@ export class ResumenPage {
   this.Ficha.valorh = this.Hora.Valor;
   this.Ficha.horaD = this.Hora.Descripcion;
   console.log(this.Ficha);
+  this.Paciente = this.Ficha.PacienteNombre;
   this.resumen = this.Ficha;
+
   }
   ionViewDidLoad() {
   }
-  principal(){
+  Guardar(){
+    this.navCtrl.popToRoot();
+  }
+  cancelar(){
     this.navCtrl.popToRoot();
   }
 }
