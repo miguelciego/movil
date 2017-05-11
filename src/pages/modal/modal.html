@@ -16,33 +16,105 @@
     <div *ngFor="let ficha of myFicha">
         <p text-center class="titulo">{{ ficha.HClinica|uppercase }}</p>
         <p text-center class="titulo">CONSULTA EXTERNA</p>
+        <br>
         <ion-grid >
           <ion-row>
             <ion-col col-4>
                 <p>NRO.FICHA: </p>
-                <p>Mat.Titular: </p>
-                <p>Mat.Paciente: </p>
-                <p>Paciente:</p>
-                <P>Empresa : </P>
-                <P>Especialidad:</P>
-                <P>Médico: </P>
-                <P>Consultorio:</P>
-                <p>Hora : </p>
-                <p>Fecha :</p>
             </ion-col>
             <ion-col col-8>
-                <p> {{ ficha.Ficha }}</p>
-                <p> {{ ficha.MatriculaT|uppercase }}</p>
-                <p> {{ ficha.Matricula|uppercase }}</p>
-                <P> {{ ficha.Nombre|uppercase }}</P>
-                <P> {{ ficha.Empresa|uppercase }}</P>
-                <P> {{ ficha.Especialidad|uppercase }}</P>
-                <P> {{ ficha.Medico|uppercase }}</P>
-                <P> {{ ficha.Consultorio|uppercase }}</P>
-                <P> {{ ficha.hora }}</P>
-                <P> {{ ficha.Fecha|uppercase }}</P>
+              <p> {{ ficha.Ficha }}</p>
             </ion-col>
-          </ion-row>   
+          </ion-row>  
+          <ion-row>
+            
+            <ion-col col-4>
+                <p>Mat.Titular: </p>
+            </ion-col>
+            <ion-col col-8>
+              <p> {{ ficha.MatriculaT|uppercase }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Mat.Paciente: </p>
+            </ion-col>
+            <ion-col col-8>
+              <p> {{ ficha.Matricula|uppercase }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Paciente: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Nombre|uppercase }}</P>
+            </ion-col>
+          </ion-row> 
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Empresa: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Empresa|uppercase }}</P>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Empresa: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Empresa|uppercase }}</P>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Especialidad: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Especialidad|uppercase }}</P>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Medico: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Medico|uppercase }}</P>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-4>
+                <p> Consultorio: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Consultorio|uppercase }} </P>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-4>
+                <p> Hora: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.hora|uppercase }} </P>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-4>
+                <p> Fecha: </p>
+            </ion-col>
+            <ion-col col-8>
+              <P> {{ ficha.Fecha|uppercase }} </P>
+            </ion-col>
+          </ion-row>
+
           <p>NOTA: Acudir a su cita Médica 15 minutos antes de la hora programada</p>
       </ion-grid>
     </div>

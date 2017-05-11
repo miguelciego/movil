@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { CentrosPage } from '../centros/centros'
-import { MapasPage } from '../mapas/mapas'
+import { NavParams } from 'ionic-angular';
+import { CentrosPage } from '../centros/centros';
+import { MapasPage } from '../mapas/mapas';
 import { HomePage } from '../home/home';
 import { ConfigPage } from '../config/config';
 import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
 import { PopoverController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { PopoverController } from 'ionic-angular';
   templateUrl: 'mitab.html'
 })
 export class MitabPage {
+  public login:any[]=[];
 
   tab1Root: any = HomePage;
   tab2Root: any = GrupoFamiliarPage;
@@ -20,5 +23,19 @@ export class MitabPage {
   tab5Root: any = ConfigPage;
 
   constructor(
-  public popoverCtrl: PopoverController) {}
+    public popoverCtrl: PopoverController,
+    public toastCtrl: ToastController,
+    public navParams: NavParams
+  ) {
+    this.login = navParams.get('login');
+    this.presentToast();
+  }
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Successful',
+      duration: 5000,
+      position: 'top'
+    });
+    toast.present();
+  }
 }

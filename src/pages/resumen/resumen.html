@@ -3,12 +3,65 @@
     <ion-title>Resumen</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-list >
-  <ion-item>
-    {{ Paciente }}
-  </ion-item>
-</ion-list>
 <ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          Paciente :
+        </ion-col>
+        <ion-col col-8>
+          {{ NombrePaciente }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Matricula :
+        </ion-col>
+        <ion-col col-8>
+          {{ Matricula }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Hospital : 
+        </ion-col>
+        <ion-col col-8>
+          {{ Filial }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Especialidad : 
+        </ion-col>
+        <ion-col col-8>
+          {{ Especialidad }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Medico : 
+        </ion-col>
+        <ion-col col-8>
+          {{ Medico }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Hora : 
+        </ion-col>
+        <ion-col col-8>
+          {{ Hora }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Fecha : 
+        </ion-col>
+        <ion-col col-8>
+          {{ Dia }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   <ion-grid>
     <ion-row>
       <ion-col col-6><button block ion-button color="primary" (click)="cancelar()" outline round>Cancelar</button></ion-col>
