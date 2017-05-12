@@ -27,15 +27,23 @@ export class MitabPage {
     public toastCtrl: ToastController,
     public navParams: NavParams
   ) {
-    this.login = navParams.get('login');
+    
     this.presentToast();
+    console.log("datos del login",this.getLogin());
   }
+
   presentToast() {
     let toast = this.toastCtrl.create({
       message: 'Successful',
-      duration: 5000,
+      duration: 3000,
       position: 'top'
     });
     toast.present();
+  }
+  getLogin(){
+    this.login = this.navParams.get('login');
+    if(this.login != undefined) {
+      return this.login;
+    }
   }
 }

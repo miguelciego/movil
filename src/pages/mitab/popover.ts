@@ -9,12 +9,10 @@ import { LoginPage } from '../login/login'
 export class PopoverPage {
   constructor(
   public viewCtrl: ViewController,
-  public navCtrl: NavController
+  public navCtrl: NavController,
   ){
-
   }
   close() {
     this.viewCtrl.dismiss();
-   // this.navCtrl.setRoot( LoginPage );
   }
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,Nav } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-config',
@@ -8,10 +10,16 @@ import { AlertController } from 'ionic-angular';
 })
 export class ConfigPage {
 
+  public login:any[]=[];
+
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
-  public alertCtrl: AlertController
-  ){}
+  public alertCtrl: AlertController,
+  public nav: Nav
+  ){
+    this.login = navParams.data;
+    console.log(this.login);
+  }
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Desvincular',
@@ -26,7 +34,7 @@ export class ConfigPage {
         {
           text: 'Si',
           handler: data => {
-             console.log('Salir');
+            this.nav.setRoot (LoginPage); 
           }
         }
       ]
