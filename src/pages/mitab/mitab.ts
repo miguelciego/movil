@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
+
 import { CentrosPage } from '../centros/centros';
 import { MapasPage } from '../mapas/mapas';
 import { HomePage } from '../home/home';
 import { ConfigPage } from '../config/config';
 import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
+
 import { PopoverController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
+//import { Device } from 'ionic-native';
 
 @Component({
   selector: 'page-mitab',
@@ -27,18 +30,8 @@ export class MitabPage {
     public toastCtrl: ToastController,
     public navParams: NavParams
   ) {
-    
-    this.presentToast();
+   // this.presentToast();
     console.log("datos del login",this.getLogin());
-  }
-
-  presentToast() {
-    let toast = this.toastCtrl.create({
-      message: 'Successful',
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
   }
   getLogin(){
     this.login = this.navParams.get('login');
@@ -46,4 +39,12 @@ export class MitabPage {
       return this.login;
     }
   }
+  /*presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Successful',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }*/
 }

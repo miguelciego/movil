@@ -11,8 +11,22 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <button ion-item (click)="showPrompt()">
-          Desvincular 
+      <ion-toggle checked="false"></ion-toggle>
+      <ion-label>
+        Notificaciones
+      </ion-label>
+      <ion-icon name='notif' item-start></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-toggle checked="false"></ion-toggle>
+      <ion-label>
+        No afiliados
+      </ion-label>
+      <ion-icon name='Aseg' item-start></ion-icon>
+    </ion-item>
+    <ion-item>
+      <button no-padding ion-item (click)="showPrompt()">
+        Desvincular 
       </button>
     </ion-item>
   </ion-list>

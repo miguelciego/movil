@@ -3,22 +3,22 @@
     <img src="assets/images/logoLetra.png" />
     <ion-card center class="carta">
         <ion-card-content>            
-            <form (ngSubmit)="logForm()" novalidate>
+            <form [formGroup]="loginForm" (ngSubmit)="Guardar()" novalidate>
+              <div padding>
                 <ion-item>
-                    <ion-label fixed>Matrícula</ion-label>
-                    <ion-input [(ngModel)]="login.matricula" name="matricula" type="text" ></ion-input>
+                    <ion-label color="gris" fixed>Matrícula</ion-label>
+                    <ion-input formControlName="matricula" type="text" ></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label class="dpts">Departamento</ion-label>
-                    <ion-select [(ngModel)]="login.departamento"  name="departamento">
+                  <ion-label  color="gris" class="dpts">Departamento</ion-label>
+                    <ion-select formControlName="filial" >
                         <ion-option value="1">Santa Cruz</ion-option>
                         <ion-option value="2">Cochabamba</ion-option>
                         <ion-option value="3">La paz</ion-option>
                     </ion-select>
                 </ion-item>
-                <div class="der">
-                     <button color = "verde" ion-button type="submit" block>Ingresar</button>
-                </div>
+                <button  color="verde"ion-button type="submit" block [disabled]="!loginForm.valid">Entrar</button>
+              </div>
             </form>
         </ion-card-content>
     </ion-card>

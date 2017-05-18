@@ -19,6 +19,7 @@
     "@angular/platform-browser": "2.4.8",
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/platform-server": "2.4.8",
+    "@ionic-native/sqlite": "^3.8.1",
     "@ionic/storage": "2.0.0",
     "ionic-angular": "2.2.0",
     "ionic-native": "2.8.1",
@@ -32,13 +33,20 @@
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
+    "cordova-sqlite-storage",
+    "ionic-plugin-keyboard",
     "cordova-plugin-whitelist",
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
-    "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "cordova-plugin-splashscreen"
   ],
-  "cordovaPlatforms": [],
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    }
+  ],
   "description": "CPS Móvil 2: An Ionic project"
 }

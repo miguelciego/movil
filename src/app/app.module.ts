@@ -24,6 +24,19 @@ import { DetalleEspPage } from '../pages/detalle-esp/detalle-esp';
 import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
 import { ConfigPage } from '../pages/config/config';
 
+
+
+const config = {
+  tabsHideOnSubPages: true,
+  tabsPlacement: 'top',
+  platforms: {
+    ios: {
+      tabsHideOnSubPages: false,
+      tabsPlacement:'bottom'
+    },
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -51,7 +64,7 @@ import { ConfigPage } from '../pages/config/config';
     ConfigPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -79,6 +92,8 @@ import { ConfigPage } from '../pages/config/config';
     DetalleMedPage,
     ConfigPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+  ]
 })
 export class AppModule {}
