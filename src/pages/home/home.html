@@ -1,6 +1,6 @@
 <ion-header >
   <ion-navbar>
-     <img   class="logo" align=center src="assets/images/logobar.png" ssalt="">
+     <img class="logo" src="assets/images/logobar.png" alt="">
     <ion-buttons end>
       <button ion-button color="light" icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -8,6 +8,25 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content>
-  <img class="portada" src="assets/images/petrolito.png" />
+<ion-content padding>
+    <div>
+        <ion-item>
+            <ion-label fixed>Matricula</ion-label>
+            <ion-input type="text" [(ngModel)]="txtmatricula"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Filial</ion-label>
+            <ion-input type="text" [(ngModel)]="txtfilial"></ion-input>
+        </ion-item>
+        <button ion-button (click)="Adicionar(txtmatricula,txtfilial)">Agregar</button>
+    </div>
+     <ul>
+        <li *ngFor="let a of afiliado; let i=index">
+            <p>Matricula : {{a.matricula}} </p> <br>
+            <p>Filial : {{a.filial}}</p> 
+            <span ion-button (click)="Modificar(a.id,a.matricula)">Modificar</span>
+            <span ion-button (click)="Eliminar(a.id)">X</span>
+        </li>
+    </ul>
+
 </ion-content>

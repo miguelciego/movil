@@ -24,6 +24,8 @@ import { DetalleEspPage } from '../pages/detalle-esp/detalle-esp';
 import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
 import { ConfigPage } from '../pages/config/config';
 
+import { AfiliadoService } from '../providers/afiliado-service'
+
 
 
 const config = {
@@ -94,6 +96,7 @@ const config = {
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AfiliadoService
   ]
 })
 export class AppModule {}
