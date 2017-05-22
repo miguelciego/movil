@@ -2,31 +2,26 @@
   <ion-navbar>
     <ion-buttons left>
       <button ion-button >
-        <img width="40" height="40" src="assets/images/logo.png" />
+        <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
     <ion-title>Hospital</ion-title>
   </ion-navbar>
     <ion-card>
-  <div class="myFicha">
-    <p> Paciente  : {{ Ficha.PacienteNombre }} </p>
-    <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
+    <div class="myFicha">
+      <p> Paciente  : {{ Ficha.PacienteNombre }} </p>
+      <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
     </div>
   </ion-card>
 </ion-header>
 <ion-content>  
   <ion-list >
     <ion-item *ngFor="let Filial of FilialesEncontradas" >
-      <ion-thumbnail item-left>
-      <a item-left [href]="sanitize('geo:?q=' + Filial.geoubicacion + ',' + Filial.geoubicacion2 + ',17z')" 
-        target="_system" >
+      <ion-avatar item-left>
         <img src="assets/images/{{ Filial.Codigo }}.jpg"/>    
-      </a>
-      </ion-thumbnail>
+      </ion-avatar>
       <div class="hospital" (click)="iraEspecialidades(Filial)">
            <h3> {{ Filial.Nombre }} </h3>
-           <p class="text"> Dirección: {{ Filial.Direccion }} </p>
-           <p class="text"> Telefono: {{ Filial.Telefono }}  </p>
            <p class="text"> Horario: {{ Filial.Horario }} </p>
       </div>     
     </ion-item>

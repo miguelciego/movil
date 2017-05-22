@@ -13,7 +13,6 @@ import { MedicosPage } from '../pages/medicos/medicos';
 import { HorariosPage } from '../pages/horarios/horarios';
 import { FilialesPage } from '../pages/filiales/filiales';
 import { GrupoFamiliarPage } from '../pages/grupofamiliar/grupofamiliar';
-import { VerificacionPage } from '../pages/verificacion/verificacion';
 import { LoginPage } from '../pages/login/login';
 import { VademecunPage } from '../pages/vademecun/vademecun';
 import { ModalPage } from '../pages/modal/modal';
@@ -24,19 +23,18 @@ import { DetalleEspPage } from '../pages/detalle-esp/detalle-esp';
 import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
 import { ConfigPage } from '../pages/config/config';
 
-import { AfiliadoService } from '../providers/afiliado-service'
-
-
+import { AfiliadoStorage } from '../providers/afiliado-storage'
+import { IonicStorageModule } from '@ionic/storage';
 
 const config = {
   tabsHideOnSubPages: true,
-  tabsPlacement: 'top',
-  platforms: {
+  tabsPlacement: 'bottom',
+  /*platforms: {
     ios: {
       tabsHideOnSubPages: false,
       tabsPlacement:'bottom'
     },
-  }
+  }*/
 }
 
 @NgModule({
@@ -54,7 +52,6 @@ const config = {
     FilialesPage,
     GrupoFamiliarPage,
     ModalPage,
-    VerificacionPage,
     LoginPage,
     PopoverPage,
     VademecunPage,
@@ -66,7 +63,8 @@ const config = {
     ConfigPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp,config)
+    IonicModule.forRoot(MyApp,config),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -83,7 +81,6 @@ const config = {
     FilialesPage,
     GrupoFamiliarPage,
     ModalPage,
-    VerificacionPage,
     LoginPage,
     PopoverPage,
     VademecunPage,
@@ -96,7 +93,7 @@ const config = {
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AfiliadoService
+    AfiliadoStorage
   ]
 })
 export class AppModule {}

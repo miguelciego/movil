@@ -3,6 +3,7 @@ import { NavController, NavParams,Nav } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-config',
@@ -15,7 +16,8 @@ export class ConfigPage {
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
   public alertCtrl: AlertController,
-  public nav: Nav
+  public nav: Nav,
+  public storage:Storage
   ){
     this.login = navParams.data;
     console.log(this.login);
@@ -34,6 +36,8 @@ export class ConfigPage {
         {
           text: 'Si',
           handler: data => {
+            this.storage.clear()
+            console.log("Eliminar  storage")
             this.nav.setRoot (LoginPage); 
           }
         }

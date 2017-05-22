@@ -22,7 +22,7 @@ export class GrupoFamiliarPage {
   public GrupoFamiliar;
   public id;
   public dpts;
-  public Ficha = { PacienteCodigo :0};
+  public Ficha = { PacienteCodigo : 0};
   public centros = 37901 ;
 
   constructor(

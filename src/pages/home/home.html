@@ -9,24 +9,10 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <div>
-        <ion-item>
-            <ion-label fixed>Matricula</ion-label>
-            <ion-input type="text" [(ngModel)]="txtmatricula"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label fixed>Filial</ion-label>
-            <ion-input type="text" [(ngModel)]="txtfilial"></ion-input>
-        </ion-item>
-        <button ion-button (click)="Adicionar(txtmatricula,txtfilial)">Agregar</button>
-    </div>
      <ul>
-        <li *ngFor="let a of afiliado; let i=index">
-            <p>Matricula : {{a.matricula}} </p> <br>
-            <p>Filial : {{a.filial}}</p> 
-            <span ion-button (click)="Modificar(a.id,a.matricula)">Modificar</span>
-            <span ion-button (click)="Eliminar(a.id)">X</span>
+        <li *ngFor="let a of Afiliado; let i=index">
+            <p>Matricula iniciada : {{a.matricula}} </p>
         </li>
     </ul>
-
+    <img class="portada" src="assets/images/petrolito.png" />
 </ion-content>

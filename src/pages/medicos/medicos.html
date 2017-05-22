@@ -3,23 +3,28 @@
     <ion-title>Médico</ion-title>
         <ion-buttons left>
       <button ion-button >
-        <img width="40" height="40" src="assets/images/logo.png" />
+        <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
   </ion-navbar>
    <ion-card>
-    <p>Paciente : {{ Ficha.PacienteNombre}} </p>
-    <p>Matrícula : {{ Ficha.PacienteMatricula }} </p>
-    <p>Hospital : {{ Ficha.FilialDescripcion }} </p>
-    <p>Especialidad : {{ Ficha.EspecialidadDescripcion }} </p>
+    <div class="myFicha">
+      <p>Paciente : {{ Ficha.PacienteNombre}} </p>
+      <p>Matrícula : {{ Ficha.PacienteMatricula }} </p>
+      <p>Hospital : {{ Ficha.FilialDescripcion }} </p>
+      <p>Especialidad : {{ Ficha.EspecialidadDescripcion }} </p>
+    </div>
   </ion-card>
 </ion-header>
 <ion-content>
 <ion-list >
-  <ion-item *ngFor="let Medico of Medicos" (click)="iraHorarios(Medico)">
-       <img item-left width="40" height="40" src="assets/images/med.png"/>
-       <h3>{{ Medico.Descripcion }}</h3>
+  <ion-item *ngFor="let Medico of Medicos">
+       <ion-avatar item-left (click)="irDetalleMed(Medico)" >
+          <img src="assets/images/med.png" >
+      </ion-avatar>
+      <div (click)="iraHorarios(Medico)" >
+         <h3>{{ Medico.Descripcion }}</h3>
+      </div>
   </ion-item>
 </ion-list>
-
 </ion-content>

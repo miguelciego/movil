@@ -665,4 +665,14 @@ export class CpsProviders {
          ];
          return Receta;
     }
+   getRes(){
+        var res = [
+            {
+                "respuesta": 1,
+                "cod_afi": 200132,
+                "nom_afi": "CABELLO PENA EDGAR ENRIQUE",
+                "nom_emp": 1
+            }];
+        return res;
+    }
 }

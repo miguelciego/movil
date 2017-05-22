@@ -20,30 +20,27 @@ export class FilialesPage {
     private cps: CpsProviders,
     private sanitizer:DomSanitizer
     ) { 
-    this.Ficha = navParams.get('Ficha');
-    this.Paciente = navParams.get('Paciente');
+      this.Ficha = navParams.get('Ficha');
+      this.Paciente = navParams.get('Paciente');
 
-    this.Ficha.PacienteMatricula = this.Paciente.Matricula;
-    this.Ficha.PacienteNombre = this.Paciente.Nombre ;
-    this.Ficha.PacienteTAsegurado  = this.Paciente.TAsegurado ;
-    this.Ficha.PacienteHClinica  = this.Paciente.HClinica;
-    this.Ficha.PacienteAtendido  = this.Paciente.Atendido;
-    this.Ficha.PacienteFicha  = this.Paciente.Ficha;
-    console.log(this.Ficha);
- 
+      this.Ficha.PacienteMatricula = this.Paciente.Matricula;
+      this.Ficha.PacienteNombre = this.Paciente.Nombre ;
+      this.Ficha.PacienteTAsegurado  = this.Paciente.TAsegurado ;
+      this.Ficha.PacienteHClinica  = this.Paciente.HClinica;
+      this.Ficha.PacienteAtendido  = this.Paciente.Atendido;
+      this.Ficha.PacienteFicha  = this.Paciente.Ficha;
+      console.log(this.Ficha);
     }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad FilialesPage');
     this.getFiliales();
   }
-
   getFiliales() {
-    /*
+   /*
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
- //       console.log(this.FilialesEncontradas);
+         console.log(this.FilialesEncontradas);
         },
       err => console.error(err),
       () => console.log('getFiliales completed')

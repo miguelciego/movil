@@ -1,27 +1,43 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+
 import { LoginPage } from '../pages/login/login';
-//import { MitabPage } from '../pages/mitab/mitab';
-import { AfiliadoService } from '../providers/afiliado-service';
+import { MitabPage } from '../pages/mitab/mitab';
+import { AfiliadoStorage } from '../providers/afiliado-storage';
+        
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-
-    rootPage = LoginPage;
+    public session;
+    rootPage:any = LoginPage;
 
   constructor(
     platform: Platform,
-    AfiliadoService:AfiliadoService
+      public AfiliadoStorage: AfiliadoStorage
     ) {
      platform.ready().then(() => {
-      // Bueno, así que la plataforma está lista y nuestros complementos están disponibles.
-       // Aquí puedes hacer cualquier cosa nativa de nivel superior que puedas necesitar.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      AfiliadoService.openDb();
+      this.Session();
     });
+  }
+  private Session(){
+    this.AfiliadoStorage.getAll()
+    .then((afiliado: any[]) =>{
+      console.log('resuslt', afiliado);
+      if(afiliado == null){
+         this.rootPage = LoginPage;
+         console.log("console",afiliado)
+      }else{
+         this.rootPage = MitabPage;
+      }
+    })
+    .catch(error =>{
+      console.log("Error al iniciar",error)
+    })
   }
 }

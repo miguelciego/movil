@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, Platform} from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
+import { Storage } from '@ionic/storage';
 
-import { AfiliadoService } from '../../providers/afiliado-service';
+import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
 @Component({
   selector: 'page-home',
@@ -11,60 +12,48 @@ import { AfiliadoService } from '../../providers/afiliado-service';
 })
 export class HomePage {
 
-  public afiliado = [];
+  Afiliado:any [] = [];
   public txtmatricula : any;
   public txtfilial : any;
 
   constructor(
     public navCtrl: NavController, 
     public popoverCtrl: PopoverController,
-    public sqliteService : AfiliadoService,
-    protected platform : Platform
+    public AfiliadoStorage : AfiliadoStorage,
+    protected platform : Platform,
+    public  storage:Storage
   ) {
-    this.platform.ready().then(() => {
-        this.sqliteService.getAll().then(s => {
-            this.afiliado = this.sqliteService.arr;
-          });
-      })
+   
   }
-  public Adicionar(matricula,filial) {
-      console.log("matricula es ",matricula);
-      console.log("filial es ",filial);
-    this.sqliteService.agregarItem(matricula,filial)
-      .then(s => {
-        this.afiliado = this.sqliteService.arr;
-        this.txtmatricula = '';
-        this.txtfilial = '';
-      })
-      .catch(error =>{
-          console.log('Error en Adicionar',error);
-      });
-  }
-
-  Eliminar(id) {
-    this.sqliteService.eliminar(id)
-      .then(s => {
-        this.afiliado = this.sqliteService.arr;
-      })
-      .catch(error =>{
-          console.log('Error al Eliminar',error);
-      });
-  }
-
-  Modificar(id, matricula) {
-    var prompt = window.prompt('Editar Matricula', matricula);
-    this.sqliteService.modificar(id, prompt)
-    .then(s => {
-        this.afiliado = this.sqliteService.arr;
-      })
-    .catch(error =>{
-          console.log('Error al Modificar',error);
-      });
+  ionViewDidLoad() {
+    this.getAfiliado();
+    console.log("matricula",);
   }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
     });
-  } 
+  }
+  private getAfiliado(){
+    /*this.tasksService.getAll()
+    .then((tasks: any[]) =>{
+      this.tasks = tasks;
+    })*/
+    this.AfiliadoStorage.getAll()
+    .then((data: any[]) =>{
+      this.Afiliado = data;
+      Object.keys(this.Afiliado).forEach( key => {
+          console.log(this.Afiliado[key]); //value    
+          console.log("eso es",key); //key
+      });
+    })
+    .catch(error =>{
+      console.log(error)
+    })
+  }
+  Eliminar(){
+    this.storage.clear()
+    console.log("Eliminar db")
+  }
 }

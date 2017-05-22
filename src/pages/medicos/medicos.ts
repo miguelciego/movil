@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 import { HorariosPage } from '../horarios/horarios';
+import { DetalleMedPage } from '../detalle-med/detalle-med';
 
 @Component({
   selector: 'page-medicos',
@@ -52,5 +53,8 @@ export class MedicosPage {
   }
   iraHorarios(Medico) {
     this.navCtrl.push(HorariosPage, { Medico: Medico, Ficha: this.Ficha });
+  }
+  irDetalleMed(Medico){
+     this.navCtrl.push(DetalleMedPage, { Medico: Medico});
   }
 }
