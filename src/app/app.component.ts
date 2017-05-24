@@ -6,8 +6,6 @@ import { LoginPage } from '../pages/login/login';
 import { MitabPage } from '../pages/mitab/mitab';
 import { AfiliadoStorage } from '../providers/afiliado-storage';
         
-
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -28,7 +26,7 @@ export class MyApp {
   private Session(){
     this.AfiliadoStorage.getAll()
     .then((afiliado: any[]) =>{
-      console.log('resuslt', afiliado);
+      console.log('data', afiliado);
       if(afiliado == null){
          this.rootPage = LoginPage;
          console.log("console",afiliado)

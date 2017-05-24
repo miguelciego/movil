@@ -30,15 +30,13 @@ export class MedicosPage {
   }
   listMedicos(){
     let load = this.LoadCtrl.create();
-      load.present();
-    this.Medicos = this.cps.getMedicos1();
-      load.dismiss();
-    /*
+    load.present();
+    //this.Medicos = this.cps.getMedicos1();
     this.cps.getMedicos(this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,
-              this.Ficha.Fecha).subscribe(
+    this.Ficha.Fecha).subscribe(
       data => { 
         this.Medicos = data.json();
-
+        load.dismiss();
         },
       err => {
         if (err.status == 404) {
@@ -47,9 +45,8 @@ export class MedicosPage {
           console.error(err);
         }
       },
-      () => console.log('getMedico completed')
+      () => console.log('getMedico -> completado')
     );
-*/ 
   }
   iraHorarios(Medico) {
     this.navCtrl.push(HorariosPage, { Medico: Medico, Ficha: this.Ficha });

@@ -8,22 +8,26 @@
     <ion-title>Hospital</ion-title>
   </ion-navbar>
     <ion-card>
-    <div class="myFicha">
-      <p> Paciente  : {{ Ficha.PacienteNombre }} </p>
-      <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
-    </div>
-  </ion-card>
+      <div class="myFicha">
+        <p> Paciente  : {{ Ficha.PacienteNombre }} </p>
+        <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
+      </div>
+    </ion-card>
 </ion-header>
-<ion-content>  
-  <ion-list >
+<ion-content style="clear: left;">  
+  <ion-list  *ngIf="validarN == 1" >
     <ion-item *ngFor="let Filial of FilialesEncontradas" >
       <ion-avatar item-left>
         <img src="assets/images/{{ Filial.Codigo }}.jpg"/>    
       </ion-avatar>
       <div class="hospital" (click)="iraEspecialidades(Filial)">
-           <h3> {{ Filial.Nombre }} </h3>
-           <p class="text"> Horario: {{ Filial.Horario }} </p>
+          <h3> {{ Filial.Nombre }} </h3>
+          <p class="text"> Horario: Las 24 horas.</p>
       </div>     
     </ion-item>
   </ion-list>
+  <div *ngIf="validarN == 2" class="contenedor" (click)="volver()">
+    <img class="img" width="100" height="100" src="assets/images/calendar.png"/>
+    <p>{{validarB}}</p>
+  </div>
 </ion-content>

@@ -7,12 +7,12 @@ import { MedicosPage } from '../medicos/medicos';
   selector: 'page-especialidades',
   templateUrl: 'especialidades.html',
   providers: [CpsProviders]
-   
 })
 export class EspecialidadesPage {
   public Filial;
   public Especialidades;
   public Ficha;
+  public length;
 
   constructor(
   public navCtrl: NavController,
@@ -30,15 +30,15 @@ export class EspecialidadesPage {
   }
   listEspecialidad(){
     let load = this.LoadCtrl.create();
-      load.present();
-    this.Especialidades = this.cps.getEspecialidades1();
-      load.dismiss();
-      
- //   console.log(this.Ficha);
-/*
+    load.present();
+    /*this.Especialidades = this.cps.getEspecialidades1();*/
     this.cps.getEspecialidades(this.Filial.Codigo,this.Filial.Fecha).subscribe(
       data => { 
         this.Especialidades = data.json();
+        console.log("Especialidades",this.Especialidades);
+        this.length = this.Especialidades.length;
+        console.log("longitud de la especialidad",this.length)
+        load.dismiss();
         },
       err => {
         if (err.status == 404) {
@@ -47,11 +47,13 @@ export class EspecialidadesPage {
           console.error(err);
         }
       },
-      () => console.log('getEspecialidades completed')
-    );
- */   
+      () => console.log('getEspecialidades -> completado')
+    );  
   }
   iraMedicos(Especialidad) {
     this.navCtrl.push(MedicosPage, { Especialidad: Especialidad, Ficha: this.Ficha });
   } 
+  volver(){
+    this.navCtrl.pop();
+  }
 }

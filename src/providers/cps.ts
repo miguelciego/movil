@@ -32,7 +32,7 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/filial1' , creds, 
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/filial' , creds, 
          { headers: headers });
     }
     getEspecialidades(valorf, fecha) {
@@ -82,7 +82,6 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        
         return this.http.post('http://smovilsc.cps.org.bo/consulta/mficha' ,
         creds, { headers: headers });
     }

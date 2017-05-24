@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+
+import { CpsProviders } from '../../providers/cps';
 
 @Component({
   selector: 'page-resumen',
   templateUrl: 'resumen.html',
+  providers: [CpsProviders]
 })
 export class ResumenPage {
 
@@ -16,9 +19,14 @@ export class ResumenPage {
   public Medico;
   public Hora;
   public Dia;
+
+  private datos;
+
   constructor(
-  public navCtrl: NavController,
-  public navParams: NavParams
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private cps: CpsProviders,
+    public LoadCtrl: LoadingController
   ){
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
@@ -33,12 +41,43 @@ export class ResumenPage {
     this.Dia = this.Ficha.Fecha;
     console.log(this.Ficha);
   }
-  ionViewDidLoad() {
-  }
+  ionViewDidLoad() {}
   Guardar(){
-    this.navCtrl.popToRoot();
+    this.cps.putGFicha(
+        this.Ficha.PacienteCodigo,
+        this.Ficha.FilialCodigo,
+        this.Ficha.EspecialidadCodigo,
+        this.Ficha.MedicoCodigo,
+        this.Ficha.valorh,
+        this.Ficha.Fecha
+      )
+      .subscribe( data => { 
+          let load = this.LoadCtrl.create();
+          load.present();
+          this.datos = data.json();
+          switch (this.datos.Codigo) {
+            case "G0":
+                console.log(this.datos.Descripcion)
+                this.navCtrl.popToRoot();
+                load.dismiss();
+                break;
+            case "E1":
+                load.dismiss();
+                console.log(this.datos.Descripcion)
+                this.navCtrl.popToRoot();
+                break;
+            case "E2":
+                load.dismiss();
+                console.log(this.datos.Descripcion)
+                this.navCtrl.pop();
+                break;
+          }
+        },
+        err => console.error(err),
+        () => console.log('putGFicha -> completado')
+      );
   }
   cancelar(){
-    this.navCtrl.popToRoot();
+    this.navCtrl.pop();
   }
 }

@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Especialidad</ion-title>
-        <ion-buttons left>
-      <button ion-button >
+    <ion-buttons left>
+      <button ion-button>
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-card  >
+  <ion-card>
    <div class="myFicha">
     <p>Paciente : {{ Ficha.PacienteNombre}} </p>
     <p>Matrícula : {{ Ficha.PacienteMatricula }} </p>
@@ -15,13 +15,17 @@
   </div>
   </ion-card>
 </ion-header>
-<ion-content >
-<ion-list >
-  <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
-    <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
-     <h3> {{ Especialidad.Descripcion }} </h3> 
-     <p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span> : {{ Especialidad.Disponible }} </p>
-    <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge>
-</ion-item>
-</ion-list>
+  <ion-content >
+  <ion-list *ngIf="length > 0">
+    <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
+      <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
+      <h3> {{ Especialidad.Descripcion }} </h3> 
+      <p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span> : {{ Especialidad.Disponible }} </p>
+      <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="length == 0" class="contenedor" (click)="volver()">
+    <img class="img" width="100" height="100" src="assets/images/especialidad.png"/>
+    <p>No hay especialidades disponibles.</p>
+  </div>
 </ion-content>

@@ -1,8 +1,26 @@
 page-especialidades {
     .item-ios p {
     font-size: 1.1rem;
-}
-.item-md p {
-    font-size: 1.1rem;
-}
+    }
+    .item-md p {
+        font-size: 1.1rem;
+    }
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        top:30%;
+        text-align: center;
+    }
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .img{
+        position:relative;
+        margin: 0 auto;
+        vertical-align:middle;
+        text-align:center;
+    }
 }

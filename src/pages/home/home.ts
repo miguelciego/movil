@@ -22,9 +22,7 @@ export class HomePage {
     public AfiliadoStorage : AfiliadoStorage,
     protected platform : Platform,
     public  storage:Storage
-  ) {
-   
-  }
+  ) { }
   ionViewDidLoad() {
     this.getAfiliado();
     console.log("matricula",);
@@ -36,16 +34,12 @@ export class HomePage {
     });
   }
   private getAfiliado(){
-    /*this.tasksService.getAll()
-    .then((tasks: any[]) =>{
-      this.tasks = tasks;
-    })*/
     this.AfiliadoStorage.getAll()
     .then((data: any[]) =>{
       this.Afiliado = data;
       Object.keys(this.Afiliado).forEach( key => {
-          console.log(this.Afiliado[key]); //value    
-          console.log("eso es",key); //key
+          console.log(this.Afiliado[key]);
+          console.log("Valor",key); 
       });
     })
     .catch(error =>{

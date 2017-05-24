@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-
 @Injectable()
 export class AfiliadoStorage {
 
   private key = 'afiliado';
-
   constructor(
      public storage: Storage
   ) {}
@@ -18,7 +16,7 @@ export class AfiliadoStorage {
           console.log('Se han encontrado datos en estorage');
           resolve(JSON.parse(data))
         }else{
-          reject('No hay datos en estorage')
+          reject('No hay datos en estorage 1')
         }
       })
       .catch(error =>{

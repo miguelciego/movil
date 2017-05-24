@@ -1,48 +1,51 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Resumen</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>
-<div padding>
-      <ion-item>
-        <ion-icon name="person" item-left></ion-icon>
-         <p>{{ NombrePaciente }}</p>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="card" item-left></ion-icon>
-         <p> {{ Matricula }}</p>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="home" item-left></ion-icon>
-         <p> {{ Filial }}</p>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="medical" item-left></ion-icon>
-         <p> {{ Especialidad }}</p>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="medkit" item-left></ion-icon>
-         <p> {{ Medico }}</p>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="time" item-left></ion-icon>
-         <p> {{ Hora }}</p>
-      </ion-item>
-       <ion-item>
-        <ion-icon name="calendar" item-left></ion-icon>
-         <p> {{ Dia }}</p>
-      </ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <button block ion-button color="primary" (click)="cancelar()" clear>Cancelar</button>
-          </ion-col>
-          <ion-col col-6>
-            <button block ion-button color="primary" (click)="Guardar()"  clear>Guardar</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-</div>
-
+<ion-content>
+  <div class="content">
+    <div class="contenedor">
+      <ion-card>
+        <ion-card-header text-center color="primary">
+          ¿ Desea guardar la ficha ? 
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item no-lines>
+          <i class="fa fa-user" item-left aria-hidden="true"></i>
+            <h3>{{ NombrePaciente }}</h3>
+          </ion-item>
+          <ion-item no-lines>
+            <i class="fa fa-id-card" item-left aria-hidden="true"></i>
+            <p> {{ Matricula }}</p>
+          </ion-item>
+          <ion-item no-lines>
+            <i class="fa fa-hospital-o" item-left aria-hidden="true"></i>
+            <p> {{ Filial }}</p>
+          </ion-item>
+          <ion-item no-lines>
+            <i class="fa fa-medkit " item-left aria-hidden="true"></i>
+            <p> {{ Especialidad }}</p>
+          </ion-item>
+          <ion-item no-lines>
+            <i class="fa fa-user-md " item-left aria-hidden="true"></i>
+            <p> {{ Medico }}</p>
+          </ion-item>
+          <ion-item no-lines>
+            <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
+            <p> {{ Hora }}</p>
+          </ion-item>
+          <ion-item no-lines>
+            <i class="fa fa-calendar" item-left aria-hidden="true"></i>
+            <p> {{ Dia }}</p>
+          </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6>
+                <button block ion-button color="primary" (click)="cancelar()" outline>Cancelar</button>
+              </ion-col>
+              <ion-col col-6>
+                <button block ion-button color="primary" (click)="Guardar()" >Guardar</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

@@ -1,9 +1,8 @@
 <ion-header >
   <ion-navbar>
-     <img class="logo" src="assets/images/logobar.png" alt="">
-    <ion-buttons end>
-      <button ion-button color="light" icon-only (click)="presentPopover($event)">
-        <ion-icon name="more"></ion-icon>
+    <ion-buttons left>
+      <button ion-button>
+        <img height="35" src="assets/images/logobar.png" />
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,7 +15,7 @@
           <img src="assets/images/perfil.png" >
         </ion-avatar>   
         <div class="contenido" (click)="iraFiliales(Paciente)">
-            <ion-icon *ngIf="Paciente.Ficha == 'Con ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>
+            <ion-icon *ngIf="Paciente.Ficha != 'Sin ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>
             <h3>{{ Paciente.Nombre }}</h3>
             <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado}}</p>
         </div>

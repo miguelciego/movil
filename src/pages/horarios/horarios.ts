@@ -18,7 +18,7 @@ export class HorariosPage {
   constructor(public navCtrl: NavController,
   public navParams: NavParams, 
   private cps: CpsProviders,
-  public LoadCtrl: LoadingController
+  public LoadCtrl: LoadingController,
   ) {
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
@@ -28,20 +28,16 @@ export class HorariosPage {
     this.listHorarios();
   }
   irResumen(Hora) {
-    //
-    this.navCtrl.push( ResumenPage, { Hora : Hora, Ficha: this.Ficha });
+    this.navCtrl.push(ResumenPage,{ Hora : Hora, Ficha: this.Ficha });
   }
   listHorarios(){
       let load = this.LoadCtrl.create();
       load.present();
-      this.Horarios = this.cps.getHorarios1();
-      load.dismiss();
-      /*  
-    this.cps.getHorarios(this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,
-              this.Ficha.MedicoCodigo,this.Ficha.Fecha).subscribe(
-      data => { 
-        this.Horarios = data.json();
-     //   console.log(this.Horarios);
+      //this.Horarios = this.cps.getHorarios1();
+      this.cps.getHorarios(this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,this.Ficha.MedicoCodigo,this.Ficha.Fecha)
+        .subscribe(data => { 
+          this.Horarios = data.json();
+          load.dismiss(); 
         },
       err => {
         if (err.status == 404) {
@@ -50,9 +46,7 @@ export class HorariosPage {
           console.error(err);
         }
       },
-      () => console.log('getHorarios completed')
+      () => console.log('getHorarios -> completado')
     );
-  */  
   }
-  
 }

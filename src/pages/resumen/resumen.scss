@@ -1,3 +1,16 @@
 page-resumen {
-
+    ion-item{
+        height: 40px;
+    }
+    .content{
+        background: #3e3e3e;
+    }
+    .contenedor{
+        position: absolute;
+        width: 80%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
 }
