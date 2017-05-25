@@ -14,16 +14,16 @@ export class MyApp {
     rootPage:any = LoginPage;
 
   constructor(
-    platform: Platform,
-      public AfiliadoStorage: AfiliadoStorage
-    ) {
+     platform: Platform,
+     public AfiliadoStorage: AfiliadoStorage,
+  ){
      platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
       this.Session();
-    });
+     });
   }
-  private Session(){
+  public Session(){
     this.AfiliadoStorage.getAll()
     .then((afiliado: any[]) =>{
       console.log('data', afiliado);

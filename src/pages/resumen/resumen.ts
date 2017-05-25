@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController,ToastController } from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
 
@@ -26,7 +26,8 @@ export class ResumenPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private cps: CpsProviders,
-    public LoadCtrl: LoadingController
+    public LoadCtrl: LoadingController,
+    public toastCtrl: ToastController
   ){
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
@@ -43,6 +44,8 @@ export class ResumenPage {
   }
   ionViewDidLoad() {}
   Guardar(){
+    let load = this.LoadCtrl.create();
+    load.present();
     this.cps.putGFicha(
         this.Ficha.PacienteCodigo,
         this.Ficha.FilialCodigo,
@@ -52,23 +55,21 @@ export class ResumenPage {
         this.Ficha.Fecha
       )
       .subscribe( data => { 
-          let load = this.LoadCtrl.create();
-          load.present();
           this.datos = data.json();
           switch (this.datos.Codigo) {
             case "G0":
-                console.log(this.datos.Descripcion)
-                this.navCtrl.popToRoot();
                 load.dismiss();
+                this.ToastG0(this.datos.Descripcion);
+                this.navCtrl.popToRoot();
                 break;
             case "E1":
                 load.dismiss();
-                console.log(this.datos.Descripcion)
+                this.ToastE1(this.datos.Descripcion);
                 this.navCtrl.popToRoot();
                 break;
             case "E2":
                 load.dismiss();
-                console.log(this.datos.Descripcion)
+                this.ToastE2(this.Ficha.horaD);
                 this.navCtrl.pop();
                 break;
           }
@@ -79,5 +80,29 @@ export class ResumenPage {
   }
   cancelar(){
     this.navCtrl.pop();
+  }
+  ToastG0(mensaje) {
+    let toast = this.toastCtrl.create({
+      message: mensaje,
+      duration: 4000,
+      position: 'top'
+    });
+    toast.present();
+  }
+  ToastE1(mensaje) {
+    let toast = this.toastCtrl.create({
+      message: mensaje,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+  ToastE2(horario) {
+    let toast = this.toastCtrl.create({
+      message: 'El horario ' + horario + ' acaba de ocupar.',
+      duration: 4000,
+      position: 'top'
+    });
+    toast.present();
   }
 }

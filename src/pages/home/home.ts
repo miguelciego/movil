@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform} from 'ionic-angular';
-import { PopoverController } from 'ionic-angular';
+import { NavController, Platform, PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 import { Storage } from '@ionic/storage';
 
@@ -22,10 +21,9 @@ export class HomePage {
     public AfiliadoStorage : AfiliadoStorage,
     protected platform : Platform,
     public  storage:Storage
-  ) { }
+  ) {}
   ionViewDidLoad() {
     this.getAfiliado();
-    console.log("matricula",);
   }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
 import { FilialesPage } from '../filiales/filiales';
 import { PerfilPage } from '../perfil/perfil';
 import { PopoverController } from 'ionic-angular';
 import { VademecunPage } from '../vademecun/vademecun';
+import { PopoverPage } from '../mitab/popover';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { CpsProviders } from '../../providers/cps';
@@ -30,14 +31,23 @@ export class GrupoFamiliarPage {
     public popoverCtrl: PopoverController,
     public modalCtrl: ModalController,
     private cps: CpsProviders,
-    public AfiliadoStorage : AfiliadoStorage
+    public AfiliadoStorage : AfiliadoStorage,
+    public LoadCtrl: LoadingController
     ){
       this.isAndroid = platform.is('android'); 
    }
   ionViewDidLoad() {
      this.getGrupoFamiliar();
-  } 
+  }
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
   getGrupoFamiliar() {
+    let load = this.LoadCtrl.create();
+    load.present();
     this.AfiliadoStorage.getAll()
     .then((data: any[]) =>{
       Object.keys(data).forEach( key => {
@@ -46,6 +56,8 @@ export class GrupoFamiliarPage {
       this.cps.getGFamiliar(this.Ficha.PacienteCodigo)
         .subscribe( data => { 
           this.GrupoFamiliar = data.json();
+          console.log("GRUPO FAMILIAR ->",this.GrupoFamiliar)
+          load.dismiss();
         },
         err => console.error(err),
         () => console.log('getGrupoFamiliar -> completado')

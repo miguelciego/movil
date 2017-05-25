@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,Nav } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-
-import { LoginPage } from '../login/login';
-import { Storage } from '@ionic/storage';
+import { PopoverPage } from '../mitab/popover';
 
 @Component({
   selector: 'page-config',
@@ -15,37 +13,17 @@ export class ConfigPage {
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
+   public popoverCtrl: PopoverController,
   public alertCtrl: AlertController,
-  public nav: Nav,
-  public storage:Storage
   ){
     this.login = navParams.data;
     console.log(this.login);
   }
-  showPrompt() {
-    let prompt = this.alertCtrl.create({
-      title: 'Desvincular',
-      message: "Al devincularse cerrara sesion con el grupo familiar iniciado ¿ Está seguro ?",
-      buttons: [
-        {
-          text: 'No',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Si',
-          handler: data => {
-            this.storage.clear()
-            console.log("Eliminar  storage")
-            this.nav.setRoot (LoginPage); 
-          }
-        }
-      ]
+  ionViewDidLoad() {}
+   presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
     });
-    prompt.present();
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfigPage');
   }
 }
