@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 import { CpsProviders } from '../../providers/cps';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'page-mapas',
@@ -15,6 +16,7 @@ export class MapasPage {
   constructor(
     public cps: CpsProviders,
     public popoverCtrl: PopoverController,
+    private sanitizer:DomSanitizer
   ){
     this.AllMaps();
   }
@@ -29,5 +31,8 @@ export class MapasPage {
   }
   AllMaps(){
     this.Maps =  this.cps.getFiliales1();
+  }
+  sanitize(url:string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 }

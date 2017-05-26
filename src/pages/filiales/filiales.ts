@@ -42,6 +42,7 @@ export class FilialesPage {
     this.cps.getFiliales(this.Ficha.PacienteCodigo).subscribe(
       data => {
         this.FilialesEncontradas = data.json();
+        console.log("Filiales -> ", this.FilialesEncontradas)
         load.dismiss();
         Object.keys(this.FilialesEncontradas).forEach( key => {
             this.validarN = this.FilialesEncontradas[key].Codigo

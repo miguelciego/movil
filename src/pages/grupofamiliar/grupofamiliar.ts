@@ -90,4 +90,11 @@ export class GrupoFamiliarPage {
   IrVademecun(){
     this.navCtrl.push(VademecunPage);
   }
+  doRefresh(refresher) {
+    this.getGrupoFamiliar();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 }

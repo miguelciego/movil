@@ -215,34 +215,40 @@ export class CpsProviders {
         var Filiales = [
             {
                 "Codigo": 2,
-                "Nombre": "POLICONSULTORIO SANTA CRUZ",
+                "Nombre": "Hospital Central",
                 "Direccion": "Calle España s/n Esquina Rafael Peña, Santa Cruz de la Sierra",
                 "Fecha": "2017-02-09",
                 "Horario":"06:00 hasta 19:00",
                 "geoubicacion":"-17.777511",
                 "geoubicacion2":"-63.185563",
                 "Telefono":"3181600"
-
             },
             {
                 "Codigo": 3,
-                "Nombre": "GUARACACHI",
-                "Direccion": null,
+                "Nombre": "Hospital Guaracachi",
+                "Direccion": "Prolongación avenida Brasil esquina cuarto anillo",
+                "Horario":"06:00 hasta 19:00",
                 "Fecha": "2017-02-09",
                 "geoubicacion":"-17.785487",
                 "geoubicacion2":"-63.147617"
             },
             {
                 "Codigo": 4,
-                "Nombre": "POLICONSULTORIO NORTE",
-                "Direccion": null,
-                "Fecha": "2017-02-09"
+                "Nombre": "Policonsultorio Norte",
+                "Direccion": "Calle Gustavo Parada N° 124 Barrio Marabol -UV36 - MNZ 54",
+                "Horario":"07:00 hasta 19:00",
+                "Fecha": "2017-02-09",
+                "geoubicacion":"-17.785487",
+                "geoubicacion2":"-63.147617"
             },
             {
                 "Codigo": 5,
-                "Nombre": "POLICONSULTORIO SUR",
-                "Direccion": null,
-                "Fecha": "2017-02-09"
+                "Nombre": "Policonsultorio Sur",
+                "Direccion": "Avenida Juan Pablo II N° 30.UV:ET8 MZN:E05",
+                "Horario":"06:00 hasta 19:00",
+                "Fecha": "2017-02-09",
+                "geoubicacion":"-17.785487",
+                "geoubicacion2":"-63.147617"
             }
         ];
         return Filiales;
