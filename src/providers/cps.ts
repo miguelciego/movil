@@ -4,9 +4,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CpsProviders {
-
-    constructor(public http: Http) {
-      console.log('Hello Cps Provider');
+		public cpsAPI: string;
+    constructor(
+			public http: Http
+		) {
+			this.cpsAPI = "/cpsAPI/";
     }
 
     putVerification(valorm, platform, manufacturer,versionname, versioncode, model, uuid){
@@ -16,7 +18,7 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/verification' ,
+        return this.http.post( 'http://smovilsc.cps.org.bo/consulta/verification' ,
         creds, { headers: headers });
     }
     getGFamiliar(valor){
@@ -24,7 +26,7 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/gfamiliar' ,
+        return this.http.post( 'http://smovilsc.cps.org.bo/consulta/gfamiliar' ,
         creds, { headers: headers });
     }
     getFiliales(valor){
@@ -82,7 +84,7 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/mficha' ,
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/mficha',
         creds, { headers: headers });
     }
     getMedicamentos(valor){

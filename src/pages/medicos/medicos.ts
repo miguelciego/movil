@@ -14,6 +14,7 @@ export class MedicosPage {
   public Medicos;
   public Especialidad;
   public Ficha;
+  public length;
 
   constructor(
   public navCtrl: NavController, 
@@ -36,6 +37,7 @@ export class MedicosPage {
     this.Ficha.Fecha).subscribe(
       data => { 
         this.Medicos = data.json();
+        this.length = this.Medicos.length;
         load.dismiss();
         },
       err => {
@@ -53,5 +55,8 @@ export class MedicosPage {
   }
   irDetalleMed(Medico){
      this.navCtrl.push(DetalleMedPage, { Medico: Medico});
+  }
+  volver(){
+    this.navCtrl.pop();
   }
 }

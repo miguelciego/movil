@@ -4,10 +4,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PopoverPage } from '../pages/mitab/popover';
 import { MitabPage } from '../pages/mitab/mitab';
-import { FichasPage } from '../pages/fichas/fichas';
-import { CentrosPage } from '../pages/centros/centros';
 import { MapasPage } from '../pages/mapas/mapas';
-import { DetailsPage } from '../pages/details/details';
 import { EspecialidadesPage } from '../pages/especialidades/especialidades';
 import { MedicosPage } from '../pages/medicos/medicos';
 import { HorariosPage } from '../pages/horarios/horarios';
@@ -16,10 +13,7 @@ import { GrupoFamiliarPage } from '../pages/grupofamiliar/grupofamiliar';
 import { LoginPage } from '../pages/login/login';
 import { VademecunPage } from '../pages/vademecun/vademecun';
 import { ModalPage } from '../pages/modal/modal';
-import { PerfilPage } from '../pages/perfil/perfil';
 import { ResumenPage } from '../pages/resumen/resumen';
-import { HistorialPage } from '../pages/historial/historial';
-import { DetalleEspPage } from '../pages/detalle-esp/detalle-esp'; 
 import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
 import { ConfigPage } from '../pages/config/config';
 
@@ -42,10 +36,7 @@ const config = {
     MyApp,
     HomePage,
     MitabPage,
-    FichasPage,
-    CentrosPage,
     MapasPage,
-    DetailsPage,
     EspecialidadesPage,
     MedicosPage,
     HorariosPage,
@@ -55,10 +46,7 @@ const config = {
     LoginPage,
     PopoverPage,
     VademecunPage,
-    PerfilPage,
     ResumenPage,
-    HistorialPage,
-    DetalleEspPage,
     DetalleMedPage,
     ConfigPage
   ],
@@ -71,10 +59,7 @@ const config = {
     MyApp,
     HomePage,
     MitabPage,
-    FichasPage,
-    CentrosPage,
     MapasPage,
-    DetailsPage,
     EspecialidadesPage,
     MedicosPage,
     HorariosPage,
@@ -84,10 +69,7 @@ const config = {
     LoginPage,
     PopoverPage,
     VademecunPage,
-    PerfilPage,
     ResumenPage,
-    HistorialPage,
-    DetalleEspPage,
     DetalleMedPage,
     ConfigPage
   ],

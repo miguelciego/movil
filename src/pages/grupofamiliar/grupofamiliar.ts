@@ -3,7 +3,6 @@ import { NavController, NavParams, Platform, LoadingController } from 'ionic-ang
 import { ModalController } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
 import { FilialesPage } from '../filiales/filiales';
-import { PerfilPage } from '../perfil/perfil';
 import { PopoverController } from 'ionic-angular';
 import { VademecunPage } from '../vademecun/vademecun';
 import { PopoverPage } from '../mitab/popover';
@@ -22,6 +21,7 @@ export class GrupoFamiliarPage {
   isAndroid: boolean = true;
  
   public GrupoFamiliar:any[]= [];
+  public myFicha:any[]=[];
   public Ficha = { PacienteCodigo : undefined};
 
   constructor(
@@ -37,7 +37,10 @@ export class GrupoFamiliarPage {
       this.isAndroid = platform.is('android'); 
    }
   ionViewDidLoad() {
-     this.getGrupoFamiliar();
+    let load = this.LoadCtrl.create();
+    load.present();
+    this.getGrupoFamiliar();
+    load.dismiss()
   }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
@@ -46,35 +49,27 @@ export class GrupoFamiliarPage {
     });
   }
   getGrupoFamiliar() {
-    let load = this.LoadCtrl.create();
-    load.present();
     this.AfiliadoStorage.getAll()
     .then((data: any[]) =>{
-      Object.keys(data).forEach( key => {
+      Object.keys(data).forEach( key => { 
           this.Ficha.PacienteCodigo =  data[key].Id;
       });
       this.cps.getGFamiliar(this.Ficha.PacienteCodigo)
         .subscribe( data => { 
           this.GrupoFamiliar = data.json();
-          console.log("GRUPO FAMILIAR ->",this.GrupoFamiliar)
-          load.dismiss();
         },
-        err => console.error(err),
-        () => console.log('getGrupoFamiliar -> completado')
-      );
+    err => console.error(err),
+    () => console.log("GRUPO FAMILIAR ->",this.GrupoFamiliar))
     })
     .catch(error =>{
       console.log(error)
     })
-    console.log("el codigo es ",this.Ficha.PacienteCodigo);
-    
-   /* this.GrupoFamiliar = this.cps.getGFamiliar1();*/
   }
   iraFiliales(Paciente) {
     this.Ficha.PacienteCodigo = Paciente.Codigo;
-    if(Paciente.Ficha == "Sin ficha"){
+    if( Paciente.Ficha == "Sin ficha" ){
       this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
-    }else{
+    } else {
        this.presentModal(Paciente);
     }
   }
@@ -82,19 +77,13 @@ export class GrupoFamiliarPage {
     let modal = this.modalCtrl.create(ModalPage,{ Paciente: Paciente});
     modal.present();
   }
-
-  irPerfil(Paciente){
-     this.navCtrl.push(PerfilPage, { Paciente: Paciente });
-  }
-
   IrVademecun(){
-    this.navCtrl.push(VademecunPage);
+  	this.navCtrl.push( VademecunPage );
   }
-  doRefresh(refresher) {
-    this.getGrupoFamiliar();
+  actualizar(refresher) {
+		this.getGrupoFamiliar();
     setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
+    refresher.complete();
     }, 2000);
   }
 }

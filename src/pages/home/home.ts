@@ -44,8 +44,4 @@ export class HomePage {
       console.log(error)
     })
   }
-  Eliminar(){
-    this.storage.clear()
-    console.log("Eliminar db")
-  }
 }

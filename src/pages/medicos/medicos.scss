@@ -1,3 +1,19 @@
 page-medicos {
-
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .img{
+        position:relative;
+        margin-top:40%;
+        vertical-align:middle;
+        text-align:center;
+    }
 }

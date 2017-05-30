@@ -23,9 +23,8 @@ export class MitabPage {
     public toastCtrl: ToastController,
     public navParams: NavParams
   ) {
-   // this.presentToast();
     console.log("datos del login",this.getLogin());
-    this.contador = 3;
+    this.contador = 2;
   }
   getLogin(){
     this.login = this.navParams.get('login');
@@ -33,12 +32,4 @@ export class MitabPage {
       return this.login;
     }
   }
-  /*presentToast() {
-    let toast = this.toastCtrl.create({
-      message: 'Successful',
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
-  }*/
 }

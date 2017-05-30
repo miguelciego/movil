@@ -45,7 +45,7 @@ export class LoginPage {
   ionViewDidLoad(){}
   private get myLoginForm(){
     return this.fb.group({
-      'matricula': ['19705203csr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
+      'matricula': ['19735917osr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
       'filial': ['1',Validators.required]
     })
   }
@@ -78,17 +78,31 @@ export class LoginPage {
           else{
            load.dismiss();
            console.log("La matricula ingresada ya esta vinculada!");
-           this.presentAlert();
+           this.AlertVinculado();
           }
         },
-        err => console.error(err),
+        err => { if (err.status == 404) {
+        } else {
+            console.log(err.status);
+            load.dismiss();
+            this.AlertError();
+          }
+        },
         () => console.log('Completado')
     );
   }
-  presentAlert() {
+  AlertVinculado() {
     let alert = this.alertCtrl.create({
       title: 'Información',
       subTitle: 'La matrícula ingresada ya esta vinculada!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos ...',
+      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud. :(',
       buttons: ['Ok']
     });
     alert.present();

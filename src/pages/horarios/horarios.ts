@@ -14,6 +14,7 @@ export class HorariosPage {
   public Medico;
   public Horarios;
   public Ficha;
+  public length;
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams, 
@@ -27,16 +28,13 @@ export class HorariosPage {
     this.Ficha.MedicoNombre = this.Medico.Descripcion;
     this.listHorarios();
   }
-  irResumen(Hora) {
-    this.navCtrl.push(ResumenPage,{ Hora : Hora, Ficha: this.Ficha });
-  }
   listHorarios(){
       let load = this.LoadCtrl.create();
       load.present();
-      //this.Horarios = this.cps.getHorarios1();
       this.cps.getHorarios(this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,this.Ficha.MedicoCodigo,this.Ficha.Fecha)
         .subscribe(data => { 
           this.Horarios = data.json();
+          this.length = this.Horarios.length;
           load.dismiss(); 
         },
       err => {
@@ -48,5 +46,11 @@ export class HorariosPage {
       },
       () => console.log('getHorarios -> completado')
     );
+  }
+  irResumen(Hora) {
+    this.navCtrl.push(ResumenPage,{ Hora : Hora, Ficha: this.Ficha });
+  }
+   volver(){
+    this.navCtrl.pop();
   }
 }

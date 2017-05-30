@@ -10,15 +10,18 @@
 </ion-header>
 <ion-content>  
   <ion-list >
-    <ion-item *ngFor="let Filial of Maps" no-lines>
+    <ion-item *ngFor="let Filial of Maps">
       <ion-thumbnail item-left>
         <img src="assets/images/{{ Filial.Codigo }}.jpg"/>    
       </ion-thumbnail>
-      <a class="maps" item-left [href]="sanitize('geo:?q=' + Filial.geoubicacion + ',' + Filial.geoubicacion2 + ',17z')" target="_system" >
-        <h3 calor="primary"> {{ Filial.Nombre }} </h3>
-        <p class="text"> Dirección: {{ Filial.Direccion }} </p>
-        <p class="text"> Horario: {{ Filial.Horario }} </p>
-      </a>   
+      <div>
+         <a class="maps" item-left [href]="sanitize('geo:?q=' + Filial.geoubicacion + ',' + Filial.geoubicacion2 + ',17z')" target="_system" >
+          <h3 calor="primary"> {{ Filial.Nombre }} </h3>
+          <p class="text"> Dirección: {{ Filial.Direccion }} </p>
+          <p class="text"> Horario: {{ Filial.Horario }} </p>
+        </a> 
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
+ 

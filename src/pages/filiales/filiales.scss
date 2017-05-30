@@ -1,12 +1,8 @@
 page-filiales {
-    .ion-md-hospital:before {
-        content: url("../assets/images/hospital.svg");
-    }
     .contenedor{
         position:absolute;
         height: 100%;
         width: 100%;
-        margin-top:30%;
         text-align: center;
     }
     .contenedor > p{
@@ -16,7 +12,7 @@ page-filiales {
     }
     .img{
         position:relative;
-        margin: 0 auto;
+        margin-top:30%;
         vertical-align:middle;
         text-align:center;
     }

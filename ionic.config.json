@@ -2,5 +2,9 @@
   "name": "CPS Móvil 2",
   "app_id": "7981838a",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+    "proxies":[{
+    "path":"/cpsAPI",
+    "proxyUrl":"http://smovilsc.cps.org.bo/"
+  }]
 }

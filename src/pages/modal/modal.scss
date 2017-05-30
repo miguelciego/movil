@@ -1,18 +1,19 @@
 page-modal {
-    .bar-button-ios {
-        padding: 0 4px;
-        height: 32px;
-        border: 0;
-        border-radius: 4px;
-        font-size: 1.2em;
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
     }
-    p.titulo{
-        font-size: 16px;
-        padding:0;
-        margin:0;
-        font-weight: bold;
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
     }
-    p{
-        margin:0px;
+    .img{
+        position:relative;
+        margin-top:40%;
+        vertical-align:middle;
+        text-align:center;
     }
 }

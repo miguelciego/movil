@@ -11,100 +11,66 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
+  <div *ngIf="errorMysql == 1" class="contenedor" (click)="volver()">
+    <img class="img" width="100" height="100" src="assets/images/ficha.png"/>
+    <p>Mostrar Ficha no esta disponible</p>
+  </div>
+  <div *ngIf="errorMysql == 2">
     <div *ngFor="let ficha of myFicha">
-        <p text-center class="titulo">{{ ficha.HClinica|uppercase }}</p>
-        <p text-center class="titulo">CONSULTA EXTERNA</p>
-        <br>
-        <ion-grid >
-          <ion-row>
-            <ion-col col-4>
-                <p>NRO.FICHA: </p>
-            </ion-col>
-            <ion-col col-8>
-              <p> {{ ficha.Ficha }}</p>
-            </ion-col>
-          </ion-row>  
-          <ion-row>
-            
-            <ion-col col-4>
-                <p>Mat.Titular: </p>
-            </ion-col>
-            <ion-col col-8>
-              <p> {{ ficha.MatriculaT|uppercase }}</p>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col col-4>
-                <p> Mat.Paciente: </p>
-            </ion-col>
-            <ion-col col-8>
-              <p> {{ ficha.Matricula|uppercase }}</p>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col col-4>
-                <p> Paciente: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.Nombre|uppercase }}</P>
-            </ion-col>
-          </ion-row> 
-          <ion-row>
-            <ion-col col-4>
-                <p> Empresa: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.Empresa|uppercase }}</P>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col col-4>
-                <p> Especialidad: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.Especialidad|uppercase }}</P>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col col-4>
-                <p> Medico: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.Medico|uppercase }}</P>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col col-4>
-                <p> Consultorio: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.Consultorio|uppercase }} </P>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-4>
-                <p> Hora: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.hora|uppercase }} </P>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-4>
-                <p> Fecha: </p>
-            </ion-col>
-            <ion-col col-8>
-              <P> {{ ficha.Fecha|uppercase }} </P>
-            </ion-col>
-          </ion-row>
-      </ion-grid>
-      <br>
-      <p>NOTA: Acudir a su cita Médica 15 minutos antes de la hora programada.</p>
+      <ion-card>
+        <ion-card-content>
+            <ion-item no-lines>
+            <i class="fa fa-slack"  item-left aria-hidden="true"></i>
+              <h3>{{ ficha.Valor }}</h3>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-id-card-o" item-left aria-hidden="true"></i>
+              <p> {{ ficha.Tafiliado }}</p>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-id-card" item-left aria-hidden="true"></i>
+              <p> {{ ficha.Matricula }}</p>
+            </ion-item>
+            <ion-item no-lines>
+            <i class="fa fa-user" item-left aria-hidden="true"></i>
+              <h3>{{ ficha.Nombre }}</h3>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-building" item-left aria-hidden="true"></i>
+              <p> {{ ficha.Empresa }}</p>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-medkit " item-left aria-hidden="true"></i>
+              <p> {{ ficha.Especialidad }}</p>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-user-md " item-left aria-hidden="true"></i>
+              <p> {{ ficha.Medico }}</p>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
+              <p> {{ ficha.Hora }}</p>
+            </ion-item>
+            <ion-item no-lines>
+              <i class="fa fa-calendar" item-left aria-hidden="true"></i>
+              <p> {{ ficha.Fecha }}</p>
+            </ion-item>
+            <ion-item no-lines>
+              <p>NOTA: Acudir a su cita médica 15 minutos antes de la hora programada.</p>
+            </ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                  <button block ion-button color="primary" (click)="dismiss()" outline>Cancelar</button>
+                </ion-col>
+                <ion-col col-6>
+                  <button block ion-button color="primary" (click)="Guardar()" >Eliminar</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+      </ion-card>
     </div>
+  </div>  
 </ion-content>
