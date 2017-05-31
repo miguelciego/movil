@@ -16,61 +16,56 @@
     <img class="img" width="100" height="100" src="assets/images/ficha.png"/>
     <p>Mostrar Ficha no esta disponible</p>
   </div>
-  <div *ngIf="errorMysql == 2">
+  <div *ngIf="errorMysql == 2" padding>
     <div *ngFor="let ficha of myFicha">
-      <ion-card>
-        <ion-card-content>
-            <ion-item no-lines>
-            <i class="fa fa-slack"  item-left aria-hidden="true"></i>
-              <h3>{{ ficha.Valor }}</h3>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-id-card-o" item-left aria-hidden="true"></i>
-              <p> {{ ficha.Tafiliado }}</p>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-id-card" item-left aria-hidden="true"></i>
-              <p> {{ ficha.Matricula }}</p>
-            </ion-item>
-            <ion-item no-lines>
-            <i class="fa fa-user" item-left aria-hidden="true"></i>
-              <h3>{{ ficha.Nombre }}</h3>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-building" item-left aria-hidden="true"></i>
-              <p> {{ ficha.Empresa }}</p>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-medkit " item-left aria-hidden="true"></i>
-              <p> {{ ficha.Especialidad }}</p>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-user-md " item-left aria-hidden="true"></i>
-              <p> {{ ficha.Medico }}</p>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
-              <p> {{ ficha.Hora }}</p>
-            </ion-item>
-            <ion-item no-lines>
-              <i class="fa fa-calendar" item-left aria-hidden="true"></i>
-              <p> {{ ficha.Fecha }}</p>
-            </ion-item>
-            <ion-item no-lines>
-              <p>NOTA: Acudir a su cita médica 15 minutos antes de la hora programada.</p>
-            </ion-item>
-            <ion-grid>
-              <ion-row>
-                <ion-col col-6>
-                  <button block ion-button color="primary" (click)="dismiss()" outline>Cancelar</button>
-                </ion-col>
-                <ion-col col-6>
-                  <button block ion-button color="primary" (click)="Guardar()" >Eliminar</button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-      </ion-card>
+      <ion-item>
+        <ion-label>{{ ficha.Lugar }}</ion-label>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-id-card" item-left aria-hidden="true"></i>
+        <p> {{ ficha.Matricula }} </p>
+      </ion-item>
+      <ion-item no-lines>
+      <i class="fa fa-user" item-left aria-hidden="true"></i>
+        <p>{{ ficha.Nombre }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-building" item-left aria-hidden="true"></i>
+        <p> {{ ficha.Empresa }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-medkit " item-left aria-hidden="true"></i>
+        <p> {{ ficha.Especialidad }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-user-md " item-left aria-hidden="true"></i>
+        <p> {{ ficha.Medico }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
+        <p> {{ ficha.Hora }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-calendar" item-left aria-hidden="true"></i>
+        <p> {{ ficha.Fecha }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <p>NOTA: Acudir a su cita médica 15 minutos antes de la hora programada.</p>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <button *ngIf="ficha.TFicha == 1" block ion-button color="primary" (click)="borrar()" >Eliminar</button>
+          </ion-col>
+          <ion-col col-6>
+            <button block ion-button color="primary" (click)="dismiss()" outline>Cancelar</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
-  </div>  
+  </div>
+  <div *ngIf="errorMysql == 3" class="contenedor" (click)="volver()">
+    <img class="img" width="100" height="100" src="assets/images/ficha.png"/>
+    <p>Estará disponible en breve.</p>
+  </div>
 </ion-content>

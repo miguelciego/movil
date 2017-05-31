@@ -85,6 +85,7 @@ export class CpsProviders {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.post('http://smovilsc.cps.org.bo/consulta/mficha',
+        //return this.http.post( this.cpsAPI + 'consulta/mficha',
         creds, { headers: headers });
     }
     getMedicamentos(valor){
