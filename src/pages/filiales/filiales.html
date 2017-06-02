@@ -18,7 +18,7 @@
   <ion-list  *ngIf="validarN == 1" >
     <ion-item *ngFor="let Filial of FilialesEncontradas" >
       <ion-avatar item-left>
-        <img src="assets/images/{{ Filial.Codigo }}.jpg"/>    
+        <img src="assets/images/{{ Filial.Codigo }}-{{filial}}.jpg"/>    
       </ion-avatar>
       <div class="hospital" (click)="iraEspecialidades(Filial)">
           <h3> {{ Filial.Nombre }} </h3>

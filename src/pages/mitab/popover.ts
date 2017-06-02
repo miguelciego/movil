@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController, AlertController } from 'ionic-angular';
+import { NavController, App, ViewController, AlertController } from 'ionic-angular';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { Storage } from '@ionic/storage';
@@ -14,7 +14,8 @@ export class PopoverPage {
     public navCtrl: NavController,
     public AfiliadoStorage: AfiliadoStorage,
     public storage:Storage,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public appCtrl: App
   //public MyApp: MyApp
   ){
   }
@@ -38,8 +39,8 @@ export class PopoverPage {
         {
           text: 'Si',
           handler: () => {
-            this.navCtrl.push(LoginPage);
-            console.log('Buy clicked');
+            this.appCtrl.getRootNav().push(LoginPage);
+            console.log('se ha desvinculado correctamente');
           }
         }
       ]

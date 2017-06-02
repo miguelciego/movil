@@ -4,62 +4,63 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CpsProviders {
-		public cpsAPI: string;
+	public cpsAPI: string;
     constructor(
 			public http: Http
 		) {
 			this.cpsAPI = "/cpsAPI/";
     }
 
-    putVerification(valorm, platform, manufacturer,versionname, versioncode, model, uuid){
+    putVerification(dpts,valorm, platform, manufacturer,versionname, versioncode, model, uuid){
         var creds = "valorm=" + valorm + "&platform=" + platform + 
             "&manufacturer=" + manufacturer + "&versionname=" + versionname + 
             "&versioncode=" + versioncode +  "&model=" + model +   "&uuid=" + uuid;
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        
-        return this.http.post( 'http://smovilsc.cps.org.bo/consulta/verification' ,
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');   
+        console.log("API REST",'http://smovil'+dpts+'.cps.org.bo/consulta/verification')
+        return this.http.post( 'http://smovil'+dpts+'.cps.org.bo/consulta/verification' ,
         creds, { headers: headers });
     }
-    getGFamiliar(valor){
+    getGFamiliar(dpts, valor){
         var creds = "valor=" + valor ;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
-        return this.http.post( 'http://smovilsc.cps.org.bo/consulta/gfamiliar' ,
-        creds, { headers: headers });
+        return this.http.post( 'http://smovil'+dpts+'.cps.org.bo/consulta/gfamiliar' ,
+        creds, { headers: headers })
+        .map(res => res.json())
     }
-    getFiliales(valor){
+    getFiliales(dpts,valor){
         var creds = "valor=" + valor ;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/filial' , creds, 
+        return this.http.post('http://smovil'+dpts+'.cps.org.bo/consulta/filial' , creds, 
          { headers: headers });
     }
-    getEspecialidades(valorf, fecha) {
+    getEspecialidades(dpts,valorf, fecha) {
         var creds = "valorf=" + valorf + "&fecha="+ fecha ;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/especialidad' ,
+        return this.http.post('http://smovil'+dpts+'.cps.org.bo/consulta/especialidad' ,
         creds, { headers: headers });
     }
-    getMedicos(valorf, valore, fecha){
+    getMedicos(dpts,valorf, valore, fecha){
         var creds = "valorf=" + valorf + "&valore=" + valore + "&fecha="+ fecha ;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/medico' ,
+        return this.http.post('http://smovil'+dpts+'.cps.org.bo/consulta/medico' ,
         creds, { headers: headers });
     }
-    getHorarios(valorf, valore, valorm, fecha){
+    getHorarios(dpts ,valorf, valore, valorm, fecha){
         var creds = "valorf=" + valorf + "&valore=" + valore + "&valorm=" + valorm +
          "&fecha="+ fecha ;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/hora' ,
+        return this.http.post('http://smovil'+dpts+'.cps.org.bo/consulta/hora' ,
         creds, { headers: headers });
     }
     putGFicha(valora, valorf, valore, valorm, valorh, fecha){
@@ -84,8 +85,8 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/mficha',
-        //return this.http.post( this.cpsAPI + 'consulta/mficha',
+        //return this.http.post('http://smovilsc.cps.org.bo/consulta/mficha',
+        return this.http.post( this.cpsAPI + 'consulta/mficha',
         creds, { headers: headers });
     }
     getMedicamentos(valor){
@@ -673,7 +674,7 @@ export class CpsProviders {
          ];
          return Receta;
     }
-   getRes(){
+    getRes(){
         var res = [
             {
                 "respuesta": 1,

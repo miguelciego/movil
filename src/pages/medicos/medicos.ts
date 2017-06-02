@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 import { HorariosPage } from '../horarios/horarios';
 import { DetalleMedPage } from '../detalle-med/detalle-med';
+import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
 @Component({
   selector: 'page-medicos',
@@ -15,11 +16,13 @@ export class MedicosPage {
   public Especialidad;
   public Ficha;
   public length;
+  public dpts;
 
   constructor(
   public navCtrl: NavController, 
   public navParams: NavParams, 
   private cps: CpsProviders,
+  public AfiliadoStorage : AfiliadoStorage,
   public LoadCtrl: LoadingController
   ){
     this.Especialidad = navParams.get('Especialidad');
@@ -32,23 +35,32 @@ export class MedicosPage {
   listMedicos(){
     let load = this.LoadCtrl.create();
     load.present();
-    //this.Medicos = this.cps.getMedicos1();
-    this.cps.getMedicos(this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,
-    this.Ficha.Fecha).subscribe(
-      data => { 
-        this.Medicos = data.json();
-        this.length = this.Medicos.length;
-        load.dismiss();
+    this.AfiliadoStorage.getAll()
+    .then((data: any[]) =>{
+      Object.keys(data).forEach( key => { 
+          this.Ficha.PacienteCodigo =  data[key].Id;
+          this.dpts = data[key].filial;
+      });
+      this.cps.getMedicos(this.dpts,this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,
+      this.Ficha.Fecha).subscribe(
+        data => { 
+          this.Medicos = data.json();
+          this.length = this.Medicos.length;
+          },
+        err => {
+          if (err.status == 404) {
+        //   this.readme = 'Este repo no tiene README. :(';
+          } else {
+            console.error(err);
+            load.dismiss()
+          }
         },
-      err => {
-        if (err.status == 404) {
-       //   this.readme = 'Este repo no tiene README. :(';
-        } else {
-          console.error(err);
-        }
-      },
-      () => console.log('getMedico -> completado')
-    );
+        () => load.dismiss()
+      );
+    })
+    .catch(error =>{
+      console.log(error)
+    })  
   }
   iraHorarios(Medico) {
     this.navCtrl.push(HorariosPage, { Medico: Medico, Ficha: this.Ficha });

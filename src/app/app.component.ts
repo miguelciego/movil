@@ -29,13 +29,13 @@ export class MyApp {
       console.log('data', afiliado);
       if(afiliado == null){
          this.rootPage = LoginPage;
-         console.log("console",afiliado)
+         console.log("app.component, datos de storage ->",afiliado)
       }else{
          this.rootPage = MitabPage;
       }
     })
     .catch(error =>{
-      console.log("Error al iniciar",error)
+      console.log("Error al iniciar")
     })
   }
 }

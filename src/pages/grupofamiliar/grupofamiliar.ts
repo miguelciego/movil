@@ -19,8 +19,9 @@ export class GrupoFamiliarPage {
 
   aseg: string = "asegurado";
   isAndroid: boolean = true;
+  public dpts;
  
-  public GrupoFamiliar:any[]= [];
+  public GrupoFamiliar:any;
   public myFicha:any[]=[];
   public Ficha = { PacienteCodigo : undefined};
 
@@ -53,13 +54,14 @@ export class GrupoFamiliarPage {
     .then((data: any[]) =>{
       Object.keys(data).forEach( key => { 
           this.Ficha.PacienteCodigo =  data[key].Id;
+          this.dpts = data[key].filial;
       });
-      this.cps.getGFamiliar(this.Ficha.PacienteCodigo)
-        .subscribe( data => { 
-          this.GrupoFamiliar = data.json();
-        },
-    err => console.error(err),
-    () => console.log("GRUPO FAMILIAR ->",this.GrupoFamiliar))
+        this.cps.getGFamiliar(this.dpts,this.Ficha.PacienteCodigo)
+        .subscribe( data =>{
+        this.GrupoFamiliar = data;
+      },
+      err => console.error(err),
+      () => console.log("GRUPO FAMILIAR ->",this.GrupoFamiliar))
     })
     .catch(error =>{
       console.log(error)

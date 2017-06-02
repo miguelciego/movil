@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, LoadingController, AlertController,ToastController } from 'ionic-angular';
+import { NavController, App, NavParams, ViewController, LoadingController, AlertController,ToastController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
 @Component({
@@ -20,6 +20,7 @@ export class ModalPage {
   public navParams: NavParams,
   public viewCtrl: ViewController,
   private cps: CpsProviders,
+  public appCtrl: App,
   public LoadCtrl: LoadingController,
   private alertCtrl: AlertController,
   public toastCtrl: ToastController

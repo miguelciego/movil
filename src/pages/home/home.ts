@@ -36,8 +36,7 @@ export class HomePage {
     .then((data: any[]) =>{
       this.Afiliado = data;
       Object.keys(this.Afiliado).forEach( key => {
-          console.log(this.Afiliado[key]);
-          console.log("Valor",key); 
+          console.log(this.Afiliado[key].filial);
       });
     })
     .catch(error =>{

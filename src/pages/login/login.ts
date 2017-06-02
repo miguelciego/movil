@@ -45,24 +45,24 @@ export class LoginPage {
   ionViewDidLoad(){}
   private get myLoginForm(){
     return this.fb.group({
-      'matricula': ['19860529cpe',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
-      'filial': ['1',Validators.required]
+      'matricula': ['19820207pcr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
+      'filial': ['lp',Validators.required]
     })
   }
   Guardar() {
     let load = this.LoadCtrl.create();
     load.present();
     this.cps.putVerification(
+      this.loginForm.value.filial,
       this.loginForm.value.matricula,
       this.device.platform,
       this.device.manufacturer,1,1,
       this.device.model,
-      this.device.uuid
-    ).subscribe(
-      data => {
+      this.device.uuid)
+    .subscribe(data => {
         this.datos = data.json();
-          //if(this.datos != null && this.datos.estado == 2){
-          if(this.datos != null){
+            console.log("login.ts, estado =>", this.datos.estado)
+            if(this.datos != null && this.datos.estado == 2){
               console.log("el estado es ",this.datos.estado);
               let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula,"filial": this.loginForm.value.filial}
               this.afiliado.push(a);
@@ -75,9 +75,16 @@ export class LoginPage {
               console.log(error)
             })
           }
+          else if(this.datos != null && this.datos.estado == 0){
+            load.dismiss();let dpts
+            if(this.loginForm.value.filial == "sc"){ dpts ="Santa Cruz." }
+            if(this.loginForm.value.filial == "co"){ dpts ="Cochabamba." }
+            if(this.loginForm.value.filial == "lp"){ dpts ="La paz." }
+            this.AlertFilial(dpts) 
+          }
           else{
            load.dismiss();
-           console.log("La matricula ingresada ya esta vinculada!");
+           console.log("La matrícula " + this.loginForm.value.matricula + " ya se encuentra vinculada en un telefono movil.");
            this.AlertVinculado();
           }
         },
@@ -94,7 +101,7 @@ export class LoginPage {
   AlertVinculado() {
     let alert = this.alertCtrl.create({
       title: 'Información',
-      subTitle: 'La matrícula ingresada ya esta vinculada!',
+      subTitle: 'La matrícula ' + this.loginForm.value.matricula + ' ya se encuentra vinculada en un teléfono movil.',
       buttons: ['Ok']
     });
     alert.present();
@@ -102,7 +109,15 @@ export class LoginPage {
   AlertError() {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos ...',
-      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud. :(',
+      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+  AlertFilial(dpts) {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos ...',
+      subTitle: '..Pero la matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en el departamento de '+dpts,
       buttons: ['Ok']
     });
     alert.present();
