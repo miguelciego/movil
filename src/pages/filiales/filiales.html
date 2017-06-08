@@ -18,11 +18,11 @@
   <ion-list  *ngIf="validarN == 1" >
     <ion-item *ngFor="let Filial of FilialesEncontradas" >
       <ion-avatar item-left>
-        <img src="assets/images/{{ Filial.Codigo }}-{{filial}}.jpg"/>    
+        <img src="assets/images/{{ Filial.Codigo }}-{{ Ficha.dpts }}.png"/>    
       </ion-avatar>
       <div class="hospital" (click)="iraEspecialidades(Filial)">
           <h3> {{ Filial.Nombre }} </h3>
-          <p class="text"> Horario: Las 24 horas.</p>
+         <!-- <p class="text"> {{ Filial.Fecha}}</p>-->
       </div>     
     </ion-item>
   </ion-list>

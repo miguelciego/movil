@@ -1,6 +1,12 @@
 <ion-header >
   <ion-navbar>
-    <img class="logo" src="assets/images/logobar.png" alt="">
+    <ion-buttons left>
+      <button ion-button >
+        <img width="35" height="35" src="assets/images/logo.png" />
+      </button>
+    </ion-buttons>
+    <ion-title>CPS Móvil</ion-title>
+    <!--<img class="logo" src="assets/images/logobar.png" alt="">-->
     <ion-buttons end>
       <button ion-button color="light" icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -14,11 +20,11 @@
   </ion-refresher>
   <ion-list>
     <ion-item-sliding *ngFor="let Paciente of GrupoFamiliar">
-      <ion-item class="parent" >
-          <ion-avatar item-left (click)="irPerfil(Paciente)" >
+      <ion-item class="parent" (click)="iraFiliales(Paciente)">
+          <ion-avatar item-left>
             <img src="assets/images/perfil.png" >
           </ion-avatar>   
-          <div class="contenido" (click)="iraFiliales(Paciente)">
+          <div class="contenido">
             <ion-icon *ngIf="Paciente.Ficha != 'Sin ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>
             <h3>{{ Paciente.Nombre }}</h3>
             <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado}}</p>

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController,ToastController } from 'ionic-angular';
 
+import { MitabPage } from '../mitab/mitab';
 import { CpsProviders } from '../../providers/cps';
+
 
 @Component({
   selector: 'page-resumen',
@@ -27,7 +29,7 @@ export class ResumenPage {
     public navParams: NavParams,
     private cps: CpsProviders,
     public LoadCtrl: LoadingController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
   ){
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
@@ -43,40 +45,46 @@ export class ResumenPage {
     console.log(this.Ficha);
   }
   ionViewDidLoad() {}
+
   Guardar(){
-    let load = this.LoadCtrl.create();
+    let load = this.LoadCtrl.create({
+      content: 'Guardando Ficha...'
+    });
     load.present();
+
     this.cps.putGFicha(
-        this.Ficha.PacienteCodigo,
-        this.Ficha.FilialCodigo,
-        this.Ficha.EspecialidadCodigo,
-        this.Ficha.MedicoCodigo,
-        this.Ficha.valorh,
-        this.Ficha.Fecha
-      )
-      .subscribe( data => { 
-          this.datos = data.json();
-          switch (this.datos.Codigo) {
-            case "G0":
-                load.dismiss();
-                this.ToastG0(this.datos.Descripcion);
-                this.navCtrl.popToRoot();
-                break;
-            case "E1":
-                load.dismiss();
-                this.ToastE1(this.datos.Descripcion);
-                this.navCtrl.popToRoot();
-                break;
-            case "E2":
-                load.dismiss();
-                this.ToastE2(this.Ficha.horaD);
-                this.navCtrl.pop();
-                break;
-          }
-        },
-        err => console.error(err),
-        () => console.log('putGFicha -> completado')
-      );
+      this.Ficha.dpts,
+      this.Ficha.PacienteCodigo,
+      this.Ficha.FilialCodigo,
+      this.Ficha.EspecialidadCodigo,
+      this.Ficha.MedicoCodigo,
+      this.Ficha.valorh,
+      this.Ficha.Fecha
+    )
+    .subscribe( data => { 
+      this.datos = data.json();
+        switch (this.datos.Codigo) {
+          case "G0":
+              load.dismiss();
+              this.ToastG0(this.datos.Descripcion);
+              this.navCtrl.popToRoot();
+            break;
+          case "E1":
+              load.dismiss();
+              this.ToastE1(this.datos.Descripcion);
+              this.navCtrl.push(MitabPage)
+              this.navCtrl.popToRoot();
+            break;
+          case "E2":
+              load.dismiss();
+              this.ToastE2(this.Ficha.horaD);
+              this.navCtrl.pop();
+            break;
+        }
+      },
+      err => console.error(err),
+      () => console.log('putGFicha -> completado')
+    );
   }
   cancelar(){
     this.navCtrl.pop();

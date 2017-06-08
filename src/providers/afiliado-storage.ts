@@ -12,12 +12,8 @@ export class AfiliadoStorage {
     return new Promise((resolve, reject)=>{
       this.storage.get(this.key)
       .then(data=>{
-        if(data){
-          console.log('Se han encontrado datos en estorage');
-          resolve(JSON.parse(data))
-        }else{
-          reject('No hay datos en estorage 1')
-        }
+        console.log('Se han consultado datos en storage');
+        resolve(JSON.parse(data))
       })
       .catch(error =>{
         reject(error)

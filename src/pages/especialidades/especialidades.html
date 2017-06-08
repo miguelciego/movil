@@ -20,8 +20,8 @@
     <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
       <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
       <h3> {{ Especialidad.Descripcion }} </h3> 
-      <p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span> : {{ Especialidad.Disponible }} </p>
-      <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge>
+      <!--<p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span>  </p>
+      <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge> -->
     </ion-item>
   </ion-list>
   <div *ngIf="length == 0" class="contenedor" (click)="volver()">

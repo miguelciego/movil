@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { CpsProviders } from '../../providers/cps';
+
 import { ResumenPage } from '../resumen/resumen';
-import { AfiliadoStorage } from '../../providers/afiliado-storage';
+
+import { CpsProviders } from '../../providers/cps';
 
 @Component({
   selector: 'page-horarios',
@@ -16,12 +17,10 @@ export class HorariosPage {
   public Horarios;
   public Ficha;
   public length;
-  public dpts;
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams, 
   private cps: CpsProviders,
-  public AfiliadoStorage : AfiliadoStorage,
   public LoadCtrl: LoadingController,
   ) {
     this.Medico = navParams.get('Medico');
@@ -32,15 +31,12 @@ export class HorariosPage {
     this.listHorarios();
   }
   listHorarios(){
-    let load = this.LoadCtrl.create();
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+      duration: 5000
+    });
     load.present();
-    this.AfiliadoStorage.getAll()
-    .then((data: any[]) =>{
-      Object.keys(data).forEach( key => { 
-          this.Ficha.PacienteCodigo =  data[key].Id;
-          this.dpts = data[key].filial;
-      });
-      this.cps.getHorarios(this.dpts,this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,this.Ficha.MedicoCodigo,this.Ficha.Fecha)
+      this.cps.getHorarios(this.Ficha.dpts,this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,this.Ficha.MedicoCodigo,this.Ficha.Fecha)
         .subscribe(data => { 
           this.Horarios = data.json();
           this.length = this.Horarios.length;
@@ -55,10 +51,6 @@ export class HorariosPage {
       },
       () => console.log('getHorarios -> completado')
     );
-    })
-    .catch(error =>{
-      console.log(error)
-    })  
   }
   irResumen(Hora) {
     this.navCtrl.push(ResumenPage,{ Hora : Hora, Ficha: this.Ficha });

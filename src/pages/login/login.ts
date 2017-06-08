@@ -9,6 +9,7 @@ import { MitabPage } from '../mitab/mitab';
 
 import { CpsProviders } from '../../providers/cps';
 
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -29,8 +30,8 @@ export class LoginPage {
     public AfiliadoStorage : AfiliadoStorage,
     public cps: CpsProviders,
     public LoadCtrl: LoadingController,
-    private alertCtrl: AlertController
-    ) {
+    private alertCtrl: AlertController,
+    ) {    
     this.loginForm = this.myLoginForm;
     this.device = {};
     platform.ready().then(() => {
@@ -45,12 +46,14 @@ export class LoginPage {
   ionViewDidLoad(){}
   private get myLoginForm(){
     return this.fb.group({
-      'matricula': ['19820207pcr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
-      'filial': ['lp',Validators.required]
+      'matricula': ['19860529cpe',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
+      'filial': ['sc',Validators.required]
     })
   }
   Guardar() {
-    let load = this.LoadCtrl.create();
+    let load = this.LoadCtrl.create({
+      content: 'Verificando datos...'
+    });
     load.present();
     this.cps.putVerification(
       this.loginForm.value.filial,
@@ -62,17 +65,16 @@ export class LoginPage {
     .subscribe(data => {
         this.datos = data.json();
             console.log("login.ts, estado =>", this.datos.estado)
-            if(this.datos != null && this.datos.estado == 2){
+            if(this.datos != null && this.datos.estado == 2 ||this.datos.estado == 1){
               console.log("el estado es ",this.datos.estado);
               let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula,"filial": this.loginForm.value.filial}
               this.afiliado.push(a);
               this.AfiliadoStorage.create( this.afiliado ).then(data =>{
               console.log("agregado correctamente")
-              this.navCtrl.push(MitabPage);
+              this.navCtrl.setRoot(MitabPage);
               load.dismiss();
             })
             .catch(error =>{
-              console.log(error)
             })
           }
           else if(this.datos != null && this.datos.estado == 0){

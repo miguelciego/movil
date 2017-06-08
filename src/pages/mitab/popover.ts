@@ -39,7 +39,7 @@ export class PopoverPage {
         {
           text: 'Si',
           handler: () => {
-            this.appCtrl.getRootNav().push(LoginPage);
+            this.appCtrl.getRootNav().setRoot(LoginPage);
             console.log('se ha desvinculado correctamente');
           }
         }

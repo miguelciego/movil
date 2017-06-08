@@ -7,10 +7,11 @@ import { CpsProviders } from '../../providers/cps';
   templateUrl: 'modal.html',
   providers: [CpsProviders]
 })
+
 export class ModalPage {
-  public myFicha:any[]=[]; 
-  public myPaciente;
-  public errorMysql:any=0;
+  public Ficha:any;
+  public myFicha:any[]=[];
+  public myPaciente:any;
   public resultado:any;
   private valor:number;
   private estado:number;
@@ -23,56 +24,22 @@ export class ModalPage {
   public appCtrl: App,
   public LoadCtrl: LoadingController,
   private alertCtrl: AlertController,
-  public toastCtrl: ToastController
+  public toastCtrl: ToastController,
   ) {
-    this.myPaciente = navParams.get('Paciente');
-    let load = this.LoadCtrl.create();
-    load.present();
+    this.myFicha = navParams.get('myFicha');
+    this.Ficha = navParams.get('Ficha');
     this.Mostrarficha();
-    load.dismiss();
   }
+
   Mostrarficha(){
-    try {
-      console.log(this.myPaciente.Codigo)
-      
-      this.cps.getMFicha(this.myPaciente.Codigo)
-      .subscribe(data => { 
-        this.myFicha = data.json();
-        console.log("longitud de objeto", this.myFicha.length)
-        switch (this.myFicha.length) {
-            case undefined:
-                 this.errorMysql = 1;
-                break;
-            case 0:
-                 this.errorMysql = 3;
-                break;
-            default:
-                 this.errorMysql = 2;
-                break;
-          }
-        console.log("numero errorMysql", this.errorMysql)
-      },
-      err => {        
-         if (err.status == 404) {
-         } else {
-          console.log("error de Mysql")
-         }
-       },
-       () => console.log("mostrarFicha -> completado")
-      );
-    } catch (error) {
-       console.log("catch error")
-    }  
+    Object.keys(this.myFicha).forEach( key => {
+      this.valor = this.myFicha[key].Valor
+      this.estado = this.myFicha[key].TFicha
+    });
+    console.log("valor de la ficha", this.estado)
   }
   borrar(){
-    let load = this.LoadCtrl.create();
-    load.present();
-    Object.keys(this.myFicha).forEach( key => {
-            this.valor = this.myFicha[key].Valor
-            this.estado = this.myFicha[key].TFicha
-    });
     this.presentConfirm();
-    load.dismiss();
   }  
   dismiss() {
     this.viewCtrl.dismiss();
@@ -82,8 +49,7 @@ export class ModalPage {
   }
   presentConfirm() {
     let alert = this.alertCtrl.create({
-      title: '¿ Quieres borrar la ficha ?',
-      message: 'Escribe "BORRAR" en el campo para confirmar.',
+      message: 'Escribe "CANCELAR" en el campo para confirmar.',
       inputs: [
       {
         name: 'txt',
@@ -95,36 +61,59 @@ export class ModalPage {
           text: 'No',
           role: 'No',
           handler: () => {
-            console.log("Click Cancelar");
+            console.log("valor", this.Ficha.PacienteCodigo);
+            console.log("estado", this.Ficha.dpts);
+            console.log("estado", this.estado);
           }
         },
         {
           text: 'Si',
           handler: data => {
-            if(data.txt == "BORRAR" || data.txt == "Borrar" || data.txt == "borrar"){
-              this.cps.putBFicha(this.valor, this.estado)
-              .subscribe(
-                data => {
-                  this.resultado = data.json();
-                  console.log("resultado -> ", this.resultado)
-                  this.ToastMensaje();
-                  this.dismiss();
+            if(data.txt == "CANCELAR" || data.txt == "cancelar" || data.txt == "Cancelar"){
+                this.cps.putBFicha( this.Ficha.dpts, this.valor, this.estado)
+                .subscribe(
+                  data => {
+                    this.resultado = data.json();
+                    console.log("resultado -> ", this.resultado)
+                    switch (this.resultado.Codigo) {
+                      case "B0":
+                           this.dismiss();
+                           this.ToastMensaje(this.resultado.Descripcion)
+                        break;
+                      case "E0":
+                           this.dismiss();
+                           this.ToastMensaje(this.resultado.Descripcion)
+                        break;
+                      case "E3":
+                           this.dismiss();
+                           this.ToastMensaje(this.resultado.Descripcion)
+                        break;
+                    }
                   },
                 err => console.error(err),
                 () => console.log('borrar -> completado')
               );
             }else{
-              console.log("debe escribir correctamente borrar")
-            }
-          }
+              console.log("debe escribir correctamente Borrar.")
+              this.ToastMensaje1();
+            } 
+          } 
         }
       ]
     });
     alert.present();
   }
-  ToastMensaje() {
+  ToastMensaje(mensaje) {
     let toast = this.toastCtrl.create({
-      message: 'Ficha cancelada con exito.',
+      message: mensaje,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+  ToastMensaje1() {
+    let toast = this.toastCtrl.create({
+      message: 'Vuelve a intentarlo.',
       duration: 3000,
       position: 'top'
     });

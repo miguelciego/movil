@@ -3,7 +3,6 @@ import { NavParams, PopoverController, ToastController } from 'ionic-angular';
 
 import { MapasPage } from '../mapas/mapas';
 import { HomePage } from '../home/home';
-import { ConfigPage } from '../config/config';
 import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
 
 @Component({
@@ -16,7 +15,6 @@ export class MitabPage {
   tab1Root: any = HomePage;
   tab2Root: any = GrupoFamiliarPage;
   tab3Root: any = MapasPage;
-  tab4Root: any = ConfigPage;
 
   constructor(
     public popoverCtrl: PopoverController,

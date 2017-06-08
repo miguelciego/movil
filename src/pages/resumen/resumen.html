@@ -1,51 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ficha</ion-title>
+      <ion-buttons left>
+        <button ion-button >
+          <img width="35" height="35" src="assets/images/logo.png" />
+        </button>
+      </ion-buttons>
+   </ion-navbar>
+</ion-header>
 <ion-content>
-  <div class="content">
-    <div class="contenedor">
-      <ion-card>
-        <ion-card-header text-center color="primary">
-          <strong>¿Desea guardar la ficha?</strong> 
-        </ion-card-header>
-        <ion-card-content>
-          <ion-item no-lines>
-          <i class="fa fa-user" item-left aria-hidden="true"></i>
-            <h3>{{ NombrePaciente }}</h3>
-          </ion-item>
-          <ion-item no-lines>
-            <i class="fa fa-id-card" item-left aria-hidden="true"></i>
-            <p> {{ Matricula }}</p>
-          </ion-item>
-          <ion-item no-lines>
-            <i class="fa fa-hospital-o" item-left aria-hidden="true"></i>
-            <p> {{ Filial }}</p>
-          </ion-item>
-          <ion-item no-lines>
-            <i class="fa fa-medkit " item-left aria-hidden="true"></i>
-            <p> {{ Especialidad }}</p>
-          </ion-item>
-          <ion-item no-lines>
-            <i class="fa fa-user-md " item-left aria-hidden="true"></i>
-            <p> {{ Medico }}</p>
-          </ion-item>
-          <ion-item no-lines>
-            <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
-            <p> {{ Hora }}</p>
-          </ion-item>
-          <ion-item no-lines>
-            <i class="fa fa-calendar" item-left aria-hidden="true"></i>
-            <p> {{ Dia }}</p>
-          </ion-item>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-6>
-                <button block ion-button color="primary" (click)="cancelar()" outline>Cancelar</button>
-              </ion-col>
-              <ion-col col-6>
-                <button block ion-button color="primary" (click)="Guardar()" >Guardar</button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    </div>
+  <div padding>
+    
+    <ion-item no-lines>
+      <i class="fa fa-user" item-left aria-hidden="true"></i>
+      <p>{{ NombrePaciente }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <i class="fa fa-id-card" item-left aria-hidden="true"></i>
+      <p> {{ Matricula }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <i class="fa fa-hospital-o" item-left aria-hidden="true"></i>
+      <p> {{ Filial }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <i class="fa fa-medkit " item-left aria-hidden="true"></i>
+      <p> {{ Especialidad }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <i class="fa fa-user-md " item-left aria-hidden="true"></i>
+      <p> {{ Medico }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
+      <p> {{ Hora }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <i class="fa fa-calendar" item-left aria-hidden="true"></i>
+      <p> {{ Dia }}</p>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <button block ion-button color="primary" (click)="Guardar()" >Guardar Ficha</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

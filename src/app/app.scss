@@ -52,10 +52,10 @@ ion-label{
     color: #222;
 }
 .list-ios {
-    margin: 0 0 32px 0;
+    margin: 0px 0 32px 0;
 }
 .list-md {
-    margin: 0 0 16px 0;
+    margin: 2px 16px 16px 0;
 }
 .card-content-ios {
     padding: 5px 5px 5px 5px;
@@ -69,6 +69,9 @@ ion-label{
 }
 .card-title-ios {
     padding: 0px 0 8px 0;
+}
+.toolbar-title-md {
+    padding: 0px;
 }
 
 @import "styles/font-awesome";

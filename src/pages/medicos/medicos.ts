@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { CpsProviders } from '../../providers/cps';
+
 import { HorariosPage } from '../horarios/horarios';
 import { DetalleMedPage } from '../detalle-med/detalle-med';
-import { AfiliadoStorage } from '../../providers/afiliado-storage';
+import { CpsProviders } from '../../providers/cps';
 
 @Component({
   selector: 'page-medicos',
@@ -16,13 +16,11 @@ export class MedicosPage {
   public Especialidad;
   public Ficha;
   public length;
-  public dpts;
 
   constructor(
   public navCtrl: NavController, 
   public navParams: NavParams, 
   private cps: CpsProviders,
-  public AfiliadoStorage : AfiliadoStorage,
   public LoadCtrl: LoadingController
   ){
     this.Especialidad = navParams.get('Especialidad');
@@ -33,34 +31,32 @@ export class MedicosPage {
     this.listMedicos();
   }
   listMedicos(){
-    let load = this.LoadCtrl.create();
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+      duration: 5000
+    });
     load.present();
-    this.AfiliadoStorage.getAll()
-    .then((data: any[]) =>{
-      Object.keys(data).forEach( key => { 
-          this.Ficha.PacienteCodigo =  data[key].Id;
-          this.dpts = data[key].filial;
-      });
-      this.cps.getMedicos(this.dpts,this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,
-      this.Ficha.Fecha).subscribe(
-        data => { 
-          this.Medicos = data.json();
-          this.length = this.Medicos.length;
-          },
-        err => {
-          if (err.status == 404) {
-        //   this.readme = 'Este repo no tiene README. :(';
-          } else {
-            console.error(err);
-            load.dismiss()
-          }
+
+    this.cps.getMedicos(
+      this.Ficha.dpts,
+      this.Ficha.FilialCodigo,
+      this.Ficha.EspecialidadCodigo,
+      this.Ficha.Fecha
+    )
+    .subscribe(data => { 
+        this.Medicos = data.json();
+        this.length = this.Medicos.length;
         },
-        () => load.dismiss()
-      );
-    })
-    .catch(error =>{
-      console.log(error)
-    })  
+      err => {
+        if (err.status == 404) {
+      //   this.readme = 'Este repo no tiene README. :(';
+        } else {
+          console.error(err);
+          load.dismiss()
+        }
+      },
+      () => load.dismiss()
+    );
   }
   iraHorarios(Medico) {
     this.navCtrl.push(HorariosPage, { Medico: Medico, Ficha: this.Ficha });

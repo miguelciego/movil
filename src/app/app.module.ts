@@ -16,6 +16,7 @@ import { ModalPage } from '../pages/modal/modal';
 import { ResumenPage } from '../pages/resumen/resumen';
 import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
 import { ConfigPage } from '../pages/config/config';
+import { VerificacionPage } from '../pages/verificacion/verificacion';
 
 import { AfiliadoStorage } from '../providers/afiliado-storage'
 import { IonicStorageModule } from '@ionic/storage';
@@ -48,7 +49,8 @@ const config = {
     VademecunPage,
     ResumenPage,
     DetalleMedPage,
-    ConfigPage
+    ConfigPage,
+    VerificacionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp,config),
@@ -71,7 +73,8 @@ const config = {
     VademecunPage,
     ResumenPage,
     DetalleMedPage,
-    ConfigPage
+    ConfigPage,
+    VerificacionPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
