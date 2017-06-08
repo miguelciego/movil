@@ -73,7 +73,7 @@ export class ResumenPage {
               load.dismiss();
               this.ToastE1(this.datos.Descripcion);
               this.navCtrl.push(MitabPage)
-              this.navCtrl.popToRoot();
+              this.navCtrl.pop();
             break;
           case "E2":
               load.dismiss();
