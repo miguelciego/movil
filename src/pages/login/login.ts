@@ -3,7 +3,7 @@ import { NavController, NavParams, Platform, LoadingController, AlertController 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
-import { Device } from 'ionic-native';
+//import { Device } from 'ionic-native';
 
 import { MitabPage } from '../mitab/mitab';
 
@@ -34,14 +34,14 @@ export class LoginPage {
     ) {    
     this.loginForm = this.myLoginForm;
     this.device = {};
-    platform.ready().then(() => {
+    /*platform.ready().then(() => {
       this.device['uuid'] = Device.uuid;
       this.device['platform'] = Device.platform;
       this.device['manufacturer'] = Device.manufacturer;
       this.device['version'] = Device.version;
       this.device['serial'] = Device.serial;
       this.device['model'] = Device.model;
-    });
+    });*/
   }
   ionViewDidLoad(){}
   private get myLoginForm(){

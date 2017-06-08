@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { VerificacionPage } from '../pages/verificacion/verificacion';
         
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [StatusBar, SplashScreen]
 })
 export class MyApp {
     public session;
@@ -13,11 +15,12 @@ export class MyApp {
 
   constructor(
      platform: Platform,
+     private statusBar: StatusBar,
+     public splashscreen :SplashScreen
   ){
      platform.ready().then(() => {
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      this.statusBar.styleDefault();
+      this.splashscreen.hide();
      });
   }
-  
 }

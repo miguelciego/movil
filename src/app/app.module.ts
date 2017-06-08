@@ -1,5 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PopoverPage } from '../pages/mitab/popover';
@@ -18,8 +21,9 @@ import { DetalleMedPage } from '../pages/detalle-med/detalle-med';
 import { ConfigPage } from '../pages/config/config';
 import { VerificacionPage } from '../pages/verificacion/verificacion';
 
-import { AfiliadoStorage } from '../providers/afiliado-storage'
 import { IonicStorageModule } from '@ionic/storage';
+
+import { AfiliadoStorage } from '../providers/afiliado-storage'
 
 const config = {
   tabsHideOnSubPages: true,
@@ -53,6 +57,8 @@ const config = {
     VerificacionPage
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp,config),
     IonicStorageModule.forRoot()
   ],
