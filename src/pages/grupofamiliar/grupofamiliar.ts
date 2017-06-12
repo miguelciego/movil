@@ -83,7 +83,7 @@ export class GrupoFamiliarPage {
 
   iraFiliales(Paciente) {
     console.log("codigo del paciente", Paciente.Codigo)
-     this.cps.getMFicha(this.Ficha.dpts, Paciente.Codigo)
+    /* this.cps.getMFicha(this.Ficha.dpts, Paciente.Codigo)
      .subscribe(data => { 
         this.myFicha = data.json();
         if(this.myFicha.length == 0){
@@ -94,15 +94,15 @@ export class GrupoFamiliarPage {
            this.presentModal();
         }
      },
-     )
-   /* if( Paciente.Ficha == "Sin ficha" ){
+     )*/
+    if( Paciente.Ficha == "Sin ficha" ){
      this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
     } else {
        this.presentModal(Paciente);
-    }*/
+    }
   }
 
-  presentModal() {
+  presentModal(Paciente) {
     let modal = this.modalCtrl.create(ModalPage,{ myFicha: this.myFicha, Ficha: this.Ficha });
     modal.present();
   }

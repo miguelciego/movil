@@ -46,7 +46,7 @@ export class LoginPage {
   ionViewDidLoad(){}
   private get myLoginForm(){
     return this.fb.group({
-      'matricula': ['19860529cpe',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
+      'matricula': ['19735917osr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
       'filial': ['sc',Validators.required]
     })
   }

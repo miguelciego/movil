@@ -31,6 +31,7 @@ export class FilialesPage {
       this.Ficha = navParams.get('Ficha');
       this.Paciente = navParams.get('Paciente');
 
+      this.Ficha.PacienteCodigo = this.Paciente.Codigo;
       this.Ficha.PacienteMatricula = this.Paciente.Matricula;
       this.Ficha.PacienteNombre = this.Paciente.Nombre ;
       this.Ficha.PacienteTAsegurado  = this.Paciente.TAsegurado ;

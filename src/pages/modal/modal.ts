@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, App, NavParams, ViewController, LoadingController, AlertController,ToastController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
+import { MitabPage } from '../mitab/mitab';
+
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -9,6 +11,8 @@ import { CpsProviders } from '../../providers/cps';
 })
 
 export class ModalPage {
+
+  public errorMysql=0;
   public Ficha:any;
   public myFicha:any[]=[];
   public myPaciente:any;
@@ -32,24 +36,48 @@ export class ModalPage {
   }
 
   Mostrarficha(){
-    Object.keys(this.myFicha).forEach( key => {
-      this.valor = this.myFicha[key].Valor
-      this.estado = this.myFicha[key].TFicha
-    });
+    console.log("myFicha",this.myFicha)
+    console.log("Ficha", this.Ficha)
     console.log("valor de la ficha", this.estado)
+     this.cps.getMFicha(this.Ficha.dpts, this.Ficha.PacienteCodigo)
+      .subscribe(data => { 
+        this.myFicha = data.json();
+        console.log("longitud de objeto", this.myFicha.length)
+        switch (this.myFicha.length) {
+            case undefined:
+                 this.errorMysql = 1;
+                break;
+            case 0:
+                 this.errorMysql = 3;
+                break;
+            default:
+                 this.errorMysql = 2;
+                break;
+          }
+        console.log("numero errorMysql", this.errorMysql)
+      },
+      err => {        
+         if (err.status == 404) {
+         } else {
+          console.log("error de Mysql")
+         }
+       },
+       () => console.log("mostrarFicha -> completado")
+      );
   }
   borrar(){
     this.presentConfirm();
   }  
   dismiss() {
     this.viewCtrl.dismiss();
+    this.navCtrl.setRoot(MitabPage)
   }
   volver(){
     this.navCtrl.pop();
   }
   presentConfirm() {
     let alert = this.alertCtrl.create({
-      message: 'Escribe "CANCELAR" en el campo para confirmar.',
+      message: 'Si deseas Cancelar la ficha, Escribe "SI" en el campo para confirmar.',
       inputs: [
       {
         name: 'txt',

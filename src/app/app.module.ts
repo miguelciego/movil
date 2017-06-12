@@ -27,13 +27,13 @@ import { AfiliadoStorage } from '../providers/afiliado-storage'
 
 const config = {
   tabsHideOnSubPages: true,
-  tabsPlacement: 'bottom',
-  /*platforms: {
+  tabsPlacement: 'top',
+  platforms: {
     ios: {
       tabsHideOnSubPages: false,
       tabsPlacement:'bottom'
     },
-  }*/
+  }
 }
 
 @NgModule({

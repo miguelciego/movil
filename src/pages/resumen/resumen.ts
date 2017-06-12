@@ -67,7 +67,7 @@ export class ResumenPage {
           case "G0":
               load.dismiss();
               this.ToastG0(this.datos.Descripcion);
-              this.navCtrl.popToRoot();
+              this.navCtrl.setRoot(MitabPage)
             break;
           case "E1":
               load.dismiss();
