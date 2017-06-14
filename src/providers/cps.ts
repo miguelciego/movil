@@ -88,8 +88,8 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        //return this.http.post('http://smovil'+ dpts +'.cps.org.bo/consulta/mficha',
-        return this.http.post( this.cpsAPI + 'consulta/mficha',
+        return this.http.post('http://smovil'+ dpts +'.cps.org.bo/consulta/mficha',
+        //return this.http.post( this.cpsAPI + 'consulta/mficha',
         creds, { headers: headers });
     }
     getMedicamentos(valor){
