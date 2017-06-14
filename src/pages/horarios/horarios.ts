@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
-
-import { ResumenPage } from '../resumen/resumen';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
 
+@IonicPage()
 @Component({
   selector: 'page-horarios',
   templateUrl: 'horarios.html',
@@ -22,6 +21,7 @@ export class HorariosPage {
   public navParams: NavParams, 
   private cps: CpsProviders,
   public LoadCtrl: LoadingController,
+  public alertCtrl:AlertController
   ) {
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
@@ -42,20 +42,28 @@ export class HorariosPage {
           this.length = this.Horarios.length;
           load.dismiss(); 
         },
-      err => {
-        if (err.status == 404) {
-       //   this.readme = 'Este repo no tiene README. :(';
+      err => { if (err.status == 404) {
         } else {
-          console.error(err);
-        }
-      },
+            console.log(err.status);
+            load.dismiss();
+            this.AlertError();
+          }
+        },
       () => console.log('getHorarios -> completado')
     );
   }
   irResumen(Hora) {
-    this.navCtrl.push(ResumenPage,{ Hora : Hora, Ficha: this.Ficha });
+    this.navCtrl.push('ResumenPage',{ Hora : Hora, Ficha: this.Ficha }); 
   }
    volver(){
     this.navCtrl.pop();
+  }
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos ...',
+      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 }

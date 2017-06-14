@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { PopoverController, LoadingController } from 'ionic-angular';
+import { IonicPage, PopoverController, LoadingController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 import { DomSanitizer} from '@angular/platform-browser';
 
 import { CpsProviders } from '../../providers/cps';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
+@IonicPage()
 @Component({
   selector: 'page-mapas',
   templateUrl: 'mapas.html',

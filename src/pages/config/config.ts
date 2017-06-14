@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 
+@IonicPage()
 @Component({
   selector: 'page-config',
   templateUrl: 'config.html'

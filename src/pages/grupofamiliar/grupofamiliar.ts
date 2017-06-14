@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { ModalPage } from '../modal/modal';
-import { FilialesPage } from '../filiales/filiales';
 import { PopoverController } from 'ionic-angular';
-import { VademecunPage } from '../vademecun/vademecun';
+
 import { PopoverPage } from '../mitab/popover';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { CpsProviders } from '../../providers/cps';
 
+@IonicPage()
 @Component({
   selector: 'page-grupofamiliar',
   templateUrl: 'grupofamiliar.html',
@@ -26,6 +25,9 @@ export class GrupoFamiliarPage {
     PacienteCodigo: undefined,
     dpts: undefined
   };
+  public FilialesEncontradas;
+  public validarN;
+  public validarB;
 
   constructor(
     platform: Platform,
@@ -55,6 +57,9 @@ export class GrupoFamiliarPage {
       content: 'Cargando...',
       duration:5000
     });
+     load.onDidDismiss(() => {
+       console.log("ha terminado")
+    });
     load.present();
     this.AfiliadoStorage.getAll()
     .then((data: any[]) =>{
@@ -80,35 +85,58 @@ export class GrupoFamiliarPage {
       console.log(error)
     })
   }
-
+  
   iraFiliales(Paciente) {
     console.log("codigo del paciente", Paciente.Codigo)
-    /* this.cps.getMFicha(this.Ficha.dpts, Paciente.Codigo)
-     .subscribe(data => { 
-        this.myFicha = data.json();
-        if(this.myFicha.length == 0){
-          this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
-          console.log("es vacia")
-        }else{
-          console.log("no es vacia")
-           this.presentModal();
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+      duration:5000
+    });
+    load.present();
+    this.cps.getFiliales(this.Ficha.dpts, Paciente.Codigo)
+    .subscribe(data => {
+
+      this.FilialesEncontradas = data.json();
+      console.log("Filiales -> ", this.FilialesEncontradas)
+        Object.keys(this.FilialesEncontradas).forEach( key => {
+          this.validarN = this.FilialesEncontradas[key].Codigo
+          this.validarB = this.FilialesEncontradas[key].Nombre
+        });
+        console.log("El codigo de E es ->", this.validarN)
+        if (this.validarN == "E2" || this.validarN == "E3") { 
+          this.presentModal(Paciente);
         }
-     },
-     )*/
-    if( Paciente.Ficha == "Sin ficha" ){
-     this.navCtrl.push(FilialesPage, {  Ficha: this.Ficha, Paciente: Paciente });
-    } else {
-       this.presentModal(Paciente);
-    }
+        else{
+          if (this.validarN % 1 == 0 ) {
+            this.validarN = 1
+          }
+          else{this.validarN = 2}
+          this.navCtrl.push('FilialesPage', {  
+            cod       : this.validarN,  
+            msj       : this.validarB,
+            Ficha     : this.Ficha, 
+            Paciente  : Paciente, 
+            Filiales  : this.FilialesEncontradas, 
+          });
+        }
+      },
+      err => { if (err.status == 404) {
+        } else {
+            console.log(err.status);
+            this.AlertError();
+        }
+      },
+      () => load.dismiss()
+    );
   }
 
   presentModal(Paciente) {
-    let modal = this.modalCtrl.create(ModalPage,{ myFicha: this.myFicha, Ficha: this.Ficha });
+    let modal = this.modalCtrl.create('ModalPage',{ Paciente: Paciente.Codigo , Ficha: this.Ficha });
     modal.present();
   }
 
   IrVademecun(){
-  	this.navCtrl.push( VademecunPage );
+  	this.navCtrl.push( 'VademecunPage' );
   }
 
   AlertError() {

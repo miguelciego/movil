@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
-//import { Device } from 'ionic-native';
-
-import { MitabPage } from '../mitab/mitab';
-
 import { CpsProviders } from '../../providers/cps';
 
-
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -34,25 +30,17 @@ export class LoginPage {
     ) {    
     this.loginForm = this.myLoginForm;
     this.device = {};
-    /*platform.ready().then(() => {
-      this.device['uuid'] = Device.uuid;
-      this.device['platform'] = Device.platform;
-      this.device['manufacturer'] = Device.manufacturer;
-      this.device['version'] = Device.version;
-      this.device['serial'] = Device.serial;
-      this.device['model'] = Device.model;
-    });*/
   }
   ionViewDidLoad(){}
   private get myLoginForm(){
     return this.fb.group({
-      'matricula': ['19735917osr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
+      'matricula': ['',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
       'filial': ['sc',Validators.required]
     })
   }
   Guardar() {
     let load = this.LoadCtrl.create({
-      content: 'Verificando datos...'
+      content: 'Verificando...'
     });
     load.present();
     this.cps.putVerification(
@@ -65,13 +53,13 @@ export class LoginPage {
     .subscribe(data => {
         this.datos = data.json();
             console.log("login.ts, estado =>", this.datos.estado)
-            if(this.datos != null && this.datos.estado == 2 ||this.datos.estado == 1){
+            if(this.datos != null && this.datos.estado == 2 || this.datos.estado == 1){
               console.log("el estado es ",this.datos.estado);
               let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula,"filial": this.loginForm.value.filial}
               this.afiliado.push(a);
               this.AfiliadoStorage.create( this.afiliado ).then(data =>{
               console.log("agregado correctamente")
-              this.navCtrl.setRoot(MitabPage);
+              this.navCtrl.setRoot('MitabPage');
               load.dismiss();
             })
             .catch(error =>{

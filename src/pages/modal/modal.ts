@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, App, NavParams, ViewController, LoadingController, AlertController,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, App, NavParams, ViewController, LoadingController, AlertController,ToastController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
-import { MitabPage } from '../mitab/mitab';
 
+@IonicPage()
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -30,18 +30,19 @@ export class ModalPage {
   private alertCtrl: AlertController,
   public toastCtrl: ToastController,
   ) {
-    this.myFicha = navParams.get('myFicha');
+    this.myPaciente = navParams.get('Paciente');
     this.Ficha = navParams.get('Ficha');
     this.Mostrarficha();
   }
 
   Mostrarficha(){
-    console.log("myFicha",this.myFicha)
+    console.log("myPaciente",this.myPaciente)
     console.log("Ficha", this.Ficha)
     console.log("valor de la ficha", this.estado)
-     this.cps.getMFicha(this.Ficha.dpts, this.Ficha.PacienteCodigo)
+     this.cps.getMFicha(this.Ficha.dpts, this.myPaciente)
       .subscribe(data => { 
         this.myFicha = data.json();
+        console.log("MyFicha", this.myFicha)
         console.log("longitud de objeto", this.myFicha.length)
         switch (this.myFicha.length) {
             case undefined:
@@ -66,18 +67,24 @@ export class ModalPage {
       );
   }
   borrar(){
+    Object.keys(this.myFicha).forEach( key => {
+            this.valor = this.myFicha[key].Valor
+            this.estado = this.myFicha[key].TFicha
+    });
     this.presentConfirm();
   }  
   dismiss() {
     this.viewCtrl.dismiss();
-    this.navCtrl.setRoot(MitabPage)
   }
   volver(){
     this.navCtrl.pop();
   }
+  volverRefresh(){
+    this.navCtrl.setRoot('MitabPage')
+  }
   presentConfirm() {
     let alert = this.alertCtrl.create({
-      message: 'Si deseas Cancelar la ficha, Escribe "SI" en el campo para confirmar.',
+      message: 'Al Eliminar la ficha estás cancelando la cita médica, Escribe "SI" en el campo para confirmar.',
       inputs: [
       {
         name: 'txt',
@@ -89,23 +96,23 @@ export class ModalPage {
           text: 'No',
           role: 'No',
           handler: () => {
-            console.log("valor", this.Ficha.PacienteCodigo);
-            console.log("estado", this.Ficha.dpts);
+            console.log("valor", this.valor);
+            console.log("dpts", this.Ficha.dpts);
             console.log("estado", this.estado);
           }
         },
         {
           text: 'Si',
           handler: data => {
-            if(data.txt == "CANCELAR" || data.txt == "cancelar" || data.txt == "Cancelar"){
+            if(data.txt == "SI" || data.txt == "Si" || data.txt == "si"){
                 this.cps.putBFicha( this.Ficha.dpts, this.valor, this.estado)
                 .subscribe(
                   data => {
                     this.resultado = data.json();
                     console.log("resultado -> ", this.resultado)
                     switch (this.resultado.Codigo) {
-                      case "B0":
-                           this.dismiss();
+                      case "B0":   
+                           this.dismiss();          
                            this.ToastMensaje(this.resultado.Descripcion)
                         break;
                       case "E0":
@@ -122,7 +129,7 @@ export class ModalPage {
                 () => console.log('borrar -> completado')
               );
             }else{
-              console.log("debe escribir correctamente Borrar.")
+              console.log("debe escribir correctamente Si.")
               this.ToastMensaje1();
             } 
           } 

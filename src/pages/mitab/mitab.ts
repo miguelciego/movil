@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { NavParams, PopoverController, ToastController } from 'ionic-angular';
+import { IonicPage, NavParams, PopoverController, ToastController } from 'ionic-angular';
 
-import { MapasPage } from '../mapas/mapas';
-import { HomePage } from '../home/home';
-import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
-
+@IonicPage()
 @Component({
   selector: 'page-mitab',
   templateUrl: 'mitab.html'
@@ -12,9 +9,9 @@ import { GrupoFamiliarPage } from '../grupofamiliar/grupofamiliar';
 export class MitabPage {
   public login:any[]=[];
   public contador:number;
-  tab1Root: any = HomePage;
-  tab2Root: any = GrupoFamiliarPage;
-  tab3Root: any = MapasPage;
+  tab1Root: any = 'HomePage';
+  tab2Root: any = 'GrupoFamiliarPage';
+  tab3Root: any = 'MapasPage';
 
   constructor(
     public popoverCtrl: PopoverController,

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 
-import { EspecialidadesPage } from '../especialidades/especialidades';
 import { CpsProviders } from '../../providers/cps';
 import {  errorServe } from '../error/error' 
 
-
+@IonicPage()
 @Component({
   selector: 'page-filiales',
   templateUrl: 'filiales.html',
@@ -13,7 +12,7 @@ import {  errorServe } from '../error/error'
 })
 export class FilialesPage {
 
-  public FilialesEncontradas;
+  public FilialesEncontradas:any[]=[];
   public Paciente;
   public Ficha;
   public validarN;
@@ -30,6 +29,10 @@ export class FilialesPage {
     ) { 
       this.Ficha = navParams.get('Ficha');
       this.Paciente = navParams.get('Paciente');
+      this.FilialesEncontradas = navParams.get('Filiales');
+      this.validarN = navParams.get('cod');
+      this.validarB = navParams.get('msj')
+      console.log("el resultado de n es" ,this.validarN)
 
       this.Ficha.PacienteCodigo = this.Paciente.Codigo;
       this.Ficha.PacienteMatricula = this.Paciente.Matricula;
@@ -39,16 +42,17 @@ export class FilialesPage {
       this.Ficha.PacienteAtendido  = this.Paciente.Atendido;
       this.Ficha.PacienteFicha  = this.Paciente.Ficha;
 
-      this.getFiliales();
+
     }
 
   getFiliales() {
-    let load = this.LoadCtrl.create({
+    /*let load = this.LoadCtrl.create({
       content: 'Cargando...',
       duration: 5000
     });
-    load.present();
-    this.cps.getFiliales(this.Ficha.dpts,this.Ficha.PacienteCodigo)
+    load.present();*/
+   
+    /*this.cps.getFiliales(this.Ficha.dpts,this.Ficha.PacienteCodigo)
     .subscribe(data => {
       this.FilialesEncontradas = data.json();
       console.log("Filiales -> ", this.FilialesEncontradas)
@@ -69,15 +73,15 @@ export class FilialesPage {
         }
       },
       () => console.log('getFiliales -> completado')
-    );
+    );*/
   }
 
   iraEspecialidades(Filial) {
-    this.navCtrl.push(EspecialidadesPage, {  Ficha: this.Ficha, Filial: Filial });
+    this.navCtrl.push('EspecialidadesPage', {  Ficha: this.Ficha, Filial: Filial });
   }
 
   volver(){
-    this.navCtrl.pop();
+     this.navCtrl.pop();
   }
 
   AlertError() {

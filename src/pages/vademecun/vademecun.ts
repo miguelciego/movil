@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController,Nav, NavParams,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController,Nav, NavParams,LoadingController } from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
 
+@IonicPage()
 @Component({
   selector: 'page-vademecun',
   templateUrl: 'Vademecun.html',

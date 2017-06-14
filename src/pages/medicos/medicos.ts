@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
-
-import { HorariosPage } from '../horarios/horarios';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { DetalleMedPage } from '../detalle-med/detalle-med';
 import { CpsProviders } from '../../providers/cps';
 
+@IonicPage()
 @Component({
   selector: 'page-medicos',
   templateUrl: 'medicos.html',
@@ -21,7 +20,8 @@ export class MedicosPage {
   public navCtrl: NavController, 
   public navParams: NavParams, 
   private cps: CpsProviders,
-  public LoadCtrl: LoadingController
+  public LoadCtrl: LoadingController,
+  private alertCtrl: AlertController
   ){
     this.Especialidad = navParams.get('Especialidad');
     this.Ficha = navParams.get('Ficha');
@@ -47,24 +47,31 @@ export class MedicosPage {
         this.Medicos = data.json();
         this.length = this.Medicos.length;
         },
-      err => {
-        if (err.status == 404) {
-      //   this.readme = 'Este repo no tiene README. :(';
+      err => { if (err.status == 404) {
         } else {
-          console.error(err);
-          load.dismiss()
-        }
-      },
+            console.log(err.status);
+            load.dismiss();
+            this.AlertError();
+          }
+        },
       () => load.dismiss()
     );
   }
   iraHorarios(Medico) {
-    this.navCtrl.push(HorariosPage, { Medico: Medico, Ficha: this.Ficha });
+    this.navCtrl.push('HorariosPage', { Medico: Medico, Ficha: this.Ficha });
   }
   irDetalleMed(Medico){
      this.navCtrl.push(DetalleMedPage, { Medico: Medico});
   }
   volver(){
     this.navCtrl.pop();
+  }
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos ...',
+      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 }

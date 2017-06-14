@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
-import { MedicosPage } from '../medicos/medicos';
 
+@IonicPage()
 @Component({
   selector: 'page-especialidades',
   templateUrl: 'especialidades.html',
@@ -18,7 +18,8 @@ export class EspecialidadesPage {
   public navCtrl: NavController,
   public navParams: NavParams, 
   private cps: CpsProviders,
-  public LoadCtrl: LoadingController
+  public LoadCtrl: LoadingController,
+  public alertCtrl:AlertController
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Filial = navParams.get('Filial');
@@ -42,20 +43,28 @@ export class EspecialidadesPage {
         console.log("longitud de la especialidad",this.length)
         load.dismiss();
         },
-      err => {
-        if (err.status == 404) {
-      //   this.readme = 'Este repo no tiene README. :(';
+      err => { if (err.status == 404) {
         } else {
-          console.error(err);
-        }
-      },
+            console.log(err.status);
+            load.dismiss();
+            this.AlertError();
+          }
+        },
       () => console.log('getEspecialidades -> completado')
     ); 
   }
   iraMedicos(Especialidad) {
-    this.navCtrl.push(MedicosPage, { Especialidad: Especialidad, Ficha: this.Ficha });
+    this.navCtrl.push('MedicosPage', { Especialidad: Especialidad, Ficha: this.Ficha });
   } 
   volver(){
     this.navCtrl.pop();
+  }
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos ...',
+      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 }

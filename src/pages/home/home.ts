@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, Platform, PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 import { Storage } from '@ionic/storage';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
+
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

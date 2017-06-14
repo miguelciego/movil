@@ -1,41 +1,38 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, App } from 'ionic-angular';
+
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
-import { MitabPage } from '../mitab/mitab';
-import { LoginPage } from '../login/login';
-
+@IonicPage()
 @Component({
   selector: 'page-verificacion',
-  templateUrl: 'verificacion.html'
+  templateUrl: 'verificacion.html',
+  providers: [AfiliadoStorage]
 })
 export class VerificacionPage {
 
   constructor(
     public LoadCtrl:LoadingController,
     public AfiliadoStorage:AfiliadoStorage,
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
+    public appCtrl: App
   ) {}
 
   ionViewDidLoad() {
     this.Session();
   }
   public Session(){
-    let load = this.LoadCtrl.create({
-      content: 'Loading...'
-    });
-    load.present();
-     console.log("Error al iniciar1123")
+
     this.AfiliadoStorage.getAll()
     .then((afiliado: any[]) =>{
       console.log('data', afiliado);
       if(afiliado == null){
         console.log("app.component, datos de storage ->",afiliado)
-        load.dismiss();
-        this.navCtrl.setRoot(LoginPage);
+        //this.navCtrl.setRoot('LoginPage');
+        this.appCtrl.getRootNav().setRoot('LoginPage');
       }else{
-        load.dismiss();
-        this.navCtrl.setRoot(MitabPage);
+        //this.navCtrl.setRoot('MitabPage');
+        this.appCtrl.getRootNav().setRoot('MitabPage');
       }
     })
     .catch(error =>{

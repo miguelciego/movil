@@ -35,13 +35,14 @@
     "typescript": "~2.2.1"
   },
   "cordovaPlugins": [
-    "cordova-sqlite-storage",
     "ionic-plugin-keyboard",
     "cordova-plugin-whitelist",
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "cordova-sqlite-storage",
+    "cordova-plugin-app-version"
   ],
   "cordovaPlatforms": [
     {

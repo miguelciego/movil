@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, App, AlertController } from 'ionic-angular';
 
-import { MitabPage } from '../mitab/mitab';
 import { CpsProviders } from '../../providers/cps';
 
-
+@IonicPage()
 @Component({
   selector: 'page-resumen',
   templateUrl: 'resumen.html',
@@ -30,6 +29,8 @@ export class ResumenPage {
     private cps: CpsProviders,
     public LoadCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public appCtrl: App,
+    public alertCtrl:AlertController
   ){
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
@@ -65,24 +66,33 @@ export class ResumenPage {
       this.datos = data.json();
         switch (this.datos.Codigo) {
           case "G0":
+              console.log("codigo", this.datos.Codigo)
               load.dismiss();
               this.ToastG0(this.datos.Descripcion);
-              this.navCtrl.setRoot(MitabPage)
+              this.navCtrl.popToRoot();
             break;
           case "E1":
+              console.log("codigo", this.datos.Codigo)
               load.dismiss();
               this.ToastE1(this.datos.Descripcion);
-              this.navCtrl.push(MitabPage)
-              this.navCtrl.pop();
+              this.navCtrl.popToRoot();
             break;
           case "E2":
+              console.log("codigo", this.datos.Codigo)
               load.dismiss();
               this.ToastE2(this.Ficha.horaD);
-              this.navCtrl.pop();
+              this.navCtrl.remove(4)
+              this.navCtrl.pop()
             break;
         }
       },
-      err => console.error(err),
+      err => { if (err.status == 404) {
+        } else {
+            console.log(err.status);
+            load.dismiss();
+            this.AlertError();
+          }
+        },
       () => console.log('putGFicha -> completado')
     );
   }
@@ -112,5 +122,13 @@ export class ResumenPage {
       position: 'top'
     });
     toast.present();
+  }
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos ...',
+      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 }

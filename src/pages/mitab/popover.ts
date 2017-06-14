@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, App, ViewController, AlertController } from 'ionic-angular';
 
-import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { Storage } from '@ionic/storage';
-import { LoginPage } from '../login/login';
         
 @Component({
   templateUrl: 'popover.html'
@@ -12,15 +10,13 @@ export class PopoverPage {
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    public AfiliadoStorage: AfiliadoStorage,
+
     public storage:Storage,
     private alertCtrl: AlertController,
-    public appCtrl: App
-  //public MyApp: MyApp
+    public appCtrl:App
   ){
   }
   close() {
-    this.storage.clear();
     this.viewCtrl.dismiss();
     this.presentConfirm();
   }
@@ -39,7 +35,8 @@ export class PopoverPage {
         {
           text: 'Si',
           handler: () => {
-            this.appCtrl.getRootNav().setRoot(LoginPage);
+            this.storage.clear();
+            this.appCtrl.getRootNav().setRoot('VerificacionPage');
             console.log('se ha desvinculado correctamente');
           }
         }
