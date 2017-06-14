@@ -19,8 +19,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-item-sliding *ngFor="let Paciente of GrupoFamiliar">
-      <ion-item class="parent" (click)="iraFiliales(Paciente)">
+    <!--<ion-item-sliding >-->
+      <ion-item class="parent" *ngFor="let Paciente of GrupoFamiliar" (click)="iraFiliales(Paciente)">
           <ion-avatar item-left>
             <img src="assets/images/perfil.png" >
           </ion-avatar>   
@@ -30,12 +30,12 @@
             <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado}}</p>
           </div>
       </ion-item>
-      <ion-item-options side="right">
+      <!--<ion-item-options side="right">
         <button ion-button color="primary" (click)="IrVademecun()">
           <ion-icon name="paper"></ion-icon>
           Recetas
         </button>
       </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-sliding>-->
   </ion-list> 
 </ion-content>

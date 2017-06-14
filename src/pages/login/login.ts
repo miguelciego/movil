@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Network } from '@ionic-native/network';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { CpsProviders } from '../../providers/cps';
@@ -9,7 +10,7 @@ import { CpsProviders } from '../../providers/cps';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [CpsProviders]
+  providers: [CpsProviders, Network]
 })
 export class LoginPage {
 
@@ -27,6 +28,7 @@ export class LoginPage {
     public cps: CpsProviders,
     public LoadCtrl: LoadingController,
     private alertCtrl: AlertController,
+    private network: Network
     ) {    
     this.loginForm = this.myLoginForm;
     this.device = {};
@@ -34,7 +36,7 @@ export class LoginPage {
   ionViewDidLoad(){}
   private get myLoginForm(){
     return this.fb.group({
-      'matricula': ['',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
+      'matricula': ['19735917osr',[Validators.required, Validators.maxLength(11),Validators.minLength(10)]],
       'filial': ['sc',Validators.required]
     })
   }
@@ -96,18 +98,33 @@ export class LoginPage {
     });
     alert.present();
   }
-  AlertError() {
+  /*AlertError() {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos ...',
       subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
       buttons: ['Ok']
     });
     alert.present();
+  }*/
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Problemas de Conexion!',
+      buttons: [
+        {
+          text: 'Listo',
+          handler: () => {
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
+
   AlertFilial(dpts) {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos ...',
-      subTitle: '..Pero la matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en el departamento de '+dpts,
+      subTitle: '..Pero la matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en el departamento de '+ dpts,
       buttons: ['Ok']
     });
     alert.present();

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 
@@ -30,9 +30,10 @@ export class GrupoFamiliarPage {
   public validarB;
 
   constructor(
-    platform: Platform,
+    public platform: Platform,
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public toastCtrl:ToastController,
     public popoverCtrl: PopoverController,
     public modalCtrl: ModalController,
     private cps: CpsProviders,
@@ -141,17 +142,32 @@ export class GrupoFamiliarPage {
 
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Lo sentimos ...',
-      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
-      buttons: ['Ok']
+      title: 'Problemas de Conexion!',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.ToastAlertError();
+            this.ToastAlertError();
+          }
+        }
+      ]
     });
     alert.present();
+  }
+  ToastAlertError() {
+    let toast = this.toastCtrl.create({
+      message: 'Problemas de Conexión',
+      duration: 5000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 
   actualizar(refresher) {
 		this.getGrupoFamiliar();
     setTimeout(() => {
     refresher.complete();
-    }, 2000);
+    }, 1000);
   }
 }

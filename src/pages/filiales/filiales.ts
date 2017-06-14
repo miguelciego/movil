@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController} from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
 import {  errorServe } from '../error/error' 
@@ -24,6 +24,7 @@ export class FilialesPage {
     public navParams: NavParams,
     private cps: CpsProviders,
     public LoadCtrl: LoadingController,
+    public toastCtrl:ToastController,
     private alertCtrl:AlertController,
     public eServe:errorServe
     ) { 
@@ -86,10 +87,25 @@ export class FilialesPage {
 
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Lo sentimos ...',
-      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
-      buttons: ['Ok']
+      title: 'Problemas de Conexion!',
+      buttons: [
+        {
+          text: 'Listo',
+          handler: () => {
+            this.navCtrl.popToRoot()
+            this.ToastAlertError();
+          }
+        }
+      ]
     });
     alert.present();
+  }
+  ToastAlertError() {
+    let toast = this.toastCtrl.create({
+      message: 'Problemas de Conexión',
+      duration: 5000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

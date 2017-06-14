@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { DetalleMedPage } from '../detalle-med/detalle-med';
 import { CpsProviders } from '../../providers/cps';
 
@@ -21,7 +21,8 @@ export class MedicosPage {
   public navParams: NavParams, 
   private cps: CpsProviders,
   public LoadCtrl: LoadingController,
-  private alertCtrl: AlertController
+  private alertCtrl: AlertController,
+  public toastCtrl:ToastController
   ){
     this.Especialidad = navParams.get('Especialidad');
     this.Ficha = navParams.get('Ficha');
@@ -68,10 +69,25 @@ export class MedicosPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Lo sentimos ...',
-      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
-      buttons: ['Ok']
+      title: 'Problemas de Conexion!',
+      buttons: [
+        {
+          text: 'Listo',
+          handler: () => {
+            this.navCtrl.popToRoot()
+            this.ToastAlertError();
+          }
+        }
+      ]
     });
     alert.present();
+  }
+  ToastAlertError() {
+    let toast = this.toastCtrl.create({
+      message: 'Problemas de Conexión',
+      duration: 5000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

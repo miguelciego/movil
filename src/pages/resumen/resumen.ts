@@ -125,10 +125,25 @@ export class ResumenPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Lo sentimos ...',
-      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
-      buttons: ['Ok']
+      title: 'Problemas de Conexion!',
+      buttons: [
+        {
+          text: 'Listo',
+          handler: () => {
+            this.ToastAlertError();
+            this.navCtrl.popToRoot()
+          }
+        }
+      ]
     });
     alert.present();
+  }
+  ToastAlertError() {
+    let toast = this.toastCtrl.create({
+      message: 'Problemas de Conexión',
+      duration: 5000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }
