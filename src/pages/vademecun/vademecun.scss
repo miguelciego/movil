@@ -1,2 +1,47 @@
 page-vademecun {
+    .list-md {
+        margin: 0 !important;
+        background-color: color($colors, light); 
+    }
+    .list-ios {
+        margin: 0 !important;
+        background-color: color($colors, light); 
+    }
+    .list-wp {
+        margin: 0 !important;
+        background-color: color($colors, light); 
+    }
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .img{
+        position:relative;
+        margin-top:30%;
+        vertical-align:middle;
+        text-align:center;
+    }
+    .buscar{
+        margin:0 !important;
+        border-radius:0 !important;
+    }
+    .section-active {
+        background: #007b6d;
+        color: #fff;
+    }
+    .subcontenido{
+        background-color: color($colors, light); 
+        padding: 8px 16px 8px 16px !important;
+    }
+    ion-list > p{
+        margin: 0px !important;
+        padding: 0px !important;
+    }
 }

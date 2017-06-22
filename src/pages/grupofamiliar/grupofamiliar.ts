@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, ToastController, Content, App } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 
@@ -8,6 +8,7 @@ import { PopoverPage } from '../mitab/popover';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { CpsProviders } from '../../providers/cps';
 
+
 @IonicPage()
 @Component({
   selector: 'page-grupofamiliar',
@@ -15,6 +16,7 @@ import { CpsProviders } from '../../providers/cps';
   providers: [CpsProviders]
 })
 export class GrupoFamiliarPage {
+  @ViewChild(Content) content: Content;
 
   aseg: string = "asegurado";
   isAndroid: boolean = true;
@@ -30,6 +32,7 @@ export class GrupoFamiliarPage {
   public validarB;
 
   constructor(
+    public app:App,
     public platform: Platform,
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -42,10 +45,8 @@ export class GrupoFamiliarPage {
     private alertCtrl: AlertController
     ){
       this.isAndroid = platform.is('android');
-      this.getGrupoFamiliar();  
+      this.app._setDisableScroll(true);
    }
-  ionViewDidLoad(){}
-
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
@@ -53,10 +54,9 @@ export class GrupoFamiliarPage {
     });
   }
 
-  getGrupoFamiliar() {
+  ionViewDidLoad() {
     let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      duration:5000
+      content: 'Cargando...'
     });
      load.onDidDismiss(() => {
        console.log("ha terminado")
@@ -142,32 +142,20 @@ export class GrupoFamiliarPage {
 
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
-      buttons: [
-        {
-          text: 'Ok',
-          handler: () => {
-            this.ToastAlertError();
-            this.ToastAlertError();
-          }
-        }
-      ]
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
+      buttons: [{ text: 'Bueno', handler: () => { console.log("Error")  } }]
     });
     alert.present();
   }
-  ToastAlertError() {
-    let toast = this.toastCtrl.create({
-      message: 'Problemas de Conexión',
-      duration: 5000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
-
   actualizar(refresher) {
-		this.getGrupoFamiliar();
+		//this.getGrupoFamiliar();
     setTimeout(() => {
     refresher.complete();
     }, 1000);
+  }
+  irPerfil(Paciente){
+    console.log("paso por perfil")
+    this.navCtrl.push('Perfil', { Paciente: Paciente, dpts: this.Ficha.dpts });
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, App, NavParams, ViewController, LoadingController, AlertController,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, App, NavParams, ViewController, LoadingController, AlertController,ToastController, Platform } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
 
@@ -29,13 +29,12 @@ export class ModalPage {
   public LoadCtrl: LoadingController,
   private alertCtrl: AlertController,
   public toastCtrl: ToastController,
+  private platform:Platform
   ) {
     this.myPaciente = navParams.get('Paciente');
     this.Ficha = navParams.get('Ficha');
-    this.Mostrarficha();
   }
-
-  Mostrarficha(){
+  ionViewDidLoad(){
     console.log("myPaciente",this.myPaciente)
     console.log("Ficha", this.Ficha)
     console.log("valor de la ficha", this.estado)
@@ -71,7 +70,7 @@ export class ModalPage {
             this.valor = this.myFicha[key].Valor
             this.estado = this.myFicha[key].TFicha
     });
-    this.presentConfirm();
+    this.AlertEliminar();
   }  
   dismiss() {
     this.viewCtrl.dismiss();
@@ -82,9 +81,9 @@ export class ModalPage {
   volverRefresh(){
     this.navCtrl.setRoot('MitabPage')
   }
-  presentConfirm() {
+  AlertEliminar() {
     let alert = this.alertCtrl.create({
-      message: 'Al Eliminar la ficha estás cancelando la cita médica, Escribe "SI" en el campo para confirmar.',
+      message: 'Al eliminar la ficha estarías cancelando la cita médica, si estás seguro(a) escribe "SI" en el campo para confirmar.',
       inputs: [
       {
         name: 'txt',
@@ -102,7 +101,7 @@ export class ModalPage {
           }
         },
         {
-          text: 'Si',
+          text: 'Sí, Eliminar',
           handler: data => {
             if(data.txt == "SI" || data.txt == "Si" || data.txt == "si"){
                 this.cps.putBFicha( this.Ficha.dpts, this.valor, this.estado)

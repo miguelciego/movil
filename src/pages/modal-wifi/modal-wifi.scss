@@ -1,0 +1,19 @@
+page-modal-wifi {
+    .container{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        background-color: #007b6d;
+        overflow: hidden;
+        opacity: 0.9;
+    }
+    .img{
+        width: 55%;
+        height: 30%;
+        position:relative;
+        margin-top:45%;
+        vertical-align:middle;
+        text-align:center;
+    }
+}

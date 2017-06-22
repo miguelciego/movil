@@ -1,4 +1,7 @@
 page-grupofamiliar {
+    .container{
+         overflow: hidden;
+    }
     .item{
         position: relative;
         float: right;
@@ -11,7 +14,7 @@ page-grupofamiliar {
         color: #007b6d;
     }
     .segment-ios .segment-button.segment-activated {
-    background-color: #007b6d;
+        background-color: #007b6d;
     }
     .segment-ios .segment-button {
         color: #007b6d;

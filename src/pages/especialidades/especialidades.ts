@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Content } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
 @IonicPage()
@@ -9,6 +9,8 @@ import { CpsProviders } from '../../providers/cps';
   providers: [CpsProviders]
 })
 export class EspecialidadesPage {
+
+  @ViewChild(Content) content: Content;
   public Filial;
   public Especialidades;
   public Ficha;
@@ -28,12 +30,11 @@ export class EspecialidadesPage {
     this.Ficha.FilialCodigo = this.Filial.Codigo;
     this.Ficha.FilialDescripcion = this.Filial.Nombre ;
     this.Ficha.Fecha  = this.Filial.Fecha ;
-    this.listEspecialidad()
   }
-  listEspecialidad(){
+  ionViewDidLoad(){
+
     let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      duration: 5000
+      content: 'Cargando...'
     });
     load.present();
     this.cps.getEspecialidades(this.Ficha.dpts,this.Filial.Codigo,this.Filial.Fecha)
@@ -62,10 +63,11 @@ export class EspecialidadesPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Listo',
+          text: 'Bueno',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();
@@ -77,7 +79,7 @@ export class EspecialidadesPage {
   }
   ToastAlertError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas de Conexión',
+      message: 'Problemas del Servidor',
       duration: 5000,
       position: 'bottom'
     });

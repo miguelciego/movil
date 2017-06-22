@@ -29,12 +29,10 @@ export class MedicosPage {
       
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
-    this.listMedicos();
   }
-  listMedicos(){
+  ionViewDidLoad(){
     let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      duration: 5000
+      content: 'Cargando...'
     });
     load.present();
 
@@ -69,10 +67,11 @@ export class MedicosPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Listo',
+          text: 'Bueno',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();
@@ -84,7 +83,7 @@ export class MedicosPage {
   }
   ToastAlertError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas de Conexión',
+      message: 'Problemas de Servidor',
       duration: 5000,
       position: 'bottom'
     });

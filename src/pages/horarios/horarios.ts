@@ -29,12 +29,10 @@ export class HorariosPage {
 
     this.Ficha.MedicoCodigo = this.Medico.Valor;
     this.Ficha.MedicoNombre = this.Medico.Descripcion;
-    this.listHorarios();
   }
-  listHorarios(){
+  ionViewDidLoad(){
     let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      duration: 5000
+      content: 'Cargando...'
     });
     load.present();
       this.cps.getHorarios(this.Ficha.dpts,this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,this.Ficha.MedicoCodigo,this.Ficha.Fecha)
@@ -61,10 +59,11 @@ export class HorariosPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Listo',
+          text: 'Bueno',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();
@@ -76,7 +75,7 @@ export class HorariosPage {
   }
   ToastAlertError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas de Conexión',
+      message: 'Problemas del Servidor, Vuelve a intentarlo más tarde.',
       duration: 5000,
       position: 'bottom'
     });

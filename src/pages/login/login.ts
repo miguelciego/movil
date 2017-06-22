@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, ToastController, ModalController, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Network } from '@ionic-native/network';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { CpsProviders } from '../../providers/cps';
@@ -10,11 +9,12 @@ import { CpsProviders } from '../../providers/cps';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [CpsProviders, Network]
+  providers: [CpsProviders]
 })
 export class LoginPage {
 
-  afiliado: any[] = [];
+
+  public afiliado: any[] = [];
   public datos;
   public device;
   public loginForm: FormGroup;
@@ -23,15 +23,17 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,    
     public fb: FormBuilder,
+    private toast :ToastController,
     private platform: Platform,
     public AfiliadoStorage : AfiliadoStorage,
     public cps: CpsProviders,
     public LoadCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private network: Network
+    private modalCtrl:ModalController,
+    private viewCtrl:ViewController
     ) {    
-    this.loginForm = this.myLoginForm;
-    this.device = {};
+      this.loginForm = this.myLoginForm;
+      this.device = {};
   }
   ionViewDidLoad(){}
   private get myLoginForm(){
@@ -94,29 +96,16 @@ export class LoginPage {
     let alert = this.alertCtrl.create({
       title: 'Información',
       subTitle: 'La matrícula ' + this.loginForm.value.matricula + ' ya se encuentra vinculada en un teléfono movil.',
-      buttons: ['Ok']
+      buttons: ['Bueno']
     });
     alert.present();
   }
-  /*AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos ...',
-      subTitle: '..Pero en entos momentos no podemos responder a tu solicitud.',
-      buttons: ['Ok']
-    });
-    alert.present();
-  }*/
+
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
-      buttons: [
-        {
-          text: 'Listo',
-          handler: () => {
-            this.platform.exitApp();
-          }
-        }
-      ]
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
+      buttons: [{ text: 'Bueno', handler: () => { this.platform.exitApp() }}]
     });
     alert.present();
   }
@@ -125,7 +114,7 @@ export class LoginPage {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos ...',
       subTitle: '..Pero la matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en el departamento de '+ dpts,
-      buttons: ['Ok']
+      buttons: ['Bueno']
     });
     alert.present();
   }

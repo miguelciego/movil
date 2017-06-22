@@ -45,7 +45,6 @@ export class ResumenPage {
     this.Dia = this.Ficha.Fecha;
     console.log(this.Ficha);
   }
-  ionViewDidLoad() {}
 
   Guardar(){
     let load = this.LoadCtrl.create({
@@ -125,10 +124,11 @@ export class ResumenPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Listo',
+          text: 'Bueno',
           handler: () => {
             this.ToastAlertError();
             this.navCtrl.popToRoot()
@@ -140,7 +140,7 @@ export class ResumenPage {
   }
   ToastAlertError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas de Conexión',
+      message: 'Problemas del Servidor, Vuelve a intentarlo más tarde.',
       duration: 5000,
       position: 'bottom'
     });

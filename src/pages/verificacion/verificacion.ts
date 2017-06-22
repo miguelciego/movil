@@ -28,10 +28,8 @@ export class VerificacionPage {
       console.log('data', afiliado);
       if(afiliado == null){
         console.log("app.component, datos de storage ->",afiliado)
-        //this.navCtrl.setRoot('LoginPage');
         this.appCtrl.getRootNav().setRoot('LoginPage');
       }else{
-        //this.navCtrl.setRoot('MitabPage');
         this.appCtrl.getRootNav().setRoot('MitabPage');
       }
     })

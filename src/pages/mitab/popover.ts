@@ -22,8 +22,9 @@ export class PopoverPage {
   }
   presentConfirm() {
     let alert = this.alertCtrl.create({
-      title: 'Advertencia!',
-      message: '¿ Está usted seguro de desvincularse ?',
+      title: 'Desvincular',
+      message: 'Al desvincularse estaría cerrando la sesion de su grupo familiar ¿ Está usted seguro ?',
+      cssClass:'my-alert',
       buttons: [
         {
           text: 'No',
@@ -36,7 +37,7 @@ export class PopoverPage {
           text: 'Si',
           handler: () => {
             this.storage.clear();
-            this.appCtrl.getRootNav().setRoot('VerificacionPage');
+            this.appCtrl.getRootNav().push('VerificacionPage');
             console.log('se ha desvinculado correctamente');
           }
         }

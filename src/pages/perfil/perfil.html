@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button >
+        <img width="35" height="35" src="assets/images/logo.png" />
+      </button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="contenedor">
+    <img class="img"src="assets/images/perfil.png"/>
+    <h6>{{ myPaciente.Nombre }}</h6>
+    <p>{{ myPaciente.TAsegurado }}</p>
+  </div>
+  <ion-item-group>
+    <ion-item-divider color="light"></ion-item-divider>
+    <ion-item>
+      <ion-icon name="list-box" item-start></ion-icon>
+      Historial
+    </ion-item>
+    <ion-item (click)="irVademecun()">
+      <ion-icon name="medkit" item-start ></ion-icon>
+      Medicamentos
+    </ion-item>
+  </ion-item-group>
+</ion-content>

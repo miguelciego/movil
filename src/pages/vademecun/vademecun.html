@@ -2,20 +2,56 @@
   <ion-navbar>
     <ion-buttons left>
       <button ion-button >
-        <img width="40" height="40" src="assets/images/logo.png" />
+        <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
-    <ion-title>Vademecúm</ion-title>
+    <ion-title>Medicamentos</ion-title>
   </ion-navbar>
 </ion-header> 
-<ion-content padding>
-<ion-list>
-  <ion-item *ngFor="let receta of Recetaslist">
-    <ion-avatar item-left>
-      <img src="assets/images/medicina.png">
-    </ion-avatar>
-    <h2>{{ receta.nombre}}</h2>
-    <p>{{ receta.Descripcion}}</p>
-  </ion-item>
-</ion-list>
-</ion-content>
+<ion-content>
+  <form [formGroup]="dateForm" (ngSubmit)="Guardar()" novalidate>
+    <ion-item-group>
+     <ion-item-divider color="light">SELECCIONAR FECHA</ion-item-divider>
+    </ion-item-group>
+     <ion-list>
+        <ion-item>
+          <ion-label>Del</ion-label>
+          <ion-datetime formControlName="ini" displayFormat="D MMMM YYYY" [(ngModel)]="myDate" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre ">
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Hasta el</ion-label>
+          <ion-datetime formControlName="fin" displayFormat="D MMMM YYYY" [(ngModel)]="myDate1" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre ">
+          </ion-datetime>
+        </ion-item>
+     </ion-list>
+     <button ion-button icon-left class="buscar" ion-button type="submit" block [disabled]="!dateForm.valid" clear>
+       <ion-icon name="search"></ion-icon>
+       BUSCAR
+     </button>
+  </form>
+  <!--/FORMULARIO -->
+  <ion-item-group>
+     <ion-item-divider color="light">RESULTADO</ion-item-divider>
+  </ion-item-group>
+	  <ion-list *ngFor="let item of Recetaslist; let i = index" no-lines>
+      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+        <ion-icon  item-left name="ios-arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon item-left name="ios-arrow-down" *ngIf="item.open"></ion-icon>
+         <h6> {{ item.Medicameto }} </h6>
+      </button>
+      
+      <ion-list *ngIf="item.open && Recetaslist != 0" no-lines class="subcontenido">
+       <div>
+          <p><span> <b>Recetado el :</b> </span>{{ item.Fecha}} </p>
+          <p><span> <b>Indicaciones :</b> </span> {{ item.Indicaciones }} </p>
+          <p><span> <b>Tratamiento :</b> </span> {{ item.DiasTratamiento }}  Dias</p>
+          <p><span> <b>Cantidad :</b> </span>{{ item.Cantidad}} </p>
+       </div>
+      </ion-list>
+	  </ion-list>
+    <div *ngIf="Recetaslist == 0" class="contenedor" (click)="volver()">
+      <img class="img" width="70" height="70" src="assets/images/calendar.png"/>
+      <p>Debes elejir un rango de fecha.</p>
+    </div>
+	</ion-content>
