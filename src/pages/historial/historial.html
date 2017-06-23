@@ -1,0 +1,26 @@
+<ion-header >
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button >
+        <img width="35" height="35" src="assets/images/logo.png" />
+      </button>
+    </ion-buttons>
+    <ion-title>Historial</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="item" *ngFor="let item of historial" > 
+      <div class="card" >
+        <ion-icon class="ficha" name="list-box" item-left></ion-icon>
+        <span class="titulo"> {{ item.especialidad }} </span>
+        <ion-icon class="icons" *ngIf="item.atendido == 1" name="checkmark-circle" color="check"></ion-icon>
+        <ion-icon class="icons" *ngIf="item.atendido == 0" name="close-circle" color="danger"></ion-icon>
+      </div>
+      <div class="subitem" text-lowercase>
+       <p> <span><b>Hospital: </b></span> {{ item.filial }} </p>
+       <p> <span><b>Médico: </b></span> {{ item.medico }} </p>
+       <p> <span><b>Hora de atención: </b></span> {{ item.hora }} </p>
+       <ion-label > {{ item.creadoEl | date:'short' }} </ion-label>
+      </div>
+  </div>
+</ion-content>

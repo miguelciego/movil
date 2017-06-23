@@ -16,13 +16,13 @@
   </div>
   <ion-item-group>
     <ion-item-divider color="light"></ion-item-divider>
-    <ion-item>
-      <ion-icon name="list-box" item-start></ion-icon>
-      Historial
-    </ion-item>
-    <ion-item (click)="irVademecun()">
-      <ion-icon name="medkit" item-start ></ion-icon>
+    <button  ion-item (click)="irHistorial()">
+      <ion-icon name="list-box" item-left></ion-icon>
+      Historial de Ficha
+    </button>
+    <button ion-item (click)="irVademecun()">
+      <ion-icon name="medkit" item-left ></ion-icon>
       Medicamentos
-    </ion-item>
+    </button>
   </ion-item-group>
 </ion-content>

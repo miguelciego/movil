@@ -40,7 +40,7 @@ export class VademecunPage {
       'fin': ['', Validators.required]
     })
   }
-  Guardar(){
+  Buscar(){
     this.cps.getMedicamentos(this.dpts, this.codigo, this.dateForm.value.ini, this.dateForm.value.fin)
     .subscribe(data => { 
         this.Recetaslist = data.json();

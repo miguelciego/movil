@@ -23,4 +23,7 @@ export class Perfil {
   irVademecun(){
     this.navCtrl.push('VademecunPage',{ Codigo: this.myPaciente.Codigo, dpts: this.dpts })
   }
+  irHistorial(){
+     this.navCtrl.push('Historial',{ Codigo: this.myPaciente.Codigo, dpts: this.dpts })
+  }
 }

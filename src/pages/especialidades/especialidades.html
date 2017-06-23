@@ -17,12 +17,12 @@
 </ion-header>
   <ion-content >
   <ion-list *ngIf="length > 0">
-    <ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
+    <button ion-item *ngFor="let Especialidad of Especialidades" (click)="iraMedicos(Especialidad)">
       <img item-left width="40" height="40" src="assets/images/especialidad.png"/>
       <h3> {{ Especialidad.Descripcion }} </h3> 
       <!--<p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span>  </p>
       <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge> -->
-    </ion-item>
+    </button>
   </ion-list>
   <div *ngIf="length == 0" class="contenedor" (click)="volver()">
     <img class="img" width="100" height="100" src="assets/images/especialidad.png"/>

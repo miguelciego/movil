@@ -16,15 +16,15 @@
 </ion-header>
 <ion-content style="clear: left;">  
   <ion-list  *ngIf="validarN == 1" >
-    <ion-item *ngFor="let Filial of FilialesEncontradas" >
+    <button ion-item *ngFor="let Filial of FilialesEncontradas" (click)="iraEspecialidades(Filial)">
       <ion-avatar item-left>
         <img src="assets/images/{{ Filial.Codigo }}-{{ Ficha.dpts }}.png"/>    
       </ion-avatar>
-      <div class="hospital" (click)="iraEspecialidades(Filial)">
+      <div class="hospital" >
           <h3> {{ Filial.Nombre }} </h3>
          <!-- <p class="text"> {{ Filial.Fecha}}</p>-->
       </div>     
-    </ion-item>
+    </button>
   </ion-list>
   <div *ngIf="validarN == 2" class="contenedor" (click)="volver()">
     <img class="img" width="100" height="100" src="assets/images/calendar.png"/>

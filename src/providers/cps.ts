@@ -102,6 +102,16 @@ export class CpsProviders {
         return this.http.post( this.cpsAPI + 'consulta/medicamentos1',
         creds, { headers: headers });
     }
+    getHistorial(valor){
+        var creds = "valor=" + valor ;
+        console.log("creds", creds)
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        
+        //return this.http.post('http://smovil'+ dpts +'.cps.org.bo/consulta/medicamentos1' ,
+        return this.http.post( this.cpsAPI + 'consulta/historial',
+        creds, { headers: headers });
+    }
 
 // Funciones para las pruebas que se deben eliminar al final del proyecto....
 //---------------------------------------------------------------------------
