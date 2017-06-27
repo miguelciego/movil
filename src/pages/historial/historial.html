@@ -1,7 +1,7 @@
-<ion-header >
+<ion-header>
   <ion-navbar>
     <ion-buttons left>
-      <button ion-button >
+      <button ion-button>
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
@@ -9,18 +9,35 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div class="item" *ngFor="let item of historial" > 
-      <div class="card" >
-        <ion-icon class="ficha" name="list-box" item-left></ion-icon>
-        <span class="titulo"> {{ item.especialidad }} </span>
-        <ion-icon class="icons" *ngIf="item.atendido == 1" name="checkmark-circle" color="check"></ion-icon>
-        <ion-icon class="icons" *ngIf="item.atendido == 0" name="close-circle" color="danger"></ion-icon>
-      </div>
-      <div class="subitem" text-lowercase>
-       <p> <span><b>Hospital: </b></span> {{ item.filial }} </p>
-       <p> <span><b>Médico: </b></span> {{ item.medico }} </p>
-       <p> <span><b>Hora de atención: </b></span> {{ item.hora }} </p>
-       <ion-label > {{ item.creadoEl | date:'short' }} </ion-label>
-      </div>
-  </div>
+  <ion-list *ngFor="let item of historial; let i = index">
+    <ion-item (click)="toggleSection(i)" no-lines [ngClass]="{'section-active': item.open, 'section': !item.open}">
+      <ion-icon item-right name="ios-arrow-forward" *ngIf="!item.open"></ion-icon>
+      <ion-icon item-right name="ios-arrow-down" *ngIf="item.open"></ion-icon>
+      <ion-icon item-left name="document-outline"></ion-icon>
+      <h3 class="texto">{{ item.especialidad }} </h3>
+      <h3 class="nota"> {{ item.creadoEl | date:'shortDate' }} </h3>
+    </ion-item>
+    <ion-list *ngIf="item.open && historial != 0" no-lines class="subcontenido">
+      <ion-item no-lines>
+        <i class="fa fa-hospital-o" item-left aria-hidden="true"></i>
+        <p> {{ item.filial }} </p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-medkit" item-left aria-hidden="true"></i>
+        <p> {{ item.especialidad }} </p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-user-md" item-left aria-hidden="true"></i>
+        <p> {{ item.medico }} </p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
+        <p> {{ item.hora }} </p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-calendar" item-left aria-hidden="true"></i>
+        <p> {{ item.creadoEl | date:'shortDate' }} </p>
+      </ion-item>
+    </ion-list>
+  </ion-list>
 </ion-content>

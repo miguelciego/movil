@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Platform, PopoverController } from 'ionic-angular';
+import { IonicPage, PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
-import { Storage } from '@ionic/storage';
-
-import { AfiliadoStorage } from '../../providers/afiliado-storage';
-
 
 @IonicPage()
 @Component({
@@ -13,36 +9,19 @@ import { AfiliadoStorage } from '../../providers/afiliado-storage';
 })
 export class HomePage {
 
-  Afiliado:any [] = [];
-  public txtmatricula : any;
-  public txtfilial : any;
+  Afiliado: any[] = [];
+  public txtmatricula: any;
+  public txtfilial: any;
+  isAndroid: boolean = true;
 
   constructor(
-    public navCtrl: NavController, 
     public popoverCtrl: PopoverController,
-    public AfiliadoStorage : AfiliadoStorage,
-    protected platform : Platform,
-    public  storage:Storage
   ) {}
-  ionViewDidLoad() {
-    this.getAfiliado();
-  }
+  ionViewDidLoad() {}
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
     });
-  }
-  private getAfiliado(){
-    this.AfiliadoStorage.getAll()
-    .then((data: any[]) =>{
-      this.Afiliado = data;
-      Object.keys(this.Afiliado).forEach( key => {
-          console.log(this.Afiliado[key].filial);
-      });
-    })
-    .catch(error =>{
-      console.log(error)
-    })
   }
 }

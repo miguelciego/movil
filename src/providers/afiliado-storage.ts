@@ -16,7 +16,8 @@ export class AfiliadoStorage {
         resolve(JSON.parse(data))
       })
       .catch(error =>{
-        reject(error)
+       console.log("Storage getAll error")
+       console.log(reject(error))
       })
     })
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, App } from 'ionic-angular';
+import { IonicPage, App } from 'ionic-angular';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
@@ -12,29 +12,28 @@ import { AfiliadoStorage } from '../../providers/afiliado-storage';
 export class VerificacionPage {
 
   constructor(
-    public LoadCtrl:LoadingController,
-    public AfiliadoStorage:AfiliadoStorage,
-    public navCtrl: NavController,
+    public AfiliadoStorage: AfiliadoStorage,
     public appCtrl: App
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     this.Session();
   }
-  public Session(){
-
+  Session() {
     this.AfiliadoStorage.getAll()
-    .then((afiliado: any[]) =>{
-      console.log('data', afiliado);
-      if(afiliado == null){
-        console.log("app.component, datos de storage ->",afiliado)
-        this.appCtrl.getRootNav().setRoot('LoginPage');
-      }else{
+      .then((afiliado: any[]) => {
+        console.log('data', afiliado);
+        if (afiliado == null) {
+          console.log("verificacionPage storage =>", afiliado)
+          this.appCtrl.getRootNav().setRoot('LoginPage');
+        } else {
+          this.appCtrl.getRootNav().setRoot('MitabPage');
+        }
+      })
+      .catch(error => {
         this.appCtrl.getRootNav().setRoot('MitabPage');
-      }
-    })
-    .catch(error =>{
-      console.log("Error al iniciar")
-    })
+        console.log(error)
+      })
+
   }
 }

@@ -148,14 +148,13 @@ export class GrupoFamiliarPage {
     });
     alert.present();
   }
-  actualizar(refresher) {
+  /*actualizar(refresher) {
 		//this.getGrupoFamiliar();
     setTimeout(() => {
     refresher.complete();
     }, 1000);
-  }
+  }*/
   irPerfil(Paciente){
-    console.log("paso por perfil")
     this.navCtrl.push('Perfil', { Paciente: Paciente, dpts: this.Ficha.dpts });
   }
 }

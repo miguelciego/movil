@@ -1,25 +1,24 @@
-
 <ion-content padding class="contenedor">
-    <img src="assets/images/logoLetra.png" />
-    <ion-card center class="carta">
-        <ion-card-content>            
-            <form [formGroup]="loginForm" (ngSubmit)="Guardar()" novalidate>
-              <div padding>
-                <ion-item>
-                    <ion-label color="gris" fixed>Matrícula</ion-label>
-                    <ion-input formControlName="matricula" type="text" autofocus></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label  color="gris" class="dpts">Departamental</ion-label>
-                    <ion-select formControlName="filial" >
-                        <ion-option value="sc">Santa Cruz</ion-option>
-                        <ion-option value="co">Cochabamba</ion-option>
-                        <ion-option value="lp">La paz</ion-option>
-                    </ion-select>
-                </ion-item>
-                <button  color="verde"ion-button type="submit" block [disabled]="!loginForm.valid">Entrar</button>
-              </div>
-            </form>
-        </ion-card-content>
-    </ion-card>
+	<img src="assets/images/logoLetra.png" />
+	<ion-card center class="carta">
+		<ion-card-content>
+			<form [formGroup]="loginForm" (ngSubmit)="Guardar()" novalidate>
+				<div padding>
+					<ion-item>
+						<ion-label color="gris" fixed>Matrícula</ion-label>
+						<ion-input formControlName="matricula" type="text" autofocus></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label color="gris" class="dpts">Departamental</ion-label>
+						<ion-select formControlName="filial">
+							<div *ngFor="let item of departamental">
+								<ion-option value="{{ item.abrev }}">{{ item.Nombre }}</ion-option>
+							</div>
+						</ion-select>
+					</ion-item>
+					<button color="verde" ion-button type="submit" block [disabled]="!loginForm.valid">Entrar</button>
+				</div>
+			</form>
+		</ion-card-content>
+	</ion-card>
 </ion-content>

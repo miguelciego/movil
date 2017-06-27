@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController, App, AlertController } from 'ionic-angular';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { CpsProviders } from '../../providers/cps';
 
@@ -7,7 +8,7 @@ import { CpsProviders } from '../../providers/cps';
 @Component({
   selector: 'page-resumen',
   templateUrl: 'resumen.html',
-  providers: [CpsProviders]
+  providers: [CpsProviders, LocalNotifications]
 })
 export class ResumenPage {
 
@@ -30,7 +31,8 @@ export class ResumenPage {
     public LoadCtrl: LoadingController,
     public toastCtrl: ToastController,
     public appCtrl: App,
-    public alertCtrl:AlertController
+    public alertCtrl:AlertController,
+    private localNotifications: LocalNotifications,
   ){
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
@@ -69,6 +71,7 @@ export class ResumenPage {
               load.dismiss();
               this.ToastG0(this.datos.Descripcion);
               this.navCtrl.popToRoot();
+              this.notificacionFicha(this.NombrePaciente, this.Matricula)
             break;
           case "E1":
               console.log("codigo", this.datos.Codigo)
@@ -145,5 +148,13 @@ export class ResumenPage {
       position: 'bottom'
     });
     toast.present();
+  }
+  notificacionFicha(afiliado, matricula){
+      this.localNotifications.schedule({
+      id: 1,
+      icon: 'res://icon',
+      title:'CAJA PETROLERA DE SALUD',
+      text: 'NUEVA FICHA PARA ' + afiliado + matricula,
+     });
   }
 }
