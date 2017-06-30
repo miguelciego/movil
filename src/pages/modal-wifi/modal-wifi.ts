@@ -18,16 +18,7 @@ export class ModalWifi {
     public platform: Platform, 
     private network:Network,
     public app:App
-    ) {
-     platform.registerBackButtonAction(() => {
-        let nav = this.app.getActiveNav();
-        if (nav.canGoBack()){ 
-          nav.pop();
-        }else{
-          this.AlertBackButton();
-        }
-      });
-  }
+    ) {}
 
   ionViewDidLoad(){
     this.network.onConnect().subscribe(data => {

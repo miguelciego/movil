@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, ModalController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
 @IonicPage()
@@ -10,7 +10,7 @@ import { CpsProviders } from '../../providers/cps';
 })
 export class Historial {
 
-  public codigo;
+  public myPaciente;
   public historial;
   public icon="add-circle";
 
@@ -20,10 +20,11 @@ export class Historial {
     private cps: CpsProviders,
     private toastCtrl:ToastController,
     public LoadCtrl: LoadingController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController
   ) {
-    this.codigo = navParams.get('Codigo');
-    console.log("codigo es ", this.codigo)
+    this.myPaciente = navParams.get('myPaciente');
+    console.log("codigo es ", this.myPaciente)
   }
 
   ionViewDidLoad() {
@@ -31,7 +32,7 @@ export class Historial {
       content: 'Cargando...'
     });
     load.present();
-    this.cps.getHistorial(this.codigo)
+    this.cps.getHistorial(this.myPaciente.Codigo)
     .subscribe(data => { 
         this.historial = data.json();
         console.log("Historial",this.historial);
@@ -75,7 +76,12 @@ export class Historial {
     });
     alert.present();
   }
-  historialFicha(){
-    
+  historialFicha(item){
+    console.log("paso por aqui")
+     this.presentModal(item);
+  }
+  presentModal(item) {
+    let modal = this.modalCtrl.create('ModalHistorial',{ ficha : item, myPaciente: this.myPaciente });
+    modal.present();
   }
 }

@@ -24,6 +24,6 @@ export class Perfil {
     this.navCtrl.push('VademecunPage',{ Codigo: this.myPaciente.Codigo, dpts: this.dpts })
   }
   irHistorial(){
-     this.navCtrl.push('Historial',{ Codigo: this.myPaciente.Codigo, dpts: this.dpts })
+     this.navCtrl.push('Historial',{ myPaciente: this.myPaciente, dpts: this.dpts,  })
   }
 }

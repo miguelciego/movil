@@ -12,7 +12,7 @@
 						<ion-label color="gris" class="dpts">Departamental</ion-label>
 						<ion-select formControlName="filial">
 							<div *ngFor="let item of departamental">
-								<ion-option value="{{ item.abrev }}">{{ item.Nombre }}</ion-option>
+								<ion-option color="primary" value="{{ item.abrev }}">{{ item.nombre }}</ion-option>
 							</div>
 						</ion-select>
 					</ion-item>

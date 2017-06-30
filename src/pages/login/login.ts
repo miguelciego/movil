@@ -36,8 +36,26 @@ export class LoginPage {
     this.device = {};
   }
   ionViewDidLoad() {
-    this.departamental = this.cps.getDepartamental();
-    console.log("result",this.departamental)
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...'
+    });
+    load.present();
+    this.cps.getDepartamental()
+    .subscribe(data => { 
+        this.departamental = data.json();
+        console.log("departamental",this.departamental);
+         //load.dismiss();
+        },
+      err => { if (err.status == 404) {
+        } else {
+            console.log(err.status);
+            load.dismiss()
+            this.AlertError();
+          }
+          
+        },
+      () =>  load.dismiss()
+    ); 
   }
   private get myLoginForm() {
     return this.fb.group({
@@ -60,7 +78,7 @@ export class LoginPage {
       .subscribe(data => {
         this.datos = data.json();
         console.log("login.ts, estado =>", this.datos.estado)
-        if (this.datos != null && this.datos.estado == 2 || this.datos.estado == 1) {
+        if (this.datos != null && this.datos.estado == 1) {
           console.log("el estado es ", this.datos.estado);
           let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula, "filial": this.loginForm.value.filial }
           this.afiliado.push(a);

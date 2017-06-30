@@ -1,53 +1,21 @@
 page-historial {
-    .subcontenido{
-        background-color: color($colors, light); 
-    }
-    .section-active {
-        background: #007b6d;
-        color: #fff;
-    }
-    .section-active > .nota {
-        background: #007b6d;
-        color: #fff;
-    }
-    ion-list{
-        margin:0 !important;
-    }
-    ion-list > p{
-        margin: 0px !important;
-        padding: 0px !important;
-        font-size: 14px;
-    }
-    .texto{
-        font-size: 13px;
-    }
-    ion-item > p{
-        color: #000;
-    }
-    .item-ios p, .item-md p {
-        color: #000;
-    }
-    ion-note{
-        font-size: 11px;
-    }
-    .item-ios h3{
-        margin: 0;
-        padding: 0;
-        font-size: 14px;
-        font-weight: 400;
-    }
     .nota{
-        font-size: 11px !important;
+        font-size: 12px !important;
         color: rgb(142, 144, 147) !important;
     }
-    /*.list-ios, .list-md, .list-wp {
-        margin: 0px 0 0px 0;
+    .list-ios, .list-md, .list-wp {
+        margin: 0px;
     }
-    .detail{
-        padding-top:10px;
+    ion-note {
+        font-size: 12px;
+        align-self: flex-start;
+        margin-top: 14px;
     }
-    .detail > p {
-        margin:0;
-        padding:0;
-    }*/
+    .check{
+        color:red;
+        font-size: 13px;
+    }
+    .verde{
+        color:#757575 !important;
+    }
 }

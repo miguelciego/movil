@@ -9,35 +9,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list *ngFor="let item of historial; let i = index">
-    <ion-item (click)="toggleSection(i)" no-lines [ngClass]="{'section-active': item.open, 'section': !item.open}">
-      <ion-icon item-right name="ios-arrow-forward" *ngIf="!item.open"></ion-icon>
-      <ion-icon item-right name="ios-arrow-down" *ngIf="item.open"></ion-icon>
-      <ion-icon item-left name="document-outline"></ion-icon>
-      <h3 class="texto">{{ item.especialidad }} </h3>
+  <ion-list>
+    <ion-item *ngFor="let item of historial" (click)="historialFicha(item)">
+      <span item-right *ngIf="item.atendido == 0" color="danger" class="check">No asistió</span>
+      <ion-icon class="verde" name="document" item-left></ion-icon>
+      <h3 class="asd"> {{ item.especialidad }} </h3>
       <h3 class="nota"> {{ item.creadoEl | date:'shortDate' }} </h3>
     </ion-item>
-    <ion-list *ngIf="item.open && historial != 0" no-lines class="subcontenido">
-      <ion-item no-lines>
-        <i class="fa fa-hospital-o" item-left aria-hidden="true"></i>
-        <p> {{ item.filial }} </p>
-      </ion-item>
-      <ion-item no-lines>
-        <i class="fa fa-medkit" item-left aria-hidden="true"></i>
-        <p> {{ item.especialidad }} </p>
-      </ion-item>
-      <ion-item no-lines>
-        <i class="fa fa-user-md" item-left aria-hidden="true"></i>
-        <p> {{ item.medico }} </p>
-      </ion-item>
-      <ion-item no-lines>
-        <i class="fa fa-clock-o" item-left aria-hidden="true"></i>
-        <p> {{ item.hora }} </p>
-      </ion-item>
-      <ion-item no-lines>
-        <i class="fa fa-calendar" item-left aria-hidden="true"></i>
-        <p> {{ item.creadoEl | date:'shortDate' }} </p>
-      </ion-item>
-    </ion-list>
   </ion-list>
 </ion-content>

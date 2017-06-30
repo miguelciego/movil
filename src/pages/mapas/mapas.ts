@@ -16,9 +16,9 @@ import { AfiliadoStorage } from '../../providers/afiliado-storage';
 export class MapasPage {
 
   public Maps;
-  public dpts;
-  private check:boolean;
-  private departamental: any = [];
+  public dptStorage;
+  private check: boolean;
+  private inicalesDpts: any = [];
 
   constructor(
     public AfiliadoStorage: AfiliadoStorage,
@@ -26,21 +26,10 @@ export class MapasPage {
     public popoverCtrl: PopoverController,
     private sanitizer: DomSanitizer,
     public LoadCtrl: LoadingController,
-    private atrCtrl: AlertController
+    public alertCtrl: AlertController
   ) {
-    this.AllMaps();
   }
   ionViewDidLoad() {
-    this.departamental = this.cps.getDepartamental()
-    console.log("departamental", this.departamental)
-  }
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
-  AllMaps() {
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
     });
@@ -48,45 +37,62 @@ export class MapasPage {
     this.AfiliadoStorage.getAll()
       .then((data: any[]) => {
         Object.keys(data).forEach(key => {
-          this.dpts = data[key].filial;
+          this.dptStorage = data[key].filial;
+          console.log("storage DTPS", this.dptStorage)
         });
-        switch (this.dpts) {
-          case "sc":
-            this.Maps = this.cps.getFilialessc();
-            load.dismiss();
-            break;
-          case "co":
-            this.Maps = this.cps.getFilialesco();
-            load.dismiss();
-            break;
-          case "lp":
-            this.Maps = this.cps.getFilialeslp();
-            load.dismiss();
-            break;
-        }
+        this.maps(this.dptStorage)
+        this.depar();
+        load.dismiss();
       })
       .catch(error => {
         console.log(error)
       })
   }
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+  maps(abrev) {
+    this.cps.getMaps(abrev)
+      .subscribe(data => {
+        this.Maps = data.json();
+        console.log("maps", this.Maps);
+      },
+      err => {
+        if (err.status == 404) {
+        } else {
+          console.log(err.status);
+        }
+      },
+      () => console.log('getmaps -> completado')
+      );
+  }
+  depar() {
+    this.cps.getDepartamental()
+      .subscribe(data => {
+        this.inicalesDpts = data.json();
+        console.log("departamentales", this.inicalesDpts)
+      });
+
+  }
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
   showRadioAlert() {
-    let alert = this.atrCtrl.create();
+    let alert = this.alertCtrl.create();
     alert.setTitle('Departamental');
-    
-    Object.keys(this.departamental).forEach(key => {
-      if(this.dpts == this.departamental[key].abrev){
+    Object.keys(this.inicalesDpts).forEach(key => {
+      if (this.inicalesDpts[key].abrev == this.dptStorage) {
         this.check = true;
-      }else{
+      } else {
         this.check = false;
       }
-
       alert.addInput({
         type: 'radio',
-        label: this.departamental[key].Nombre,
-        value: this.departamental[key].abrev,
+        label: this.inicalesDpts[key].nombre,
+        value: this.inicalesDpts[key].abrev,
         checked: this.check
       });
     });
@@ -95,31 +101,28 @@ export class MapasPage {
       text: 'Ok',
       handler: data => {
         let load = this.LoadCtrl.create({
-          spinner: 'hide',
           content: 'Cargando...',
         });
+        load.present()
         console.log("result", data)
-        switch (data) {
-          case "sc":
-            this.dpts = data;
-            this.Maps = this.cps.getFilialessc();
-            console.log("result", this.Maps)
-            load.dismiss();
-            break;
-          case "co":
-            this.dpts = data;
-            this.Maps = this.cps.getFilialesco();
-            console.log("result", this.Maps)
-            load.dismiss();
-            break;
-          case "lp":
-            this.dpts = data;
-            this.Maps = this.cps.getFilialeslp();
-            console.log("result", this.Maps)
-            load.dismiss();
-            break;
-        }
+        this.dptStorage = data;
+        this.maps(data);
+        load.dismiss();
       }
+    });
+    alert.present();
+  }
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
+      buttons: [
+        {
+          text: 'Bueno',
+          handler: () => {
+          }
+        }
+      ]
     });
     alert.present();
   }

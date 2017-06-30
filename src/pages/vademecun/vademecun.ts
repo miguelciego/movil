@@ -101,7 +101,7 @@ export class VademecunPage {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Bueno', handler: () => { console.log("Error") } }]
+      buttons: [{ text: 'Bueno', handler: () => { this.navCtrl.pop(); } }]
     });
     alert.present();
   }

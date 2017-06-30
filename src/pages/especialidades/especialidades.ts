@@ -17,48 +17,55 @@ export class EspecialidadesPage {
   public length;
 
   constructor(
-  public navCtrl: NavController,
-  public navParams: NavParams, 
-  private cps: CpsProviders,
-  public LoadCtrl: LoadingController,
-  public alertCtrl:AlertController,
-  public toastCtrl:ToastController
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private cps: CpsProviders,
+    public LoadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Filial = navParams.get('Filial');
-    
+
     this.Ficha.FilialCodigo = this.Filial.Codigo;
-    this.Ficha.FilialDescripcion = this.Filial.Nombre ;
-    this.Ficha.Fecha  = this.Filial.Fecha ;
+    this.Ficha.FilialDescripcion = this.Filial.Nombre;
+    this.Ficha.Fecha = this.Filial.Fecha;
   }
-  ionViewDidLoad(){
+  ionViewDidLoad() {
 
     let load = this.LoadCtrl.create({
       content: 'Cargando...'
     });
-    load.present();
-    this.cps.getEspecialidades(this.Ficha.dpts,this.Filial.Codigo,this.Filial.Fecha)
-    .subscribe(data => { 
-        this.Especialidades = data.json();
-        console.log("Especialidades",this.Especialidades);
-        this.length = this.Especialidades.length;
-        console.log("longitud de la especialidad",this.length)
-        load.dismiss();
-        },
-      err => { if (err.status == 404) {
-        } else {
-            console.log(err.status);
+    load.present()
+      .then(() => {
+        this.cps.getEspecialidades(this.Ficha.dpts, this.Filial.Codigo, this.Filial.Fecha)
+          .subscribe(data => {
+            this.Especialidades = data.json();
+            console.log("Especialidades", this.Especialidades);
+            this.length = this.Especialidades.length;
+            console.log("longitud de la especialidad", this.length)
             load.dismiss();
-            this.AlertError();
-          }
-        },
-      () => console.log('getEspecialidades -> completado')
-    ); 
+          },
+          err => {
+            if (err.status == 404) {
+            } else {
+              console.log(err.status);
+              this.AlertError();
+              load.dismiss();
+            }
+          },
+          () => console.log('getEspecialidades -> completado')
+          );
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
   }
   iraMedicos(Especialidad) {
     this.navCtrl.push('MedicosPage', { Especialidad: Especialidad, Ficha: this.Ficha });
-  } 
-  volver(){
+  }
+  volver() {
     this.navCtrl.pop();
   }
   AlertError() {

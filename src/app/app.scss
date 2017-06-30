@@ -73,5 +73,12 @@ ion-spinner * {
   stroke: #444;
   fill: #222;
 }
+ion-toast.success .toast-wrapper {
+	background: #57b447;
+}
+
+ion-toast.error .toast-wrapper {
+	background: rgb(209, 71, 71);
+}
 
 @import "styles/font-awesome";

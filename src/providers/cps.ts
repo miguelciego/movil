@@ -88,8 +88,8 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        //return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
-        return this.http.post( this.cpsAPI + 'consulta/mficha',
+        return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
+            //return this.http.post( this.cpsAPI + 'consulta/mficha',
             creds, { headers: headers });
     }
     getMedicamentos(dpts, valor, ini, fin) {
@@ -98,8 +98,8 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        //return this.http.post('http://smovil'+ dpts +'.cps.org.bo/consulta/medicamentos2' ,
-        return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
+        return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/medicamentos2',
+            //return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
             creds, { headers: headers });
     }
     getHistorial(valor) {
@@ -107,308 +107,29 @@ export class CpsProviders {
         console.log("creds", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //return this.http.post('http://smovilsc.cps.org.bo/consulta/historial' ,
-        return this.http.post(this.cpsAPI + 'consulta/historial',
-        //return this.http.post('http://192.168.74.143:3000/consulta/historial',
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
+        //return this.http.post(this.cpsAPI + 'consulta/historial',
+        creds, { headers: headers });
+    }
+    getDepartamental() {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //return this.http.post(this.cpsAPI + 'consulta/departamental',
+        return this.http.post('http://192.168.74.143:3000/consulta/departamental',
+        { headers: headers });
+    }
+    getMaps(abrev) {
+        var creds = "abrev=" + abrev;
+        console.log("creds", creds)
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //return this.http.post(this.cpsAPI + 'consulta/maps',
+        return this.http.post('http://192.168.74.143:3000/consulta/maps',
             creds, { headers: headers });
     }
 
     // Funciones para las pruebas que se deben eliminar al final del proyecto....
     //---------------------------------------------------------------------------
-    getDepartamental() {
-        var dpts = [
-            {
-                "Id": 1,
-                "abrev": "sc",
-                "Nombre": "Santa Cruz"
-            },
-            {
-                "Id": 2,
-                "abrev": "co",
-                "Nombre": "Cochabamba"
-            },
-            {
-                "Id": 3,
-                "abrev": "lp",
-                "Nombre": "La Paz"
-            }
-        ];
-        return dpts;
-    }
-
-    getFilialessc() {
-        var Filiales = [
-            {
-                "Codigo": 2,
-                "Nombre": "Hospital Central",
-                "abrev": "sc",
-                "Direccion": "Calle España s/n Esquina Rafael Peña, Santa Cruz de la Sierra",
-                "Fecha": "2017-02-09",
-                "Horario": "06:00 hasta 19:00",
-                "geoubicacion": "-17.777511",
-                "geoubicacion2": "-63.185563",
-                "Telefono": "3181600"
-            },
-            {
-                "Codigo": 3,
-                "abrev": "sc",
-                "Nombre": "Hospital Guaracachi",
-                "Direccion": "Prolongación avenida Brasil esquina cuarto anillo",
-                "Horario": "06:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-17.785487",
-                "geoubicacion2": "-63.147617"
-            },
-            {
-                "Codigo": 4,
-                "Nombre": "Policonsultorio Norte",
-                "abrev": "sc",
-                "Direccion": "Calle Gustavo Parada N° 124 Barrio Marabol -UV36 - MNZ 54",
-                "Horario": "07:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-17.761620",
-                "geoubicacion2": "-63.181827"
-            },
-            {
-                "Codigo": 5,
-                "Nombre": "Policonsultorio Sur",
-                "abrev": "sc",
-                "Direccion": "Avenida Juan Pablo II N° 30.UV:ET8 MZN:E05",
-                "Horario": "06:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-17.806898",
-                "geoubicacion2": "-63.169833"
-            }
-        ];
-        return Filiales;
-    }
-    getFilialesco() {
-        var Filiales = [
-            {
-                "Codigo": 2,
-                "Nombre": "Policonsultorio Cochabamba",
-                "abrev": "co",
-                "Direccion": "undefined",
-                "Fecha": "2017-02-09",
-                "Horario": "06:00 hasta 19:00",
-                "geoubicacion": "-17.777511",
-                "geoubicacion2": "-63.185563",
-                "Telefono": "3181600"
-            },
-            {
-                "Codigo": 3,
-                "Nombre": "Hospital Seton",
-                "abrev": "co",
-                "Direccion": "Avenida Blanco Galindo Km. 5 y medio",
-                "Horario": "06:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-17.393112",
-                "geoubicacion2": "-66.204010"
-            },
-            {
-                "Codigo": 7,
-                "Nombre": "Policonsultorio Norte",
-                "abrev": "co",
-                "Direccion": "Undefined",
-                "Horario": "07:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-17.785487",
-                "geoubicacion2": "-63.147617"
-            },
-        ];
-        return Filiales;
-    }
-    getFilialeslp() {
-        var Filiales = [
-            {
-                "Codigo": 3,
-                "Nombre": "Policonsultorio 20 de Octubre",
-                "abrev": "lp",
-                "Direccion": "Avenida 20 de Octubre esquina Rosendo Gutierrez N° 2284",
-                "Fecha": "2017-02-09",
-                "Horario": "06:00 hasta 19:00",
-                "geoubicacion": "-16.508901",
-                "geoubicacion2": "-68.127653",
-                "Telefono": "3181600"
-            },
-            {
-                "Codigo": 4,
-                "Nombre": "Clínica Arce",
-                "abrev": "lp",
-                "Direccion": "Avenida Arce y Plaza Isabel la Católica N° 2525",
-                "Horario": "06:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-16.509765",
-                "geoubicacion2": "-68.123698"
-            },
-            {
-                "Codigo": 5,
-                "Nombre": "Policonsultorio el Alto",
-                "abrev": "lp",
-                "Direccion": "Zona el Alto avenida Unión",
-                "Horario": "07:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-16.511309",
-                "geoubicacion2": "-68.166425"
-            },
-            {
-                "Codigo": 7,
-                "Nombre": "Hospital de Obraje",
-                "Direccion": "Avenida Costanerita esquina Calle 8 de Obrajes",
-                "Horario": "06:00 hasta 19:00",
-                "Fecha": "2017-02-09",
-                "geoubicacion": "-16.528354",
-                "geoubicacion2": "-68.109134"
-            }
-        ];
-        return Filiales;
-    }
-    getEspecialidades1() {
-        var Especialidades = [
-            {
-                "Valor": 36,
-                "Descripcion": "ANEST.Y TERAPIA",
-                "Filial": "2",
-                "DisponibleApp": 6,
-                "Disponible": 10
-
-            },
-            {
-                "Valor": 8,
-                "Descripcion": "CIRUGIA",
-                "Filial": "2",
-                "DisponibleApp": 8,
-                "Disponible": 14
-            },
-            //test fer
-            {
-                "Valor": 100,
-                "Descripcion": "CARDIOLOGIA",
-                "Filial": "2",
-                "DisponibleApp": 8,
-                "Disponible": 14
-            },
-            {
-                "Valor": 200,
-                "Descripcion": "MEDICINA INTERNA",
-                "Filial": "2",
-                "DisponibleApp": 8,
-                "Disponible": 14
-            },
-            {
-                "Valor": 300,
-                "Descripcion": "PEDIATRIA",
-                "Filial": "2",
-                "DisponibleApp": 8,
-                "Disponible": 14
-            },
-            {
-                "Valor": 400,
-                "Descripcion": "CIRUGIA",
-                "Filial": "2",
-                "DisponibleApp": 8,
-                "Disponible": 14
-            },
-            {
-                "Valor": 500,
-                "Descripcion": "CIRUGIA",
-                "Filial": "2",
-                "DisponibleApp": 8,
-                "Disponible": 14
-            },
-            //
-            {
-                "Valor": 34,
-                "Descripcion": "CIRUGIA  CARA CUELLO",
-                "Filial": "2",
-                "DisponibleApp": 2,
-                "Disponible": 10
-            },
-            {
-                "Valor": 38,
-                "Descripcion": "ENDODONCIA",
-                "Filial": "2",
-                "DisponibleApp": 4,
-                "Disponible": 10
-            }
-        ];
-
-        return Especialidades;
-    }
-    getMedicos1() {
-        var Medicos = [
-            {
-                "Valor": 275,
-                "Descripcion": "BALLIVIAN CAPRILES SERGIO",
-                "Filial": "2",
-                "Especialidad": "8"
-            },
-            {
-                "Valor": 119,
-                "Descripcion": "ORTIZ EID JESSICA",
-                "Filial": "2",
-                "Especialidad": "8"
-            },
-            {
-                "Valor": 215,
-                "Descripcion": "ROCA CLAROS OSVALDO IVAN",
-                "Filial": "2",
-                "Especialidad": "8"
-            }
-        ];
-        return Medicos;
-    }
-    getHorarios1() {
-        var Horarios = [
-            {
-                "Valor": 1001,
-                "Descripcion": "16:15",
-                "Filial": "2",
-                "Especialidad": "8",
-                "Medico": "119"
-            },
-            {
-                "Valor": 1002,
-                "Descripcion": "16:30",
-                "Filial": "2",
-                "Especialidad": "8",
-                "Medico": "119"
-            }
-        ];
-        return Horarios;
-    }
-    getGFamiliar1() {
-        var GrupoFamiliar = [
-            {
-                "Codigo": 35433,
-                "Matricula": "19690123SLM",
-                "Nombre": "SANCHEZ LOPEZ MIGUEL A.",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "TITULAR",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            },
-            {
-                "Codigo": 37901,
-                "Matricula": "19705203CSR",
-                "Nombre": "CALLEJAS SALGUERO ROSMERY",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Con ficha"
-            },
-            {
-                "Codigo": 96126,
-                "Matricula": "19980801QCS",
-                "Nombre": "QUINONES CALLEJAS SEBASTIAN SEBASTIAN",
-                "HClinica": "SIN HISTOR",
-                "TAsegurado": "BENEFICIARIO",
-                "Atendido": "",
-                "Ficha": "Sin ficha"
-            }
-        ];
-        return GrupoFamiliar;
-    }
     getReceta2() {
         var Receta = [
             {
