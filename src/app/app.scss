@@ -51,6 +51,21 @@ ion-label{
     line-height: 1.5;
     color: #222;
 }
+.card-wp {
+    margin: 0px;
+    padding: 5px 5px 5px 5px;
+    width: 100%;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.card-wp p {
+    margin: 0px;
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #222;
+}
 .card-content-ios {
     padding: 5px 5px 5px 5px;
 }
@@ -80,5 +95,7 @@ ion-toast.success .toast-wrapper {
 ion-toast.error .toast-wrapper {
 	background: rgb(209, 71, 71);
 }
+
+
 
 @import "styles/font-awesome";

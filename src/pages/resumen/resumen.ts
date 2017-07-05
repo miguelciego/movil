@@ -12,26 +12,25 @@ import { CpsProviders } from '../../providers/cps';
 })
 export class ResumenPage {
 
-  public Ficha;
-  public getHora;
-  public NombrePaciente;
-  public Matricula;
-  public Filial;
-  public Especialidad;
-  public Medico;
-  public Hora;
-  public Dia;
-
+  private Ficha;
+  private getHora;
+  private NombrePaciente;
+  private Matricula;
+  private Filial;
+  private Especialidad;
+  private Medico;
+  private Hora;
+  private Dia;
   private datos;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private navParams: NavParams,
     private cps: CpsProviders,
-    public LoadCtrl: LoadingController,
-    public toastCtrl: ToastController,
-    public appCtrl: App,
-    public alertCtrl:AlertController,
+    private LoadCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private appCtrl: App,
+    private alertCtrl:AlertController,
     private localNotifications: LocalNotifications,
   ){
     this.getHora = navParams.get('Hora');
@@ -45,12 +44,11 @@ export class ResumenPage {
     this.Medico = this.Ficha.MedicoNombre;
     this.Hora = this.Ficha.horaD;
     this.Dia = this.Ficha.Fecha;
-    console.log(this.Ficha);
+    console.log(JSON.stringify(this.Ficha));
   }
-
   Guardar(){
     let load = this.LoadCtrl.create({
-      content: 'Guardando Ficha...'
+      content: 'Guardando Ficha...',
     });
     load.present();
 
@@ -95,7 +93,7 @@ export class ResumenPage {
             this.AlertError();
           }
         },
-      () => console.log('putGFicha -> completado')
+      () => console.log('Completado : resumenPage')
     );
   }
   cancelar(){
@@ -112,7 +110,7 @@ export class ResumenPage {
   ToastE1(mensaje) {
     let toast = this.toastCtrl.create({
       message: mensaje,
-      duration: 3000,
+      duration: 4000,
       position: 'top'
     });
     toast.present();

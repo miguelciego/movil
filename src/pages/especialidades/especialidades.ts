@@ -11,18 +11,18 @@ import { CpsProviders } from '../../providers/cps';
 export class EspecialidadesPage {
 
   @ViewChild(Content) content: Content;
-  public Filial;
-  public Especialidades;
-  public Ficha;
-  public length;
+  private Filial;
+  private Especialidades;
+  private Ficha;
+  private length;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private navParams: NavParams,
     private cps: CpsProviders,
-    public LoadCtrl: LoadingController,
-    public alertCtrl: AlertController,
-    public toastCtrl: ToastController
+    private LoadCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Filial = navParams.get('Filial');
@@ -32,35 +32,25 @@ export class EspecialidadesPage {
     this.Ficha.Fecha = this.Filial.Fecha;
   }
   ionViewDidLoad() {
-
     let load = this.LoadCtrl.create({
-      content: 'Cargando...'
+      content: 'Cargando...',
+      dismissOnPageChange: true
     });
-    load.present()
-      .then(() => {
-        this.cps.getEspecialidades(this.Ficha.dpts, this.Filial.Codigo, this.Filial.Fecha)
-          .subscribe(data => {
-            this.Especialidades = data.json();
-            console.log("Especialidades", this.Especialidades);
-            this.length = this.Especialidades.length;
-            console.log("longitud de la especialidad", this.length)
-            load.dismiss();
-          },
-          err => {
-            if (err.status == 404) {
-            } else {
-              console.log(err.status);
-              this.AlertError();
-              load.dismiss();
-            }
-          },
-          () => console.log('getEspecialidades -> completado')
-          );
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
+    load.present();
+    this.cps.getEspecialidades(this.Ficha.dpts, this.Filial.Codigo, this.Filial.Fecha)
+      .subscribe(data => {
+        this.Especialidades = data.json();
+        this.length = this.Especialidades.length;
+      },
+      err => {
+        if (err.status == 404) {
+        } else {
+          console.log(err.status);
+          this.AlertError();
+        }
+      },
+      () => console.log("Completado : especialidadPage")
+      );
   }
   iraMedicos(Especialidad) {
     this.navCtrl.push('MedicosPage', { Especialidad: Especialidad, Ficha: this.Ficha });

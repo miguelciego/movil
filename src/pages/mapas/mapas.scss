@@ -7,4 +7,22 @@ page-mapas {
         box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
     }
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    #logo{
+        position:relative;
+        margin-top:50%;
+        vertical-align:middle;
+        text-align:center;
+        color: #757575
+    }
 }

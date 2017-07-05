@@ -57,6 +57,11 @@ export class VademecunPage {
     }else{
 
     }
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+       dismissOnPageChange: true
+    });
+    load.present()
     this.cps.getMedicamentos(this.dpts, this.codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
@@ -76,7 +81,7 @@ export class VademecunPage {
           this.AlertError();
         }
       },
-      () => console.log('getMedicamentos -> completado')
+      () => load.dismiss()
       );
   }
   VerDetalle(receta) {

@@ -12,7 +12,7 @@ export class AfiliadoStorage {
     return new Promise((resolve, reject)=>{
       this.storage.get(this.key)
       .then(data=>{
-        console.log('Se han consultado datos en storage');
+        console.log('Respuesta : Afiliado Storage');
         resolve(JSON.parse(data))
       })
       .catch(error =>{

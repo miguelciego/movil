@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, PopoverController, LoadingController, AlertController, Platform, ToastController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Network } from '@ionic-native/network';
 
 import { CpsProviders } from '../../providers/cps';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -15,25 +17,29 @@ import { AfiliadoStorage } from '../../providers/afiliado-storage';
 })
 export class MapasPage {
 
+  connected: Subscription;
+  disconnected: Subscription;
+
   public Maps;
   public dptStorage;
   private check: boolean;
   private inicalesDpts: any = [];
+  private mostrar: boolean;
 
   constructor(
+    private platform: Platform,
     public AfiliadoStorage: AfiliadoStorage,
     public cps: CpsProviders,
     public popoverCtrl: PopoverController,
     private sanitizer: DomSanitizer,
     public LoadCtrl: LoadingController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private toast: ToastController,
+    private network: Network
   ) {
+    this.cargarDatos()
   }
-  ionViewDidLoad() {
-    let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-    });
-    load.present();
+  cargarDatos() {
     this.AfiliadoStorage.getAll()
       .then((data: any[]) => {
         Object.keys(data).forEach(key => {
@@ -42,11 +48,30 @@ export class MapasPage {
         });
         this.maps(this.dptStorage)
         this.depar();
-        load.dismiss();
+        this.mostrar = true;
+        console.log("mostrar", this.mostrar)
       })
       .catch(error => {
-        console.log(error)
+        this.mostrar = false;
+        console.log("Error : ", error)
+        console.log("mostrar", this.mostrar)
       })
+  }
+  ionViewDidEnter() {
+    console.log("evento : ionViewDidEnter")
+    this.connected = this.network.onConnect().subscribe(data => {
+      console.log("conectado", data)
+      this.cargarDatos()
+    }, error => console.error(error));
+
+    this.disconnected = this.network.onDisconnect().subscribe(data => {
+      console.log("desconectado", data)
+      this.mostrar = false;
+    }, error => console.error(error));
+  }
+  ionViewWillLeave() {
+    this.connected.unsubscribe();
+    this.disconnected.unsubscribe();
   }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
@@ -55,16 +80,20 @@ export class MapasPage {
     });
   }
   maps(abrev) {
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+    });
+    load.present();
     this.cps.getMaps(abrev)
       .subscribe(data => {
-        this.Maps = data.json();
+        this.Maps = data
         console.log("maps", this.Maps);
+        load.dismiss()
       },
       err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-        }
+        console.log(err.status);
+        this.mostrar = false
+        load.dismiss()
       },
       () => console.log('getmaps -> completado')
       );
@@ -74,8 +103,13 @@ export class MapasPage {
       .subscribe(data => {
         this.inicalesDpts = data.json();
         console.log("departamentales", this.inicalesDpts)
-      });
-
+      },
+      err => {
+        console.log(err.status);
+        this.mostrar = false
+      },
+      () => console.log('getmaps -> completado')
+      );
   }
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
@@ -120,6 +154,7 @@ export class MapasPage {
         {
           text: 'Bueno',
           handler: () => {
+            this.platform.exitApp();
           }
         }
       ]

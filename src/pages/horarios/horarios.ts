@@ -12,17 +12,18 @@ import { CpsProviders } from '../../providers/cps';
 })
 export class HorariosPage {
 
-  public Medico;
-  public Horarios;
-  public Ficha;
-  public length;
+  private Medico;
+  private Horarios;
+  private Ficha;
+  private length;
 
-  constructor(public navCtrl: NavController,
-  public navParams: NavParams, 
-  private cps: CpsProviders,
-  public LoadCtrl: LoadingController,
-  public alertCtrl:AlertController,
-  public toastCtrl:ToastController
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private cps: CpsProviders,
+    private LoadCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
@@ -30,31 +31,31 @@ export class HorariosPage {
     this.Ficha.MedicoCodigo = this.Medico.Valor;
     this.Ficha.MedicoNombre = this.Medico.Descripcion;
   }
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     let load = this.LoadCtrl.create({
-      content: 'Cargando...'
+      content: 'Cargando...',
+      dismissOnPageChange: true
     });
     load.present();
-      this.cps.getHorarios(this.Ficha.dpts,this.Ficha.FilialCodigo,this.Ficha.EspecialidadCodigo,this.Ficha.MedicoCodigo,this.Ficha.Fecha)
-        .subscribe(data => { 
-          this.Horarios = data.json();
-          this.length = this.Horarios.length;
-          load.dismiss(); 
-        },
-      err => { if (err.status == 404) {
+    this.cps.getHorarios(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, this.Ficha.MedicoCodigo, this.Ficha.Fecha)
+      .subscribe(data => {
+        this.Horarios = data.json();
+        this.length = this.Horarios.length;
+      },
+      err => {
+        if (err.status == 404) {
         } else {
-            console.log(err.status);
-            load.dismiss();
-            this.AlertError();
-          }
-        },
-      () => console.log('getHorarios -> completado')
-    );
+          console.log(err.status);
+          this.AlertError();
+        }
+      },
+      () => console.log('Completado : horarioPage')
+      );
   }
   irResumen(Hora) {
-    this.navCtrl.push('ResumenPage',{ Hora : Hora, Ficha: this.Ficha }); 
+    this.navCtrl.push('ResumenPage', { Hora: Hora, Ficha: this.Ficha });
   }
-   volver(){
+  volver() {
     this.navCtrl.pop();
   }
   AlertError() {

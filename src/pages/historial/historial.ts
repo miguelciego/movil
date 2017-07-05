@@ -29,7 +29,8 @@ export class Historial {
 
   ionViewDidLoad() {
     let load = this.LoadCtrl.create({
-      content: 'Cargando...'
+      content: 'Cargando...',
+       dismissOnPageChange: true
     });
     load.present();
     this.cps.getHistorial(this.myPaciente.Codigo)
@@ -42,12 +43,10 @@ export class Historial {
       err => { if (err.status == 404) {
         } else {
             console.log(err.status);
-            load.dismiss()
             this.AlertError();
           }
-          
         },
-      () =>  load.dismiss()
+      () =>  console.log("Termino")
     ); 
   }
   presentToast(lenght) {

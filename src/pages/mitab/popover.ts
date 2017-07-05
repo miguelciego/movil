@@ -43,7 +43,7 @@ export class PopoverPage {
                 console.log('data', afiliado);
                 if (afiliado == null) {
                   console.log("verificacionPage storage =>", afiliado)
-                  this.appCtrl.getRootNav().setRoot('LoginPage');
+                  this.appCtrl.getRootNav().setRoot('VerificacionPage');
                 } else {
                   this.appCtrl.getRootNav().setRoot('MitabPage');
                 }

@@ -11,18 +11,18 @@ import { CpsProviders } from '../../providers/cps';
 
 })
 export class MedicosPage {
-  public Medicos;
-  public Especialidad;
-  public Ficha;
-  public length;
+  private Medicos;
+  private Especialidad;
+  private Ficha;
+  private length;
 
   constructor(
-  public navCtrl: NavController, 
-  public navParams: NavParams, 
+  private navCtrl: NavController, 
+  private navParams: NavParams, 
   private cps: CpsProviders,
-  public LoadCtrl: LoadingController,
+  private LoadCtrl: LoadingController,
   private alertCtrl: AlertController,
-  public toastCtrl:ToastController
+  private toastCtrl:ToastController
   ){
     this.Especialidad = navParams.get('Especialidad');
     this.Ficha = navParams.get('Ficha');
@@ -32,7 +32,8 @@ export class MedicosPage {
   }
   ionViewDidLoad(){
     let load = this.LoadCtrl.create({
-      content: 'Cargando...'
+      content: 'Cargando...',
+      dismissOnPageChange: true
     });
     load.present();
 
@@ -49,11 +50,10 @@ export class MedicosPage {
       err => { if (err.status == 404) {
         } else {
             console.log(err.status);
-            load.dismiss();
             this.AlertError();
           }
         },
-      () => load.dismiss()
+      () => console.log("Completado : medicoPage")
     );
   }
   iraHorarios(Medico) {

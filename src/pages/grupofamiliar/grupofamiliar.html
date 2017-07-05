@@ -1,7 +1,7 @@
-<ion-header >
+<ion-header>
   <ion-navbar>
     <ion-buttons left>
-      <button ion-button >
+      <button ion-button>
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
@@ -15,19 +15,28 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
- <!-- <ion-refresher (ionRefresh)="actualizar($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>-->
-  <ion-list>
-      <ion-item  *ngFor="let Paciente of GrupoFamiliar" >
-          <ion-avatar item-left (click)="irPerfil(Paciente)">
-            <img src="assets/images/perfil.png" >
-          </ion-avatar>   
-          <div class="contenido" (click)="iraFiliales(Paciente)">
-            <!--<ion-icon *ngIf="Paciente.Ficha != 'Sin ficha'" class="item" item-right color="gris" name="list-box"></ion-icon>-->
-            <h3> {{ Paciente.Nombre }} </h3>
-            <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado}}</p>
-          </div>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="contenedor" *ngIf="mostrar == false">
+    <i id="logo" class="fa fa-users fa-3x" aria-hidden="true"></i>
+    <p>No se ha podido cargar el grupo familiar.</p>
+  </div>
+  <ion-list *ngIf="mostrar == true">
+    <ion-item-group>
+      <span *ngFor="let Paciente of GrupoFamiliar">
+        <ion-item>
+        <ion-avatar item-left (click)="irPerfil(Paciente)">
+          <img src="assets/images/perfil.png">
+        </ion-avatar>
+        <div class="contenido" (click)="iraFiliales(Paciente)">
+          <h3> {{ Paciente.Nombre }} </h3>
+          <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado }}</p>
+        </div>
       </ion-item>
-  </ion-list> 
+     </span>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

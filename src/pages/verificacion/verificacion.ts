@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { IonicPage, App, ViewController, Platform, ToastController } from 'ionic-angular';
+import { IonicPage, App, ViewController, Platform, ToastController, AlertController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
+
+import { CpsProviders } from '../../providers/cps';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
   selector: 'page-verificacion',
   templateUrl: 'verificacion.html',
-  providers: [AfiliadoStorage, Network]
+  providers: [CpsProviders, AfiliadoStorage]
 })
 export class VerificacionPage {
+
+  connected: Subscription;
+  disconnected: Subscription;
+  private departamental;
 
   constructor(
     public AfiliadoStorage: AfiliadoStorage,
@@ -17,27 +24,10 @@ export class VerificacionPage {
     public platform: Platform,
     public viewCtrl: ViewController,
     public appCtrl: App,
-    private toastCtrl:ToastController
-  ) { 
-    platform.ready().then(() => {
-      if (true) {
-        this.network.onDisconnect().subscribe(data => {
-          console.log('onDisconnect', data)
-          this.DesconectadoToast()
-          //this.presentModal();
-        }, error => console.error(error));
-
-        this.network.onConnect().subscribe(data => {
-          console.log('onConnect', data)
-          this.dismiss()
-          this.conectadoToast();
-        }, error => console.error(error));
-      }
-
-    });
-  }
-
-  ionViewDidLoad() {
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    public cps: CpsProviders
+  ) {
     this.Session();
   }
   Session() {
@@ -46,7 +36,21 @@ export class VerificacionPage {
         console.log('data', afiliado);
         if (afiliado == null) {
           console.log("verificacionPage storage =>", afiliado)
-          this.appCtrl.getRootNav().setRoot('LoginPage');
+          this.cps.getDepartamental()
+            .subscribe(data => {
+              this.departamental = data.json();
+              console.log("departamental", this.departamental);
+              this.appCtrl.getRootNav().setRoot('LoginPage', { departamental: this.departamental });
+            },
+            err => {
+              if (err.status == 404) {
+              } else {
+                console.log(err.status);
+                this.AlertError();
+              }
+            },
+            () => console.log("asd")
+            );
         } else {
           this.appCtrl.getRootNav().setRoot('MitabPage');
         }
@@ -56,35 +60,29 @@ export class VerificacionPage {
         console.log(error)
       })
   }
-  DesconectadoToast() {
+  /*DesconectadoToast() {
     let toast = this.toastCtrl.create({
-      message: 'Sin Conexión, Verifica tus datos móviles o wifi.',
+      message: 'Sin conexión, Verifica tus datos móviles o wifi.',
       position: 'top',
-      cssClass:'error',
-      duration: 5000
+      cssClass: 'error',
+      showCloseButton: true,
+      closeButtonText: 'OK'
     });
-
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-
     toast.present();
-  }
-  conectadoToast() {
-    let toast = this.toastCtrl.create({
-      message: 'Conectado',
-      position: 'top',
-      cssClass:'success',
-      duration: 5000
+  }*/
+  AlertError() {
+    let alert = this.alertCtrl.create({
+      title: 'Lo sentimos...',
+      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
+      buttons: [{
+        text: 'Bueno', handler: () => {
+          this.platform.exitApp();
+        }
+      }]
     });
-
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
-  }
-  dismiss() {
-    this.viewCtrl.dismiss();
+    alert.present();
   }
 }

@@ -12,7 +12,7 @@
   <ion-list>
     <ion-item *ngFor="let item of historial" (click)="historialFicha(item)">
       <span item-right *ngIf="item.atendido == 0" color="danger" class="check">No asistió</span>
-      <ion-icon class="verde" name="document" item-left></ion-icon>
+      <ion-icon class="gris" name="document" item-left></ion-icon>
       <h3 class="asd"> {{ item.especialidad }} </h3>
       <h3 class="nota"> {{ item.creadoEl | date:'shortDate' }} </h3>
     </ion-item>

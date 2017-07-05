@@ -35,4 +35,29 @@ page-grupofamiliar {
     .item-wp p{
         font-size: 12px;
     }
+    .item-divider-md {
+        padding-left: 16px;
+        color: #000;
+        background-color: #f4f4f4;
+        border-bottom: 0px solid #dedede !important;
+        font-size: 1.4rem;
+    }
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    #logo{
+        position:relative;
+        margin-top:50%;
+        vertical-align:middle;
+        text-align:center;
+        color: #757575
+    }
 }

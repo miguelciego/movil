@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -83,15 +83,6 @@ export class CpsProviders {
             creds, { headers: headers });
 
     }
-    getMFicha(dpts, valor) {
-        var creds = "valor=" + valor;
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-        return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
-            //return this.http.post( this.cpsAPI + 'consulta/mficha',
-            creds, { headers: headers });
-    }
     getMedicamentos(dpts, valor, ini, fin) {
         var creds = "valor=" + valor + "&ini=" + ini + "&fin=" + fin;
         console.log("creds", creds)
@@ -109,25 +100,34 @@ export class CpsProviders {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
         //return this.http.post(this.cpsAPI + 'consulta/historial',
-        creds, { headers: headers });
+            creds, { headers: headers });
     }
     getDepartamental() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/departamental',
         //return this.http.post(this.cpsAPI + 'consulta/departamental',
-        return this.http.post('http://192.168.74.143:3000/consulta/departamental',
-        { headers: headers });
+            { headers: headers });
     }
     getMaps(abrev) {
         var creds = "abrev=" + abrev;
-        console.log("creds", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //return this.http.post(this.cpsAPI + 'consulta/maps',
-        return this.http.post('http://192.168.74.143:3000/consulta/maps',
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/maps',
+            //return this.http.post(this.cpsAPI + 'consulta/maps',
+            creds, { headers: headers })
+            .map(this.Edata)
+            
+    }
+    getMFicha(dpts, valor) {
+        var creds = "valor=" + valor;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
+            //return this.http.post( this.cpsAPI + 'consulta/mficha',
             creds, { headers: headers });
     }
-
     // Funciones para las pruebas que se deben eliminar al final del proyecto....
     //---------------------------------------------------------------------------
     getReceta2() {
@@ -178,5 +178,8 @@ export class CpsProviders {
                 "nom_emp": 1
             }];
         return res;
+    }
+    private Edata(res: Response) {
+        return res.json()
     }
 }
