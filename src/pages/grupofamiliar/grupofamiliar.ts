@@ -207,7 +207,7 @@ export class GrupoFamiliarPage {
   }
   actualizaToast() {
     let toast = this.toastCtrl.create({
-      message: 'Grupo familiar Actualizado.',
+      message: 'Actualizado correctamente.',
       duration: 3000,
       position: 'top'
     });
@@ -215,7 +215,7 @@ export class GrupoFamiliarPage {
   }
   noActualizaToast() {
     let toast = this.toastCtrl.create({
-      message: 'No se puedo actualizar el grupo familiar.',
+      message: 'Error al actualizar.',
       duration: 3000,
       position: 'bottom'
     });

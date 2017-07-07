@@ -134,14 +134,11 @@ export class MapasPage {
     alert.addButton({
       text: 'Ok',
       handler: data => {
-        let load = this.LoadCtrl.create({
-          content: 'Cargando...',
-        });
-        load.present()
         console.log("result", data)
         this.dptStorage = data;
-        this.maps(data);
-        load.dismiss();
+        if(this.mostrar == true){
+          this.maps(data);
+        }
       }
     });
     alert.present();
