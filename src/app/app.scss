@@ -95,7 +95,20 @@ ion-toast.success .toast-wrapper {
 ion-toast.error .toast-wrapper {
 	background: rgb(209, 71, 71);
 }
-
-
+/* controlando los colores del alert
+ion-alert >.alert-wrapper{
+    background: #0d2231 !important;
+    color: #e3e5e7;
+}
+ion-alert >.alert-wrapper .alert-message{
+    color: #969696;
+    overflow-x:hidden; 
+    overflow-y:hidden; 
+}
+*/
+ion-alert >.alert-wrapper .alert-message{
+    overflow-x:hidden; 
+    overflow-y:hidden; 
+}
 
 @import "styles/font-awesome";

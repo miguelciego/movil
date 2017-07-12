@@ -18,7 +18,7 @@
 </ion-header>
 <ion-content>
   <ion-list  *ngIf="length > 0">
-    <button ion-item *ngFor="let Medico of Medicos" (click)="iraHorarios(Medico)">
+    <button ion-item *ngFor="let Medico of Medico" (click)="iraHorarios(Medico)">
         <ion-avatar item-left (click)="irDetalleMed(Medico)" >
             <img src="assets/images/med.png" >
         </ion-avatar>

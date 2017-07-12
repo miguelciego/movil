@@ -6,7 +6,6 @@
       </button>
     </ion-buttons>
     <ion-title>CPS Móvil</ion-title>
-    <!--<img class="logo" src="assets/images/logobar.png" alt="">-->
     <ion-buttons end>
       <button ion-button color="light" icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -26,8 +25,7 @@
   </div>
   <ion-list *ngIf="mostrar == true">
     <ion-item-group>
-      <span *ngFor="let Paciente of GrupoFamiliar">
-        <ion-item>
+        <ion-item *ngFor="let Paciente of GrupoFamiliar">
         <ion-avatar item-left (click)="irPerfil(Paciente)">
           <img src="assets/images/perfil.png">
         </ion-avatar>
@@ -36,7 +34,6 @@
           <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado }}</p>
         </div>
       </ion-item>
-     </span>
     </ion-item-group>
   </ion-list>
 </ion-content>

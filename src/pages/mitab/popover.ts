@@ -23,8 +23,8 @@ export class PopoverPage {
   }
   presentConfirm() {
     let alert = this.alertCtrl.create({
-      title: 'Desvincular',
-      message: 'Al desvincularse estaría cerrando la sesion de su grupo familiar ¿ Está usted seguro ?',
+      title: 'Advertencia',
+      message: 'Al desvincularse estaría cerrando sesión de su grupo familiar. ¿ Está usted seguro ?',
       cssClass: 'my-alert',
       buttons: [
         {

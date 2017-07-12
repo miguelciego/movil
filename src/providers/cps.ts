@@ -49,6 +49,7 @@ export class CpsProviders {
     getMedicos(dpts, valorf, valore, fecha) {
         var creds = "valorf=" + valorf + "&valore=" + valore + "&fecha=" + fecha;
         let headers = new Headers();
+        console.log(creds)
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/medico',
@@ -90,7 +91,7 @@ export class CpsProviders {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/medicamentos2',
-            //return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
+        //return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
             creds, { headers: headers });
     }
     getHistorial(valor) {
@@ -98,23 +99,23 @@ export class CpsProviders {
         console.log("creds", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
-        return this.http.post(this.cpsAPI + 'consulta/historial',
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
+        //return this.http.post(this.cpsAPI + 'consulta/historial',
             creds, { headers: headers });
     }
     getDepartamental() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //return this.http.post('http://smovilsc.cps.org.bo/consulta/departamental',
-        return this.http.post(this.cpsAPI + 'consulta/departamental',
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/departamental',
+        //return this.http.post(this.cpsAPI + 'consulta/departamental',
             { headers: headers });
     }
     getMaps(abrev) {
         var creds = "abrev=" + abrev;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //return this.http.post('http://smovilsc.cps.org.bo/consulta/maps',
-        return this.http.post(this.cpsAPI + 'consulta/maps',
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/maps',
+        //return this.http.post(this.cpsAPI + 'consulta/maps',
             creds, { headers: headers })
             .map(this.Edata)
             
@@ -125,7 +126,7 @@ export class CpsProviders {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
-            //return this.http.post( this.cpsAPI + 'consulta/mficha',
+        //return this.http.post( this.cpsAPI + 'consulta/mficha',
             creds, { headers: headers });
     }
     // Funciones para las pruebas que se deben eliminar al final del proyecto....

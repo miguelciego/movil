@@ -60,12 +60,12 @@ export class MapasPage {
   ionViewDidEnter() {
     console.log("evento : ionViewDidEnter")
     this.connected = this.network.onConnect().subscribe(data => {
-      console.log("conectado", data)
+      console.log("conectado", data.type)
       this.cargarDatos()
     }, error => console.error(error));
 
     this.disconnected = this.network.onDisconnect().subscribe(data => {
-      console.log("desconectado", data)
+      console.log("desconectado", data.type)
       this.mostrar = false;
     }, error => console.error(error));
   }

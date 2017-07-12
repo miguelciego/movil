@@ -11,8 +11,9 @@ import { CpsProviders } from '../../providers/cps';
 
 })
 export class MedicosPage {
-  private Medicos;
+  private Medico;
   private Especialidad;
+  private Horario;
   private Ficha;
   private length;
 
@@ -25,13 +26,16 @@ export class MedicosPage {
   private toastCtrl:ToastController
   ){
     this.Especialidad = navParams.get('Especialidad');
-    this.Ficha = navParams.get('Ficha');
-      
+    this.Ficha = navParams.get('Ficha'); 
+    this.Medico = navParams.get('Medico'); 
+    this.length = navParams.get('length'); 
+
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
+
   }
   ionViewDidLoad(){
-    let load = this.LoadCtrl.create({
+    /*let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
     });
@@ -54,10 +58,35 @@ export class MedicosPage {
           }
         },
       () => console.log("Completado : medicoPage")
-    );
+    );*/
   }
   iraHorarios(Medico) {
-    this.navCtrl.push('HorariosPage', { Medico: Medico, Ficha: this.Ficha });
+    //this.navCtrl.push('HorariosPage', { Medico: Medico, Ficha: this.Ficha });
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+      dismissOnPageChange: true
+    });
+    load.present();
+    this.cps.getHorarios(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, Medico.Valor, this.Ficha.Fecha)
+      .subscribe(data => {
+        this.Horario = data.json();
+        this.length = this.Horario.length;
+        this.navCtrl.push('HorariosPage', { 
+          Medico: Medico, 
+          Ficha: this.Ficha,
+          Horario: this.Horario,
+          length: this.length
+        });
+      },
+      err => {
+        if (err.status == 404) {
+        } else {
+          console.log(err.status);
+          this.AlertError();
+        }
+      },
+      () => console.log('Completado : horarioPage')
+      );
   }
   irDetalleMed(Medico){
      this.navCtrl.push(DetalleMedPage, { Medico: Medico});
@@ -71,7 +100,7 @@ export class MedicosPage {
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Bueno',
+          text: 'OK',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();

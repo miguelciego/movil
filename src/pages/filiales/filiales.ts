@@ -12,21 +12,22 @@ import { errorServe } from '../error/error'
 })
 export class FilialesPage {
 
-  public FilialesEncontradas: any[] = [];
-  public Paciente;
-  public Ficha;
-  public validarN;
-  public validarB;
-  public dpts;
+  private FilialesEncontradas: any[] = [];
+  private Especialidades: any[] = [];
+  private length;
+  private Paciente;
+  private Ficha;
+  private validarN;
+  private validarB;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private navParams: NavParams,
     private cps: CpsProviders,
-    public LoadCtrl: LoadingController,
-    public toastCtrl: ToastController,
+    private LoadCtrl: LoadingController,
+    private toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    public eServe: errorServe
+    private eServe: errorServe
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Paciente = navParams.get('Paciente');
@@ -47,39 +48,35 @@ export class FilialesPage {
   }
   ionViewDidLoad() {
   }
-  getFiliales() {
-    /*let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      duration: 5000
-    });
-    load.present();*/
-
-    /*this.cps.getFiliales(this.Ficha.dpts,this.Ficha.PacienteCodigo)
-    .subscribe(data => {
-      this.FilialesEncontradas = data.json();
-      console.log("Filiales -> ", this.FilialesEncontradas)
-      load.dismiss();
-        Object.keys(this.FilialesEncontradas).forEach( key => {
-          this.validarN = this.FilialesEncontradas[key].Codigo
-          this.validarB = this.FilialesEncontradas[key].Nombre
-        });
-        console.log("El codigo de E es ->", this.validarN)
-        if (this.validarN % 1 == 0) { this.validarN = 1}
-        else{this.validarN = 2}
-      },
-      err => { if (err.status == 404) {
-        } else {
-            console.log(err.status);
-            load.dismiss();
-            this.AlertError();
-        }
-      },
-      () => console.log('getFiliales -> completado')
-    );*/
-  }
 
   iraEspecialidades(Filial) {
-    this.navCtrl.push('EspecialidadesPage', { Ficha: this.Ficha, Filial: Filial });
+    //this.navCtrl.push('EspecialidadesPage', { Ficha: this.Ficha, Filial: Filial });
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+      dismissOnPageChange: true
+    });
+    load.present();
+    this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
+      .subscribe(data => {
+        this.Especialidades = data.json();
+        this.length = this.Especialidades.length;
+        this.navCtrl.push('EspecialidadesPage', {
+          Ficha: this.Ficha,
+          Especialidades: this.Especialidades,
+          length: this.length,
+          Filial:Filial,
+        });
+
+      },
+      err => {
+        if (err.status == 404) {
+        } else {
+          console.log(err.status);
+          this.AlertError();
+        }
+      },
+      () => console.log("Completado : especialidadPage")
+      );
   }
 
   volver() {
@@ -88,10 +85,11 @@ export class FilialesPage {
 
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas de Conexion!',
+      title: 'Lo sentimos...',
+      message:'...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Listo',
+          text: 'Ok',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();
@@ -103,7 +101,7 @@ export class FilialesPage {
   }
   ToastAlertError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas de Conexión',
+      message: 'Problema de conexión.',
       duration: 5000,
       position: 'bottom'
     });

@@ -1,5 +1,8 @@
 page-home {
-
+    ion-content{
+      overflow-x:hidden !important; 
+      overflow-y:hidden !important;   
+    }
     .portada{
         position: absolute;
         bottom: 0;

@@ -13,7 +13,6 @@ import { CpsProviders } from '../../providers/cps';
 })
 export class LoginPage {
 
-
   public afiliado: any[] = [];
   public datos;
   public device;
@@ -40,7 +39,7 @@ export class LoginPage {
 
   private get myLoginForm() {
     return this.fb.group({
-      'matricula': ['19735917osr', [Validators.required, Validators.maxLength(11), Validators.minLength(10)]],
+      'matricula': ['', [Validators.required, Validators.maxLength(12), Validators.minLength(11)]],
       'filial': ['sc', Validators.required]
     })
   }
@@ -117,5 +116,9 @@ export class LoginPage {
       buttons: ['Bueno']
     });
     alert.present();
+  }
+  irAyuda(){
+    console.log("clic ayuda")
+    this.navCtrl.push('SlideAyuda')
   }
 }

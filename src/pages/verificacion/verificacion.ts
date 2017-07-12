@@ -77,6 +77,7 @@ export class VerificacionPage {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
+      cssClass: 'alertError',
       buttons: [{
         text: 'Bueno', handler: () => {
           this.platform.exitApp();

@@ -65,6 +65,7 @@ export class VademecunPage {
     this.cps.getMedicamentos(this.dpts, this.codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
+        load.dismiss()
         let length = this.Recetaslist.length;
         console.log("longitud del medicamento", length);
         if (length <= 0) {
@@ -81,7 +82,7 @@ export class VademecunPage {
           this.AlertError();
         }
       },
-      () => load.dismiss()
+      () => console.log("termino")
       );
   }
   VerDetalle(receta) {

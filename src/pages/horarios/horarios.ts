@@ -13,7 +13,7 @@ import { CpsProviders } from '../../providers/cps';
 export class HorariosPage {
 
   private Medico;
-  private Horarios;
+  private Horario;
   private Ficha;
   private length;
 
@@ -27,12 +27,17 @@ export class HorariosPage {
   ) {
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
+    this.length = navParams.get('length');
+    this.Horario =  navParams.get('Horario');
 
     this.Ficha.MedicoCodigo = this.Medico.Valor;
     this.Ficha.MedicoNombre = this.Medico.Descripcion;
+
+    console.log("result", this.Horario)
+    
   }
   ionViewDidLoad() {
-    let load = this.LoadCtrl.create({
+    /*let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
     });
@@ -50,7 +55,7 @@ export class HorariosPage {
         }
       },
       () => console.log('Completado : horarioPage')
-      );
+      );*/
   }
   irResumen(Hora) {
     this.navCtrl.push('ResumenPage', { Hora: Hora, Ficha: this.Ficha });
@@ -64,7 +69,7 @@ export class HorariosPage {
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Bueno',
+          text: 'OK',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();
