@@ -58,7 +58,7 @@ export class LoginPage {
       .subscribe(data => {
         this.datos = data.json();
         console.log("login.ts, estado =>", this.datos.estado)
-        if (this.datos != null && this.datos.estado == 1 ||  this.datos.estado == 2) {
+        if (this.datos != null && this.datos.estado == 1) {
           console.log("el estado es ", this.datos.estado);
           let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula, "filial": this.loginForm.value.filial }
           this.afiliado.push(a);
