@@ -149,7 +149,7 @@ export class MapasPage {
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Bueno',
+          text: 'Listo',
           handler: () => {
             this.platform.exitApp();
           }

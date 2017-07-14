@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, App } from 'ionic-angular';
+import { Platform, App, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
@@ -18,55 +18,65 @@ export class MyApp {
     public platform: Platform,
     private statusBar: StatusBar,
     public splashscreen: SplashScreen,
+    public alertCtrl: AlertController,
     public push: Push
   ) {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      this.splashscreen.hide();
       this.initPushNotification();
     });
   }
   initPushNotification() {
-    // to check if we have permission
-    this.push.hasPermission()
-      .then((res: any) => {
-        if (res.isEnabled) {
-          console.log('Tenemos permiso para enviar notificaciones push');
-        } else {
-          console.log('No tenemos permiso para enviar notificaciones push');
-        }
-      })
-      .catch( error =>{
-          console.log(error)
-      });
-
-    // to initialize push notifications
-
+    if (!this.platform.is('cordova')) {
+      console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
+      return;
+    }
     const options: PushOptions = {
       android: {
-        senderID: '478631521404',
+        senderID: '478631521404'
       },
       ios: {
         alert: 'true',
-        badge: true,
-        sound: 'false'
+        badge: false,
+        sound: 'true'
       },
       windows: {}
     };
-
     const pushObject: PushObject = this.push.init(options);
 
-    pushObject.on('notification')
-      .subscribe((notification: any) =>
-        console.log('Received a notification', notification)
-      );
+    pushObject.on('registration').subscribe((data: any) => {
+      console.log('device token -> ' + data.registrationId);
+      //TODO - send device token to server
+    });
 
-    pushObject.on('registration')
-    .subscribe((registration: any) =>
-     console.log('Device registered', registration)
-     );
+    pushObject.on('notification').subscribe((data: any) => {
+      console.log('message -> ' + data.message);
+      //if user using app and push notification comes
+      if (data.additionalData.foreground) {
+        // if application open, show popup
+        let confirmAlert = this.alertCtrl.create({
+          title: 'New Notification',
+          message: data.message,
+          buttons: [{
+            text: 'Ignore',
+            role: 'cancel'
+          }, {
+            text: 'View',
+            handler: () => {
+              //TODO: Your logic here
+              console.log(" notificacion blab bla")
+            }
+          }]
+        });
+        confirmAlert.present();
+      } else {
+        //if user NOT using app and push notification comes
+        //TODO: Your logic on click of push notification directly
+        console.log('Push notification clicked');
+      }
+    });
 
-    pushObject.on('error').subscribe(error => 
-    console.error('Error with Push plugin', error)
-    );
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin' + error));
   }
 }

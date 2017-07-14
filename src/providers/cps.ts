@@ -84,13 +84,13 @@ export class CpsProviders {
             creds, { headers: headers });
 
     }
-    getMedicamentos(dpts, valor, ini, fin) {
+    getMedicamentos(valor, ini, fin) {
         var creds = "valor=" + valor + "&ini=" + ini + "&fin=" + fin;
         console.log("creds", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/medicamentos2',
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/medicamentos2',
         //return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
             creds, { headers: headers });
     }

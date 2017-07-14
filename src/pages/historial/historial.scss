@@ -18,4 +18,22 @@ page-historial {
     .gris{
         color:#757575 !important;
     }
+    .contenedor{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .contenedor > p{
+        color:#43443e;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    #logo{
+        position:relative;
+        margin-top:50%;
+        vertical-align:middle;
+        text-align:center;
+        color: #757575
+    }
 }

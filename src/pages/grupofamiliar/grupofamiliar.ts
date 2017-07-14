@@ -29,6 +29,10 @@ export class GrupoFamiliarPage {
   private FilialesEncontradas;
   private validarN;
   private validarB;
+  private historial: any[];
+  private length;
+
+  /*NOTA : Optimizar el método  ionViewDidLoad() y doRefresh() */
 
   constructor(
     private app: App,
@@ -147,18 +151,41 @@ export class GrupoFamiliarPage {
     let modal = this.modalCtrl.create('ModalPage', { Paciente: Paciente.Codigo, Ficha: this.Ficha });
     modal.present();
   }
-  IrVademecun() {
-    this.navCtrl.push('VademecunPage');
+  IrVademecun(Paciente) {
+    this.navCtrl.push('VademecunPage', { myPaciente: Paciente });
   }
-  irPerfil(Paciente) {
-    this.navCtrl.push('Perfil', { Paciente: Paciente, dpts: this.Ficha.dpts });
+  irHistorial(Paciente) {
+    let load = this.LoadCtrl.create({
+      content: 'Cargando historial de ficha...',
+      dismissOnPageChange: true
+    });
+    load.present();
+    this.cps.getHistorial(Paciente.Codigo)
+      .subscribe(data => {
+        this.historial = data.json();
+        this.length = this.historial.length;
+        this.navCtrl.push('Historial', {
+          myPaciente: Paciente,
+          historial: this.historial,
+          length: this.length
+        })
+      },
+      err => {
+        if (err.status == 404) {
+        } else {
+          console.log(err.status);
+          load.dismiss()
+        }
+      },
+      () => console.log("Termino historial")
+      );
   }
   AlertError() {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [{
-        text: 'Bueno', handler: () => {
+        text: 'Listo', handler: () => {
           console.log("AlerError : Se ha Ejecutado")
         }
       }]
@@ -215,7 +242,7 @@ export class GrupoFamiliarPage {
   }
   noActualizaToast() {
     let toast = this.toastCtrl.create({
-      message: 'Error al actualizar.',
+      message: 'Error al Actualizar.',
       duration: 3000,
       position: 'bottom'
     });

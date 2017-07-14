@@ -13,7 +13,7 @@ import { CpsProviders } from '../../providers/cps';
 export class VademecunPage {
 
   private day = new Date().toJSON().slice(0, 10);
-  public codigo;
+  public myPaciente;
   public dpts;
   public Recetaslist: any[] = [];
   private fechaResult = "MEDICAMENTOS DE HOY";
@@ -31,9 +31,9 @@ export class VademecunPage {
     public fb: FormBuilder,
     private alertCtrl: AlertController
   ) {
-    this.codigo = navParams.get('Codigo');
+    this.myPaciente = navParams.get('myPaciente');
     this.dpts = navParams.get('dpts');
-    console.log("el codigo es ", this.codigo)
+    console.log("el codigo es ", this.myPaciente.codigo)
     console.log("el dpts es ", this.dpts)
     this.dateForm = this.myDateForm;
     this.Buscar();
@@ -62,7 +62,7 @@ export class VademecunPage {
        dismissOnPageChange: true
     });
     load.present()
-    this.cps.getMedicamentos(this.dpts, this.codigo, this.dateForm.value.ini, this.dateForm.value.fin)
+    this.cps.getMedicamentos(this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
         load.dismiss()

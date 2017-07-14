@@ -33,7 +33,7 @@ export class VerificacionPage {
   Session() {
     this.AfiliadoStorage.getAll()
       .then((afiliado: any[]) => {
-        console.log('data', afiliado);
+        console.log('Datos en Afiliado Storage :', afiliado);
         if (afiliado == null) {
           console.log("verificacionPage storage =>", afiliado)
           this.cps.getDepartamental()
@@ -49,7 +49,7 @@ export class VerificacionPage {
                 this.AlertError();
               }
             },
-            () => console.log("asd")
+            () => console.log("Terminó de Verificar")
             );
         } else {
           this.appCtrl.getRootNav().setRoot('MitabPage');

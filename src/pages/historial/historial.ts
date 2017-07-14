@@ -10,8 +10,9 @@ import { CpsProviders } from '../../providers/cps';
 })
 export class Historial {
 
-  public myPaciente;
-  public historial;
+  private myPaciente;
+  private historial;
+  private length;
   public icon="add-circle";
 
   constructor(
@@ -24,30 +25,13 @@ export class Historial {
     private modalCtrl: ModalController
   ) {
     this.myPaciente = navParams.get('myPaciente');
-    console.log("codigo es ", this.myPaciente)
+    console.log("myPaciente", this.myPaciente)
+    this.historial = navParams.get('historial');
+    this.length = navParams.get('length');
   }
 
   ionViewDidLoad() {
-    let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-       dismissOnPageChange: true
-    });
-    load.present();
-    this.cps.getHistorial(this.myPaciente.Codigo)
-    .subscribe(data => { 
-        this.historial = data.json();
-        console.log("Historial",this.historial);
-        this.presentToast(this.historial.length)
-         //load.dismiss();
-        },
-      err => { if (err.status == 404) {
-        } else {
-            console.log(err.status);
-            this.AlertError();
-          }
-        },
-      () =>  console.log("Termino")
-    ); 
+    
   }
   presentToast(lenght) {
     let toast = this.toastCtrl.create({
@@ -71,7 +55,7 @@ export class Historial {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Bueno', handler: () => { this.navCtrl.pop();} }]
+      buttons: [{ text: 'Listo', handler: () => { this.navCtrl.pop();} }]
     });
     alert.present();
   }

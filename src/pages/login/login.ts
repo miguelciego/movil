@@ -58,7 +58,7 @@ export class LoginPage {
       .subscribe(data => {
         this.datos = data.json();
         console.log("login.ts, estado =>", this.datos.estado)
-        if (this.datos != null && this.datos.estado == 1) {
+        if (this.datos != null && this.datos.estado == 1 ||  this.datos.estado == 2) {
           console.log("el estado es ", this.datos.estado);
           let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula, "filial": this.loginForm.value.filial }
           this.afiliado.push(a);
@@ -95,7 +95,7 @@ export class LoginPage {
     let alert = this.alertCtrl.create({
       title: 'Información',
       subTitle: 'La matrícula ' + this.loginForm.value.matricula + ' ya se encuentra vinculada en un teléfono móvil.',
-      buttons: ['Bueno']
+      buttons: ['Listo']
     });
     alert.present();
   }
@@ -113,7 +113,7 @@ export class LoginPage {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos ...',
       subTitle: '..Pero la matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en la departamental seleccionada.',
-      buttons: ['Bueno']
+      buttons: ['Listo']
     });
     alert.present();
   }

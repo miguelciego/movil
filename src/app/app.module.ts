@@ -10,10 +10,12 @@ import { AfiliadoStorage } from '../providers/afiliado-storage';
 import { gFamiliarStorage } from '../providers/grupoFamiliar-storage';
 
 import { Network } from '@ionic-native/network';
+import { Push } from '@ionic-native/push';
 
 const config = {
   tabsHideOnSubPages: true,
-  tabsPlacement: 'bottom'
+  tabsPlacement: 'bottom',
+  backButtonText: '',
 }
 
 @NgModule({
@@ -34,7 +36,7 @@ const config = {
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AfiliadoStorage, gFamiliarStorage, Network
+    AfiliadoStorage, gFamiliarStorage, Network, Push
   ]
 })
 export class AppModule {}

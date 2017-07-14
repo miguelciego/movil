@@ -15,8 +15,7 @@
 </ion-header>
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content 
-      refreshingText="Actualizando...">
+    <ion-refresher-content refreshingText="Actualizando...">
     </ion-refresher-content>
   </ion-refresher>
   <div class="contenedor" *ngIf="mostrar == false">
@@ -24,16 +23,26 @@
     <p>No se ha podido cargar el grupo familiar.</p>
   </div>
   <ion-list *ngIf="mostrar == true">
-    <ion-item-group>
-        <ion-item *ngFor="let Paciente of GrupoFamiliar">
-        <ion-avatar item-left (click)="irPerfil(Paciente)">
+    <ion-item-sliding #item *ngFor="let Paciente of GrupoFamiliar">
+      <ion-item (click)="iraFiliales(Paciente)">
+        <ion-avatar item-left>
           <img src="assets/images/perfil.png">
         </ion-avatar>
-        <div class="contenido" (click)="iraFiliales(Paciente)">
+        <div class="contenido" >
           <h3> {{ Paciente.Nombre }} </h3>
           <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado }}</p>
         </div>
       </ion-item>
-    </ion-item-group>
+      <ion-item-options side="right">
+        <button class="medkit" ion-button (click)="IrVademecun(Paciente)">
+            <i class="fa fa-medkit" aria-hidden="true"></i> 
+            Recetas
+        </button> 
+        <button class="more" ion-button (click)="irHistorial(Paciente)">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            Historial
+        </button>       
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

@@ -1,31 +1,28 @@
 <ion-content padding class="contenedor">
-	
+	<div class="btn-ayuda" float-end text-center (click)="irAyuda()">
+		<i class="fa fa-question-circle" aria-hidden="true"></i>
+	</div>
 	<img src="assets/images/logoLetra.png" />
 
 	<div class="carta">
 		<form [formGroup]="loginForm" (ngSubmit)="Guardar()" novalidate>
-				<div >
-					<ion-item class="campo">
-						<ion-label  class="dpts">Departamental</ion-label>
-						<ion-select formControlName="filial" cancelText="Cancelar">
-							<div *ngFor="let item of departamental">
-								<ion-option color="primary" value="{{ item.abrev }}">{{ item.nombre }}</ion-option>
-							</div>
-						</ion-select>
-					</ion-item> 
-					<ion-item class="campo">
-						<ion-label  class="dpts">Matrícula</ion-label>
-						<ion-input class="mat" formControlName="matricula" type="text" autofocus ></ion-input>
-					</ion-item>
-					<br> <br>
-					<button color="light" ion-button type="submit" block [disabled]="!loginForm.valid" outline>INGRESAR</button>
-				</div>
-			</form>
+			<div>
+				<ion-item class="campo">
+					<ion-label class="dpts">Departamental</ion-label>
+					<ion-select formControlName="filial" cancelText="Cancelar">
+						<div *ngFor="let item of departamental">
+							<ion-option color="primary" value="{{ item.abrev }}">{{ item.nombre }}</ion-option>
+						</div>
+					</ion-select>
+				</ion-item>
+				<ion-item class="campo">
+					<ion-label class="dpts">Matrícula</ion-label>
+					<ion-input formControlName="matricula" type="text"></ion-input>
+				</ion-item><br>
+				<button color="light" ion-button type="submit" block [disabled]="!loginForm.valid" outline>INGRESAR</button>
+				<ion-label>Ejemplo: (Año, Mes , Día e iniciales)</ion-label>
+			</div>
+		</form>
 	</div>
+	
 </ion-content>
-<!--<ion-footer>
-	<div class="btn-ayuda" text-center (click)="irAyuda()">
-		<i class="fa fa-question-circle" aria-hidden="true"></i>
-		AYUDA
-	</div>
-</ion-footer>-->
