@@ -14,7 +14,8 @@ export class EspecialidadesPage {
   private Filial;
   private Especialidades;
   private Ficha;
-  private length;
+  private rlength;
+  private elength;
   private Medico;
 
   constructor(
@@ -27,7 +28,7 @@ export class EspecialidadesPage {
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Especialidades = navParams.get('Especialidades');
-    this.length = navParams.get('length');
+    this.rlength = navParams.get('length');
     this.Filial = navParams.get('Filial');
     this.Ficha.FilialCodigo = this.Filial.Codigo;
     this.Ficha.FilialDescripcion = this.Filial.Nombre;
@@ -55,7 +56,6 @@ export class EspecialidadesPage {
       );*/
   }
   iraMedicos(Especialidad) {
-    //this.navCtrl.push('MedicosPage', { Especialidad: Especialidad, Ficha: this.Ficha });
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
@@ -70,12 +70,12 @@ export class EspecialidadesPage {
       .subscribe(data => {
         this.Medico = data.json();
         console.log("result",this.Medico)
-        this.length = this.Medico.length;
+        this.elength = this.Medico.length;
         this.navCtrl.push('MedicosPage', {
           Especialidad: Especialidad,
-          Ficha: this.Ficha,
           Medico: this.Medico,
-          length: this.length
+          Ficha: this.Ficha,
+          length: this.elength
         });
       },
       err => {

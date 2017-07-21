@@ -11,22 +11,29 @@ import { gFamiliarStorage } from '../providers/grupoFamiliar-storage';
 
 import { Network } from '@ionic-native/network';
 import { Push } from '@ionic-native/push';
+import { ScrollableTabs } from '../components/scrollable-tabs/scrollable-tabs';
 
 const config = {
   tabsHideOnSubPages: true,
-  tabsPlacement: 'bottom',
+  tabsPlacement: 'top',
   backButtonText: '',
+  platforms: {
+    ios: {
+      tabsPlacement: 'bottom',
+    }
+  }
 }
 
 @NgModule({
   declarations: [
     MyApp,
-    PopoverPage,
+    ScrollableTabs,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp,config),
+    IonicModule.forRoot(MyApp, config),
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
@@ -35,8 +42,8 @@ const config = {
     PopoverPage,
   ],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AfiliadoStorage, gFamiliarStorage, Network, Push
   ]
 })
-export class AppModule {}
+export class AppModule { }

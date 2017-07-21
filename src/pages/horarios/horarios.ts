@@ -15,7 +15,7 @@ export class HorariosPage {
   private Medico;
   private Horario;
   private Ficha;
-  private length;
+  private rlength;
 
   constructor(
     private navCtrl: NavController,
@@ -27,7 +27,7 @@ export class HorariosPage {
   ) {
     this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
-    this.length = navParams.get('length');
+    this.rlength = navParams.get('length');
     this.Horario =  navParams.get('Horario');
 
     this.Ficha.MedicoCodigo = this.Medico.Valor;
@@ -69,7 +69,7 @@ export class HorariosPage {
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'OK',
+          text: 'Listo',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();

@@ -34,14 +34,16 @@
         </div>
       </ion-item>
       <ion-item-options side="right">
-        <button class="medkit" ion-button (click)="IrVademecun(Paciente)">
-            <i class="fa fa-medkit" aria-hidden="true"></i> 
-            Recetas
-        </button> 
         <button class="more" ion-button (click)="irHistorial(Paciente)">
-            <i class="fa fa-file" aria-hidden="true"></i>
-            Historial
-        </button>       
+            <ion-avatar item-start>
+            <img width="40" height="40" src="assets/images/historial.png">
+          </ion-avatar>
+        </button> 
+        <button class="medkit" ion-button (click)="IrVademecun(Paciente)">
+          <ion-avatar item-start>
+            <img width="40" height="40" src="assets/images/medkit.png">
+          </ion-avatar>
+        </button>     
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

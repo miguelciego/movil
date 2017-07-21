@@ -16,7 +16,8 @@ export class VademecunPage {
   public myPaciente;
   public dpts;
   public Recetaslist: any[] = [];
-  private fechaResult = "MEDICAMENTOS DE HOY";
+  private fechaResult = "Buscando...";
+  private length;
 
   public dateForm: FormGroup;
   public icon = "add-circle";
@@ -58,7 +59,7 @@ export class VademecunPage {
 
     }
     let load = this.LoadCtrl.create({
-      content: 'Cargando...',
+      content: 'Medicamentos...',
        dismissOnPageChange: true
     });
     load.present()
@@ -66,14 +67,14 @@ export class VademecunPage {
       .subscribe(data => {
         this.Recetaslist = data.json();
         load.dismiss()
-        let length = this.Recetaslist.length;
+        this.length = this.Recetaslist.length;
         console.log("longitud del medicamento", length);
         if (length <= 0) {
           this.fechaResult = "No se le ha recetado medicamentos el día de hoy."
         } else {
           this.fechaResult = "Se han encontrado " + length + " recetas médicas.";
         }
-        this.presentToast(this.fechaResult)
+        //this.presentToast(this.fechaResult)
       },
       err => {
         if (err.status == 404) {
@@ -103,11 +104,10 @@ export class VademecunPage {
     toast.present();
   }
   AlertError() {
-
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Bueno', handler: () => { this.navCtrl.pop(); } }]
+      buttons: [{ text: 'Listo', handler: () => { this.navCtrl.pop(); } }]
     });
     alert.present();
   }

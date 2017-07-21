@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { IonicPage, NavParams, PopoverController, ToastController, Platform, App, AlertController } from 'ionic-angular';
+
+//import { ScrollableTabs } from '../../components/scrollable-tabs/scrollable-tabs';
 
 @IonicPage()
 @Component({
@@ -13,7 +15,10 @@ export class MitabPage {
 
   tab1Root: any = 'HomePage'
   tab2Root: any = 'GrupoFamiliarPage'
-  tab3Root: any = 'MapasPage'
+  tab3Root: any = 'PermisoPage'
+  tab4Root: any = 'MapasPage'
+
+  scrollableTabsopts: any = {};
 
   constructor(
     public popoverCtrl: PopoverController,
@@ -36,6 +41,9 @@ export class MitabPage {
         }
       });
     });*/
+  }
+  refreshScrollbarTabs() {
+    this.scrollableTabsopts = { refresh: true };    
   }
   /*getLogin(){
     this.login = this.navParams.get('login');
@@ -65,4 +73,5 @@ export class MitabPage {
     });
     alert.present();
    }*/
+  
 }

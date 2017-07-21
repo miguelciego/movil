@@ -15,7 +15,8 @@ export class MedicosPage {
   private Especialidad;
   private Horario;
   private Ficha;
-  private length;
+  private rlength;
+  private elength;
 
   constructor(
   private navCtrl: NavController, 
@@ -28,7 +29,7 @@ export class MedicosPage {
     this.Especialidad = navParams.get('Especialidad');
     this.Ficha = navParams.get('Ficha'); 
     this.Medico = navParams.get('Medico'); 
-    this.length = navParams.get('length'); 
+    this.rlength = navParams.get('length'); 
 
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
@@ -61,7 +62,6 @@ export class MedicosPage {
     );*/
   }
   iraHorarios(Medico) {
-    //this.navCtrl.push('HorariosPage', { Medico: Medico, Ficha: this.Ficha });
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
@@ -70,12 +70,12 @@ export class MedicosPage {
     this.cps.getHorarios(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, Medico.Valor, this.Ficha.Fecha)
       .subscribe(data => {
         this.Horario = data.json();
-        this.length = this.Horario.length;
+        this.elength = this.Horario.length;
         this.navCtrl.push('HorariosPage', { 
           Medico: Medico, 
-          Ficha: this.Ficha,
           Horario: this.Horario,
-          length: this.length
+          Ficha: this.Ficha,
+          length: this.elength
         });
       },
       err => {

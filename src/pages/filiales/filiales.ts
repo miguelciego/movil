@@ -14,7 +14,7 @@ export class FilialesPage {
 
   private FilialesEncontradas: any[] = [];
   private Especialidades: any[] = [];
-  private length;
+  private elength;
   private Paciente;
   private Ficha;
   private validarN;
@@ -43,12 +43,10 @@ export class FilialesPage {
     this.Ficha.PacienteHClinica = this.Paciente.HClinica;
     this.Ficha.PacienteAtendido = this.Paciente.Atendido;
     this.Ficha.PacienteFicha = this.Paciente.Ficha;
-
-
   }
+
   ionViewDidLoad() {
   }
-
   iraEspecialidades(Filial) {
     //this.navCtrl.push('EspecialidadesPage', { Ficha: this.Ficha, Filial: Filial });
     let load = this.LoadCtrl.create({
@@ -59,12 +57,12 @@ export class FilialesPage {
     this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
       .subscribe(data => {
         this.Especialidades = data.json();
-        this.length = this.Especialidades.length;
+        this.elength = this.Especialidades.length;
         this.navCtrl.push('EspecialidadesPage', {
-          Ficha: this.Ficha,
-          Especialidades: this.Especialidades,
-          length: this.length,
           Filial:Filial,
+          Especialidades: this.Especialidades,
+          Ficha: this.Ficha,
+          length: this.elength,
         });
 
       },
@@ -82,14 +80,13 @@ export class FilialesPage {
   volver() {
     this.navCtrl.pop();
   }
-
   AlertError() {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message:'...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       buttons: [
         {
-          text: 'Ok',
+          text: 'Listo',
           handler: () => {
             this.navCtrl.popToRoot()
             this.ToastAlertError();

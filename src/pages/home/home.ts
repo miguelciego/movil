@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController } from 'ionic-angular';
+import { IonicPage, PopoverController, NavController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
+import { CpsProviders } from '../../providers/cps';
 
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [CpsProviders]
 })
 export class HomePage {
 
@@ -16,8 +18,11 @@ export class HomePage {
 
   constructor(
     public popoverCtrl: PopoverController,
+    private cps: CpsProviders,
+    private navCtrl: NavController,
   ) {}
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+  }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({

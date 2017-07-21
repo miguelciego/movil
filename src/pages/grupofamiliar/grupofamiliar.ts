@@ -120,7 +120,6 @@ export class GrupoFamiliarPage {
         if (this.validarN == "E2" || this.validarN == "E3") {
           this.presentModal(Paciente);
           load.dismiss()
-          console.log("Compleado : modaPage ")
         }
         else {
           if (this.validarN % 1 == 0) {
@@ -156,7 +155,7 @@ export class GrupoFamiliarPage {
   }
   irHistorial(Paciente) {
     let load = this.LoadCtrl.create({
-      content: 'Cargando historial de ficha...',
+      content: 'Historial de ficha...',
       dismissOnPageChange: true
     });
     load.present();
@@ -248,4 +247,5 @@ export class GrupoFamiliarPage {
     });
     toast.present();
   }
+  
 }

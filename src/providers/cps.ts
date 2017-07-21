@@ -129,6 +129,15 @@ export class CpsProviders {
         //return this.http.post( this.cpsAPI + 'consulta/mficha',
             creds, { headers: headers });
     }
+    
+    getPermiso() {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post('http://smovilsc.cps.org.bo/consulta/test',
+        //return this.http.post(this.cpsAPI + 'consulta/test',
+            { headers: headers });
+    }
+
     // Funciones para las pruebas que se deben eliminar al final del proyecto....
     //---------------------------------------------------------------------------
     getReceta2() {

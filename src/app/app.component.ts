@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
+
+
 @Component({
   templateUrl: 'app.html',
   providers: [StatusBar, SplashScreen, Push]

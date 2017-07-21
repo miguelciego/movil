@@ -31,11 +31,10 @@ export class Historial {
   }
 
   ionViewDidLoad() {
-    
   }
   presentToast(lenght) {
     let toast = this.toastCtrl.create({
-      message: 'Se ha encontrado ' + lenght + ' fichas',
+      message: lenght + ' fichas encontradas.',
       duration: 3000,
       position: 'bottom'
     });
@@ -66,5 +65,8 @@ export class Historial {
   presentModal(item) {
     let modal = this.modalCtrl.create('ModalHistorial',{ ficha : item, myPaciente: this.myPaciente });
     modal.present();
+  }
+  volver() {
+    this.navCtrl.pop();
   }
 }

@@ -17,7 +17,7 @@
   </ion-card>
 </ion-header>
 <ion-content>
-  <ion-list  *ngIf="length > 0">
+  <ion-list  *ngIf="rlength > 0">
     <button ion-item *ngFor="let Medico of Medico" (click)="iraHorarios(Medico)">
         <ion-avatar item-left (click)="irDetalleMed(Medico)" >
             <img src="assets/images/med.png" >
@@ -27,8 +27,8 @@
         </div>
     </button>
   </ion-list>
-  <div *ngIf="length == 0" class="contenedor" (click)="volver()">
-      <img class="img" width="100" height="100" src="assets/images/med.png"/>
+  <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
+      <img class="img" width="70" height="70" src="assets/images/med.png"/>
       <p>No hay Médicos disponibles.</p>
   </div>
 </ion-content>

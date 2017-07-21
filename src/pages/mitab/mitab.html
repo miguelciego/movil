@@ -1,5 +1,12 @@
-<ion-tabs color="primary"  [selectedIndex]="mySelectedIndex">
+<style>
+	.tabbar::after {
+		content: none;
+	}
+</style>
+<ion-tabs #ionTabs  color="primary"  [selectedIndex]="mySelectedIndex"
+  tabsHighlight="true">
   <ion-tab [root]="tab1Root" tabTitle="Inicio CPS" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" [rootParams]="login" tabTitle="Obtener ficha" tabIcon="list-box"></ion-tab>
-  <ion-tab [root]="tab3Root" [rootParams]="login" tabTitle="Mapas" tabIcon="map"></ion-tab>
+  <ion-tab [root]="tab3Root" [rootParams]="login" tabTitle="Permiso" tabIcon="calendar"></ion-tab>
+  <ion-tab [root]="tab4Root" [rootParams]="login" tabTitle="Mapas" tabIcon="map"></ion-tab>
 </ion-tabs>

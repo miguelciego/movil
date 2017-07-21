@@ -13,11 +13,11 @@
     <ion-item *ngFor="let item of historial" (click)="historialFicha(item)">
       <span item-right *ngIf="item.atendido == 0" color="danger" class="check">No asistió</span>
       <ion-icon class="gris" name="document" item-left></ion-icon>
-      <h3 class="asd"> {{ item.especialidad }} </h3>
+      <h3 color="primaryText"> {{ item.especialidad }} </h3>
       <h3 class="nota"> {{ item.creadoEl | date:'shortDate' }} </h3>
     </ion-item>
   </ion-list>
-  <div  class="contenedor" *ngIf="length == 0">
+  <div  class="contenedor" *ngIf="length == 0" (click)="volver()">
     <i id="logo" class="fa fa-file fa-3x" aria-hidden="true"></i>
     <p>Sin historial</p>
   </div>

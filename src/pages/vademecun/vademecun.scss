@@ -33,12 +33,14 @@ page-vademecun {
         border-radius:0 !important;
     }
     .section-active {
-        background: #007b6d;
+        background: #009688;
         color: #fff;
     }
     .subcontenido{
         background-color: color($colors, light); 
         padding: 8px 16px 8px 16px !important;
+        background: #f0efef,
+;
     }
     ion-list > p{
         margin: 0px !important;
