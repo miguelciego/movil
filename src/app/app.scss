@@ -95,6 +95,9 @@ ion-toast.success .toast-wrapper {
 ion-toast.error .toast-wrapper {
 	background: rgb(209, 71, 71);
 }
+.toast-button {  
+    color: #009688 !important;
+}
 /* controlando los colores del alert
 ion-alert >.alert-wrapper{
     background: #0d2231 !important;

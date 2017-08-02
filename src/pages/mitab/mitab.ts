@@ -15,7 +15,6 @@ export class MitabPage {
 
   tab1Root: any = 'HomePage'
   tab2Root: any = 'GrupoFamiliarPage'
-  tab3Root: any = 'PermisoPage'
   tab4Root: any = 'MapasPage'
 
   scrollableTabsopts: any = {};

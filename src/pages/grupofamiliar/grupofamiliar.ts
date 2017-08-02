@@ -63,40 +63,25 @@ export class GrupoFamiliarPage {
           this.Ficha.PacienteCodigo = result[key].Id;
           this.Ficha.dpts = result[key].filial;
         });
-        this.gStorage.getAll()
-          .then((data: any[]) => {
-            if (data == null) {
-              console.log("if")
-              this.cps.getGFamiliar(this.Ficha.dpts, this.Ficha.PacienteCodigo)
-                .subscribe(data => {
-                  this.GrupoFamiliar = data
-                  this.mostrar = true;
-                  this.gStorage.create(this.GrupoFamiliar)
-                    .then(data => {
-                      console.log("Grupo Familiar Storage : Agregado Correctamente")
-                    })
-                    .catch(error => {
-                    })
-                  console.log(" Completado : GrupoFamiliar => ", this.GrupoFamiliar)
-                },
-                err => {
-                  console.log(err.status);
-                  this.mostrar = false;
-                  this.AlertError();
-                  load.dismiss()
-                },
-                () => load.dismiss())
-            }
-            else {
-              console.log("else")
-              this.mostrar = true;
-              this.GrupoFamiliar = data
-              load.dismiss()
-            }
-          })
-          .catch(error => {
-            console.log(error)
-          })
+        this.cps.getGFamiliar(this.Ficha.dpts, this.Ficha.PacienteCodigo)
+          .subscribe(data => {
+            this.GrupoFamiliar = data
+            this.mostrar = true;
+            this.gStorage.create(this.GrupoFamiliar)
+              .then(data => {
+                console.log("Grupo Familiar Storage : Agregado Correctamente")
+              })
+              .catch(error => {
+              })
+            console.log(" Completado : GrupoFamiliar => ", this.GrupoFamiliar)
+          },
+          err => {
+            console.log(err.status);
+            this.mostrar = false;
+            this.toastError();
+            load.dismiss()
+          },
+          () => load.dismiss())
       })
       .catch(error => {
         console.log(error)
@@ -139,7 +124,7 @@ export class GrupoFamiliarPage {
         if (err.status == 404) {
         } else {
           console.log(err.status);
-          this.AlertError();
+          this.toastError();
           load.dismiss()
         }
       },
@@ -174,24 +159,13 @@ export class GrupoFamiliarPage {
         } else {
           console.log(err.status);
           load.dismiss()
+          this.toastFicha()
         }
       },
       () => console.log("Termino historial")
       );
   }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{
-        text: 'Listo', handler: () => {
-          console.log("AlerError : Se ha Ejecutado")
-        }
-      }]
-    });
-    alert.present();
-  }
-  doRefresh(refresher) {
+  /*doRefresh(refresher) {
     this.aStorage.getAll()
       .then((result: any) => {
         Object.keys(result).forEach(key => {
@@ -224,7 +198,7 @@ export class GrupoFamiliarPage {
       .catch(error => {
         console.log(error)
       })
-  }
+  }*/
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
@@ -239,13 +213,25 @@ export class GrupoFamiliarPage {
     });
     toast.present();
   }
-  noActualizaToast() {
+  toastFicha() {
     let toast = this.toastCtrl.create({
-      message: 'Error al Actualizar.',
-      duration: 3000,
+      message: 'Se ha producido un error al buscar el historial de ficha. Intentalo de nuevo',
+      duration: 5000,
       position: 'bottom'
     });
     toast.present();
   }
-  
+  toastError() {
+    let toast = this.toastCtrl.create({
+      message: 'Se ha producido un error. Intentalo de nuevo',
+      position: 'bottom',
+      showCloseButton: true,
+      closeButtonText:'REINTENTAR'
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+      this.ionViewDidLoad()
+    });
+    toast.present();
+  }
 }

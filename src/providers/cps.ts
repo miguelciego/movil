@@ -15,6 +15,7 @@ export class CpsProviders {
         var creds = "valorm=" + valorm + "&platform=" + platform +
             "&manufacturer=" + manufacturer + "&versionname=" + versionname +
             "&versioncode=" + versioncode + "&model=" + model + "&uuid=" + uuid;
+        console.log("DATA", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         console.log("API REST", 'http://smovil' + dpts + '.cps.org.bo/consulta/verification')
@@ -84,14 +85,15 @@ export class CpsProviders {
             creds, { headers: headers });
 
     }
+    /******************************************************** API REST NODE JS********************************************************/
     getMedicamentos(valor, ini, fin) {
         var creds = "valor=" + valor + "&ini=" + ini + "&fin=" + fin;
         console.log("creds", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/medicamentos2',
-        //return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
+        //return this.http.post('http://smovilsc.cps.org.bo/consulta/medicamentos2',
+        return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
             creds, { headers: headers });
     }
     getHistorial(valor) {
@@ -99,23 +101,23 @@ export class CpsProviders {
         console.log("creds", creds)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
-        //return this.http.post(this.cpsAPI + 'consulta/historial',
+        //return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
+        return this.http.post(this.cpsAPI + 'consulta/historial',
             creds, { headers: headers });
     }
     getDepartamental() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/departamental',
-        //return this.http.post(this.cpsAPI + 'consulta/departamental',
+        //return this.http.post('http://smovilsc.cps.org.bo/consulta/departamental',
+        return this.http.post(this.cpsAPI + 'consulta/departamental',
             { headers: headers });
     }
     getMaps(abrev) {
         var creds = "abrev=" + abrev;
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/maps',
-        //return this.http.post(this.cpsAPI + 'consulta/maps',
+        //return this.http.post('http://smovilsc.cps.org.bo/consulta/maps',
+        return this.http.post(this.cpsAPI + 'consulta/maps',
             creds, { headers: headers })
             .map(this.Edata)
             
@@ -125,16 +127,16 @@ export class CpsProviders {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
-        //return this.http.post( this.cpsAPI + 'consulta/mficha',
+        //return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
+        return this.http.post( this.cpsAPI + 'consulta/mficha',
             creds, { headers: headers });
     }
     
     getPermiso() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this.http.post('http://smovilsc.cps.org.bo/consulta/test',
-        //return this.http.post(this.cpsAPI + 'consulta/test',
+        //return this.http.post('http://smovilsc.cps.org.bo/consulta/test',
+        return this.http.post(this.cpsAPI + 'consulta/test',
             { headers: headers });
     }
 

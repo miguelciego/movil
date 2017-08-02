@@ -78,9 +78,6 @@ export class ModalPage {
   volver(){
     this.navCtrl.pop();
   }
-  volverRefresh(){
-    this.navCtrl.setRoot('MitabPage')
-  }
   AlertEliminar() {
     let alert = this.alertCtrl.create({
       message: 'Al eliminar la ficha estarías cancelando la cita médica, si estás seguro(a) escribe "SI" en el campo para confirmar.',

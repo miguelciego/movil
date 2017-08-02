@@ -7,7 +7,7 @@ import { Network } from '@ionic-native/network';
 import { CpsProviders } from '../../providers/cps';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
-import { Subscription } from 'rxjs/Subscription';
+//import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -17,14 +17,11 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class MapasPage {
 
-  connected: Subscription;
-  disconnected: Subscription;
-
   public Maps;
   public dptStorage;
   private check: boolean;
   private inicalesDpts: any = [];
-  private mostrar: boolean;
+  private mostrar:boolean= false;
 
   constructor(
     private platform: Platform,
@@ -48,30 +45,10 @@ export class MapasPage {
         });
         this.maps(this.dptStorage)
         this.depar();
-        this.mostrar = true;
-        console.log("mostrar", this.mostrar)
       })
       .catch(error => {
-        this.mostrar = false;
         console.log("Error : ", error)
-        console.log("mostrar", this.mostrar)
       })
-  }
-  ionViewDidEnter() {
-    console.log("evento : ionViewDidEnter")
-    this.connected = this.network.onConnect().subscribe(data => {
-      console.log("conectado", data.type)
-      this.cargarDatos()
-    }, error => console.error(error));
-
-    this.disconnected = this.network.onDisconnect().subscribe(data => {
-      console.log("desconectado", data.type)
-      this.mostrar = false;
-    }, error => console.error(error));
-  }
-  ionViewWillLeave() {
-    this.connected.unsubscribe();
-    this.disconnected.unsubscribe();
   }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
@@ -89,11 +66,13 @@ export class MapasPage {
         this.Maps = data
         console.log("maps", this.Maps);
         load.dismiss()
+        this.mostrar= true;
       },
       err => {
         console.log(err.status);
-        this.mostrar = false
         load.dismiss()
+        this.mostrar= false
+        this.toastError()
       },
       () => console.log('getmaps -> completado')
       );
@@ -106,7 +85,6 @@ export class MapasPage {
       },
       err => {
         console.log(err.status);
-        this.mostrar = false
       },
       () => console.log('getmaps -> completado')
       );
@@ -143,19 +121,17 @@ export class MapasPage {
     });
     alert.present();
   }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [
-        {
-          text: 'Listo',
-          handler: () => {
-            this.platform.exitApp();
-          }
-        }
-      ]
+  toastError() {
+    let toast = this.toast.create({
+      message: 'Se ha producido un error. Intentalo de nuevo',
+      position: 'bottom',
+      showCloseButton: true,
+      closeButtonText:'REINTENTAR'
     });
-    alert.present();
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+      this.cargarDatos()
+    });
+    toast.present();
   }
 }

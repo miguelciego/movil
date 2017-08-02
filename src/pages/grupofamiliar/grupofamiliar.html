@@ -14,19 +14,18 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingText="Actualizando...">
     </ion-refresher-content>
-  </ion-refresher>
-  <div class="contenedor" *ngIf="mostrar == false">
-    <i id="logo" class="fa fa-users fa-3x" aria-hidden="true"></i>
-    <p>No se ha podido cargar el grupo familiar.</p>
-  </div>
+  </ion-refresher>-->
+  <ion-item-group>
+    <ion-item-divider color="light">GRUPO FAMILIAR </ion-item-divider>
+  </ion-item-group>
   <ion-list *ngIf="mostrar == true">
     <ion-item-sliding #item *ngFor="let Paciente of GrupoFamiliar">
       <ion-item (click)="iraFiliales(Paciente)">
         <ion-avatar item-left>
-          <img src="assets/images/perfil.png">
+          <img src="assets/images/people.png">
         </ion-avatar>
         <div class="contenido" >
           <h3> {{ Paciente.Nombre }} </h3>

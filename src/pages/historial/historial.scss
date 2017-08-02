@@ -13,7 +13,6 @@ page-historial {
     }
     .check{
         color:red;
-        font-size: 13px;
     }
     .gris{
         color:#757575 !important;
@@ -29,11 +28,11 @@ page-historial {
         padding-left: 20%;
         padding-right: 20%;
     }
-    #logo{
+    .img{
         position:relative;
         margin-top:50%;
         vertical-align:middle;
         text-align:center;
-        color: #757575
+        border-radius: 50%;
     }
 }

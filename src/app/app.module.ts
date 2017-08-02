@@ -15,14 +15,10 @@ import { ScrollableTabs } from '../components/scrollable-tabs/scrollable-tabs';
 
 const config = {
   tabsHideOnSubPages: true,
-  tabsPlacement: 'top',
+  tabsPlacement: 'bottom',
   backButtonText: '',
-  platforms: {
-    ios: {
-      tabsPlacement: 'bottom',
-    }
-  }
 }
+
 
 @NgModule({
   declarations: [

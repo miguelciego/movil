@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, App, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, App, AlertController, ViewController  } from 'ionic-angular';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { CpsProviders } from '../../providers/cps';
@@ -32,6 +32,7 @@ export class ResumenPage {
     private appCtrl: App,
     private alertCtrl:AlertController,
     private localNotifications: LocalNotifications,
+    public viewCtrl: ViewController
   ){
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
@@ -44,7 +45,7 @@ export class ResumenPage {
     this.Medico = this.Ficha.MedicoNombre;
     this.Hora = this.Ficha.horaD;
     this.Dia = this.Ficha.Fecha;
-    console.log(JSON.stringify(this.Ficha));
+    console.log(this.Ficha);
   }
   Guardar(){
     let load = this.LoadCtrl.create({
@@ -64,7 +65,7 @@ export class ResumenPage {
     .subscribe( data => { 
       this.datos = data.json();
         switch (this.datos.Codigo) {
-          case "G0":
+          case "G0": //GUARDAR FICHA
               console.log("codigo", this.datos.Codigo)
               load.dismiss();
               this.ToastG0(this.datos.Descripcion);
@@ -77,7 +78,7 @@ export class ResumenPage {
               this.ToastE1(this.datos.Descripcion);
               this.navCtrl.popToRoot();
             break;
-          case "E2":
+          case "E2": //EL HORARIO SE ACABA DE OCUPAR
               console.log("codigo", this.datos.Codigo)
               load.dismiss();
               this.ToastE2(this.Ficha.horaD);
@@ -97,7 +98,7 @@ export class ResumenPage {
     );
   }
   cancelar(){
-    this.navCtrl.pop();
+    this.navCtrl.pop()
   }
   ToastG0(mensaje) {
     let toast = this.toastCtrl.create({
@@ -152,7 +153,7 @@ export class ResumenPage {
       id: 1,
       icon: 'res://icon',
       title:'CAJA PETROLERA DE SALUD',
-      text: 'NUEVA FICHA PARA ' + afiliado + matricula,
+      text: 'NUEVA FICHA PARA ' + afiliado
      });
   }
 }

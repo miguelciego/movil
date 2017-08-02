@@ -19,14 +19,13 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div class="contenedor" *ngIf="mostrar == false">
-    <i id="logo" class="fa fa-map fa-3x" aria-hidden="true"></i>
-    <p>No se ha podido cargar los mapas.</p>
-  </div>
-  <ion-list no-lines *ngIf="mostrar == true">
+  <ion-item-group>
+    <ion-item-divider color="light">CENTROS DE SALUD </ion-item-divider>
+  </ion-item-group>
+  <ion-list no-lines>
     <ion-item *ngFor="let item of Maps" no-lines>
       <ion-thumbnail item-left no-lines>
-        <img style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ item.img }}" />
+        <img src="http://smovil.cps.org.bo/images/{{ item.img }}" />
       </ion-thumbnail>
       <a class="maps" item-left [href]="sanitize('geo:?q=' + item.geolatitud + ',' + item.geolongitud + ',17z')" target="_system">
         <h3 calor="primary"> {{ item.filial }} </h3>

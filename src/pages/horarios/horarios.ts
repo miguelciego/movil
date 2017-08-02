@@ -31,10 +31,7 @@ export class HorariosPage {
     this.Horario =  navParams.get('Horario');
 
     this.Ficha.MedicoCodigo = this.Medico.Valor;
-    this.Ficha.MedicoNombre = this.Medico.Descripcion;
-
-    console.log("result", this.Horario)
-    
+    this.Ficha.MedicoNombre = this.Medico.Descripcion;  
   }
   ionViewDidLoad() {
     /*let load = this.LoadCtrl.create({
@@ -60,6 +57,7 @@ export class HorariosPage {
   irResumen(Hora) {
     this.navCtrl.push('ResumenPage', { Hora: Hora, Ficha: this.Ficha });
   }
+  
   volver() {
     this.navCtrl.pop();
   }

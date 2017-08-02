@@ -35,11 +35,13 @@ page-grupofamiliar {
     .item-wp p{
         font-size: 12px;
     }
-    .item-divider-md {
+    .item-divider{
         padding-left: 16px;
         color: #000;
+        margin:0 !important;
         background-color: #f4f4f4;
         border-bottom: 0px solid #dedede !important;
+        box-shadow: 0 0 rgba(0, 0, 0, 0.2);
         font-size: 1.4rem;
     }
     .contenedor{
@@ -55,7 +57,7 @@ page-grupofamiliar {
     }
     #logo{
         position:relative;
-        margin-top:50%;
+        padding-top:55%;
         vertical-align:middle;
         text-align:center;
         color: #757575
@@ -74,5 +76,11 @@ page-grupofamiliar {
     }
     .fa{
         margin-bottom: 5px;
+    }
+    .list-md {
+        margin: -1px 0 0px !important;
+    }
+    .list-ios {
+        margin: -1px 0 0px !important;
     }
 }

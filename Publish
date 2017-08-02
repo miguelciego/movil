@@ -1,0 +1,12 @@
+
+ionic platform add android
+ionic build android --release --prod
+
+FIRMAR EL APK - GIT BASH
+
+/c/CPSMOVIL/aplicacion/movil/platforms/android/build/outputs/apk
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cpsmovil.jks android-release-unsigned.apk cps
+
+COMPILAR EL APK FINAL - CMD
+
+D:\sdk\build-tools\19.1.0>zipalign -v 4 C:\CPSMOVIL\aplicacion\movil\platforms\android\build\outputs\apk\android-release-unsigned.apk cpsmovil.apk

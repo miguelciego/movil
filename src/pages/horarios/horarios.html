@@ -1,31 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Horario</ion-title>
-        <ion-buttons left>
-      <button ion-button >
+    <ion-buttons left>
+      <button ion-button>
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
   </ion-navbar>
   <ion-card>
-      <div class="myFicha">
-        <p class="ficha">Paciente : {{ Ficha.PacienteNombre}} </p>
-        <p class="ficha">Matrícula : {{ Ficha.PacienteMatricula }} </p>
-        <p class="ficha">Hospital : {{ Ficha.FilialDescripcion }} </p>
-        <p class="ficha">Especialidad : {{ Ficha.EspecialidadDescripcion }} </p>
-        <p class="ficha">Médico : {{ Ficha.MedicoNombre }} </p>
-      </div>
+    <div class="myFicha">
+      <p class="ficha">Paciente : {{ Ficha.PacienteNombre}} </p>
+      <p class="ficha">Matrícula : {{ Ficha.PacienteMatricula }} </p>
+      <p class="ficha">Hospital : {{ Ficha.FilialDescripcion }} </p>
+      <p class="ficha">Especialidad : {{ Ficha.EspecialidadDescripcion }} </p>
+      <p class="ficha">Médico : {{ Ficha.MedicoNombre }} </p>
+    </div>
   </ion-card>
 </ion-header>
-<ion-content >    
-<ion-list *ngIf="rlength > 0">
-  <button ion-item *ngFor="let Hora of Horario" (click)="irResumen(Hora)">
-    <img item-left width="40" height="40" src="assets/images/hor.png"/>
+<ion-content>
+  <ion-list *ngIf="rlength > 0">
+    <button ion-item *ngFor="let Hora of Horario" (click)="irResumen(Hora)">
+     <ion-avatar item-left>
+      <img src="assets/images/hor.png"/>
+     </ion-avatar>
     <h3>{{ Hora.Descripcion }}</h3>
   </button>
-</ion-list>
-<div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
-      <img class="img" width="70" height="70" src="assets/images/hor.png"/>
-      <p>No hay Horarios disponibles.</p>
+  </ion-list>
+  <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
+    <img class="img" width="70" height="70" src="assets/images/hor.png" />
+    <p>No hay Horarios disponibles.</p>
   </div>
 </ion-content>

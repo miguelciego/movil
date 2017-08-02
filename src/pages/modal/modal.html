@@ -13,8 +13,8 @@
 </ion-header>
 <ion-content >
   <div *ngIf="errorMysql == 1" class="contenedor" (click)="volver()">
-    <img class="img" width="100" height="100" src="assets/images/ficha.png"/>
-    <p>Mostrar Ficha no esta disponible</p>
+    <img class="img" width="70" height="70" src="assets/images/ficha.png"/>
+    <p>No esta disponible</p>
   </div>
   <div *ngIf="errorMysql == 2" padding>
     <div *ngFor="let ficha of myFicha">
@@ -22,12 +22,12 @@
         <ion-label>{{ ficha.Lugar }}</ion-label>
       </ion-item>
       <ion-item no-lines>
-        <i class="fa fa-id-card" item-left aria-hidden="true"></i>
-        <p> {{ ficha.Matricula }} </p>
-      </ion-item>
-      <ion-item no-lines>
       <i class="fa fa-user" item-left aria-hidden="true"></i>
         <p>{{ ficha.Nombre }}</p>
+      </ion-item>
+      <ion-item no-lines>
+        <i class="fa fa-id-card" item-left aria-hidden="true"></i>
+        <p> {{ ficha.Matricula }} </p>
       </ion-item>
       <ion-item no-lines>
         <i class="fa fa-building" item-left aria-hidden="true"></i>
@@ -64,8 +64,8 @@
       </ion-grid>
     </div>
   </div>
-  <div *ngIf="errorMysql == 3" class="contenedor" (click)="volverRefresh()">
-    <img class="img" width="100" height="100" src="assets/images/ficha.png"/>
+  <div *ngIf="errorMysql == 3" class="contenedor" (click)="volver()">
+    <img class="img" width="70" height="70" src="assets/images/ficha.png"/>
     <p>Estará disponible en breve.</p>
   </div>
 </ion-content>

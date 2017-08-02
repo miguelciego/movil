@@ -11,14 +11,16 @@
 <ion-content>
   <ion-list *ngIf="length > 0">
     <ion-item *ngFor="let item of historial" (click)="historialFicha(item)">
-      <span item-right *ngIf="item.atendido == 0" color="danger" class="check">No asistió</span>
-      <ion-icon class="gris" name="document" item-left></ion-icon>
+      <span item-right *ngIf="item.atendido == 0" color="danger" class="check"><ion-icon name="close-circle"></ion-icon></span>
+      <ion-avatar item-left (click)="irDetalleMed(Medico)" >
+            <img src="assets/images/fich.png" >
+        </ion-avatar>
       <h3 color="primaryText"> {{ item.especialidad }} </h3>
-      <h3 class="nota"> {{ item.creadoEl | date:'shortDate' }} </h3>
+      <h3 class="nota"> {{ item.creadoEl }} </h3>
     </ion-item>
   </ion-list>
   <div  class="contenedor" *ngIf="length == 0" (click)="volver()">
-    <i id="logo" class="fa fa-file fa-3x" aria-hidden="true"></i>
-    <p>Sin historial</p>
+    <img class="img" width="70" height="70" src="assets/images/fich.png" >
+    <p>Sin historial de ficha.</p>
   </div>
 </ion-content>

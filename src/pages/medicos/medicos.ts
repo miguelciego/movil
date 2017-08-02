@@ -33,6 +33,7 @@ export class MedicosPage {
 
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
+    console.log(this.Ficha); 
 
   }
   ionViewDidLoad(){

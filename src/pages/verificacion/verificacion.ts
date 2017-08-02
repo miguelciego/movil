@@ -60,26 +60,13 @@ export class VerificacionPage {
         console.log(error)
       })
   }
-  /*DesconectadoToast() {
-    let toast = this.toastCtrl.create({
-      message: 'Sin conexión, Verifica tus datos móviles o wifi.',
-      position: 'top',
-      cssClass: 'error',
-      showCloseButton: true,
-      closeButtonText: 'OK'
-    });
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-    toast.present();
-  }*/
   AlertError() {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
       cssClass: 'alertError',
       buttons: [{
-        text: 'Bueno', handler: () => {
+        text: 'Listo', handler: () => {
           this.platform.exitApp();
         }
       }]

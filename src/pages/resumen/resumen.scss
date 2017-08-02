@@ -2,14 +2,6 @@ page-resumen {
     ion-item{
         height: 40px;
     }
-    .contenedor{
-        position: absolute;
-        width: 80%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-    }
     .ion-item > p{
         color: #000;
     }

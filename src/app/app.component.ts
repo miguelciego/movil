@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { Platform, App, AlertController } from 'ionic-angular';
+import { Platform, App, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+//import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
-
+import { Network } from '@ionic-native/network';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [StatusBar, SplashScreen, Push]
+  providers: [StatusBar, SplashScreen]
+  //providers: [StatusBar, SplashScreen, Push]
 })
 export class MyApp {
 
@@ -21,15 +22,33 @@ export class MyApp {
     private statusBar: StatusBar,
     public splashscreen: SplashScreen,
     public alertCtrl: AlertController,
-    public push: Push
+    
+    //public push: Push,
+    private network: Network,
+    private toast:ToastController
   ) {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashscreen.hide();
-      this.initPushNotification();
+      //this.initPushNotification();
+      this.network.onConnect().subscribe(data => {
+      console.log(data)
+    }, error => console.error(error));
+
+    this.network.onDisconnect().subscribe(data => {
+      this.errorInternet();
+    }, error => console.error(error));
     });
   }
-  initPushNotification() {
+  errorInternet() {
+    this.toast.create({
+      message: `No hay conexión a internet`,
+      duration: 5000,
+      cssClass: 'error',
+      position:'top'
+    }).present();
+  }
+  /*initPushNotification() {
     if (!this.platform.is('cordova')) {
       console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
       return;
@@ -80,5 +99,5 @@ export class MyApp {
     });
 
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin' + error));
-  }
+  }*/
 }

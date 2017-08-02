@@ -5,7 +5,7 @@
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
-    <ion-title>CPS Móvil</ion-title>
+    <ion-title>Permisos</ion-title>
     <ion-buttons end>
       <button ion-button color="light" icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -18,12 +18,15 @@
     <ion-item-divider color="light">MÉDICOS CON PERMISO </ion-item-divider>
   </ion-item-group>
   <ion-list>
-    <button ion-item *ngFor="let item of permiso">
-      <i class="fa fa-user-md fa-2x gris" aria-hidden="true" item-left></i>
-      <div class="hospital" >
-         <h3> {{ item.nombrec }} </h3>
-         <h3 class="nota"> Desde el {{ item.fch_ini| date:'shortDate' }} hasta el {{ item.fch_fin| date:'shortDate' }} </h3>
-      </div>     
-    </button>
+    <ion-item *ngFor="let item of permiso" no-lines>
+      <ion-thumbnail item-left no-lines>
+        <img src="assets/images/medGris.png">
+      </ion-thumbnail>
+      <div class="hospital" text-capitalize>
+        <h3> {{ item.nombrec }} </h3>
+        <h3 class="nota"> Motivo : {{ item.motivo }}</h3>
+        <h3 class="nota"> Desde el {{ item.fch_ini }} hasta el {{ item.fch_fin }} </h3>
+      </div>
+    </ion-item>
   </ion-list>
 </ion-content>

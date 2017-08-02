@@ -43,6 +43,8 @@ export class FilialesPage {
     this.Ficha.PacienteHClinica = this.Paciente.HClinica;
     this.Ficha.PacienteAtendido = this.Paciente.Atendido;
     this.Ficha.PacienteFicha = this.Paciente.Ficha;
+
+    console.log(this.Ficha); 
   }
 
   ionViewDidLoad() {
@@ -57,6 +59,7 @@ export class FilialesPage {
     this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
       .subscribe(data => {
         this.Especialidades = data.json();
+        console.log("Especialidades", this.Especialidades)
         this.elength = this.Especialidades.length;
         this.navCtrl.push('EspecialidadesPage', {
           Filial:Filial,
