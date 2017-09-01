@@ -29,48 +29,8 @@ export class MitabPage {
 
   ) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;
-    //console.log("datos del login",this.getLogin());
-    /* platform.ready().then(() => {
-      platform.registerBackButtonAction(() => {
-        let nav = this.app.getActiveNav();
-        if (nav.canGoBack()){
-          nav.pop();
-        }else{
-          this.AlertBackButton();
-        }
-      });
-    });*/
   }
   refreshScrollbarTabs() {
     this.scrollableTabsopts = { refresh: true };    
-  }
-  /*getLogin(){
-    this.login = this.navParams.get('login');
-    if(this.login != undefined) {
-      return this.login;
-    }*/
-  //}
-  /* AlertBackButton() {
-    let alert = this.AlertCrtl.create({
-      title: '¿ Desea salir de la Aplicacíon ?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'No',
-          handler: () => {
-            console.log('No');
-          }
-        },
-        {
-          text: 'Si',
-          handler: () => {
-            console.log("salio de la aplicacion")
-            this.platform.exitApp(); 
-          }
-        }
-      ]
-    });
-    alert.present();
-   }*/
-  
+  }  
 }

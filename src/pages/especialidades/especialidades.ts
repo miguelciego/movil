@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, Content } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
+
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -9,6 +11,8 @@ import { CpsProviders } from '../../providers/cps';
   providers: [CpsProviders]
 })
 export class EspecialidadesPage {
+
+  query: Subscription;
 
   @ViewChild(Content) content: Content;
   private Filial;
@@ -23,7 +27,6 @@ export class EspecialidadesPage {
     private navParams: NavParams,
     private cps: CpsProviders,
     private LoadCtrl: LoadingController,
-    private alertCtrl: AlertController,
     private toastCtrl: ToastController
   ) {
     this.Ficha = navParams.get('Ficha');
@@ -55,13 +58,17 @@ export class EspecialidadesPage {
       () => console.log("Completado : especialidadPage")
       );*/
   }
+  ionViewWillLeave(){
+    this.query.unsubscribe();
+    console.log("paso por ionViewWillLeave ESPECIALIDAD")
+  }
   iraMedicos(Especialidad) {
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
     });
     load.present();
-    this.cps.getMedicos(
+    this.query = this.cps.getMedicos(
       this.Ficha.dpts,
       this.Ficha.FilialCodigo,
       Especialidad.Valor,
@@ -69,7 +76,6 @@ export class EspecialidadesPage {
     )
       .subscribe(data => {
         this.Medico = data.json();
-        console.log("result",this.Medico)
         this.elength = this.Medico.length;
         this.navCtrl.push('MedicosPage', {
           Especialidad: Especialidad,
@@ -79,11 +85,9 @@ export class EspecialidadesPage {
         });
       },
       err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          this.AlertError();
-        }
+        load.dismiss();
+        console.log(err.status);
+        this.ToastError();
       },
       () => console.log("Completado : medicoPage")
       );
@@ -91,25 +95,10 @@ export class EspecialidadesPage {
   volver() {
     this.navCtrl.pop();
   }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [
-        {
-          text: 'Ok',
-          handler: () => {
-            this.navCtrl.popToRoot()
-            this.ToastAlertError();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-  ToastAlertError() {
+
+  ToastError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas del Servidor',
+      message: 'Se ha producido un error. Inténtalo de nuevo',
       duration: 5000,
       position: 'bottom'
     });

@@ -98,6 +98,20 @@ ion-toast.error .toast-wrapper {
 .toast-button {  
     color: #009688 !important;
 }
+.item-ios ion-thumbnail {
+    min-width: 80px;
+    min-height: 80px;
+}
+.item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
+    width: 80px;
+    height: 80px;
+}
+.item-ios h3, .item-ios h4, .item-ios h5, .item-ios h6 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: normal;
+}
 /* controlando los colores del alert
 ion-alert >.alert-wrapper{
     background: #0d2231 !important;

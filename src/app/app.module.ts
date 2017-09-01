@@ -11,7 +11,7 @@ import { gFamiliarStorage } from '../providers/grupoFamiliar-storage';
 
 import { Network } from '@ionic-native/network';
 import { Push } from '@ionic-native/push';
-import { ScrollableTabs } from '../components/scrollable-tabs/scrollable-tabs';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 const config = {
   tabsHideOnSubPages: true,
@@ -23,7 +23,6 @@ const config = {
 @NgModule({
   declarations: [
     MyApp,
-    ScrollableTabs,
     PopoverPage
   ],
   imports: [
@@ -39,7 +38,7 @@ const config = {
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AfiliadoStorage, gFamiliarStorage, Network, Push
+    AfiliadoStorage, gFamiliarStorage, Network, Push, InAppBrowser
   ]
 })
 export class AppModule { }

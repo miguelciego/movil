@@ -1,3 +1,71 @@
 page-verificacion {
-
+    .container{
+        position: absolute; 
+    }
+    .scroll-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+    }
+    .card-header-ios , .card-header-md ,.card-header-wp {
+        color: #fff;
+        background: #007b6d;
+        padding: 16px;
+    }
+    .card-content-ios, .card-content-md, .card-content-wp{
+        color: #fff;
+        padding:20px;
+        background: #007b6d;
+    }
+    .carta{
+        position: relative;
+        margin-top: 50%;
+    }
+    .title{
+        font-weight: bold;
+    }
+    .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner {
+        background-image: none;
+        padding-right: 32px;
+        background-position: right 14px center;
+        background-repeat: no-repeat;
+        background-size: 14px 14px;
+    }
+    .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: none
+    }
+    main.list-ios > .item-block:first-child {
+        border-top: none
+    }
+    a {
+        background: #007b6d !important;
+        text-decoration: none !important;
+    }
+    .label{
+        color:#fff !important;
+    }
+    .boton{
+        margin-top:20px;
+    }
+    .item-md h3, .item-wp h3, .item-ios h3 {
+        color:#fff !important;
+    }
+    .card-ios, .card-md, .card-wp {
+        background: #007b6d;
+        margin: 12px;
+        padding: 0 !important;
+        border-radius: 2px;
+        width: calc(100% - 24px);
+        font-size: 1.4rem;
+        background: #fff;
+        box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.3);
+    }
 }

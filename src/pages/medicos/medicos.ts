@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
-import { DetalleMedPage } from '../detalle-med/detalle-med';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
+
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,9 @@ import { CpsProviders } from '../../providers/cps';
 
 })
 export class MedicosPage {
+
+  query: Subscription;
+
   private Medico;
   private Especialidad;
   private Horario;
@@ -19,48 +23,24 @@ export class MedicosPage {
   private elength;
 
   constructor(
-  private navCtrl: NavController, 
-  private navParams: NavParams, 
-  private cps: CpsProviders,
-  private LoadCtrl: LoadingController,
-  private alertCtrl: AlertController,
-  private toastCtrl:ToastController
-  ){
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private cps: CpsProviders,
+    private LoadCtrl: LoadingController,
+    private toastCtrl: ToastController
+  ) {
     this.Especialidad = navParams.get('Especialidad');
-    this.Ficha = navParams.get('Ficha'); 
-    this.Medico = navParams.get('Medico'); 
-    this.rlength = navParams.get('length'); 
+    this.Ficha = navParams.get('Ficha');
+    this.Medico = navParams.get('Medico');
+    this.rlength = navParams.get('length');
 
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
-    console.log(this.Ficha); 
-
   }
-  ionViewDidLoad(){
-    /*let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      dismissOnPageChange: true
-    });
-    load.present();
-
-    this.cps.getMedicos(
-      this.Ficha.dpts,
-      this.Ficha.FilialCodigo,
-      this.Ficha.EspecialidadCodigo,
-      this.Ficha.Fecha
-    )
-    .subscribe(data => { 
-        this.Medicos = data.json();
-        this.length = this.Medicos.length;
-        },
-      err => { if (err.status == 404) {
-        } else {
-            console.log(err.status);
-            this.AlertError();
-          }
-        },
-      () => console.log("Completado : medicoPage")
-    );*/
+  ionViewDidLoad() {}
+  ionViewWillLeave(){
+    this.query.unsubscribe();
+    console.log("paso por ionViewWillLeave MEDICO")
   }
   iraHorarios(Medico) {
     let load = this.LoadCtrl.create({
@@ -68,52 +48,31 @@ export class MedicosPage {
       dismissOnPageChange: true
     });
     load.present();
-    this.cps.getHorarios(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, Medico.Valor, this.Ficha.Fecha)
+    this.query = this.cps.getHorarios(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, Medico.Valor, this.Ficha.Fecha)
       .subscribe(data => {
         this.Horario = data.json();
         this.elength = this.Horario.length;
-        this.navCtrl.push('HorariosPage', { 
-          Medico: Medico, 
+        this.navCtrl.push('HorariosPage', {
+          Medico: Medico,
           Horario: this.Horario,
           Ficha: this.Ficha,
           length: this.elength
         });
       },
       err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          this.AlertError();
-        }
+        load.dismiss();
+        console.log(err.status);
+        this.ToastError();
       },
       () => console.log('Completado : horarioPage')
       );
   }
-  irDetalleMed(Medico){
-     this.navCtrl.push(DetalleMedPage, { Medico: Medico});
-  }
-  volver(){
+  volver() {
     this.navCtrl.pop();
   }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            this.navCtrl.popToRoot()
-            this.ToastAlertError();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-  ToastAlertError() {
+  ToastError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas de Servidor',
+      message: 'Se ha producido un error. Inténtalo de nuevo',
       duration: 5000,
       position: 'bottom'
     });

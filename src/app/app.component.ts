@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, App, AlertController, ToastController } from 'ionic-angular';
+import { Platform, App , ToastController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Push, PushObject, PushOptions } from '@ionic-native/push';
@@ -21,31 +21,26 @@ export class MyApp {
     public platform: Platform,
     private statusBar: StatusBar,
     public splashscreen: SplashScreen,
-    public alertCtrl: AlertController,
-    
+    private toast: ToastController,
     //public push: Push,
-    private network: Network,
-    private toast:ToastController
+    private network: Network
   ) {
-    this.platform.ready().then(() => {
+   this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashscreen.hide();
-      //this.initPushNotification();
-      this.network.onConnect().subscribe(data => {
-      console.log(data)
-    }, error => console.error(error));
 
     this.network.onDisconnect().subscribe(data => {
-      this.errorInternet();
+      this.toastErrorInternet();
     }, error => console.error(error));
     });
   }
-  errorInternet() {
+ toastErrorInternet() {
     this.toast.create({
-      message: `No hay conexión a internet`,
-      duration: 5000,
+      message: `Revisa tu conexión a internet.`,
       cssClass: 'error',
-      position:'top'
+      position:'top',
+      showCloseButton: true,
+      closeButtonText:'Ok'
     }).present();
   }
   /*initPushNotification() {

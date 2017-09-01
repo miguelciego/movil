@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { CpsProviders } from '../../providers/cps';
 
 @IonicPage()
@@ -21,24 +21,14 @@ export class Historial {
     private cps: CpsProviders,
     private toastCtrl:ToastController,
     public LoadCtrl: LoadingController,
-    private alertCtrl: AlertController,
     private modalCtrl: ModalController
   ) {
     this.myPaciente = navParams.get('myPaciente');
-    console.log("myPaciente", this.myPaciente)
     this.historial = navParams.get('historial');
     this.length = navParams.get('length');
   }
 
   ionViewDidLoad() {
-  }
-  presentToast(lenght) {
-    let toast = this.toastCtrl.create({
-      message: lenght + ' fichas encontradas.',
-      duration: 3000,
-      position: 'bottom'
-    });
-    toast.present();
   }
   VerDetalle(receta){
     this.icon = "remove-circle"
@@ -49,17 +39,7 @@ export class Historial {
    toggleItem(i, j) {
     this.historial[i].children[j].open = !this.historial[i].children[j].open;
   }
-  AlertError() {
-   
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Listo', handler: () => { this.navCtrl.pop();} }]
-    });
-    alert.present();
-  }
   historialFicha(item){
-    console.log("paso por aqui")
      this.presentModal(item);
   }
   presentModal(item) {

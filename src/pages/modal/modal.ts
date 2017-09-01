@@ -125,7 +125,6 @@ export class ModalPage {
                 () => console.log('borrar -> completado')
               );
             }else{
-              console.log("debe escribir correctamente Si.")
               this.ToastMensaje1();
             } 
           } 

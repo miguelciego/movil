@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, App, AlertController, ViewController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, App, AlertController, ViewController } from 'ionic-angular';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-
 import { CpsProviders } from '../../providers/cps';
 
 @IonicPage()
@@ -30,24 +29,24 @@ export class ResumenPage {
     private LoadCtrl: LoadingController,
     private toastCtrl: ToastController,
     private appCtrl: App,
-    private alertCtrl:AlertController,
+    private alertCtrl: AlertController,
     private localNotifications: LocalNotifications,
     public viewCtrl: ViewController
-  ){
+  ) {
     this.getHora = navParams.get('Hora');
     this.Ficha = navParams.get('Ficha');
     this.Ficha.valorh = this.getHora.Valor;
     this.Ficha.horaD = this.getHora.Descripcion;
     this.NombrePaciente = this.Ficha.PacienteNombre;
     this.Matricula = this.Ficha.PacienteMatricula;
-    this.Filial= this.Ficha.FilialDescripcion;
+    this.Filial = this.Ficha.FilialDescripcion;
     this.Especialidad = this.Ficha.EspecialidadDescripcion;
     this.Medico = this.Ficha.MedicoNombre;
     this.Hora = this.Ficha.horaD;
     this.Dia = this.Ficha.Fecha;
     console.log(this.Ficha);
   }
-  Guardar(){
+  Guardar() {
     let load = this.LoadCtrl.create({
       content: 'Guardando Ficha...',
     });
@@ -62,42 +61,40 @@ export class ResumenPage {
       this.Ficha.valorh,
       this.Ficha.Fecha
     )
-    .subscribe( data => { 
-      this.datos = data.json();
+      .subscribe(data => {
+        this.datos = data.json();
         switch (this.datos.Codigo) {
           case "G0": //GUARDAR FICHA
-              console.log("codigo", this.datos.Codigo)
-              load.dismiss();
-              this.ToastG0(this.datos.Descripcion);
-              this.navCtrl.popToRoot();
-              this.notificacionFicha(this.NombrePaciente, this.Matricula)
+            console.log("codigo", this.datos.Codigo)
+            load.dismiss();
+            this.ToastG0(this.datos.Descripcion);
+            this.navCtrl.popToRoot();
+            this.notificacionFicha(this.NombrePaciente, this.Matricula)
             break;
-          case "E1":
-              console.log("codigo", this.datos.Codigo)
-              load.dismiss();
-              this.ToastE1(this.datos.Descripcion);
-              this.navCtrl.popToRoot();
+          case "E1": //YA CUENTA CON FICHA
+            console.log("codigo", this.datos.Codigo)
+            load.dismiss();
+            this.ToastE1(this.datos.Descripcion);
+            this.navCtrl.popToRoot();
             break;
           case "E2": //EL HORARIO SE ACABA DE OCUPAR
-              console.log("codigo", this.datos.Codigo)
-              load.dismiss();
-              this.ToastE2(this.Ficha.horaD);
-              this.navCtrl.remove(4)
-              this.navCtrl.pop()
+            console.log("codigo", this.datos.Codigo)
+            load.dismiss();
+            this.ToastE2(this.Ficha.horaD);
+            this.navCtrl.remove(4)
+            this.navCtrl.pop()
             break;
         }
       },
-      err => { if (err.status == 404) {
-        } else {
-            console.log(err.status);
-            load.dismiss();
-            this.AlertError();
-          }
-        },
+      err => {
+        console.log(err.status);
+        load.dismiss();
+        this.ToastError();
+      },
       () => console.log('Completado : resumenPage')
-    );
+      );
   }
-  cancelar(){
+  cancelar() {
     this.navCtrl.pop()
   }
   ToastG0(mensaje) {
@@ -108,6 +105,7 @@ export class ResumenPage {
     });
     toast.present();
   }
+
   ToastE1(mensaje) {
     let toast = this.toastCtrl.create({
       message: mensaje,
@@ -116,6 +114,7 @@ export class ResumenPage {
     });
     toast.present();
   }
+
   ToastE2(horario) {
     let toast = this.toastCtrl.create({
       message: 'El horario ' + horario + ' acaba de ocupar.',
@@ -124,36 +123,21 @@ export class ResumenPage {
     });
     toast.present();
   }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [
-        {
-          text: 'Bueno',
-          handler: () => {
-            this.ToastAlertError();
-            this.navCtrl.popToRoot()
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-  ToastAlertError() {
+
+  ToastError() {
     let toast = this.toastCtrl.create({
-      message: 'Problemas del Servidor, Vuelve a intentarlo más tarde.',
+      message: 'Se ha producido un error al guardar la ficha. Inténtalo de nuevo.',
       duration: 5000,
       position: 'bottom'
     });
     toast.present();
   }
-  notificacionFicha(afiliado, matricula){
-      this.localNotifications.schedule({
+  notificacionFicha(afiliado, matricula) {
+    this.localNotifications.schedule({
       id: 1,
       icon: 'res://icon',
-      title:'CAJA PETROLERA DE SALUD',
-      text: 'NUEVA FICHA PARA ' + afiliado
-     });
+      title: 'CPS MÓVIL',
+      text: 'FICHA PARA ' + afiliado
+    });
   }
 }

@@ -25,6 +25,16 @@ page-mapas {
     }
     .contenedor > p{
         color:#43443e;
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 2px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .contenedor > h5{
+        color:#43443e;
+        font-size: 10px;
+        margin:0;
         padding-left: 20%;
         padding-right: 20%;
     }
@@ -38,5 +48,30 @@ page-mapas {
     ion-thumbnail > img {
         background: #dedede
         
+    }
+    .card-md,.card-ios, .card-wp  {
+        margin: 0px;
+        padding: 5px 5px 5px 5px;
+        width: 100%;
+        border-radius: 2px;
+        background: #fff;
+        box-shadow: none;
+    }
+    .item-md h3, .item-ios h3, .item-wp h3{
+        color:#007b6d;
+    }
+    .maps{  
+        color: #009688 !important;
+    }
+    .card-md p, .card-ios p, .card-wp p {
+        font-size: 0.8em;
+        font-weight: normal;
+        line-height: 1.5;
+        color: rgb(34, 34, 34);
+        margin: 0px;
+        padding: 1px !important;
+    }
+    .text{
+        font-size: 13px !important;
     }
 }

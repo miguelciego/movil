@@ -1,0 +1,17 @@
+<ion-content class="container" text-center>
+	<div class="carta">
+		<ion-card *ngIf="act == 1 ">
+			<ion-card-header>
+				<span class="title">{{ titulo }}</span>
+			</ion-card-header>
+			<ion-card-content>
+				{{ mensaje }} <br>
+				<button class="boton" color="light" ion-button outline block>
+					<a ion-item text-center class="a" item-left [href]="sanitize('http://192.168.9.18/scz/movil/cpsmovil3.apk')" target="_system">
+						<h3>Sí, Descargar</h3>
+					</a>
+				</button>
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>

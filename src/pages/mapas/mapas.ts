@@ -7,8 +7,6 @@ import { Network } from '@ionic-native/network';
 import { CpsProviders } from '../../providers/cps';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
-//import { Subscription } from 'rxjs/Subscription';
-
 @IonicPage()
 @Component({
   selector: 'page-mapas',
@@ -21,7 +19,7 @@ export class MapasPage {
   public dptStorage;
   private check: boolean;
   private inicalesDpts: any = [];
-  private mostrar:boolean= false;
+  private mostrar: boolean;
 
   constructor(
     private platform: Platform,
@@ -45,9 +43,13 @@ export class MapasPage {
         });
         this.maps(this.dptStorage)
         this.depar();
+        this.mostrar = true;
+        console.log("mostrar", this.mostrar)
       })
       .catch(error => {
+        this.mostrar = false;
         console.log("Error : ", error)
+        console.log("mostrar", this.mostrar)
       })
   }
   presentPopover(myEvent) {
@@ -66,13 +68,11 @@ export class MapasPage {
         this.Maps = data
         console.log("maps", this.Maps);
         load.dismiss()
-        this.mostrar= true;
       },
       err => {
         console.log(err.status);
+        this.mostrar = false
         load.dismiss()
-        this.mostrar= false
-        this.toastError()
       },
       () => console.log('getmaps -> completado')
       );
@@ -85,6 +85,7 @@ export class MapasPage {
       },
       err => {
         console.log(err.status);
+        this.mostrar = false
       },
       () => console.log('getmaps -> completado')
       );
@@ -120,18 +121,5 @@ export class MapasPage {
       }
     });
     alert.present();
-  }
-  toastError() {
-    let toast = this.toast.create({
-      message: 'Se ha producido un error. Intentalo de nuevo',
-      position: 'bottom',
-      showCloseButton: true,
-      closeButtonText:'REINTENTAR'
-    });
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-      this.cargarDatos()
-    });
-    toast.present();
   }
 }

@@ -1,27 +1,31 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar hideBackButton="true">
+    <ion-buttons left showWhen="android,windows">
+      <button class="backbutton" color="light" ion-button icon-only (click)="volver()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-buttons start showWhen="ios">
+        <button class="backbutton" color="light" ion-button icon-only (click)="volver()">
+              <ion-icon name="arrow-back"></ion-icon>
+          </button>
+      </ion-buttons>
     <ion-buttons left>
-      <button ion-button>
+      <button ion-button showWhen="android,windows">
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
     <ion-title>Permisos</ion-title>
-    <ion-buttons end>
-      <button ion-button color="light" icon-only (click)="presentPopover($event)">
-        <ion-icon name="more"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-item-group>
-    <ion-item-divider color="light">MÉDICOS CON PERMISO </ion-item-divider>
-  </ion-item-group>
-  <ion-list>
-    <ion-item *ngFor="let item of permiso" no-lines>
-      <ion-thumbnail item-left no-lines>
+  <ion-searchbar placeholder="Buscar médico"
+    (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="length > 0">
+    <ion-item *ngFor="let item of listpermiso">
+      <ion-avatar item-left no-lines>
         <img src="assets/images/medGris.png">
-      </ion-thumbnail>
+      </ion-avatar>
       <div class="hospital" text-capitalize>
         <h3> {{ item.nombrec }} </h3>
         <h3 class="nota"> Motivo : {{ item.motivo }}</h3>
@@ -29,4 +33,12 @@
       </div>
     </ion-item>
   </ion-list>
+  <div class="contenedor" *ngIf="length == 0" (click)="volver()">
+    <img class="img" width="70" height="70" src="assets/images/medGris.png">
+    <p>No se ha encontrado médicos con permisos</p>
+  </div>
+  <div class="contenedor" *ngIf="rescount == 0">
+    <img class="img" width="70" height="70" src="assets/images/medGris.png">
+    <p>No se ha encontrado resultado con el nombre de "{{ nombrebus }}"</p>
+  </div>
 </ion-content>

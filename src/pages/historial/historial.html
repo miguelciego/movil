@@ -11,7 +11,8 @@
 <ion-content>
   <ion-list *ngIf="length > 0">
     <ion-item *ngFor="let item of historial" (click)="historialFicha(item)">
-      <span item-right *ngIf="item.atendido == 0" color="danger" class="check"><ion-icon name="close-circle"></ion-icon></span>
+      <span item-right *ngIf="item.atendido == 0"  class="noAtendido"><ion-icon name="close-circle"></ion-icon></span>
+      <span item-right *ngIf="item.atendido == 1"  class="atendido"><ion-icon name="checkmark-circle"></ion-icon></span>
       <ion-avatar item-left (click)="irDetalleMed(Medico)" >
             <img src="assets/images/fich.png" >
         </ion-avatar>

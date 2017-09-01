@@ -22,20 +22,19 @@ export class HomePage {
     private navCtrl: NavController,
     private LoadCtrl: LoadingController,
     private toastCtrl: ToastController
-  ) { }
+  ) {
+  }
   ionViewDidLoad() {
   }
-
   IrPermiso() {
     let load = this.LoadCtrl.create({
-      content: 'Medicos con permisos...',
+      content: 'Médicos con permisos...',
       dismissOnPageChange: true
     });
     load.present()
     this.cps.getPermiso()
       .subscribe(data => {
         this.permiso = data.json();
-        console.log("lista de permiso", this.permiso)
         this.navCtrl.push('PermisoPage', {
           permisos: this.permiso
         })
@@ -51,7 +50,7 @@ export class HomePage {
   dataError() {
     let toast = this.toastCtrl.create({
       message: 'Se ha producido un error al buscar los médicos con permiso. Intentalo de nuevo',
-      position: 'bottom',
+      position: 'middle',
       duration: 4000
     });
     toast.present();

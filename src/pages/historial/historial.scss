@@ -11,8 +11,11 @@ page-historial {
         align-self: flex-start;
         margin-top: 14px;
     }
-    .check{
+    .noAtendido{
         color:red;
+    }
+    .atendido{
+        color:#57b447;
     }
     .gris{
         color:#757575 !important;

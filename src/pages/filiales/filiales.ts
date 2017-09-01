@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
-import { errorServe } from '../error/error'
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
   selector: 'page-filiales',
   templateUrl: 'filiales.html',
-  providers: [CpsProviders, errorServe]
+  providers: [CpsProviders]
 })
 export class FilialesPage {
+
+  query: Subscription;
 
   private FilialesEncontradas: any[] = [];
   private Especialidades: any[] = [];
@@ -25,9 +27,7 @@ export class FilialesPage {
     private navParams: NavParams,
     private cps: CpsProviders,
     private LoadCtrl: LoadingController,
-    private toastCtrl: ToastController,
-    private alertCtrl: AlertController,
-    private eServe: errorServe
+    private toastCtrl: ToastController
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Paciente = navParams.get('Paciente');
@@ -44,64 +44,46 @@ export class FilialesPage {
     this.Ficha.PacienteAtendido = this.Paciente.Atendido;
     this.Ficha.PacienteFicha = this.Paciente.Ficha;
 
-    console.log(this.Ficha); 
+    console.log(this.Ficha);
   }
-
   ionViewDidLoad() {
   }
+  ionViewWillLeave(){
+    this.query.unsubscribe();
+    console.log("paso por ionViewWillLeave FILIAL")
+  }
   iraEspecialidades(Filial) {
-    //this.navCtrl.push('EspecialidadesPage', { Ficha: this.Ficha, Filial: Filial });
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
     });
     load.present();
-    this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
+    this.query = this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
       .subscribe(data => {
         this.Especialidades = data.json();
         console.log("Especialidades", this.Especialidades)
         this.elength = this.Especialidades.length;
         this.navCtrl.push('EspecialidadesPage', {
-          Filial:Filial,
+          Filial: Filial,
           Especialidades: this.Especialidades,
           Ficha: this.Ficha,
           length: this.elength,
         });
-
       },
       err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          this.AlertError();
-        }
+        load.dismiss()
+        console.log(err.status)
+        this.ToastError()
       },
       () => console.log("Completado : especialidadPage")
       );
   }
-
   volver() {
     this.navCtrl.pop();
   }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message:'...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [
-        {
-          text: 'Listo',
-          handler: () => {
-            this.navCtrl.popToRoot()
-            this.ToastAlertError();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-  ToastAlertError() {
+  ToastError() {
     let toast = this.toastCtrl.create({
-      message: 'Problema de conexión.',
+      message: 'Se ha producido un error. Inténtalo de nuevo',
       duration: 5000,
       position: 'bottom'
     });

@@ -14,11 +14,16 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <div class="contenedor" *ngIf="mostrar == false" (click)="ionViewDidLoad()">
+    <i id="logo" class="fa fa-users fa-3x" aria-hidden="true"></i>
+    <p> No se ha podido cargar el grupo familiar.</p>
+    <h5> Se ha producido un error, Toca la pantalla para volver a intentarlo</h5>
+  </div>
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingText="Actualizando...">
     </ion-refresher-content>
   </ion-refresher>-->
-  <ion-item-group>
+  <ion-item-group *ngIf="mostrar == true">
     <ion-item-divider color="light">GRUPO FAMILIAR </ion-item-divider>
   </ion-item-group>
   <ion-list *ngIf="mostrar == true">
@@ -27,7 +32,7 @@
         <ion-avatar item-left>
           <img src="assets/images/people.png">
         </ion-avatar>
-        <div class="contenido" >
+        <div class="contenido">
           <h3> {{ Paciente.Nombre }} </h3>
           <p> {{ Paciente.Matricula }} {{ Paciente.TAsegurado }}</p>
         </div>
@@ -37,12 +42,15 @@
             <ion-avatar item-start>
             <img width="40" height="40" src="assets/images/historial.png">
           </ion-avatar>
-        </button> 
+        </button>
         <button class="medkit" ion-button (click)="IrVademecun(Paciente)">
           <ion-avatar item-start>
             <img width="40" height="40" src="assets/images/medkit.png">
           </ion-avatar>
-        </button>     
+        </button>
+        <!--<button ion-button (click)="update(Paciente)">
+          <ion-icon name="star"></ion-icon>
+        </button>-->
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, ToastController, Content, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Content, App } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
@@ -32,11 +32,8 @@ export class GrupoFamiliarPage {
   private historial: any[];
   private length;
 
-  /*NOTA : Optimizar el método  ionViewDidLoad() y doRefresh() */
-
   constructor(
     private app: App,
-    private platform: Platform,
     private navCtrl: NavController,
     private navParams: NavParams,
     private toastCtrl: ToastController,
@@ -49,189 +46,180 @@ export class GrupoFamiliarPage {
     private alertCtrl: AlertController,
     private storage: Storage
   ) {
-    this.isAndroid = platform.is('android');
+
   }
-  ionViewDidLoad() {
-    let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      dismissOnPageChange: true
-    });
-    load.present();
-    this.aStorage.getAll()
-      .then((result: any) => {
-        Object.keys(result).forEach(key => {
-          this.Ficha.PacienteCodigo = result[key].Id;
-          this.Ficha.dpts = result[key].filial;
-        });
-        this.cps.getGFamiliar(this.Ficha.dpts, this.Ficha.PacienteCodigo)
-          .subscribe(data => {
-            this.GrupoFamiliar = data
-            this.mostrar = true;
-            this.gStorage.create(this.GrupoFamiliar)
-              .then(data => {
-                console.log("Grupo Familiar Storage : Agregado Correctamente")
-              })
-              .catch(error => {
-              })
-            console.log(" Completado : GrupoFamiliar => ", this.GrupoFamiliar)
-          },
-          err => {
-            console.log(err.status);
-            this.mostrar = false;
-            this.toastError();
-            load.dismiss()
-          },
-          () => load.dismiss())
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-  iraFiliales(Paciente) {
-    console.log("codigo del paciente", Paciente.Codigo)
-    let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      dismissOnPageChange: true
-    });
-    load.present();
-    this.cps.getFiliales(this.Ficha.dpts, Paciente.Codigo)
-      .subscribe(data => {
-        this.FilialesEncontradas = data.json();
-        Object.keys(this.FilialesEncontradas).forEach(key => {
-          this.validarN = this.FilialesEncontradas[key].Codigo
-          this.validarB = this.FilialesEncontradas[key].Nombre
-        });
-        console.log("El codigo de E es ->", this.validarN)
-        if (this.validarN == "E2" || this.validarN == "E3") {
-          this.presentModal(Paciente);
-          load.dismiss()
+
+  /*Object.defineProperty(obj, "newDataProperty", {
+    value: 101,
+      writable: true,
+        enumerable: true,
+          configurable: true
+  });*/
+
+update(Paciente) {
+  console.log("matricula", Paciente.Matricula)
+  this.gStorage.getAll()
+    .then((data: any[]) => {
+      Object.keys(data).forEach(key => {
+        let t = data[key].Matricula;
+        if (t == Paciente.Matricula) {
+          let f = data[key].Ficha;
+          f = "Con Ficha"
+          console.log("si e encontro a ", t, Paciente.Matricula)
+          console.log(f)
         }
-        else {
-          if (this.validarN % 1 == 0) {
-            this.validarN = 1
+      });
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+ionViewDidLoad() {
+  let load = this.LoadCtrl.create({
+    content: 'Cargando...',
+    dismissOnPageChange: true
+  });
+  load.present();
+  this.aStorage.getAll()
+    .then((result: any) => {
+      Object.keys(result).forEach(key => {
+        this.Ficha.PacienteCodigo = result[key].Id;
+        this.Ficha.dpts = result[key].filial;
+      });
+      this.gStorage.getAll()
+        .then((data: any[]) => {
+          if (data == null) {
+            console.log("if")
+            this.cps.getGFamiliar(this.Ficha.dpts, this.Ficha.PacienteCodigo)
+              .subscribe(data => {
+                this.GrupoFamiliar = data
+                this.mostrar = true;
+                this.gStorage.create(this.GrupoFamiliar)
+                  .then(data => {
+                    console.log("Grupo Familiar Storage : Agregado Correctamente")
+                  })
+                  .catch(error => {
+                  })
+                console.log(" Completado : GrupoFamiliar => ", this.GrupoFamiliar)
+              },
+              err => {
+                console.log(err.status);
+                this.mostrar = false;
+                load.dismiss()
+              },
+              () => load.dismiss())
           }
-          else { this.validarN = 2 }
-          this.navCtrl.push('FilialesPage', {
-            cod: this.validarN,
-            msj: this.validarB,
-            Ficha: this.Ficha,
-            Paciente: Paciente,
-            Filiales: this.FilialesEncontradas,
-          });
-        }
-      },
-      err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          this.toastError();
-          load.dismiss()
-        }
-      },
-      () => console.log(" Compleado : filialesPage ")
-      );
-  }
-  presentModal(Paciente) {
-    let modal = this.modalCtrl.create('ModalPage', { Paciente: Paciente.Codigo, Ficha: this.Ficha });
-    modal.present();
-  }
-  IrVademecun(Paciente) {
-    this.navCtrl.push('VademecunPage', { myPaciente: Paciente });
-  }
-  irHistorial(Paciente) {
-    let load = this.LoadCtrl.create({
-      content: 'Historial de ficha...',
-      dismissOnPageChange: true
-    });
-    load.present();
-    this.cps.getHistorial(Paciente.Codigo)
-      .subscribe(data => {
-        this.historial = data.json();
-        this.length = this.historial.length;
-        this.navCtrl.push('Historial', {
-          myPaciente: Paciente,
-          historial: this.historial,
-          length: this.length
-        })
-      },
-      err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          load.dismiss()
-          this.toastFicha()
-        }
-      },
-      () => console.log("Termino historial")
-      );
-  }
-  /*doRefresh(refresher) {
-    this.aStorage.getAll()
-      .then((result: any) => {
-        Object.keys(result).forEach(key => {
-          this.Ficha.PacienteCodigo = result[key].Id;
-          this.Ficha.dpts = result[key].filial;
-        });
-        this.cps.getGFamiliar(this.Ficha.dpts, this.Ficha.PacienteCodigo)
-          .subscribe(data => {
-            this.GrupoFamiliar = data
+          else {
+            console.log("else")
             this.mostrar = true;
-            console.log("Limpio Storage")
-            this.storage.remove('grupoFamiliar')
-            this.gStorage.create(this.GrupoFamiliar)
-              .then(data => {
-                console.log("Grupo Familiar Storage : Agregado Correctamente")
-              })
-              .catch(error => {
-              })
-            refresher.complete()
-            this.actualizaToast()
-            console.log(" Completado : GrupoFamiliar => ", this.GrupoFamiliar)
-          },
-          err => {
-            console.log(err.status);
-            refresher.complete()
-            this.noActualizaToast();
-          },
-          () => console.log("Termino de actualizar"))
+            this.GrupoFamiliar = data
+            load.dismiss()
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
+iraFiliales(Paciente) {
+  let load = this.LoadCtrl.create({
+    content: 'Cargando...',
+    dismissOnPageChange: true
+  });
+  load.present();
+  this.cps.getFiliales(this.Ficha.dpts, Paciente.Codigo)
+    .subscribe(data => {
+      this.FilialesEncontradas = data.json();
+      Object.keys(this.FilialesEncontradas).forEach(key => {
+        this.validarN = this.FilialesEncontradas[key].Codigo
+        this.validarB = this.FilialesEncontradas[key].Nombre
+      });
+      console.log("El codigo de E es ->", this.validarN)
+      if (this.validarN == "E2" || this.validarN == "E3") {
+        this.presentModal(Paciente);
+        load.dismiss()
+      }
+      else {
+        if (this.validarN % 1 == 0) {
+          this.validarN = 1
+        }
+        else { this.validarN = 2 }
+        this.navCtrl.push('FilialesPage', {
+          cod: this.validarN,
+          msj: this.validarB,
+          Ficha: this.Ficha,
+          Paciente: Paciente,
+          Filiales: this.FilialesEncontradas,
+        });
+      }
+    },
+    err => {
+      console.log(err.status);
+      this.toastError();
+      load.dismiss()
+    },
+    () => console.log(" Compleado : filialesPage ")
+    );
+}
+
+presentModal(Paciente) {
+  let modal = this.modalCtrl.create('ModalPage', { Paciente: Paciente.Codigo, Ficha: this.Ficha });
+  modal.present();
+}
+
+IrVademecun(Paciente) {
+  this.navCtrl.push('VademecunPage', { myPaciente: Paciente });
+}
+
+irHistorial(Paciente) {
+  let load = this.LoadCtrl.create({
+    content: 'Historial de ficha...',
+    dismissOnPageChange: true
+  });
+  load.present();
+  this.cps.getHistorial(Paciente.Codigo)
+    .subscribe(data => {
+      this.historial = data.json();
+      this.length = this.historial.length;
+      this.navCtrl.push('Historial', {
+        myPaciente: Paciente,
+        historial: this.historial,
+        length: this.length
       })
-      .catch(error => {
-        console.log(error)
-      })
-  }*/
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
-  actualizaToast() {
-    let toast = this.toastCtrl.create({
-      message: 'Actualizado correctamente.',
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
-  }
-  toastFicha() {
-    let toast = this.toastCtrl.create({
-      message: 'Se ha producido un error al buscar el historial de ficha. Intentalo de nuevo',
-      duration: 5000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
-  toastError() {
-    let toast = this.toastCtrl.create({
-      message: 'Se ha producido un error. Intentalo de nuevo',
-      position: 'bottom',
-      showCloseButton: true,
-      closeButtonText:'REINTENTAR'
-    });
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-      this.ionViewDidLoad()
-    });
-    toast.present();
-  }
+    },
+    err => {
+      load.dismiss()
+      this.toastFicha()
+    },
+    () => console.log("Termino historial")
+    );
+}
+
+presentPopover(myEvent) {
+  let popover = this.popoverCtrl.create(PopoverPage);
+  popover.present({
+    ev: myEvent
+  });
+}
+
+toastFicha() {
+  let toast = this.toastCtrl.create({
+    message: 'Se ha producido un error al buscar el historial de ficha. Inténtalo de nuevo',
+    duration: 5000,
+    position: 'bottom'
+  });
+  toast.present();
+}
+toastError() {
+  let toast = this.toastCtrl.create({
+    message: 'Se ha producido un error. Inténtalo de nuevo',
+    duration: 5000,
+    position: 'bottom'
+  });
+  toast.present();
+}
 }

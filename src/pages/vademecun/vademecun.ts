@@ -3,6 +3,7 @@ import { IonicPage, NavController, Nav, NavParams, LoadingController, ToastContr
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CpsProviders } from '../../providers/cps';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,8 @@ import { CpsProviders } from '../../providers/cps';
   providers: [CpsProviders]
 })
 export class VademecunPage {
+
+  query: Subscription;
 
   private day = new Date().toJSON().slice(0, 10);
   public myPaciente;
@@ -46,24 +49,23 @@ export class VademecunPage {
     })
   }
   ionViewDidLoad() {
-
-    console.log()
+  }
+  ionViewWillLeave(){
+    this.query.unsubscribe();
+    console.log("paso por ionViewWillLeave VADEMECUN")
   }
   Buscar() {
-    if(this.dateForm.value.ini == ''|| this.dateForm.value.fin =='')
-    {
+    if (this.dateForm.value.ini == '' || this.dateForm.value.fin == '') {
       this.dateForm.value.ini = this.day
       this.dateForm.value.fin = this.day
       console.log("debes seleccionar un rago de fechas")
-    }else{
-
     }
     let load = this.LoadCtrl.create({
       content: 'Medicamentos...',
-       dismissOnPageChange: true
+      dismissOnPageChange: true
     });
     load.present()
-    this.cps.getMedicamentos(this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
+    this.query = this.cps.getMedicamentos(this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
         load.dismiss()
@@ -74,14 +76,10 @@ export class VademecunPage {
         } else {
           this.fechaResult = "Se han encontrado " + length + " recetas médicas.";
         }
-        //this.presentToast(this.fechaResult)
       },
       err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          this.AlertError();
-        }
+        console.log(err.status);
+        this.AlertError();
       },
       () => console.log("termino")
       );
@@ -107,7 +105,7 @@ export class VademecunPage {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Listo', handler: () => { this.navCtrl.pop(); } }]
+      buttons: [{ text: 'Ok', handler: () => { this.navCtrl.pop(); } }]
     });
     alert.present();
   }

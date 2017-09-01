@@ -45,19 +45,35 @@ page-grupofamiliar {
         font-size: 1.4rem;
     }
     .contenedor{
-        position:absolute;
+        position:relative;
         height: 100%;
         width: 100%;
         text-align: center;
     }
     .contenedor > p{
         color:#43443e;
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 2px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .contenedor > h5{
+        font-size: 10px;
+        margin:0;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .contenedor > h5{
+        color:#43443e;
+        font-size: 10px;
+        margin:0;
         padding-left: 20%;
         padding-right: 20%;
     }
     #logo{
         position:relative;
-        padding-top:55%;
+        padding-top:50%;
         vertical-align:middle;
         text-align:center;
         color: #757575

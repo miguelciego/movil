@@ -2,36 +2,43 @@
   <ion-navbar>
     <ion-buttons left>
       <button ion-button>
-        <img width="35" height="35" src="assets/images/logo.png" />
-      </button>
+          <img width="35" height="35" src="assets/images/logo.png" />
+        </button>
     </ion-buttons>
     <ion-title>CPS Móvil</ion-title>
     <ion-buttons *ngIf="mostrar == true" start>
       <button ion-button color="light" icon-only (click)="showRadioAlert()">
-        <ion-icon name="list"></ion-icon>
-      </button>
+          <ion-icon name="list"></ion-icon>
+        </button>
     </ion-buttons>
     <ion-buttons end>
       <button ion-button color="light" icon-only (click)="presentPopover($event)">
-        <ion-icon name="more"></ion-icon>
-      </button>
+          <ion-icon name="more"></ion-icon>
+        </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-item-group>
+  <ion-item-group *ngIf="mostrar == true">
     <ion-item-divider color="light">CENTROS DE SALUD </ion-item-divider>
   </ion-item-group>
-  <ion-list no-lines>
-    <ion-item *ngFor="let item of Maps" no-lines>
-      <ion-thumbnail item-left no-lines>
-        <img src="http://smovil.cps.org.bo/images/{{ item.img }}" />
-      </ion-thumbnail>
-      <a class="maps" item-left [href]="sanitize('geo:?q=' + item.geolatitud + ',' + item.geolongitud + ',17z')" target="_system">
-        <h3 calor="primary"> {{ item.filial }} </h3>
-        <p class="text"> Dirección: {{ item.direccion }} </p>
-        <p class="text"> Horario: {{ item.horario }} </p>
-      </a>
-    </ion-item>
+  <div class="contenedor" *ngIf="mostrar == false" (click)="cargarDatos()">
+    <i id="logo" class="fa fa-map fa-3x" aria-hidden="true"></i>
+    <p id="error"> No se ha podido cargar los mapas.</p>
+    <h5> Se ha producido un error, Toca la pantalla para volver a intentarlo</h5>
+  </div>
+  <ion-list no-lines *ngIf="mostrar == true">
+    <ion-card>
+      <ion-item *ngFor="let item of Maps" no-lines>
+        <ion-thumbnail item-left no-lines>
+          <img style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ item.img }}" />
+        </ion-thumbnail>
+        <a class="maps" item-left [href]="sanitize('geo:?q=' + item.geolatitud + ',' + item.geolongitud + ',17z')" target="_system">
+          <h3 calor="primary"> {{ item.filial }} </h3>
+          <p class="text"> Dirección: {{ item.direccion }} </p>
+          <p class="text"> Horario: {{ item.horario }} </p>
+        </a>
+      </ion-item>
+    </ion-card>
   </ion-list>
 </ion-content>

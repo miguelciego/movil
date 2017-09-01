@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, ToastController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
@@ -23,12 +23,10 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public fb: FormBuilder,
-    private toast: ToastController,
     private platform: Platform,
     public AfiliadoStorage: AfiliadoStorage,
     public LoadCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private modalCtrl: ModalController,
     public cps: CpsProviders
   ) {
     this.departamental = navParams.get('departamental');
@@ -52,7 +50,7 @@ export class LoginPage {
       this.loginForm.value.filial,
       this.loginForm.value.matricula,
       this.device.platform,
-      this.device.manufacturer, 1, 1,
+      this.device.manufacturer, "0.1.6", 18,
       this.device.model,
       this.device.uuid)
       .subscribe(data => {
@@ -82,12 +80,9 @@ export class LoginPage {
         }
       },
       err => {
-        if (err.status == 404) {
-        } else {
           console.log(err.status);
           load.dismiss();
           this.AlertError();
-        }
       },
       () => console.log('Completado')
       );
@@ -95,8 +90,8 @@ export class LoginPage {
   AlertVinculado() {
     let alert = this.alertCtrl.create({
       title: 'Información',
-      subTitle: 'La matrícula ' + this.loginForm.value.matricula + ' ya se encuentra vinculada en un teléfono móvil.',
-      buttons: ['Listo']
+      subTitle: 'La matrícula ' + this.loginForm.value.matricula + ' podrá vincularse en 24 horas.',
+      buttons: ['Ok']
     });
     alert.present();
   }
@@ -105,16 +100,16 @@ export class LoginPage {
     let alert = this.alertCtrl.create({
       title: 'Lo sentimos...',
       message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Bueno', handler: () => { this.platform.exitApp() } }]
+      buttons: [{ text: 'Ok', handler: () => { this.platform.exitApp() } }]
     });
     alert.present();
   }
 
   AlertFilial() {
     let alert = this.alertCtrl.create({
-      title: 'Lo sentimos ...',
-      subTitle: '..Pero la matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en la departamental seleccionada.',
-      buttons: ['Listo']
+      title: 'Información',
+      subTitle: 'La matrícula ' + this.loginForm.value.matricula + ' no se ha encontrado en la departamental seleccionada.',
+      buttons: ['Ok']
     });
     alert.present();
   }
