@@ -30,7 +30,7 @@
   <ion-list no-lines *ngIf="mostrar == true">
     <ion-card>
       <ion-item *ngFor="let item of Maps" no-lines>
-        <ion-thumbnail item-left no-lines>
+        <ion-thumbnail item-left no-lines (click)="mapsDetalle(item.img)">
           <img style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ item.img }}" />
         </ion-thumbnail>
         <a class="maps" item-left [href]="sanitize('geo:?q=' + item.geolatitud + ',' + item.geolongitud + ',17z')" target="_system">
@@ -42,3 +42,4 @@
     </ion-card>
   </ion-list>
 </ion-content>
+

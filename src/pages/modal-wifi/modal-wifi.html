@@ -1,3 +1,8 @@
 <ion-content class="container">
-  <img class="img" src="assets/images/modalwifi.png" />
+  <ion-buttons start showWhen="ios">
+    <button ion-button >
+      <span (click)="dismiss()" class="text" ion-text color="light" >Salir</span>
+    </button>
+  </ion-buttons>
+  <img class="img" style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ img }}" />
 </ion-content>

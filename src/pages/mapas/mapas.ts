@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController, LoadingController, AlertController, Platform, ToastController } from 'ionic-angular';
+import { ModalController, IonicPage, PopoverController, LoadingController, AlertController, Platform, ToastController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Network } from '@ionic-native/network';
@@ -23,6 +23,7 @@ export class MapasPage {
 
   constructor(
     private platform: Platform,
+    private modalCtrl: ModalController,
     public AfiliadoStorage: AfiliadoStorage,
     public cps: CpsProviders,
     public popoverCtrl: PopoverController,
@@ -121,5 +122,10 @@ export class MapasPage {
       }
     });
     alert.present();
+  }
+  mapsDetalle(img){
+    console.log("Object", img)
+    let modal = this.modalCtrl.create('ModalWifi', { img: img });
+    modal.present();
   }
 }

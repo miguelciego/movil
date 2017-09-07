@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Content, App } from 'ionic-angular';
-import { ModalController } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Content, App } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../mitab/popover';
 
