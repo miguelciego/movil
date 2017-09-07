@@ -22,6 +22,7 @@ export class PermisoPage {
   ) {
     this.getPermiso = this.navParams.get('permisos');
     this.length = this.getPermiso.length;
+    console.log(this.length)
     this.initializeItems()
   }
   volver() {

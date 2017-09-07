@@ -65,7 +65,7 @@ export class MedicosPage {
         this.ToastError();
       },
       () => console.log('Completado : horarioPage')
-      );
+      )
   }
   volver() {
     this.navCtrl.pop();

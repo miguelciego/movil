@@ -1,22 +1,12 @@
 <ion-header>
-  <ion-toolbar hideBackButton="true">
-    <ion-buttons left showWhen="android,windows">
-      <button class="backbutton" color="light" ion-button icon-only (click)="volver()">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
-    </ion-buttons>
-    <ion-buttons start showWhen="ios">
-        <button class="backbutton" color="light" ion-button icon-only (click)="volver()">
-              <ion-icon name="arrow-back"></ion-icon>
-          </button>
-      </ion-buttons>
+  <ion-navbar >
     <ion-buttons left>
       <button ion-button showWhen="android,windows">
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
     <ion-title>Permisos</ion-title>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 <ion-content>
   <ion-searchbar placeholder="Buscar médico"
@@ -34,11 +24,11 @@
     </ion-item>
   </ion-list>
   <div class="contenedor" *ngIf="length == 0" (click)="volver()">
-    <img class="img" width="70" height="70" src="assets/images/medGris.png">
+    <img class="img" width="70" height="70" src="assets/images/mednresult.png">
     <p>No se ha encontrado médicos con permisos</p>
   </div>
   <div class="contenedor" *ngIf="rescount == 0">
-    <img class="img" width="70" height="70" src="assets/images/medGris.png">
+    <img class="img" width="70" height="70" src="assets/images/mednresult.png">
     <p>No se ha encontrado resultado con el nombre de "{{ nombrebus }}"</p>
   </div>
 </ion-content>

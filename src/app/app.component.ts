@@ -39,8 +39,7 @@ export class MyApp {
       message: `Revisa tu conexión a internet.`,
       cssClass: 'error',
       position:'top',
-      showCloseButton: true,
-      closeButtonText:'Ok'
+      duration: 4000
     }).present();
   }
   /*initPushNotification() {

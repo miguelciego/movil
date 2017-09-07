@@ -16,12 +16,14 @@
     <ion-list>
       <ion-item>
         <ion-label>Fecha Inicial</ion-label>
-        <ion-datetime doneText="Hecho" placeholder="Seleccionar" cancelText="Cancelar" formControlName="ini" displayFormat="D MMMM YYYY" [(ngModel)]="myDate" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre ">
+        <ion-datetime doneText="Hecho" placeholder="Seleccionar" cancelText="Cancelar" formControlName="ini" displayFormat="D MMMM YYYY" [(ngModel)]="myDate" 
+          monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre ">
         </ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Fecha Final</ion-label>
-        <ion-datetime doneText="Hecho" placeholder="Seleccionar" cancelText="Cancelar" formControlName="fin" displayFormat="D MMMM YYYY" [(ngModel)]="myDate1" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre ">
+        <ion-datetime doneText="Hecho" placeholder="Seleccionar" cancelText="Cancelar" formControlName="fin" displayFormat="D MMMM YYYY" [(ngModel)]="myDate1" 
+          monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre ">
         </ion-datetime>
       </ion-item>
     </ion-list>
@@ -51,7 +53,7 @@
     </ion-list>
   </ion-list>
   <div *ngIf="Recetaslist == 0" class="contenedor">
-    <img class="img" width="65" height="65" src="assets/images/medkitgris.png" />
-    <p>{{ fechaResult }}</p>
+    <img class="img" width="45" height="45" src="assets/images/medkitgris.png" />
+    <p class="result">{{ fechaResult }}</p>
   </div>
 </ion-content>

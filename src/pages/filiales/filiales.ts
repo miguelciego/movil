@@ -28,6 +28,7 @@ export class FilialesPage {
     private cps: CpsProviders,
     private LoadCtrl: LoadingController,
     private toastCtrl: ToastController
+
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Paciente = navParams.get('Paciente');
@@ -76,7 +77,7 @@ export class FilialesPage {
         this.ToastError()
       },
       () => console.log("Completado : especialidadPage")
-      );
+      )
   }
   volver() {
     this.navCtrl.pop();

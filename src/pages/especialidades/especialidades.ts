@@ -90,7 +90,7 @@ export class EspecialidadesPage {
         this.ToastError();
       },
       () => console.log("Completado : medicoPage")
-      );
+      )
   }
   volver() {
     this.navCtrl.pop();
