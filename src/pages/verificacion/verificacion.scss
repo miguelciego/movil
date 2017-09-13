@@ -69,4 +69,15 @@ page-verificacion {
         background: #fff;
         box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.3);
     }
+    ion-spinner {
+        display: block;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 60px;
+    }
+    .spinner-md-crescent circle {
+        stroke: #007b6d !important;
+    }
 }

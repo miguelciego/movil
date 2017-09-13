@@ -49,7 +49,6 @@ export class CpsProviders {
 	getMedicos(dpts, valorf, valore, fecha) {
 		var creds = "valorf=" + valorf + "&valore=" + valore + "&fecha=" + fecha;
 		let headers = new Headers();
-		console.log(creds)
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
 		return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/medico',

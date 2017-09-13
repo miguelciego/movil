@@ -1,35 +1,60 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, Searchbar } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Searchbar, ToastController } from 'ionic-angular';
+
+import { CpsProviders } from '../../providers/cps';
+import { Subscription } from 'rxjs/Subscription';
+
 @IonicPage()
 @Component({
   selector: 'page-permiso',
   templateUrl: 'permiso.html',
-
+  providers: [CpsProviders]
 })
 export class PermisoPage {
-
   @ViewChild('si') searchInput: Searchbar;
 
+  query: Subscription;
+  cancel: boolean = false;
   rescount;
   nombrebus: string = '';
-  private length: any;
-  private getPermiso: any = [];
+  private infinite:any= 1000000000000000000000000000000000000;
+  private errorApi: boolean;
+  private length: any = 0;
+  private data: any = [];
   private listpermiso: any = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public plt: Platform
+    private toastCtrl: ToastController,
+    private cps: CpsProviders,
   ) {
-    this.getPermiso = this.navParams.get('permisos');
-    this.length = this.getPermiso.length;
     console.log(this.length)
     this.initializeItems()
   }
-  volver() {
-    this.navCtrl.pop();
+  ionViewWillLeave() {
+    if (this.cancel == true) { this.query.unsubscribe(); }
+  }
+  ionViewDidLoad(){
+    this.cancel = true;
+    this.query = this.cps.getPermiso()
+    .subscribe(data => {
+      this.data = data.json();
+      this.length = this.data.length;
+      if (this.length == 0) {this.length = this.infinite}
+      this.initializeItems();
+      console.log("Lista de permisos",this.listpermiso)
+    },
+    err => {
+      console.log(err.status);
+      this.length = 1;
+      this.errorApi = true;
+      this.toastError();
+    },
+    () => console.log('getmaps -> completado')
+    );
   }
   initializeItems() {
-    this.listpermiso = this.getPermiso;
+    this.listpermiso = this.data;
   }
   getItems(searchbar) {
     //Restablecer elementos de nuevo a todos los elementos
@@ -51,5 +76,16 @@ export class PermisoPage {
     this.nombrebus = q;
     this.rescount = this.listpermiso.length;
     console.log(this.nombrebus, this.rescount);
+  }
+  toastError() {
+    let toast = this.toastCtrl.create({
+      message: 'Se ha producido un error. Inténtalo más tarde',
+      duration: 5000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+  volver() {
+    this.navCtrl.pop();
   }
 }

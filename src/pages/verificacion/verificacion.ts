@@ -18,7 +18,7 @@ export class VerificacionPage {
   private msj;
   private titulo;
   private mensaje;
-  private act;
+  private act = 2;
 
   constructor(
     public AfiliadoStorage: AfiliadoStorage,

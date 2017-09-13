@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class MedicosPage {
 
   query: Subscription;
+  cancel:boolean=false;
 
   private Medico;
   private Especialidad;
@@ -37,12 +38,12 @@ export class MedicosPage {
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
   }
-  ionViewDidLoad() {}
-  ionViewWillLeave(){
-    this.query.unsubscribe();
-    console.log("paso por ionViewWillLeave MEDICO")
+  ionViewDidLoad() { }
+  ionViewWillLeave() {
+    if (this.cancel == true) { this.query.unsubscribe(); }
   }
   iraHorarios(Medico) {
+    this.cancel=true;
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
@@ -64,7 +65,7 @@ export class MedicosPage {
         console.log(err.status);
         this.ToastError();
       },
-      () => console.log('Completado : horarioPage')
+      () => console.log('horarioPage => Completado')
       )
   }
   volver() {

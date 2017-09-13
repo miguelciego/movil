@@ -11,10 +11,11 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [CpsProviders]
 })
 export class EspecialidadesPage {
+  @ViewChild(Content) content: Content;
 
   query: Subscription;
+  cancel: boolean = false;
 
-  @ViewChild(Content) content: Content;
   private Filial;
   private Especialidades;
   private Ficha;
@@ -37,32 +38,12 @@ export class EspecialidadesPage {
     this.Ficha.FilialDescripcion = this.Filial.Nombre;
     this.Ficha.Fecha = this.Filial.Fecha;
   }
-  ionViewDidLoad() {
-    /*let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      dismissOnPageChange: true
-    });
-    load.present();
-    this.cps.getEspecialidades(this.Ficha.dpts, this.Filial.Codigo, this.Filial.Fecha)
-      .subscribe(data => {
-        this.Especialidades = data.json();
-        this.length = this.Especialidades.length;
-      },
-      err => {
-        if (err.status == 404) {
-        } else {
-          console.log(err.status);
-          this.AlertError();
-        }
-      },
-      () => console.log("Completado : especialidadPage")
-      );*/
-  }
-  ionViewWillLeave(){
-    this.query.unsubscribe();
-    console.log("paso por ionViewWillLeave ESPECIALIDAD")
+  ionViewDidLoad() { }
+  ionViewWillLeave() {
+    if (this.cancel == true) { this.query.unsubscribe(); }
   }
   iraMedicos(Especialidad) {
+    this.cancel = true;
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
@@ -89,7 +70,7 @@ export class EspecialidadesPage {
         console.log(err.status);
         this.ToastError();
       },
-      () => console.log("Completado : medicoPage")
+      () => console.log("MedicoPage => Completado")
       )
   }
   volver() {

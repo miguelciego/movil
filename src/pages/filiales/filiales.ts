@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class FilialesPage {
 
   query: Subscription;
-
+  cancel: boolean = false;
   private FilialesEncontradas: any[] = [];
   private Especialidades: any[] = [];
   private elength;
@@ -28,15 +28,12 @@ export class FilialesPage {
     private cps: CpsProviders,
     private LoadCtrl: LoadingController,
     private toastCtrl: ToastController
-
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Paciente = navParams.get('Paciente');
     this.FilialesEncontradas = navParams.get('Filiales');
     this.validarN = navParams.get('cod');
     this.validarB = navParams.get('msj')
-    console.log("el resultado de n es", this.validarN)
-
     this.Ficha.PacienteCodigo = this.Paciente.Codigo;
     this.Ficha.PacienteMatricula = this.Paciente.Matricula;
     this.Ficha.PacienteNombre = this.Paciente.Nombre;
@@ -44,16 +41,15 @@ export class FilialesPage {
     this.Ficha.PacienteHClinica = this.Paciente.HClinica;
     this.Ficha.PacienteAtendido = this.Paciente.Atendido;
     this.Ficha.PacienteFicha = this.Paciente.Ficha;
-
-    console.log(this.Ficha);
+    console.log("Paciente =>", this.Paciente.Matricula,"N =>", this.validarN)
   }
   ionViewDidLoad() {
   }
-  ionViewWillLeave(){
-    this.query.unsubscribe();
-    console.log("paso por ionViewWillLeave FILIAL")
+  ionViewWillLeave() {
+    if (this.cancel == true) { this.query.unsubscribe(); }
   }
   iraEspecialidades(Filial) {
+    this.cancel = true;
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
@@ -62,7 +58,6 @@ export class FilialesPage {
     this.query = this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
       .subscribe(data => {
         this.Especialidades = data.json();
-        console.log("Especialidades", this.Especialidades)
         this.elength = this.Especialidades.length;
         this.navCtrl.push('EspecialidadesPage', {
           Filial: Filial,
@@ -76,7 +71,7 @@ export class FilialesPage {
         console.log(err.status)
         this.ToastError()
       },
-      () => console.log("Completado : especialidadPage")
+      () => console.log("especialidadPage => Completado")
       )
   }
   volver() {

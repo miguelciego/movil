@@ -44,7 +44,7 @@ export class ResumenPage {
     this.Medico = this.Ficha.MedicoNombre;
     this.Hora = this.Ficha.horaD;
     this.Dia = this.Ficha.Fecha;
-    console.log(this.Ficha);
+    console.log("Ficha",this.Ficha);
   }
   Guardar() {
     let load = this.LoadCtrl.create({

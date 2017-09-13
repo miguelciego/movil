@@ -28,8 +28,8 @@ export class GrupoFamiliarPage {
   private FilialesEncontradas;
   private validarN;
   private validarB;
-  private historial: any[];
-  private length;
+  //private historial: any[];
+  //private length;
 
   constructor(
     private app: App,
@@ -88,7 +88,7 @@ export class GrupoFamiliarPage {
         this.gStorage.getAll()
           .then((data: any[]) => {
             if (data == null) {
-              console.log("if")
+              console.log("Consulta web service")
               this.cps.getGFamiliar(this.Ficha.dpts, this.Ficha.PacienteCodigo)
                 .subscribe(data => {
                   this.GrupoFamiliar = data
@@ -109,7 +109,7 @@ export class GrupoFamiliarPage {
                 () => load.dismiss())
             }
             else {
-              console.log("else")
+              console.log("Consulta storage")
               this.mostrar = true;
               this.GrupoFamiliar = data
               load.dismiss()
@@ -137,8 +137,8 @@ export class GrupoFamiliarPage {
           this.validarN = this.FilialesEncontradas[key].Codigo
           this.validarB = this.FilialesEncontradas[key].Nombre
         });
-        console.log("El codigo de E es ->", this.validarN)
         if (this.validarN == "E2" || this.validarN == "E3") {
+          console.log("E =>", this.validarN)
           this.presentModal(Paciente);
           load.dismiss()
         }
@@ -174,27 +174,9 @@ export class GrupoFamiliarPage {
     this.navCtrl.push('VademecunPage', { myPaciente: Paciente });
   }
   irHistorial(Paciente) {
-    let load = this.LoadCtrl.create({
-      content: 'Historial de ficha...',
-      dismissOnPageChange: true
-    });
-    load.present();
-    this.cps.getHistorial(Paciente.Codigo)
-      .subscribe(data => {
-        this.historial = data.json();
-        this.length = this.historial.length;
-        this.navCtrl.push('Historial', {
-          myPaciente: Paciente,
-          historial: this.historial,
-          length: this.length
-        })
-      },
-      err => {
-        load.dismiss()
-        this.toastFicha()
-      },
-      () => console.log("Termino historial")
-      );
+    this.navCtrl.push('Historial', {
+      myPaciente: Paciente
+    })
   }
 
   presentPopover(myEvent) {

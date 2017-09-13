@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar >
+  <ion-navbar>
     <ion-buttons left>
       <button ion-button showWhen="android,windows">
         <img width="35" height="35" src="assets/images/logo.png" />
@@ -9,9 +9,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-searchbar placeholder="Buscar médico"
-    (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list *ngIf="length > 0">
+  <ion-spinner *ngIf="length == 0"></ion-spinner>
+  <ion-searchbar *ngIf="length > 10" placeholder="Buscar médico" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="length != 0">
     <ion-item *ngFor="let item of listpermiso">
       <ion-avatar item-left no-lines>
         <img src="assets/images/medGris.png">
@@ -23,12 +23,18 @@
       </div>
     </ion-item>
   </ion-list>
-  <div class="contenedor" *ngIf="length == 0" (click)="volver()">
-    <img class="img" width="70" height="70" src="assets/images/mednresult.png">
-    <p>No se ha encontrado médicos con permisos</p>
-  </div>
   <div class="contenedor" *ngIf="rescount == 0">
-    <img class="img" width="70" height="70" src="assets/images/mednresult.png">
-    <p>No se ha encontrado resultado con el nombre de "{{ nombrebus }}"</p>
+      <img class="img" width="70" height="70" src="assets/images/mednresult.png">
+      <p>No se ha encontrado resultado con el nombre de "{{ nombrebus }}"</p>
+    </div>
+  <div class="contenedor" *ngIf="length == infinite" (click)="volver()">
+    <img class="img" width="75" height="80" src="assets/images/mednresult.png">
+    <p>No se ha encontrado médicos con permisos</p>
+    <p>Toca la pantalla para volver atrás</p>
+  </div>
+  <div class="contenedor" *ngIf="errorApi == true && length != 0" (click)="volver()">
+    <img class="img" width="50" height="55" src="assets/images/errorApi.png">
+    <h5>Error del servidor.</h5>
+    <p>Toca la pantalla para volver Atrás</p>
   </div>
 </ion-content>

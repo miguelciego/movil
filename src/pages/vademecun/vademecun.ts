@@ -60,15 +60,15 @@ export class VademecunPage {
       this.dateForm.value.fin = this.day
       console.log("debes seleccionar un rago de fechas")
     }
-    let load = this.LoadCtrl.create({
+    /*let load = this.LoadCtrl.create({
       content: 'Medicamentos...',
       dismissOnPageChange: true
     });
-    load.present()
+    load.present()*/
     this.query = this.cps.getMedicamentos(this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
-        load.dismiss()
+        //load.dismiss()
         this.length = this.Recetaslist.length;
         console.log("longitud del medicamento", length);
         if (length <= 0) {
