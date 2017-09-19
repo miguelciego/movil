@@ -22,8 +22,8 @@
       <img src="assets/images/especialidad.png"/>
      </ion-avatar>
       <h3> {{ Especialidad.Descripcion }} </h3> 
-      <!--<p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span>  </p>
-      <ion-badge item-right> {{ Especialidad.DisponibleApp }}</ion-badge> -->
+      <!--<p> <span class=".textoHosp">{{ Ficha.FilialDescripcion }}</span>  </p>-->
+      <ion-badge item-end>{{ Especialidad.cupos }}</ion-badge>
     </button>
   </ion-list>
   <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
