@@ -25,10 +25,11 @@
         <div>
           <h3>{{ Medico.Descripcion }}</h3>
         </div>
+        <ion-badge item-end>{{ Medico.cupos }}</ion-badge>
     </button>
   </ion-list>
   <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
-      <img class="img" width="70" height="70" src="assets/images/med.png"/>
+      <img class="img" width="70" height="70" src="assets/images/medGris.png"/>
       <p>No hay Médicos disponibles.</p>
   </div>
 </ion-content>

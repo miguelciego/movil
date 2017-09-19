@@ -49,7 +49,7 @@ export class MedicosPage {
       dismissOnPageChange: true
     });
     load.present();
-    this.query = this.cps.getHorarios(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, Medico.Valor, this.Ficha.Fecha)
+    this.query = this.cps.getTesth(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.EspecialidadCodigo, Medico.Valor)
       .subscribe(data => {
         this.Horario = data.json();
         this.elength = this.Horario.length;

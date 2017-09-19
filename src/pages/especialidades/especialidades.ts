@@ -49,11 +49,11 @@ export class EspecialidadesPage {
       dismissOnPageChange: true
     });
     load.present();
-    this.query = this.cps.getMedicos(
+    this.query = this.cps.getTestm(
       this.Ficha.dpts,
       this.Ficha.FilialCodigo,
       Especialidad.Valor,
-      this.Ficha.Fecha
+      //this.Ficha.Fecha
     )
       .subscribe(data => {
         this.Medico = data.json();
@@ -64,6 +64,7 @@ export class EspecialidadesPage {
           Ficha: this.Ficha,
           length: this.elength
         });
+        console.log("Valor", Especialidad.Valor)
       },
       err => {
         load.dismiss();

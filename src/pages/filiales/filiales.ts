@@ -55,7 +55,7 @@ export class FilialesPage {
       dismissOnPageChange: true
     });
     load.present();
-    this.query = this.cps.getEspecialidades(this.Ficha.dpts, Filial.Codigo, Filial.Fecha)
+    this.query = this.cps.getTeste(this.Ficha.dpts, Filial.Codigo)
       .subscribe(data => {
         this.Especialidades = data.json();
         this.elength = this.Especialidades.length;

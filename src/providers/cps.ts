@@ -143,7 +143,33 @@ export class CpsProviders {
 		return this.http.post(this.cpsAPI + 'consulta/test',
 			{ headers: headers });
 	}
-
+	getTeste(dpts, valorf) {
+		var creds = "valorf=" + valorf;
+		console.log("cred", creds)
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		//return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/teste',
+		return this.http.post(this.cpsAPI + 'consulta/teste',
+			creds, { headers: headers });
+	}
+	getTestm(dpts, valorf, valore) {
+		var creds = "valorf=" + valorf + "&valore=" + valore;
+		console.log("cred", creds)
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		//return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/testm',
+		return this.http.post(this.cpsAPI + 'consulta/testm',
+			creds, { headers: headers });
+	}
+	getTesth(dpts, valorf, valore, valorm) {
+		var creds = "valorf=" + valorf + "&valore=" + valore + "&valorm=" + valorm;
+		console.log("cred", creds)
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		//return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/testh',
+		return this.http.post(this.cpsAPI + 'consulta/testh',
+			creds, { headers: headers });
+	}
 	// Funciones para las pruebas que se deben eliminar al final del proyecto....
 	//---------------------------------------------------------------------------
 	getReceta2() {
