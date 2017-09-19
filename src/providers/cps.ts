@@ -118,15 +118,6 @@ export class CpsProviders {
 		return this.http.post(this.cpsAPI + 'consulta/medicamentos2',
 			creds, { headers: headers });
 	}
-	getHistorial(valor) {
-		var creds = "valor=" + valor;
-		console.log("creds", creds)
-		let headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		//return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
-		return this.http.post(this.cpsAPI + 'consulta/historial',
-			creds, { headers: headers });
-	}
 	getMFicha(dpts, valor) {
 		var creds = "valor=" + valor;
 		let headers = new Headers();
@@ -134,6 +125,15 @@ export class CpsProviders {
 
 		//return this.http.post('http://smovil' + dpts + '.cps.org.bo/consulta/mficha',
 		return this.http.post(this.cpsAPI + 'consulta/mficha',
+			creds, { headers: headers });
+	}
+	getHistorial(valor) {
+		var creds = "valor=" + valor;
+		console.log("creds", creds)
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		//return this.http.post('http://smovilsc.cps.org.bo/consulta/historial',
+		return this.http.post(this.cpsAPI + 'consulta/historial',
 			creds, { headers: headers });
 	}
 	getPermiso() {

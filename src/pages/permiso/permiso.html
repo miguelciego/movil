@@ -9,8 +9,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-spinner *ngIf="length == 0"></ion-spinner>
-  <ion-searchbar *ngIf="length > 10" placeholder="Buscar médico" (ionInput)="getItems($event)"></ion-searchbar>
+  <!--<ion-spinner *ngIf="length == 0"></ion-spinner>-->
+  <ion-searchbar *ngIf="length > 10 && length != infinite" placeholder="Buscar médico" (ionInput)="getItems($event)" (ionClear)="onClear($event)">></ion-searchbar>
   <ion-list *ngIf="length != 0">
     <ion-item *ngFor="let item of listpermiso">
       <ion-avatar item-left no-lines>
@@ -23,18 +23,22 @@
       </div>
     </ion-item>
   </ion-list>
-  <div class="contenedor" *ngIf="rescount == 0">
-      <img class="img" width="70" height="70" src="assets/images/mednresult.png">
-      <p>No se ha encontrado resultado con el nombre de "{{ nombrebus }}"</p>
+  <div class="contenedorn" *ngIf="rescount == 0 ">
+    <div class="medio">
+      <p class="noresult">No se ha encontrado resultado con el nombre de "{{ nombrebus }}"</p>
     </div>
+  </div>
   <div class="contenedor" *ngIf="length == infinite" (click)="volver()">
-    <img class="img" width="75" height="80" src="assets/images/mednresult.png">
-    <p>No se ha encontrado médicos con permisos</p>
-    <p>Toca la pantalla para volver atrás</p>
+    <div class="medio">
+      <img class="img" width="60" height="60" src="assets/images/mednresult.png"/>
+      <h5>No se ha encontrado médicos con permisos.</h5>
+    </div>
   </div>
   <div class="contenedor" *ngIf="errorApi == true && length != 0" (click)="volver()">
-    <img class="img" width="50" height="55" src="assets/images/errorApi.png">
-    <h5>Error del servidor.</h5>
-    <p>Toca la pantalla para volver Atrás</p>
+    <div class="medio">
+      <img class="img" width="60" height="60" src="assets/images/mednresult.png"/>
+      <h5>Se ha podido cargar los datos.</h5>
+      <p>Toca la pantalla para volver atrás</p>
+    </div>
   </div>
 </ion-content>

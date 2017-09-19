@@ -5,11 +5,10 @@
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
-    <ion-title>Historial test</ion-title>
+    <ion-title>Historial</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-spinner *ngIf="length == 0"></ion-spinner>
   <ion-list *ngIf="length != 0">
     <ion-item *ngFor="let item of historial" (click)="historialFicha(item)">
       <span item-right *ngIf="item.atendido == 0"  class="noAtendido"><ion-icon name="close-circle"></ion-icon></span>
@@ -23,12 +22,14 @@
   </ion-list>
   <div class="contenedor" *ngIf="length == infinite" (click)="volver()">
     <img class="img" width="75" height="80" src="assets/images/fichaGris.png" >
-    <p>Sin historial de ficha.</p>
+    <h5>Sin historial de ficha.</h5>
     <p>Toca la pantalla para volver atrás</p>
   </div>
   <div  class="contenedor" *ngIf="errorApi == true && length != 0" (click)="volver()">
-      <img class="img" width="50" height="55" src="assets/images/errorApi.png" >
-      <h5>Error del servidor.</h5>
-      <p>Toca la pantalla para volver Atrás</p>
-    </div>
+      <div class="medio">
+        <img class="img" width="60" height="60" src="assets/images/fichaGris.png" />
+        <h5>No se ha podido cargar los datos.</h5>
+        <p>Toca la pantalla para volver atrás</p>
+      </div>
+  </div>
 </ion-content>

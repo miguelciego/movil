@@ -31,22 +31,28 @@ export class Historial {
   ) {
     this.myPaciente = navParams.get('myPaciente');
   }
-  
   ionViewDidLoad() {
     this.cancel = true;
+    let load = this.LoadCtrl.create({
+      content: 'Cargando...',
+      dismissOnPageChange: true
+    });
+    load.present();
     this.query = this.cps.getHistorial(this.myPaciente.Codigo)
       .subscribe(data => {
         this.historial = data.json();
         this.length = this.historial.length;
-        if (this.length == 0) {this.length = this.infinite}
+        if (this.length == 0) {this.length = this.infinite;}
+        if (this.historial != []) {load.dismiss()}
       },
       err => {
         console.log(err.status);
         this.length = 1;
         this.errorApi = true;
         this.toastError();
+        load.dismiss();
       },
-      () => console.log("Termino historial")
+      () => console.log("termino")
       );
   }
   ionViewWillLeave() {
@@ -74,7 +80,7 @@ export class Historial {
   toastError() {
     let toast = this.toastCtrl.create({
       message: 'Se ha producido un error. Inténtalo más tarde',
-      duration: 5000,
+      duration: 3000,
       position: 'bottom'
     });
     toast.present();

@@ -30,15 +30,15 @@ export class MyApp {
       this.splashscreen.hide();
 
     this.network.onDisconnect().subscribe(data => {
-      this.toastErrorInternet();
+      //this.toastErrorInternet();
     }, error => console.error(error));
     });
   }
  toastErrorInternet() {
     this.toast.create({
-      message: `Revisa tu conexión a internet.`,
+      message: `Sin conexion.`,
       cssClass: 'error',
-      position:'top',
+      position:'bottom',
       duration: 4000
     }).present();
   }

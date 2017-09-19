@@ -124,5 +124,8 @@ ion-alert >.alert-wrapper .alert-message{
     overflow-x:hidden; 
     overflow-y:hidden; 
 }
+.spinner-md-crescent circle {
+    stroke: #007b6d !important;
+}
 
 @import "styles/font-awesome";

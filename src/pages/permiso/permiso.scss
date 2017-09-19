@@ -6,32 +6,36 @@ page-permiso {
     .gris{
         color:#757575 !important;
     }
-    
-    .contenedor{
-        position:absolute;
-        height: 100%;
-        width: 100%;
-        text-align: center;
+    .list-ios, .list-md, .list-wp {
+        margin: 0px;
     }
-    .contenedor > p{
+    .contenedor{
+        text-align:center;
+        height: 100%;
+    }
+    .contenedorn{
+        text-align:center;
+    }
+    .medio{
+        position: relative;
+        top: 40%;
+    }
+    .medio > p{
         color:#43443e;
         font-size: 11px;
         margin:0;
         padding-left: 20%;
         padding-right: 20%;
     }
-    .contenedor > h5{
+    .medio > h5{
         color:#43443e;
         font-size: 12px;
         margin:0;
         padding-left: 20%;
         padding-right: 20%;
     }
-    .img{
-        position:relative;
-        margin-top:40%;
-        vertical-align:middle;
-        text-align:center;
+    .medio > i {
+        color:#43443e;
     }
     ion-spinner {
         display: block;
@@ -39,9 +43,8 @@ page-permiso {
         justify-content: center;
         align-items: center;
         height: 100%;
-        width: 60px;
     }
-    .spinner-md-crescent circle {
-        stroke: #007b6d !important;
+    .noresult{
+        padding-top:20px;
     }
 }

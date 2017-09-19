@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Nav, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, Nav, NavParams, LoadingController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CpsProviders } from '../../providers/cps';
@@ -14,12 +14,12 @@ import { Subscription } from 'rxjs/Subscription';
 export class VademecunPage {
 
   query: Subscription;
-
+  cancel;
   private day = new Date().toJSON().slice(0, 10);
   public myPaciente;
   public dpts;
   public Recetaslist: any[] = [];
-  private fechaResult = "Buscando...";
+  private fechaResult;
   private length;
 
   public dateForm: FormGroup;
@@ -29,11 +29,9 @@ export class VademecunPage {
     public nav: Nav,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private toastCtrl: ToastController,
     private cps: CpsProviders,
     public LoadCtrl: LoadingController,
     public fb: FormBuilder,
-    private alertCtrl: AlertController
   ) {
     this.myPaciente = navParams.get('myPaciente');
     this.dpts = navParams.get('dpts');
@@ -51,24 +49,21 @@ export class VademecunPage {
   ionViewDidLoad() {
   }
   ionViewWillLeave(){
-    this.query.unsubscribe();
+    if (this.cancel == true) { this.query.unsubscribe(); }
     console.log("paso por ionViewWillLeave VADEMECUN")
   }
   Buscar() {
+    this.cancel = true;
+    this.fechaResult = "Buscando...";
+    this.length = 0;
     if (this.dateForm.value.ini == '' || this.dateForm.value.fin == '') {
       this.dateForm.value.ini = this.day
       this.dateForm.value.fin = this.day
       console.log("debes seleccionar un rago de fechas")
     }
-    /*let load = this.LoadCtrl.create({
-      content: 'Medicamentos...',
-      dismissOnPageChange: true
-    });
-    load.present()*/
     this.query = this.cps.getMedicamentos(this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
-        //load.dismiss()
         this.length = this.Recetaslist.length;
         console.log("longitud del medicamento", length);
         if (length <= 0) {
@@ -78,8 +73,8 @@ export class VademecunPage {
         }
       },
       err => {
+        this.fechaResult = "Se ha producido un error. Inténtalo nuevamente";
         console.log(err.status);
-        this.AlertError();
       },
       () => console.log("termino")
       );
@@ -92,22 +87,6 @@ export class VademecunPage {
   }
   toggleItem(i, j) {
     this.Recetaslist[i].children[j].open = !this.Recetaslist[i].children[j].open;
-  }
-  presentToast(lenght) {
-    let toast = this.toastCtrl.create({
-      message: lenght,
-      duration: 5000,
-      position: 'bottom'
-    });
-    toast.present();
-  }
-  AlertError() {
-    let alert = this.alertCtrl.create({
-      title: 'Lo sentimos...',
-      message: '...Pero en estos momentos no podemos responder a tu solicitud, Vuelve a intentarlo más tarde.',
-      buttons: [{ text: 'Ok', handler: () => { this.navCtrl.pop(); } }]
-    });
-    alert.present();
   }
 }
 
