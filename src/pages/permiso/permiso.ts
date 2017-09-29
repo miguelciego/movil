@@ -29,36 +29,35 @@ export class PermisoPage {
     public LoadCtrl: LoadingController,
     private cps: CpsProviders,
   ) {
-    this.dat();
     console.log(this.length)
     this.initializeItems()
   }
   ionViewWillLeave() {
     if (this.cancel == true) { this.query.unsubscribe(); }
   }
-  dat(){
+  ionViewWillEnter(){
     this.cancel = true;
-    let load = this.LoadCtrl.create({
+    /*let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
     });
-    load.present();
+    load.present();*/
     this.query = this.cps.getPermiso()
     .subscribe(data => {
       this.data = data.json();
       this.initializeItems();
       this.length = this.data.length;
       if (this.length == 0) {this.length = this.infinite;}
-      if (this.data != []) {
+      /*if (this.data != []) {
         load.dismiss()
-      }
+      }*/
       console.log("Lista de permisos",this.listpermiso)
     },
     err => {
       console.log(err.status);
       this.length = 1;
       this.errorApi = true;
-      load.dismiss();
+      //load.dismiss();
       this.toastError();
     },
     () => console.log("termino")

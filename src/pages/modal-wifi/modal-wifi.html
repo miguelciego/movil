@@ -1,8 +1,45 @@
-<ion-content class="container">
-  <ion-buttons start showWhen="ios">
-    <button ion-button >
-      <span (click)="dismiss()" class="text" ion-text color="light" >Salir</span>
-    </button>
-  </ion-buttons>
-  <img class="img" style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ img }}" />
+<ion-content padding class="container">
+  <ion-toolbar class="">
+    <ion-title text-center>
+      Información
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+          <span class="text" ion-text color="light" showWhen="ios">Salir</span>
+          <ion-icon color="light" name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-card padding>
+    <img class="img" style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ data.img }}" />
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+              <p text-uppercase id="filial" >{{data.filial}}</p>
+            </ion-col>
+          </ion-row>
+      <ion-row>
+        <ion-col col-1><i class="fa fa-map-marker" aria-hidden="true"></i></ion-col>
+        <ion-col col-11>
+          <p text-capitalize>{{data.direccion}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1><i class="fa fa-clock-o" aria-hidden="true"></i></ion-col>
+        <ion-col col-11>
+          <p>{{data.horario}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1><i class="fa fa-phone" aria-hidden="true"></i></ion-col>
+        <ion-col col-11>
+          <p> 3 3385474 - 75895544 </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <a class="maps" ion-button icon-left clear float-right [href]="sanitize('geo:?q=' + data.geolatitud + ',' + data.geolongitud + ',17z')"
+      target="_system">
+      <ion-icon name="navigate"></ion-icon> COMO LLEGAR
+    </a>
+  </ion-card>
 </ion-content>

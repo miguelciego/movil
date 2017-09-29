@@ -34,6 +34,7 @@ export class MedicosPage {
     this.Ficha = navParams.get('Ficha');
     this.Medico = navParams.get('Medico');
     this.rlength = navParams.get('length');
+    console.log("medico", this.Medico)
 
     this.Ficha.EspecialidadCodigo = this.Especialidad.Valor;
     this.Ficha.EspecialidadDescripcion = this.Especialidad.Descripcion;
@@ -59,6 +60,8 @@ export class MedicosPage {
           Ficha: this.Ficha,
           length: this.elength
         });
+        this.navCtrl.remove(3);
+        console.log("medico", this.Horario)
       },
       err => {
         load.dismiss();

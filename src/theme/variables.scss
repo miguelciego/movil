@@ -31,16 +31,15 @@ $colors: (
   primaryLight: #b2dfdb,
   danger:       #f53d3d,
   light:        #ffffff,
-  primaryText:  #212121,
   gris:         #999,
   check:        #57b447,
   accentColor:  (
     base: #ffc107,
     contrast:#ffffff,  
   ),
-  SecondaryTex: #757575,
   dividerColor: #bdbdbd,
-  icon: #b7b7b7
+  icon: #b7b7b7,
+  transparent:rgba(41, 39, 39, 0.56)
 );
 
 

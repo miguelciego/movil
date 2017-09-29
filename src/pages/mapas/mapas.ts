@@ -123,9 +123,8 @@ export class MapasPage {
     });
     alert.present();
   }
-  mapsDetalle(img){
-    console.log("Object", img)
-    let modal = this.modalCtrl.create('ModalWifi', { img: img });
+  mapsDetalle(data){
+    let modal = this.modalCtrl.create('ModalWifi', { data: data });
     modal.present();
   }
 }

@@ -27,7 +27,10 @@
     </button>
   </ion-list>
   <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
-    <img class="img" width="70" height="70" src="assets/images/especialidad.png" />
-    <p>No hay especialidades disponibles.</p>
+    <div class="medio">
+      <img class="img" width="65" height="65" src="assets/images/especialidad.png" />
+      <h5>No hay especialidades disponibles.</h5>
+      <p>Toca la pantalla para volver atrás</p>
+    </div>
   </div>
 </ion-content>

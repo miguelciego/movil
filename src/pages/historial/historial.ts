@@ -33,24 +33,24 @@ export class Historial {
   }
   ionViewDidLoad() {
     this.cancel = true;
-    let load = this.LoadCtrl.create({
+    /*let load = this.LoadCtrl.create({
       content: 'Cargando...',
       dismissOnPageChange: true
     });
-    load.present();
+    load.present();*/
     this.query = this.cps.getHistorial(this.myPaciente.Codigo)
       .subscribe(data => {
         this.historial = data.json();
         this.length = this.historial.length;
         if (this.length == 0) {this.length = this.infinite;}
-        if (this.historial != []) {load.dismiss()}
+        /*if (this.historial != []) {load.dismiss()}*/
       },
       err => {
         console.log(err.status);
         this.length = 1;
         this.errorApi = true;
         this.toastError();
-        load.dismiss();
+        //load.dismiss();
       },
       () => console.log("termino")
       );

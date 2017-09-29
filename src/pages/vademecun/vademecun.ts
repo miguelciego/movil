@@ -67,7 +67,7 @@ export class VademecunPage {
         this.length = this.Recetaslist.length;
         console.log("longitud del medicamento", length);
         if (length <= 0) {
-          this.fechaResult = "No se le ha recetado medicamentos el día de hoy."
+          this.fechaResult = "Sin resultados"
         } else {
           this.fechaResult = "Se han encontrado " + length + " recetas médicas.";
         }

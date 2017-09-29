@@ -10,6 +10,12 @@
 </ion-header>
 <ion-content>
   <!--<ion-spinner *ngIf="length == 0"></ion-spinner>-->
+  <div class="contenedor" *ngIf="length == 0">
+      <div class="medio">
+        <img class="img" width="80" height="75" src="assets/images/calendarGris.png"/>
+        <h5>Buscando...</h5>
+    </div>
+  </div>
   <ion-searchbar *ngIf="length > 10 && length != infinite" placeholder="Buscar médico" (ionInput)="getItems($event)" (ionClear)="onClear($event)">></ion-searchbar>
   <ion-list *ngIf="length != 0">
     <ion-item *ngFor="let item of listpermiso">
@@ -36,7 +42,7 @@
   </div>
   <div class="contenedor" *ngIf="errorApi == true && length != 0" (click)="volver()">
     <div class="medio">
-      <img class="img" width="60" height="60" src="assets/images/mednresult.png"/>
+      <img class="img" width="55" height="60" src="assets/images/errorApi.png"/>
       <h5>Se ha podido cargar los datos.</h5>
       <p>Toca la pantalla para volver atrás</p>
     </div>

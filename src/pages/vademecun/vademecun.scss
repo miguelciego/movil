@@ -31,9 +31,14 @@ page-vademecun {
         margin:0 !important;
         border-radius:0 !important;
     }
-    .section-active {
+    .section-active{
         background: #009688;
-        color: #fff;
+        h3{
+            color:#fff;
+        }
+        ion-icon{
+            color: #fff;
+        }
     }
     .subcontenido{
         background-color: color($colors, light); 

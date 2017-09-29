@@ -33,6 +33,9 @@ export class FilialesPage {
     this.Paciente = navParams.get('Paciente');
     this.FilialesEncontradas = navParams.get('Filiales');
     this.validarN = navParams.get('cod');
+    if (this.FilialesEncontradas.length == 0) {
+      this.validarN = 3;
+    }
     this.validarB = navParams.get('msj')
     this.Ficha.PacienteCodigo = this.Paciente.Codigo;
     this.Ficha.PacienteMatricula = this.Paciente.Matricula;
@@ -42,8 +45,10 @@ export class FilialesPage {
     this.Ficha.PacienteAtendido = this.Paciente.Atendido;
     this.Ficha.PacienteFicha = this.Paciente.Ficha;
     console.log("Paciente =>", this.Paciente.Matricula,"N =>", this.validarN)
+    console.log("filialesEncontradas", this.FilialesEncontradas)
   }
   ionViewDidLoad() {
+    
   }
   ionViewWillLeave() {
     if (this.cancel == true) { this.query.unsubscribe(); }

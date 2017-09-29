@@ -30,4 +30,9 @@
     <img class="img" width="80" height="70" src="assets/images/calendarGris.png"/>
     <p text-lowercase>{{validarB}}</p>
   </div>
+  <div *ngIf="validarN == 3" class="contenedor" (click)="volver()">
+    <img class="img" width="75" height="70" src="assets/images/host.png"/>
+    <h5>No esta disponible</h5>
+  </div>
+
 </ion-content>

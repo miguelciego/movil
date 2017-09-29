@@ -147,7 +147,6 @@ export class GrupoFamiliarPage {
             this.validarN = 1
           }
           else { this.validarN = 2 }
-          console.log(Paciente)
           this.navCtrl.push('FilialesPage', {
             cod: this.validarN,
             msj: this.validarB,

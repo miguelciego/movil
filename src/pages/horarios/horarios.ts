@@ -29,12 +29,11 @@ export class HorariosPage {
     this.Horario =  navParams.get('Horario');
 
     this.Ficha.MedicoCodigo = this.Medico.Valor;
-    this.Ficha.MedicoNombre = this.Medico.Descripcion;  
+    this.Ficha.MedicoNombre = this.Medico.Descripcion;
   }
   irResumen(Hora) {
     this.navCtrl.push('ResumenPage', { Hora: Hora, Ficha: this.Ficha });
   }
-  
   volver() {
     this.navCtrl.pop();
   }

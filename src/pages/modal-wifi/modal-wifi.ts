@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage,  NavParams, ViewController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -10,16 +11,21 @@ import { Network } from '@ionic-native/network';
 })
 export class ModalWifi {
 
-  private img;
+  private data = [];
   constructor(
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private sanitizer: DomSanitizer,
     ) {
-      this.img = navParams.get('img');
+      this.data = navParams.get('data');
+      console.log("data", this.data)
     }
   ionViewDidLoad(){
   }
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 }
