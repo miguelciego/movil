@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Nav, NavParams, LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, Nav, NavParams, LoadingController, ToastController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CpsProviders } from '../../providers/cps';
@@ -26,6 +26,7 @@ export class VademecunPage {
   public icon = "add-circle";
 
   constructor(
+    private toastCtrl:ToastController,
     public nav: Nav,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,7 +36,7 @@ export class VademecunPage {
   ) {
     this.myPaciente = navParams.get('myPaciente');
     this.dpts = navParams.get('dpts');
-    console.log("el codigo es ", this.myPaciente.codigo)
+    console.log("el codigo es ", this.myPaciente.Codigo)
     console.log("el dpts es ", this.dpts)
     this.dateForm = this.myDateForm;
     this.Buscar();
@@ -61,7 +62,7 @@ export class VademecunPage {
       this.dateForm.value.fin = this.day
       console.log("debes seleccionar un rago de fechas")
     }
-    this.query = this.cps.getMedicamentos(this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
+    this.query = this.cps.getMedicamentos(this.dpts, this.myPaciente.Codigo, this.dateForm.value.ini, this.dateForm.value.fin)
       .subscribe(data => {
         this.Recetaslist = data.json();
         this.length = this.Recetaslist.length;
@@ -73,7 +74,8 @@ export class VademecunPage {
         }
       },
       err => {
-        this.fechaResult = "Se ha producido un error. Inténtalo nuevamente";
+        this.fechaResult = "Error";
+        this.toastError();
         console.log(err.status);
       },
       () => console.log("termino")
@@ -87,6 +89,14 @@ export class VademecunPage {
   }
   toggleItem(i, j) {
     this.Recetaslist[i].children[j].open = !this.Recetaslist[i].children[j].open;
+  }
+  toastError() {
+    let toast = this.toastCtrl.create({
+      message: 'Se ha producido un error. Inténtalo más tarde',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }
 

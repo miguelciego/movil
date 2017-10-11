@@ -11,18 +11,21 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content >
-  <div *ngIf="errorMysql == 1" class="contenedor" (click)="volver()">
-    <img class="img" width="70" height="70" src="assets/images/fich.png"/>
-    <p>No esta disponible</p>
+<ion-content>
+  <ion-spinner *ngIf="errorMysql == 0 && length == 0"></ion-spinner>
+  <div *ngIf="errorMysql == 1 && length == 0" class="contenedor" (click)="volver()">
+    <div class="medio">
+      <img width="60" height="60" src="assets/images/fichaGris.png" />
+      <p>No esta disponible</p>
+    </div>
   </div>
-  <div *ngIf="errorMysql == 2" padding>
+  <div *ngIf="errorMysql == 2 && length >= 1" padding>
     <div *ngFor="let ficha of myFicha">
       <ion-item>
         <ion-label>{{ ficha.Lugar }}</ion-label>
       </ion-item>
       <ion-item no-lines>
-      <i class="fa fa-user" item-left aria-hidden="true"></i>
+        <i class="fa fa-user" item-left aria-hidden="true"></i>
         <p>{{ ficha.Nombre }}</p>
       </ion-item>
       <ion-item no-lines>
@@ -55,7 +58,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-12>
-            <button *ngIf="ficha.TFicha == 1" block ion-button color="primary" (click)="borrar()" >Eliminar</button>
+            <button *ngIf="ficha.TFicha == 1" block ion-button color="primary" (click)="borrar()">Eliminar</button>
           </ion-col>
           <!--<ion-col col-6>
             <button block ion-button color="primary" (click)="dismiss()" outline>Cancelar</button>
@@ -64,8 +67,10 @@
       </ion-grid>
     </div>
   </div>
-  <div *ngIf="errorMysql == 3" class="contenedor" (click)="volver()">
-    <img class="img" width="70" height="70" src="assets/images/fich.png"/>
-    <p>Estará disponible en breve.</p>
+  <div *ngIf="errorMysql == 3 && length == 0" class="contenedor" (click)="volver()">
+    <div class="medio">
+      <img width="60" height="60" src="assets/images/fichaGris.png" />
+      <p>Estará disponible en breve.</p>
+    </div>
   </div>
 </ion-content>

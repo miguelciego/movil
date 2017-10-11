@@ -4,13 +4,16 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { PopoverPage } from '../pages/mitab/popover';
+import { popoverUpdatePage } from '../pages/mitab/popoverUpdate';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { AfiliadoStorage } from '../providers/afiliado-storage';
 import { gFamiliarStorage } from '../providers/grupoFamiliar-storage';
+import { permisoStorage } from '../providers/permiso-storage';
 
 import { Network } from '@ionic-native/network';
 import { Push } from '@ionic-native/push';
+import { Device } from '@ionic-native/device';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 const config = {
@@ -23,7 +26,8 @@ const config = {
 @NgModule({
   declarations: [
     MyApp,
-    PopoverPage
+    PopoverPage,
+    popoverUpdatePage
   ],
   imports: [
     BrowserModule,
@@ -35,10 +39,11 @@ const config = {
   entryComponents: [
     MyApp,
     PopoverPage,
+    popoverUpdatePage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AfiliadoStorage, gFamiliarStorage, Network, Push, InAppBrowser
+    AfiliadoStorage, gFamiliarStorage, permisoStorage, Network, Push, InAppBrowser, Device
   ]
 })
 export class AppModule { }

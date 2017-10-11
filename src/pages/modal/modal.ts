@@ -19,6 +19,7 @@ export class ModalPage {
   public resultado:any;
   private valor:number;
   private estado:number;
+  private length:number = 0;
 
   constructor(
   public navCtrl: NavController, 
@@ -41,6 +42,7 @@ export class ModalPage {
      this.cps.getMFicha(this.Ficha.dpts, this.myPaciente)
       .subscribe(data => { 
         this.myFicha = data.json();
+        this.length = this.myFicha.length;
         console.log("MyFicha", this.myFicha)
         console.log("longitud de objeto", this.myFicha.length)
         switch (this.myFicha.length) {
@@ -48,10 +50,10 @@ export class ModalPage {
                  this.errorMysql = 1;
                 break;
             case 0:
-                 this.errorMysql = 3;
+                 this.errorMysql = 3; //longitud 0
                 break;
             default:
-                 this.errorMysql = 2;
+                 this.errorMysql = 2; //cuando tiene respuesta > 0
                 break;
           }
         console.log("numero errorMysql", this.errorMysql)

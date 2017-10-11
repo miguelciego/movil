@@ -1,21 +1,21 @@
-<ion-header >
+<ion-header>
   <ion-navbar>
     <ion-buttons left>
-      <button ion-button >
+      <button ion-button>
         <img width="35" height="35" src="assets/images/logo.png" />
       </button>
     </ion-buttons>
     <ion-title>Hospital</ion-title>
   </ion-navbar>
-    <ion-card>
-      <div class="myFicha">
-        <p> Paciente  : {{ Ficha.PacienteNombre }} </p>
-        <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
-      </div>
-    </ion-card>
+  <ion-card>
+    <div class="myFicha">
+      <p> Paciente : {{ Ficha.PacienteNombre }} </p>
+      <p> Matrícula : {{ Ficha.PacienteMatricula }} </p>
+    </div>
+  </ion-card>
 </ion-header>
-<ion-content style="clear: left;">  
-  <ion-list  *ngIf="validarN == 1" >
+<ion-content style="clear: left;">
+  <ion-list *ngIf="validarN == 1">
     <button ion-item *ngFor="let Filial of FilialesEncontradas" (click)="iraEspecialidades(Filial)">
       <ion-avatar item-left>
         <img src="assets/images/{{ Filial.Codigo }}-{{ Ficha.dpts }}.png"/>    
@@ -27,12 +27,16 @@
     </button>
   </ion-list>
   <div *ngIf="validarN == 2" class="contenedor" (click)="volver()">
-    <img class="img" width="80" height="70" src="assets/images/calendarGris.png"/>
-    <p text-lowercase>{{validarB}}</p>
+    <div class="medio">
+      <img width="80" height="70" src="assets/images/calendarGris.png" />
+      <p text-lowercase>{{validarB}}</p>
+    </div>
   </div>
   <div *ngIf="validarN == 3" class="contenedor" (click)="volver()">
-    <img class="img" width="75" height="70" src="assets/images/host.png"/>
-    <h5>No esta disponible</h5>
+    <div class="medio">
+      <img width="75" height="70" src="assets/images/host.png" />
+      <p>No esta disponible</p>
+    </div>
   </div>
 
 </ion-content>

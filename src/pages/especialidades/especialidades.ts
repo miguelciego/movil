@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController, Content } from 'ionic-angular';
-import { CpsProviders } from '../../providers/cps';
 
+import { CpsProviders } from '../../providers/cps';
 import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
@@ -16,12 +16,10 @@ export class EspecialidadesPage {
   query: Subscription;
   cancel: boolean = false;
 
-  private Filial;
-  private Especialidades;
+  private Especialidades = [];
   private Ficha;
-  private rlength;
-  private elength;
-  private Medico;
+  private length;
+  private Medico = [];
 
   constructor(
     private navCtrl: NavController,
@@ -32,16 +30,12 @@ export class EspecialidadesPage {
   ) {
     this.Ficha = navParams.get('Ficha');
     this.Especialidades = navParams.get('Especialidades');
-    this.rlength = navParams.get('length');
-    this.Filial = navParams.get('Filial');
-    this.Ficha.FilialCodigo = this.Filial.Codigo;
-    this.Ficha.FilialDescripcion = this.Filial.Nombre;
-    this.Ficha.Fecha = this.Filial.Fecha;
+    this.length = this.Especialidades.length;
   }
-  ionViewDidLoad() { }
   ionViewWillLeave() {
     if (this.cancel == true) { this.query.unsubscribe(); }
   }
+
   iraMedicos(Especialidad) {
     this.cancel = true;
     let load = this.LoadCtrl.create({
@@ -49,22 +43,21 @@ export class EspecialidadesPage {
       dismissOnPageChange: true
     });
     load.present();
-    this.query = this.cps.getTestm(
+    this.Ficha.EspecialidadCodigo = Especialidad.Valor;
+    this.Ficha.EspecialidadDescripcion = Especialidad.Descripcion;
+
+    this.query = this.cps.getMedicos(
       this.Ficha.dpts,
       this.Ficha.FilialCodigo,
-      Especialidad.Valor,
-      //this.Ficha.Fecha
+      this.Ficha.EspecialidadCodigo,
+      this.Ficha.Fecha
     )
       .subscribe(data => {
         this.Medico = data.json();
-        this.elength = this.Medico.length;
         this.navCtrl.push('MedicosPage', {
-          Especialidad: Especialidad,
           Medico: this.Medico,
-          Ficha: this.Ficha,
-          length: this.elength
+          Ficha: this.Ficha
         });
-        console.log("Valor", Especialidad.Valor)
       },
       err => {
         load.dismiss();
@@ -74,6 +67,7 @@ export class EspecialidadesPage {
       () => console.log("MedicoPage => Completado")
       )
   }
+
   volver() {
     this.navCtrl.pop();
   }
@@ -81,7 +75,7 @@ export class EspecialidadesPage {
   ToastError() {
     let toast = this.toastCtrl.create({
       message: 'Se ha producido un error. Inténtalo de nuevo',
-      duration: 5000,
+      duration: 4000,
       position: 'bottom'
     });
     toast.present();

@@ -18,7 +18,7 @@
   </ion-card>
 </ion-header>
 <ion-content>
-  <ion-list *ngIf="rlength > 0">
+  <ion-list *ngIf="length > 0">
     <button ion-item *ngFor="let Hora of Horario" (click)="irResumen(Hora)">
      <ion-avatar item-left>
       <img src="assets/images/hor.png"/>
@@ -26,9 +26,9 @@
     <h3>{{ Hora.Descripcion }}</h3>
   </button>
   </ion-list>
-  <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
+  <div *ngIf="length == 0" class="contenedor" (click)="volver()">
     <div class="medio">
-      <img class="img" width="65" height="65" src="assets/images/hor.png" />
+      <img class="img" width="60" height="60" src="assets/images/hor.png" />
       <h5>No hay Horarios disponibles para el móvil.</h5>
       <p>Toca la pantalla para volver atrás</p>
     </div>

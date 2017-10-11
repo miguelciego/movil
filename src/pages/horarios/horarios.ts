@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 
 import { CpsProviders } from '../../providers/cps';
 
@@ -12,10 +12,9 @@ import { CpsProviders } from '../../providers/cps';
 })
 export class HorariosPage {
 
-  private Medico;
-  private Horario;
+  private Horario = [];
   private Ficha;
-  private rlength;
+  private length;
 
   constructor(
     private navCtrl: NavController,
@@ -23,17 +22,15 @@ export class HorariosPage {
     private cps: CpsProviders,
     private LoadCtrl: LoadingController
   ) {
-    this.Medico = navParams.get('Medico');
     this.Ficha = navParams.get('Ficha');
-    this.rlength = navParams.get('length');
-    this.Horario =  navParams.get('Horario');
-
-    this.Ficha.MedicoCodigo = this.Medico.Valor;
-    this.Ficha.MedicoNombre = this.Medico.Descripcion;
+    this.Horario = navParams.get('Horario');
+    this.length = this.Horario.length;
   }
+
   irResumen(Hora) {
     this.navCtrl.push('ResumenPage', { Hora: Hora, Ficha: this.Ficha });
   }
+
   volver() {
     this.navCtrl.pop();
   }

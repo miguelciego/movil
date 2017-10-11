@@ -23,9 +23,11 @@
     <ion-item-divider color="light">CENTROS DE SALUD </ion-item-divider>
   </ion-item-group>
   <div class="contenedor" *ngIf="mostrar == false" (click)="cargarDatos()">
-    <i id="logo" class="fa fa-map fa-3x" aria-hidden="true"></i>
-    <p id="error"> No se ha podido cargar los mapas.</p>
-    <h5> Se ha producido un error, Toca la pantalla para volver a intentarlo</h5>
+    <div class="medio">
+      <i class="fa fa-location-arrow fa-3x" aria-hidden="true"></i>
+      <h5>No se han podido cargar los resultados.</h5>
+      <p>Toca la pantalla para volver a intentarlo</p>
+    </div>
   </div>
   <ion-list no-lines *ngIf="mostrar == true">
     <ion-card>
@@ -34,12 +36,11 @@
           <img style="background: #dedede" src="http://smovil.cps.org.bo/images/{{ item.img }}" />
         </ion-thumbnail>
         <!--<a class="maps" item-left [href]="sanitize('geo:?q=' + item.geolatitud + ',' + item.geolongitud + ',17z')" target="_system">-->
-          <h3 color="primary"> {{ item.filial }} </h3>
-          <p class="text"> Dirección: {{ item.direccion }} </p>
-          <p class="text"> Horario: {{ item.horario }} </p>
+        <h3 color="primary"> {{ item.filial }} </h3>
+        <p class="text"> Dirección: {{ item.direccion }} </p>
+        <p class="text"> Horario: {{ item.horario }} </p>
         <!--</a>-->
       </ion-item>
     </ion-card>
   </ion-list>
 </ion-content>
-

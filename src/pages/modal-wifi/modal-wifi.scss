@@ -26,16 +26,11 @@ page-modal-wifi {
     .label-md, .label-ios, .label-wp {
         margin: 13px 8px 0 0;
     }
-    /*.img{
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 40%;
-        margin: auto;
-    }*/
+    ion-col{
+        i{
+            padding-top: 1px;
+        }
+    }
     /*.scroll-content {
         overflow-x: hidden !important;
         overflow-y: hidden !important;

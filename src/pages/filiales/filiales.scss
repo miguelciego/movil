@@ -1,32 +1,23 @@
 page-filiales {
     .contenedor{
-        position:absolute;
-        height: 100%;
-        width: 100%;
-        text-align: center;
-    }
-    .contenedor > p{
-        color:#757575;
-        margin: 0;
-        font-size: 12px;
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-    h3{
-        color: #212121;
-    }
-    .contenedor > h5{
-        color:#212121;
-        font-size: 12px;
-        margin:0;
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-    .img{
-        position:relative;
-        margin-top:45%;
-        vertical-align:middle;
         text-align:center;
+        height: 100%;
+    }
+    .medio{
+        position: relative;
+        top: 35%;
+    }
+    .medio > p{
+        color:#43443e;
+        font-weight: bold;
+        font-size: 12px;
+        padding: 0;
+        margin : 0;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .medio > i {
+        color:#43443e;
     }
     .item-ios p {
     font-size: 1.1rem;

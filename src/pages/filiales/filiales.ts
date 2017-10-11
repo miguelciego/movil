@@ -16,7 +16,6 @@ export class FilialesPage {
   cancel: boolean = false;
   private FilialesEncontradas: any[] = [];
   private Especialidades: any[] = [];
-  private elength;
   private Paciente;
   private Ficha;
   private validarN;
@@ -44,11 +43,8 @@ export class FilialesPage {
     this.Ficha.PacienteHClinica = this.Paciente.HClinica;
     this.Ficha.PacienteAtendido = this.Paciente.Atendido;
     this.Ficha.PacienteFicha = this.Paciente.Ficha;
+    console.log("Ficha", this.Ficha)
     console.log("Paciente =>", this.Paciente.Matricula,"N =>", this.validarN)
-    console.log("filialesEncontradas", this.FilialesEncontradas)
-  }
-  ionViewDidLoad() {
-    
   }
   ionViewWillLeave() {
     if (this.cancel == true) { this.query.unsubscribe(); }
@@ -60,15 +56,16 @@ export class FilialesPage {
       dismissOnPageChange: true
     });
     load.present();
-    this.query = this.cps.getTeste(this.Ficha.dpts, Filial.Codigo)
+    this.Ficha.FilialCodigo = Filial.Codigo;
+    this.Ficha.FilialDescripcion = Filial.Nombre;
+    this.Ficha.Fecha = Filial.Fecha;
+
+    this.query = this.cps.getEspecialidades(this.Ficha.dpts, this.Ficha.FilialCodigo, this.Ficha.Fecha)
       .subscribe(data => {
         this.Especialidades = data.json();
-        this.elength = this.Especialidades.length;
         this.navCtrl.push('EspecialidadesPage', {
-          Filial: Filial,
           Especialidades: this.Especialidades,
-          Ficha: this.Ficha,
-          length: this.elength,
+          Ficha: this.Ficha
         });
       },
       err => {
@@ -82,10 +79,11 @@ export class FilialesPage {
   volver() {
     this.navCtrl.pop();
   }
+
   ToastError() {
     let toast = this.toastCtrl.create({
       message: 'Se ha producido un error. Inténtalo de nuevo',
-      duration: 5000,
+      duration: 4000,
       position: 'bottom'
     });
     toast.present();

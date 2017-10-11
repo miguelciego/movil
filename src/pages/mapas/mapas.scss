@@ -17,7 +17,7 @@ page-mapas {
         box-shadow: 0 0 rgba(0, 0, 0, 0.2);
         font-size: 1.4rem;
     }
-    .contenedor{
+    /*.contenedor{
         position:absolute;
         height: 100%;
         width: 100%;
@@ -37,17 +37,38 @@ page-mapas {
         margin:0;
         padding-left: 20%;
         padding-right: 20%;
-    }
-    #logo{
-        position:relative;
-        margin-top:50%;
-        vertical-align:middle;
+    }*/
+    .contenedor{
         text-align:center;
-        color: #757575
+        height: 100%;
+    }
+    .contenedorn{
+        text-align:center;
+    }
+    .medio{
+        position: relative;
+        top: 40%;
+    }
+    .medio > p{
+        color:#43443e;
+        font-size: 11px;
+        margin:0;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .medio > h5{
+        color:#43443e;
+        font-size: 12px;
+        margin:0;
+        padding-top: 8px;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .medio > i {
+        color:#b7b7b7;
     }
     ion-thumbnail > img {
-        background: #dedede
-        
+        background: #dedede   
     }
     .card-md,.card-ios, .card-wp  {
         margin: 0px;
@@ -62,6 +83,9 @@ page-mapas {
     }
     .maps{  
         color: #009688 !important;
+    }
+    .list-ios,.list-md, .list-wp   {
+        margin: -1px 0 0px;
     }
     .card-md p, .card-ios p, .card-wp p {
         font-size: 0.8em;

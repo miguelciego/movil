@@ -87,8 +87,8 @@ export class VerificacionPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Problemas al iniciar',
-      message: 'Se ha producido un error al iniciar la aplicación CPS Móvil, Vuelve a intentarlo más tarde.',
+      title: 'Error!',
+      message: 'Se ha producido un error al cargar la aplicación CPS Móvil, Vuelve a intentarlo más tarde.',
       cssClass: 'alertError',
       buttons: [{
         text: 'Ok', handler: () => {

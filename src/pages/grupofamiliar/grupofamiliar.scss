@@ -45,39 +45,30 @@ page-grupofamiliar {
         font-size: 1.4rem;
     }
     .contenedor{
-        position:relative;
-        height: 100%;
-        width: 100%;
-        text-align: center;
-    }
-    .contenedor > p{
-        color:#757575;
-        font-weight: bold;
-        font-size: 12px;
-        margin-bottom: 2px;
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-    .contenedor > h5{
-        font-size: 10px;
-        color:#212121;
-        margin:0;
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-    .contenedor > h5{
-        color:#43443e;
-        font-size: 10px;
-        margin:0;
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-    #logo{
-        position:relative;
-        padding-top:50%;
-        vertical-align:middle;
         text-align:center;
-        color: #757575
+        height: 100%;
+    }
+    .medio{
+        position: relative;
+        top: 40%;
+    }
+    .medio > p{
+        color:#43443e;
+        font-size: 11px;
+        margin:0;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .medio > h5{
+        color:#43443e;
+        font-size: 12px;
+        margin:0;
+        padding-top: 8px;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .medio > i {
+        color:#b7b7b7;
     }
     .more{
         background-color: #009688;

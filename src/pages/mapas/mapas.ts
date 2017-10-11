@@ -15,7 +15,7 @@ import { AfiliadoStorage } from '../../providers/afiliado-storage';
 })
 export class MapasPage {
 
-  public Maps;
+  public Maps = [];
   public dptStorage;
   private check: boolean;
   private inicalesDpts: any = [];
@@ -44,7 +44,6 @@ export class MapasPage {
         });
         this.maps(this.dptStorage)
         this.depar();
-        this.mostrar = true;
         console.log("mostrar", this.mostrar)
       })
       .catch(error => {
@@ -53,12 +52,7 @@ export class MapasPage {
         console.log("mostrar", this.mostrar)
       })
   }
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
+  
   maps(abrev) {
     let load = this.LoadCtrl.create({
       content: 'Cargando...',
@@ -67,6 +61,9 @@ export class MapasPage {
     this.cps.getMaps(abrev)
       .subscribe(data => {
         this.Maps = data
+        if (this.Maps.length > 0) {
+          this.mostrar = true;
+        }
         console.log("maps", this.Maps);
         load.dismiss()
       },
@@ -91,9 +88,18 @@ export class MapasPage {
       () => console.log('getmaps -> completado')
       );
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
+
   showRadioAlert() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Departamental');
@@ -123,6 +129,7 @@ export class MapasPage {
     });
     alert.present();
   }
+  
   mapsDetalle(data){
     let modal = this.modalCtrl.create('ModalWifi', { data: data });
     modal.present();

@@ -28,7 +28,7 @@ export class MitabPage {
     public app: App,
 
   ) {
-    this.mySelectedIndex = navParams.data.tabIndex || 0;
+    this.mySelectedIndex = navParams.data.tabIndex || 1;
   }
   refreshScrollbarTabs() {
     this.scrollableTabsopts = { refresh: true };    

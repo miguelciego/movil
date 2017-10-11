@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { CpsProviders } from '../../providers/cps';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @IonicPage()
 @Component({
   selector: 'page-resumen',
@@ -10,6 +12,9 @@ import { CpsProviders } from '../../providers/cps';
   providers: [CpsProviders, LocalNotifications]
 })
 export class ResumenPage {
+
+  query: Subscription;
+  cancel:boolean=false;
 
   private Ficha;
   private getHora;
@@ -46,13 +51,20 @@ export class ResumenPage {
     this.Dia = this.Ficha.Fecha;
     console.log("Ficha",this.Ficha);
   }
+
+  ionViewWillLeave() {
+    if (this.cancel == true) { this.query.unsubscribe(); }
+  }
+
   Guardar() {
+    this.cancel = true;
+    this.navCtrl.remove(3);
     let load = this.LoadCtrl.create({
       content: 'Guardando Ficha...',
+      dismissOnPageChange: true
     });
     load.present();
-
-    this.cps.putGFicha(
+    this.query = this.cps.putGFicha(
       this.Ficha.dpts,
       this.Ficha.PacienteCodigo,
       this.Ficha.FilialCodigo,
@@ -66,23 +78,19 @@ export class ResumenPage {
         switch (this.datos.Codigo) {
           case "G0": //GUARDAR FICHA
             console.log("codigo", this.datos.Codigo)
-            load.dismiss();
             this.ToastG0(this.datos.Descripcion);
             this.navCtrl.popToRoot();
             this.notificacionFicha(this.NombrePaciente, this.Matricula)
             break;
           case "E1": //YA CUENTA CON FICHA
             console.log("codigo", this.datos.Codigo)
-            load.dismiss();
             this.ToastE1(this.datos.Descripcion);
             this.navCtrl.popToRoot();
             break;
           case "E2": //EL HORARIO SE ACABA DE OCUPAR
             console.log("codigo", this.datos.Codigo)
-            load.dismiss();
-            this.ToastE2(this.Ficha.horaD);
-            this.navCtrl.remove(4)
-            this.navCtrl.pop()
+            this.navCtrl.pop();
+            this.ToastE2();
             break;
         }
       },
@@ -91,12 +99,10 @@ export class ResumenPage {
         load.dismiss();
         this.ToastError();
       },
-      () => console.log('Completado : resumenPage')
+      () => console.log("Termino ResumenPage")
       );
   }
-  cancelar() {
-    this.navCtrl.pop()
-  }
+
   ToastG0(mensaje) {
     let toast = this.toastCtrl.create({
       message: mensaje,
@@ -115,10 +121,10 @@ export class ResumenPage {
     toast.present();
   }
 
-  ToastE2(horario) {
+  ToastE2() {
     let toast = this.toastCtrl.create({
-      message: 'El horario ' + horario + ' acaba de ocupar.',
-      duration: 4000,
+      message: 'El horario ya ha sido asignado.',
+      duration: 5000,
       position: 'top'
     });
     toast.present();
@@ -132,6 +138,7 @@ export class ResumenPage {
     });
     toast.present();
   }
+
   notificacionFicha(afiliado, matricula) {
     this.localNotifications.schedule({
       id: 1,
@@ -139,5 +146,9 @@ export class ResumenPage {
       title: 'CPS MÓVIL',
       text: 'FICHA PARA ' + afiliado
     });
+  }
+
+  cancelar() {
+    this.navCtrl.pop()
   }
 }

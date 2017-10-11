@@ -14,46 +14,45 @@ export class Historial {
 
   query: Subscription;
   cancel: boolean = false;
-  private infinite:any= 1000000000000000000000000000000000000;
+
+  private infinite: any = 1000000000000000000000000000000000000;
   private myPaciente;
   private historial;
-  private length:any = 0;
+  private length: number = 0;
   private errorApi: boolean;
   public icon = "add-circle";
+  private dpts;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    private navCtrl: NavController,
+    private navParams: NavParams,
     private cps: CpsProviders,
     private toastCtrl: ToastController,
-    public LoadCtrl: LoadingController,
+    private LoadCtrl: LoadingController,
     private modalCtrl: ModalController
   ) {
     this.myPaciente = navParams.get('myPaciente');
+    this.dpts = navParams.get('dpts');
   }
   ionViewDidLoad() {
     this.cancel = true;
-    /*let load = this.LoadCtrl.create({
-      content: 'Cargando...',
-      dismissOnPageChange: true
-    });
-    load.present();*/
-    this.query = this.cps.getHistorial(this.myPaciente.Codigo)
+    this.errorApi = false;
+    this.query = this.cps.getHistorial(this.dpts, this.myPaciente.Codigo)
       .subscribe(data => {
         this.historial = data.json();
         this.length = this.historial.length;
-        if (this.length == 0) {this.length = this.infinite;}
-        /*if (this.historial != []) {load.dismiss()}*/
+        console.log("historial", this.historial)
+        if (this.length == 0) { this.length = this.infinite; }
       },
       err => {
         console.log(err.status);
         this.length = 1;
         this.errorApi = true;
         this.toastError();
-        //load.dismiss();
       },
-      () => console.log("termino")
+      () => console.log("HistorialPage => Proceso terminado")
       );
+
   }
   ionViewWillLeave() {
     if (this.cancel == true) { this.query.unsubscribe(); }

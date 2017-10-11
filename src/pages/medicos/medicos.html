@@ -17,20 +17,20 @@
   </ion-card>
 </ion-header>
 <ion-content>
-  <ion-list  *ngIf="rlength > 0">
+  <ion-list  *ngIf="length > 0">
     <button ion-item *ngFor="let Medico of Medico" (click)="iraHorarios(Medico)">
         <ion-avatar item-left (click)="irDetalleMed(Medico)" >
             <img src="assets/images/medGris.png" >
         </ion-avatar>
         <div>
-          <h3>{{ Medico.Descripcion }}</h3>
+          <h3 text-uppercase>{{ Medico.Descripcion }}</h3>
         </div>
         <ion-badge item-end>{{ Medico.cupos }}</ion-badge>
     </button>
   </ion-list>
-  <div *ngIf="rlength == 0" class="contenedor" (click)="volver()">
+  <div *ngIf="length == 0" class="contenedor" (click)="volver()">
       <div class="medio">
-        <img class="img" width="65" height="65" src="assets/images/medGris.png"/>
+        <img class="img" width="60" height="60" src="assets/images/medGris.png"/>
         <h5>No hay Médicos disponibles.</h5>
         <p>Toca la pantalla para volver atrás</p>
       </div>

@@ -33,7 +33,7 @@
       <ion-row>
         <ion-col col-1><i class="fa fa-phone" aria-hidden="true"></i></ion-col>
         <ion-col col-11>
-          <p> 3 3385474 - 75895544 </p>
+          <p> {{data.telefono}}</p> <p *ngIf="data.telefono == null || data.telefono == '' ">Ninguno</p>
         </ion-col>
       </ion-row>
     </ion-grid>

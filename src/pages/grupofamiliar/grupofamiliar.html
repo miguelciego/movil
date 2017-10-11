@@ -15,9 +15,11 @@
 </ion-header>
 <ion-content>
   <div class="contenedor" *ngIf="mostrar == false" (click)="ionViewDidLoad()">
-    <i id="logo" class="fa fa-users fa-3x" aria-hidden="true"></i>
-    <p> No se ha podido cargar el grupo familiar.</p>
-    <h5> Se ha producido un error, Toca la pantalla para volver a intentarlo</h5>
+    <div class="medio">
+      <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+      <h5> No se han podido cargar los resultados.</h5>
+      <p> Toca la pantalla para volver a intentarlo</p>
+    </div>
   </div>
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingText="Actualizando...">

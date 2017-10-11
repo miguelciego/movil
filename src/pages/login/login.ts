@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Device } from '@ionic-native/device';
 
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 import { CpsProviders } from '../../providers/cps';
@@ -15,7 +16,7 @@ export class LoginPage {
 
   public afiliado: any[] = [];
   public datos;
-  public device;
+
   public loginForm: FormGroup;
   private departamental;
 
@@ -27,11 +28,11 @@ export class LoginPage {
     public AfiliadoStorage: AfiliadoStorage,
     public LoadCtrl: LoadingController,
     private alertCtrl: AlertController,
+    private device: Device,
     public cps: CpsProviders
   ) {
     this.departamental = navParams.get('departamental');
     this.loginForm = this.myLoginForm;
-    this.device = {};
   }
   ionViewDidLoad() {}
 
@@ -43,7 +44,7 @@ export class LoginPage {
   }
   Guardar() {
     let load = this.LoadCtrl.create({
-      content: 'Verificando...'
+      content: 'Cargando...'
     });
     load.present();
     this.cps.putVerification(
@@ -54,11 +55,11 @@ export class LoginPage {
       this.device.model,
       this.device.uuid)
       .subscribe(data => {
-        console.log("version", this.device.version)
+        console.log("version", this.device)
         this.datos = data.json();
         console.log("login.ts, estado =>", this.datos.estado)
         if (this.datos != null && this.datos.estado == 1 || this.datos.estado == 2) {
-          console.log("el estado es ", this.datos.estado);
+          console.log("el estado es ", this.datos);
           let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula, "filial": this.loginForm.value.filial }
           this.afiliado.push(a);
           this.AfiliadoStorage.create(this.afiliado).then(data => {
