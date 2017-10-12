@@ -18,7 +18,7 @@ export class Historial {
   private infinite: any = 1000000000000000000000000000000000000;
   private myPaciente;
   private historial;
-  private length: number = 0;
+  private length: number;
   private errorApi: boolean;
   public icon = "add-circle";
   private dpts;
@@ -36,6 +36,7 @@ export class Historial {
   }
   ionViewDidLoad() {
     this.cancel = true;
+    this.length = 0;
     this.errorApi = false;
     this.query = this.cps.getHistorial(this.dpts, this.myPaciente.Codigo)
       .subscribe(data => {

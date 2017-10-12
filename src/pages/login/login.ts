@@ -58,7 +58,7 @@ export class LoginPage {
         console.log("version", this.device)
         this.datos = data.json();
         console.log("login.ts, estado =>", this.datos.estado)
-        if (this.datos != null && this.datos.estado == 1 || this.datos.estado == 2) {
+        if (this.datos != null && this.datos.estado == 1) { //estado 2 para puebas libres
           console.log("el estado es ", this.datos);
           let a = { "Id": this.datos.cod_afi, "matricula": this.loginForm.value.matricula, "filial": this.loginForm.value.filial }
           this.afiliado.push(a);
@@ -113,9 +113,5 @@ export class LoginPage {
       buttons: ['Ok']
     });
     alert.present();
-  }
-  irAyuda(){
-    console.log("clic ayuda")
-    this.navCtrl.push('SlideAyuda')
   }
 }

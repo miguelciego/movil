@@ -1,16 +1,16 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Ficha</ion-title>
-      <ion-buttons left>
-        <button ion-button >
+    <ion-buttons left>
+      <button ion-button>
           <img width="35" height="35" src="assets/images/logo.png" />
         </button>
-      </ion-buttons>
-   </ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 <ion-content>
   <div padding>
-    
+
     <ion-item no-lines>
       <i class="fa fa-user" item-left aria-hidden="true"></i>
       <p>{{ NombrePaciente }}</p>
@@ -45,9 +45,12 @@
           <button block ion-button color="primary" (click)="cancelar()" outline>Cancelar</button>
         </ion-col>
         <ion-col>
-          <button block ion-button color="primary" (click)="Guardar()" >Guardar</button>
+          <button block ion-button color="primary" (click)="Guardar()">Guardar</button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    <!--<ion-item no-lines>
+      <p>NOTA: Al guardar su ficha, pase por fichaje para recojer su colilla.</p>
+    </ion-item>-->
   </div>
 </ion-content>

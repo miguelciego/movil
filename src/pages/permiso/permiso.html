@@ -13,14 +13,12 @@
   <ion-searchbar *ngIf="length > 10 && length != infinite" placeholder="Buscar médico" (ionInput)="getItems($event)" (ionClear)="onClear($event)">></ion-searchbar>
   <ion-list *ngIf="length != 0">
     <ion-item *ngFor="let item of listpermiso; let i = index">
-      <ion-avatar item-left *ngIf="item.id != null">
+      <ion-avatar item-left>
         <img src="assets/images/medGris.png">
       </ion-avatar>
-      <div class="info" *ngIf="item.id != null"> 
-          <h3>{{ item.nombrec }} </h3>
-          <p class="nota"> Motivo : {{ item.motivo }}</p>
-          <p class="nota"> Desde el {{ item.fch_ini }} hasta el {{ item.fch_fin }} </p>
-      </div>
+      <h3>{{ item.nombrec }} </h3>
+      <p class="nota"> Motivo : {{ item.motivo }}</p>
+      <p class="nota"> Desde el {{ item.fch_ini }} hasta el {{ item.fch_fin }} </p>
     </ion-item>
   </ion-list>
 
@@ -35,7 +33,7 @@
       <h5>No se ha encontrado médicos con permisos.</h5>
     </div>
   </div>
-  <div class="contenedor" *ngIf="errorApi == true && length != 0" (click)="volver()">
+  <div class="contenedor" *ngIf="errorApi == true && length != 0" (click)="ionViewWillEnter()">
     <div class="medio">
       <i class="fa fa-calendar-times-o fa-3x" aria-hidden="true"></i>
       <h5>No se han podido cargar los resultados.</h5>

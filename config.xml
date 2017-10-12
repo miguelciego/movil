@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="smovil.cps.org.bo.cpsmovil2" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="smovil.cps.org.bo.cpsmovil1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name> CPS Movíl Test </name>
   <description>CPS Movíl | Caja petrolera de salud </description>
   <author email="fernando.castillo1@live.com" href="http://http://cps.org.bo/">Fernando Castillo Torrico</author>

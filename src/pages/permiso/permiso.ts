@@ -17,14 +17,12 @@ export class PermisoPage {
 
   query: Subscription;
   cancel: boolean = false;
-
-  private day = new Date().toJSON().slice(0, 10);
-  private fecha;
+  
   private rescount;
   private nombrebus: string = '';
   private infinite: any = 1000000000000000000000000000000000000;
   private errorApi: boolean;
-  private length: any = 0;
+  private length: any;
   private data: any = [];
   private listpermiso: any = [];
   private dpts;
@@ -45,61 +43,33 @@ export class PermisoPage {
     if (this.cancel == true) { this.query.unsubscribe(); }
   }
   ionViewWillEnter() {
-    this.pStorage.getAll()
-      .then((result: any[]) => {
-        if (result != null) {
-          Object.keys(result).forEach(key => {
-            this.fecha = result[key].fecha;
-          });
-        }
-        console.log("fecha", this.fecha)
-        console.log("day", this.day)
-        if (result == null || this.fecha != this.day) {
-          console.log("----------Es nulo debe hacer la consulta-----------")
-          this.cancel = true;
-          this.aStorage.getAll()
-            .then((result: any) => {
-              Object.keys(result).forEach(key => {
-                this.dpts = result[key].filial;
-              });
-              this.query = this.cps.getPermiso(this.dpts)
-                .subscribe(data => {
-                  this.data = data.json();
-                  this.initializeItems();
-                  this.length = this.data.length;
-                  if (this.length == 0) {
-                    this.length = this.infinite;
-                  }
-                  else if (this.length > 0) {
-                    this.data.push({ fecha: this.day })
-                    this.pStorage.create(this.data)
-                  }
-                },
-                err => {
-                  console.log(err.status);
-                  this.length = 1;
-                  this.errorApi = true;
-                  this.toastError();
-                },
-                () => console.log("PermisoPage => Proceso terminado")
-                );
-            })
-            .catch(error => {
-              console.log(error)
-            })
-        }
-        else if (result != null && this.fecha == this.day ) {
-          console.log("-------------No consulta web service y las fechas coinciden--------------")
-          this.data = result;
-          this.initializeItems();
-          this.length = this.data.length;
-        }
-        console.log("result listPermiso", this.listpermiso)
+    this.cancel = true;
+    this.length = 0;
+    this.aStorage.getAll()
+      .then((result: any) => {
+        Object.keys(result).forEach(key => {
+          this.dpts = result[key].filial;
+        });
+        this.query = this.cps.getPermiso(this.dpts)
+          .subscribe(data => {
+            this.data = data.json();
+            this.initializeItems();
+            this.length = this.data.length;
+            this.errorApi = false;
+            if (this.length == 0) { this.length = this.infinite }
+          },
+          err => {
+            console.log(err.status);
+            this.length = 1;
+            this.errorApi = true;
+            this.toastError();
+          },
+          () => console.log("PermisoPage => Proceso terminado")
+          );
       })
       .catch(error => {
         console.log(error)
       })
-
   }
   initializeItems() {
     this.listpermiso = this.data;
