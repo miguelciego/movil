@@ -77,5 +77,8 @@ page-verificacion {
         justify-content: center;
         align-items: center;
         height: 100%;
+        &.spinner-dots circle {
+            fill: #007b6d;
+          }
     }
 }

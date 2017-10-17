@@ -5,7 +5,18 @@ import { Storage } from '@ionic/storage';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
 @Component({
-  templateUrl: 'popoverUpdate.html'
+  templateUrl: 'popoverUpdate.html',
+  styles: [`.list-header-md {
+    padding-left: 16px;
+    margin-bottom: 0;
+    min-height: 4.5rem;
+    border-top: 1px solid #dedede;
+    font-size: 1.4rem;
+    color: #757575;
+  }
+  .list-md{
+    margin: 0 !important;
+  }`]
 })
 export class popoverUpdatePage {
 
@@ -21,16 +32,16 @@ export class popoverUpdatePage {
     private gStorage: gFamiliarStorage,
   ) {
   }
-  update(){
+  update() {
     this.viewCtrl.dismiss();
-    this.gStorage.create(null) 
-    .then (data => {
-      console.log("Agregado null en el objeto de grupo familiar")
-    })
-    .catch(error => {
-      console.log("Error en popoverUpdate:Update()")
-    }),
-    this.appCtrl.getRootNav().setRoot('MitabPage');
+    this.gStorage.create(null)
+      .then(data => {
+        console.log("Agregado null en el objeto de grupo familiar")
+      })
+      .catch(error => {
+        console.log("Error en popoverUpdate:Update()")
+      }),
+      this.appCtrl.getRootNav().setRoot('MitabPage');
   }
   close() {
     this.viewCtrl.dismiss();

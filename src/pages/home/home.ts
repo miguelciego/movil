@@ -19,9 +19,11 @@ export class HomePage {
     public popoverCtrl: PopoverController,
     private cps: CpsProviders,
     private navCtrl: NavController,
+
   ) {
   }
   ionViewDidLoad() {
+
   }
   IrPermiso() {
     this.navCtrl.push('PermisoPage')

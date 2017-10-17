@@ -112,4 +112,7 @@ export class PermisoPage {
     this.rescount = 1;
     console.log(this.nombrebus, this.rescount, this.length);
   }
+  onCancel(){
+    
+  }
 }

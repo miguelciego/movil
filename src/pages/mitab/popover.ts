@@ -5,7 +5,18 @@ import { Storage } from '@ionic/storage';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
 
 @Component({
-  templateUrl: 'popover.html'
+  templateUrl: 'popover.html',
+  styles: [`.list-header-md {
+    padding-left: 16px;
+    margin-bottom: 0;
+    min-height: 4.5rem;
+    border-top: 1px solid #dedede;
+    font-size: 1.4rem;
+    color: #757575;
+  }
+  .list-md {
+    margin: 0 !important;
+  }`]
 })
 export class PopoverPage {
   constructor(

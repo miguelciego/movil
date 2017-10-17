@@ -87,11 +87,10 @@ export class VerificacionPage {
   }
   AlertError() {
     let alert = this.alertCtrl.create({
-      title: 'Error!',
+      title: 'Información !',
       message: 'Se ha producido un error al cargar la aplicación CPS Móvil, Vuelve a intentarlo más tarde.',
-      cssClass: 'alertError',
       buttons: [{
-        text: 'Ok', handler: () => {
+        text: 'ok', handler: () => {
         }
       }]
     });

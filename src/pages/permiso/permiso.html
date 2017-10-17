@@ -10,7 +10,9 @@
 </ion-header>
 <ion-content>
   <ion-spinner *ngIf="length == 0"></ion-spinner>
-  <ion-searchbar *ngIf="length > 10 && length != infinite" placeholder="Buscar médico" (ionInput)="getItems($event)" (ionClear)="onClear($event)">></ion-searchbar>
+  <ion-searchbar *ngIf="length > 10 && length != infinite" placeholder="Buscar médico" (ionInput)="getItems($event)" (ionClear)="onClear($event)"> <!--Android-->
+    <!--[showCancelButton]="true" (ionCancel)="onCancel($event)" (ionClear)="onClear($event)"> IOS-->
+  </ion-searchbar>
   <ion-list *ngIf="length != 0">
     <ion-item *ngFor="let item of listpermiso; let i = index">
       <ion-avatar item-left>
@@ -37,7 +39,7 @@
     <div class="medio">
       <i class="fa fa-calendar-times-o fa-3x" aria-hidden="true"></i>
       <h5>No se han podido cargar los resultados.</h5>
-      <p>Toca la pantalla para volver atrás</p>
+      <p>Toca la pantalla para volver a intentarlo</p>
     </div>
   </div>
 </ion-content>
