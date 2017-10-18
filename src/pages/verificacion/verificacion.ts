@@ -103,4 +103,7 @@ export class VerificacionPage {
     console.log(this.sanitizer.bypassSecurityTrustUrl(url))
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
+  salirApp(){
+    this.platform.exitApp();
+  }
 }

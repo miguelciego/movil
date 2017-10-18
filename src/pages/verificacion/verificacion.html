@@ -1,18 +1,24 @@
-<ion-content class="container" text-center>
+<ion-content text-center>
 	<ion-spinner name="dots" *ngIf="act == 2 "></ion-spinner>
-	<div class="carta">
-		<ion-card *ngIf="act == 1 ">
-			<ion-card-header>
-				<span class="title">{{ titulo }}</span>
-			</ion-card-header>
-			<ion-card-content>
-				{{ mensaje }} <br>
-				<button class="boton" color="light" ion-button outline block>
-					<a ion-item text-center class="a" item-left [href]="sanitize('http://192.168.9.18/scz/movil/cpsmovil5.apk')" target="_system">
-						<h3>Sí, Descargar</h3>
-					</a>
-				</button>
-			</ion-card-content>
-		</ion-card>
+	<div class="contenedor" *ngIf="act == 1">
+		<div class="medio">
+			<img width="47" height="45" src="assets/images/logoup.png" />
+			<h5> {{ titulo }} </h5>
+			<p> {{ mensaje }} </p>
+		</div>
 	</div>
 </ion-content>
+<ion-footer *ngIf="act == 1">
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<button block ion-button color="primary" (click)="salirApp()" outline>Salir</button>
+			</ion-col>
+			<ion-col>
+				<a ion-button block text-center class="a" item-left [href]="sanitize('http://192.168.9.18/scz/movil/cpsmovil5.apk')" target="_system">
+					Descargar
+				</a>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>
