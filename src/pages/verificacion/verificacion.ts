@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, App, Platform, ToastController, AlertController } from 'ionic-angular';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
-
 import { DomSanitizer } from '@angular/platform-browser';
 import { CpsProviders } from '../../providers/cps';
 
@@ -27,9 +26,11 @@ export class VerificacionPage {
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     public cps: CpsProviders,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {
     this.version()
+    //this.Session()
+    //this.appCtrl.getRootNav().setRoot('LoginPage', { departamental: this.departamental });
   }
   version() {
     this.cps.putVersion(this.versionCode)
@@ -40,14 +41,13 @@ export class VerificacionPage {
           this.code = result[key].code;
           this.msj = result[key].msj;
         });
-        console.log("code", this.code)
         console.log("msj", this.msj)
-        if (this.code == false && this.msj == "Version Desactualizada") {
+        if (this.code == false) {
           this.titulo = "¡ Actualización Disponible !";
           this.mensaje = " Descarga la nueva versión de la aplicación CPS Móvil.";
           this.act = 1;
         }
-        if (this.msj == "Version Actualizada") {
+        if (this.code) {
           this.Session();
         }
       },

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalController, IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController, Content, App } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, LoadingController, ToastController, Content } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { popoverUpdatePage } from '../mitab/popoverUpdate';
 
@@ -30,18 +30,14 @@ export class GrupoFamiliarPage {
   private validarB;
 
   constructor(
-    private app: App,
     private navCtrl: NavController,
-    private navParams: NavParams,
     private toastCtrl: ToastController,
     private popoverCtrl: PopoverController,
     private modalCtrl: ModalController,
     private cps: CpsProviders,
     private aStorage: AfiliadoStorage,
     private gStorage: gFamiliarStorage,
-    private LoadCtrl: LoadingController,
-    private alertCtrl: AlertController,
-    private storage: Storage
+    private LoadCtrl: LoadingController
   ) {}
 
   ionViewDidLoad() {

@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, Searchbar, ToastController, Loadin
 
 import { CpsProviders } from '../../providers/cps';
 import { AfiliadoStorage } from '../../providers/afiliado-storage';
-import { permisoStorage } from '../../providers/permiso-storage';
 import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
@@ -33,8 +32,7 @@ export class PermisoPage {
     private toastCtrl: ToastController,
     public LoadCtrl: LoadingController,
     private aStorage: AfiliadoStorage,
-    private cps: CpsProviders,
-    private pStorage: permisoStorage
+    private cps: CpsProviders
   ) {
     console.log(this.length)
     this.initializeItems()

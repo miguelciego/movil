@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, PopoverController, NavController } from 'ionic-angular';
+
 import { PopoverPage } from '../mitab/popover';
 import { CpsProviders } from '../../providers/cps';
 
@@ -19,11 +20,10 @@ export class HomePage {
     public popoverCtrl: PopoverController,
     private cps: CpsProviders,
     private navCtrl: NavController,
-
+    
   ) {
   }
   ionViewDidLoad() {
-
   }
   IrPermiso() {
     this.navCtrl.push('PermisoPage')

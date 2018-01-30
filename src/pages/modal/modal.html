@@ -41,6 +41,20 @@
         <p> {{ ficha.Especialidad }}</p>
       </ion-item>
       <ion-item no-lines>
+          <i class="fa fa-stethoscope" item-left aria-hidden="true"></i>          
+          <p *ngIf="ficha.Consultorio != null"> 
+            <span *ngIf="ficha.Consultorio != 'null'"> 
+                CONSULTORIO : {{ ficha.Consultorio }}
+            </span>
+            <span *ngIf="ficha.Consultorio == 'null'"> 
+              CONSULTORIO : SIN DATOS
+            </span>
+          </p>
+          <p *ngIf="ficha.Consultorio == null"> 
+              CONSULTORIO : SIN DATOS
+          </p>
+        </ion-item>
+      <ion-item no-lines>
         <i class="fa fa-user-md " item-left aria-hidden="true"></i>
         <p> {{ ficha.Medico }}</p>
       </ion-item>

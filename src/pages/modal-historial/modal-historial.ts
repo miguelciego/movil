@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform, AlertController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,8 +17,7 @@ export class ModalHistorial {
     public navParams: NavParams,
     private viewCtrl: ViewController,
     public platform: Platform,
-    private alertCtrl: AlertController,
-    private app: App
+    private alertCtrl: AlertController
   ) {
     this.myPaciente = navParams.get('myPaciente');
     this.ficha = navParams.get('ficha');
